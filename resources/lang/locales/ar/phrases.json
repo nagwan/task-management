@@ -1,5 +1,6 @@
 {
     "welcome": "مرحبًا",
     "toggle_lang_btn": "تغيير اللغه",
-    "load_projects_btn": "تحميل"
+    "load_projects_btn": "تحميل",
+    "projects_title" : "مشروعاتك"
 }

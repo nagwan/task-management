@@ -82540,25 +82540,34 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_i18next__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-i18next */ "./node_modules/react-i18next/dist/es/index.js");
 /* harmony import */ var _helpers_functions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../helpers/functions */ "./resources/js/helpers/functions.js");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 
 
 
 
-var App = function App() {
+var App = Object(react_redux__WEBPACK_IMPORTED_MODULE_3__["connect"])(function (_ref) {
+  var projects = _ref.projects;
+  return {
+    projects: projects
+  };
+})(function (props) {
   var _useTranslation = Object(react_i18next__WEBPACK_IMPORTED_MODULE_1__["useTranslation"])(),
       t = _useTranslation.t,
       i18n = _useTranslation.i18n;
 
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "container my-16 py-8 px-8 text-center border border-primary-900"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, t('phrases:welcome')), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, t('phrases:welcome')), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, t('phrases:projects_title')), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, props.projects.projects.map(function (project) {
+    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      key: project.id
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, project.title));
+  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
     onClick: function onClick() {
       return Object(_helpers_functions__WEBPACK_IMPORTED_MODULE_2__["toggleLang"])(i18n);
     },
     className: "btn btn-link"
   }, t('phrases:toggle_lang_btn')));
-};
-
+});
 /* harmony default export */ __webpack_exports__["default"] = (App);
 
 /***/ }),
@@ -82653,7 +82662,19 @@ var store = Object(redux__WEBPACK_IMPORTED_MODULE_0__["createStore"])(reducers, 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return reducer; });
 var INITIAL_STATE = {
-  projects: []
+  projects: [{
+    id: 1,
+    title: "Test Project 1"
+  }, {
+    id: 2,
+    title: "Test Project 2"
+  }, {
+    id: 3,
+    title: "Test Project 3"
+  }, {
+    id: 4,
+    title: "Test Project 4"
+  }]
 };
 function reducer() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : INITIAL_STATE;
@@ -82734,10 +82755,10 @@ var _phrases__WEBPACK_IMPORTED_MODULE_0___namespace = /*#__PURE__*/__webpack_req
 /*!************************************************!*\
   !*** ./resources/lang/locales/ar/phrases.json ***!
   \************************************************/
-/*! exports provided: welcome, toggle_lang_btn, load_projects_btn, default */
+/*! exports provided: welcome, toggle_lang_btn, load_projects_btn, projects_title, default */
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"welcome\":\"مرحبًا\",\"toggle_lang_btn\":\"تغيير اللغه\",\"load_projects_btn\":\"تحميل\"}");
+module.exports = JSON.parse("{\"welcome\":\"مرحبًا\",\"toggle_lang_btn\":\"تغيير اللغه\",\"load_projects_btn\":\"تحميل\",\"projects_title\":\"مشروعاتك\"}");
 
 /***/ }),
 
@@ -82763,10 +82784,10 @@ var _phrases__WEBPACK_IMPORTED_MODULE_0___namespace = /*#__PURE__*/__webpack_req
 /*!************************************************!*\
   !*** ./resources/lang/locales/en/phrases.json ***!
   \************************************************/
-/*! exports provided: welcome, toggle_lang_btn, load_projects_btn, default */
+/*! exports provided: welcome, toggle_lang_btn, load_projects_btn, projects_title, default */
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"welcome\":\"Welcome\",\"toggle_lang_btn\":\"Toggle Lang\",\"load_projects_btn\":\"Load Projects\"}");
+module.exports = JSON.parse("{\"welcome\":\"Welcome\",\"toggle_lang_btn\":\"Toggle Lang\",\"load_projects_btn\":\"Load Projects\",\"projects_title\":\"Herein your Projects\"}");
 
 /***/ }),
 
