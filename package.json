@@ -23,5 +23,17 @@
         "resolve-url-loader": "^2.3.1",
         "sass": "^1.15.2",
         "sass-loader": "^7.1.0"
+    },
+    "dependencies": {
+        "formik": "^1.5.8",
+        "i18next": "^17.3.0",
+        "prop-types": "^15.7.2",
+        "react-i18next": "^10.13.1",
+        "react-redux": "^7.1.1",
+        "react-router-dom": "^5.1.2",
+        "redux": "^4.0.4",
+        "redux-saga": "^1.1.1",
+        "tailwindcss": "^1.1.2",
+        "yup": "^0.27.0"
     }
 }

@@ -1,0 +1,31 @@
+@font-face {
+  font-family: harmattan;
+  src: url(/fonts/Harmattan-Regular.ttf?bcd87a685fc9fa2f88ae49bf9662649c);
+}
+@font-face {
+  font-family: tajawal-light;
+  src: url(/fonts/Tajawal-Light.ttf?5c8f739351e568ec0c9fc0dc8a6994b4);
+}
+@font-face {
+  font-family: tajwal-extra-light;
+  src: url(/fonts/Tajawal-ExtraLight.ttf?4dba176f2d532f19d9c4c61502bca07b);
+}
+@font-face {
+  font-family: tajawal-bold;
+  src: url(/fonts/Tajawal-Bold.ttf?73222b42f57d11db8ed71c1752e121c0);
+}
+@font-face {
+  font-family: tajawal-extra-bold;
+  src: url(/fonts/Tajawal-ExtraBold.ttf?87a0f0773f0cdc28fd8dd3603bf34837);
+}
+@font-face {
+  font-family: tajawal-medium;
+  src: url(/fonts/Tajawal-Medium.ttf?1472d65abf09fa765956fd3d32dadf48);
+}
+@font-face {
+  font-family: tajawal-regular;
+  src: url(/fonts/Tajawal-Regular.ttf?d8304accb48d86d9361ad30569823a0d);
+}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
