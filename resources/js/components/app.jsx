@@ -13,13 +13,13 @@ const App = connect(({ projects }) => ({ projects }))((props) => {
    return (
       <div className="container my-16 py-8 px-8 border border-primary-900">
 
-         <Link className='my-12 mx-12' to='/'>Projects</Link>
+         <Link className='my-12 mx-12' to='/projects'>Projects</Link>
          <Link className='my-12 mx-12' to='/new-project'>New Project</Link>
 
          <h1>{t('phrases:welcome')}</h1>
 
          <Switch>
-            <Route exact path='/' component={Index} />
+            <Route exact path='/projects' component={Index} />
             <Route path='/new-project' component={Store} />
             <Route path='/projects/:id' component={Show} />
          </Switch>

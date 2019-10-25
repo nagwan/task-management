@@ -10,16 +10,19 @@ class ProjectsController extends Controller
     public function index()
     {
 
-        $projects = Project::all();
+        $projects = auth()->user()->projects;
 
         return \response(['data' =>  $projects]);
     }
 
     public function store()
     {
-        $project = request()->validate(['title' => 'required', 'description' => 'required']);
+        $project = request()->validate([
+            'title' => 'required',
+            'description' => 'required',
+        ]);
 
-        Project::create($project);
+        auth()->user()->projects()->create($project);
 
         $projects = Project::orderBy('created_at', 'desc')->get(); // how can i get the last added project
 
@@ -28,6 +31,10 @@ class ProjectsController extends Controller
 
     public function show(Project $project)
     {
+        if (auth()->user()->isNot($project->owner)) {
+            abort(403);
+        }
+        
         return \response(['data' => $project]);
     }
 }

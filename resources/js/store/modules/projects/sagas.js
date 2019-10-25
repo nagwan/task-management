@@ -60,7 +60,7 @@ export function* store(action) {
 
         yield put(projectStore(project.data))
 
-        yield action.payload.history.push('/')
+        yield action.payload.history.push('/projects')
 
     } catch (error) {
 
