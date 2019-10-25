@@ -15,6 +15,6 @@ const store = createStore(
     applyMiddleware(sagaMiddleware)
     );
 
-//sagaMiddleware.run(root)
+sagaMiddleware.run(root)
 
 export default store;
