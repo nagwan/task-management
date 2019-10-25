@@ -82590,6 +82590,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _store_index__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../store/index */ "./resources/js/store/index.js");
 /* harmony import */ var _app__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./app */ "./resources/js/components/app.jsx");
 /* harmony import */ var _lang_index__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../lang/index */ "./resources/lang/index.js");
+/* harmony import */ var _sass_app_sass__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../sass/app.sass */ "./resources/sass/app.sass");
+/* harmony import */ var _sass_app_sass__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_sass_app_sass__WEBPACK_IMPORTED_MODULE_7__);
+
 
 
 
@@ -82637,15 +82640,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _root_saga__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./root-saga */ "./resources/js/store/root-saga.js");
 /* harmony import */ var _root_saga__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_root_saga__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _modules_projects_reducer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/projects/reducer */ "./resources/js/store/modules/projects/reducer.js");
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
 
 
 
 
 var sagaMiddleware = Object(redux_saga__WEBPACK_IMPORTED_MODULE_1__["default"])();
+var composeEnhancers = (typeof window === "undefined" ? "undefined" : _typeof(window)) === 'object' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({}) : redux__WEBPACK_IMPORTED_MODULE_0__["compose"];
+var enhancer = composeEnhancers(Object(redux__WEBPACK_IMPORTED_MODULE_0__["applyMiddleware"])(sagaMiddleware));
 var reducers = Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"])({
   projects: _modules_projects_reducer__WEBPACK_IMPORTED_MODULE_3__["default"]
 });
-var store = Object(redux__WEBPACK_IMPORTED_MODULE_0__["createStore"])(reducers, Object(redux__WEBPACK_IMPORTED_MODULE_0__["applyMiddleware"])(sagaMiddleware)); //sagaMiddleware.run(root)
+var store = Object(redux__WEBPACK_IMPORTED_MODULE_0__["createStore"])(reducers, enhancer); //sagaMiddleware.run(root)
 
 /* harmony default export */ __webpack_exports__["default"] = (store);
 
@@ -82710,7 +82717,7 @@ function reducer() {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var i18next__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! i18next */ "./node_modules/i18next/dist/esm/i18next.js");
 /* harmony import */ var react_i18next__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-i18next */ "./node_modules/react-i18next/dist/es/index.js");
-/* harmony import */ var i18next_browser_languagedetector__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! i18next-browser-languagedetector */ "./node_modules/i18next-browser-languagedetector/dist/esm/i18nextBrowserLanguageDetector.js");
+/* harmony import */ var i18next_browser_languagedetector__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! i18next-browser-languagedetector */ "./node_modules/i18next-browser-languagedetector/dist/esm/i18nextBrowserLanguageDetector.js");
 /* harmony import */ var _locales_ar_index__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./locales/ar/index */ "./resources/lang/locales/ar/index.js");
 /* harmony import */ var _locales_en_index__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./locales/en/index */ "./resources/lang/locales/en/index.js");
 
@@ -82718,7 +82725,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-i18next__WEBPACK_IMPORTED_MODULE_0__["default"].use(i18next_browser_languagedetector__WEBPACK_IMPORTED_MODULE_5__["default"]).use(react_i18next__WEBPACK_IMPORTED_MODULE_1__["initReactI18next"]).init({
+i18next__WEBPACK_IMPORTED_MODULE_0__["default"].use(i18next_browser_languagedetector__WEBPACK_IMPORTED_MODULE_2__["default"]).use(react_i18next__WEBPACK_IMPORTED_MODULE_1__["initReactI18next"]).init({
   lng: "en",
   fallbackLng: "en",
   resources: {
