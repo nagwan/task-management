@@ -1,3 +1,6 @@
+import { PROJECTS_INDEX, PROJECT_SHOW } from './actions'
+
+
 const INITIAL_STATE = {
     projects: [],
     project: {}

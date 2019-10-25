@@ -84059,15 +84059,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var redux_saga__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! redux-saga */ "./node_modules/redux-saga/dist/redux-saga-core-npm-proxy.esm.js");
 /* harmony import */ var _root_saga__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./root-saga */ "./resources/js/store/root-saga.js");
 /* harmony import */ var _modules_projects_reducer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/projects/reducer */ "./resources/js/store/modules/projects/reducer.js");
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
 
 
 
 
 var sagaMiddleware = Object(redux_saga__WEBPACK_IMPORTED_MODULE_1__["default"])();
+var composeEnhancers = (typeof window === "undefined" ? "undefined" : _typeof(window)) === 'object' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({}) : compose;
+var enhancer = composeEnhancers(Object(redux__WEBPACK_IMPORTED_MODULE_0__["applyMiddleware"])(sagaMiddleware));
 var reducers = Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"])({
   projects: _modules_projects_reducer__WEBPACK_IMPORTED_MODULE_3__["default"]
 });
-var store = Object(redux__WEBPACK_IMPORTED_MODULE_0__["createStore"])(reducers, Object(redux__WEBPACK_IMPORTED_MODULE_0__["applyMiddleware"])(sagaMiddleware));
+var store = Object(redux__WEBPACK_IMPORTED_MODULE_0__["createStore"])(reducers, enhancer);
 sagaMiddleware.run(_root_saga__WEBPACK_IMPORTED_MODULE_2__["default"]);
 /* harmony default export */ __webpack_exports__["default"] = (store);
 
@@ -84122,11 +84126,13 @@ function projectShow(payload) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return reducer; });
+/* harmony import */ var _actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./actions */ "./resources/js/store/modules/projects/actions.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 var INITIAL_STATE = {
   projects: [],
@@ -84137,12 +84143,12 @@ function reducer() {
   var action = arguments.length > 1 ? arguments[1] : undefined;
 
   switch (action.type) {
-    case PROJECTS_INDEX:
+    case _actions__WEBPACK_IMPORTED_MODULE_0__["PROJECTS_INDEX"]:
       return _objectSpread({}, state, {
         projects: action.payload
       });
 
-    case PROJECT_SHOW:
+    case _actions__WEBPACK_IMPORTED_MODULE_0__["PROJECT_SHOW"]:
       return _objectSpread({}, state, {
         project: action.payload
       });

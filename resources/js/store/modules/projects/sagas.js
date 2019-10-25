@@ -20,7 +20,9 @@ export function* index(action) {
 export function* show(action) {
     try {
         const project = yield call(api, `/projects/${action.payload.id}`)
+
         yield put(projectShow(project.data))
+        
         yield action.payload.history.push(`/projects/${project.data.id}`)
     } catch (error) {
         console.log(error)
