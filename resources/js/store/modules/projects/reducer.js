@@ -13,7 +13,7 @@ export default function reducer (state = INITIAL_STATE, action){
         case PROJECT_SHOW:
             return {...state, project: action.payload}
         case PROJECT_STORE:
-            return {...state, projects: action.payload}
+            return {...state, projects: action.payload} // to be edited to just add the new project after the back-end fix
         default:
             return state;
     }

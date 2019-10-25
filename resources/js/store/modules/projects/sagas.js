@@ -3,6 +3,7 @@ import { projectsIndex, projectShow, PROJECT_SHOW_FLAG, PROJECT_STORE_FLAG, proj
 
 
 function api(url, data, method) {
+    
     let request = new Request(url, {
         method: method,
         body: data ? JSON.stringify(data) : null,
@@ -18,6 +19,7 @@ function api(url, data, method) {
 
 // fetch all projects
 export function* index(action) {
+
     try {
         const projects = yield call(api, `/projects`, null, 'get')
         yield put(projectsIndex(projects.data))
@@ -30,18 +32,22 @@ export function* index(action) {
 
 // view a project
 export function* show(action) {
+
     try {
         const project = yield call(api, `/projects/${action.payload.id}`, null, 'get')
 
         yield put(projectShow(project.data))
 
         yield action.payload.history.push(`/projects/${project.data.id}`)
+
     } catch (error) {
+
         console.log(error)
     }
 }
 
 export function* watchShow() {
+
     yield takeLatest(PROJECT_SHOW_FLAG, show)
 }
 
@@ -52,15 +58,17 @@ export function* store(action) {
     try {
         const project = yield call(api, `/projects`, action.payload.values, 'POST')
 
-        console.log(project, 'new project added')
         yield put(projectStore(project.data))
+
         yield action.payload.history.push('/')
 
     } catch (error) {
+
         console.log(error)
     }
 }
 
 export function* watchStore() {
+
     yield takeLatest(PROJECT_STORE_FLAG, store)
 }

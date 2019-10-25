@@ -90223,7 +90223,7 @@ function warning(message) {
 /*!***************************************************************!*\
   !*** ./node_modules/react-router-dom/esm/react-router-dom.js ***!
   \***************************************************************/
-/*! exports provided: MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, __RouterContext, generatePath, matchPath, useHistory, useLocation, useParams, useRouteMatch, withRouter, BrowserRouter, HashRouter, Link, NavLink */
+/*! exports provided: BrowserRouter, HashRouter, Link, NavLink, MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, __RouterContext, generatePath, matchPath, useHistory, useLocation, useParams, useRouteMatch, withRouter */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -94204,7 +94204,7 @@ if (false) {} else {
 /*!***********************************************************************!*\
   !*** ./node_modules/redux-saga/dist/redux-saga-core-npm-proxy.esm.js ***!
   \***********************************************************************/
-/*! exports provided: CANCEL, SAGA_LOCATION, buffers, detach, END, channel, eventChannel, isEnd, multicastChannel, runSaga, stdChannel, default */
+/*! exports provided: default, CANCEL, SAGA_LOCATION, buffers, detach, END, channel, eventChannel, isEnd, multicastChannel, runSaga, stdChannel */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -101744,6 +101744,7 @@ function reducer() {
       return _objectSpread({}, state, {
         projects: action.payload
       });
+    // to be edited to just add the new project after the back-end fix
 
     default:
       return state;
@@ -101902,29 +101903,28 @@ function store(action) {
 
         case 3:
           project = _context4.sent;
-          console.log(project, 'new project added');
-          _context4.next = 7;
+          _context4.next = 6;
           return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["put"])(Object(_actions__WEBPACK_IMPORTED_MODULE_2__["projectStore"])(project.data));
 
-        case 7:
-          _context4.next = 9;
+        case 6:
+          _context4.next = 8;
           return action.payload.history.push('/');
 
-        case 9:
-          _context4.next = 14;
+        case 8:
+          _context4.next = 13;
           break;
 
-        case 11:
-          _context4.prev = 11;
+        case 10:
+          _context4.prev = 10;
           _context4.t0 = _context4["catch"](0);
           console.log(_context4.t0);
 
-        case 14:
+        case 13:
         case "end":
           return _context4.stop();
       }
     }
-  }, _marked4, null, [[0, 11]]);
+  }, _marked4, null, [[0, 10]]);
 }
 function watchStore() {
   return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function watchStore$(_context5) {

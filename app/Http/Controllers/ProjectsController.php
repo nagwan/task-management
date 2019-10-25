@@ -21,7 +21,7 @@ class ProjectsController extends Controller
 
         Project::create($project);
 
-        $projects = Project::all(); // how can i get the last added project
+        $projects = Project::orderBy('created_at', 'desc')->get(); // how can i get the last added project
 
         return \response(['data' => $projects]);
     }
