@@ -101348,7 +101348,7 @@ var App = Object(react_redux__WEBPACK_IMPORTED_MODULE_3__["connect"])(function (
       i18n = _useTranslation.i18n;
 
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "container my-16 py-8 px-8 text-center border border-primary-900"
+    className: "container my-16 py-8 px-8 border border-primary-900"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__["Link"], {
     className: "my-12 mx-12",
     to: "/"
@@ -101394,6 +101394,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _store_index__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../store/index */ "./resources/js/store/index.js");
 /* harmony import */ var _app__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./app */ "./resources/js/components/app.jsx");
 /* harmony import */ var _lang_index__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../lang/index */ "./resources/lang/index.js");
+/* harmony import */ var _sass_app_sass__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../sass/app.sass */ "./resources/sass/app.sass");
+/* harmony import */ var _sass_app_sass__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_sass_app_sass__WEBPACK_IMPORTED_MODULE_7__);
+
 
 
 
