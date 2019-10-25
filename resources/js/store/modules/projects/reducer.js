@@ -1,4 +1,4 @@
-import { PROJECTS_INDEX, PROJECT_SHOW } from './actions'
+import { PROJECTS_INDEX, PROJECT_SHOW, PROJECT_STORE } from './actions'
 
 
 const INITIAL_STATE = {
@@ -12,6 +12,8 @@ export default function reducer (state = INITIAL_STATE, action){
             return {...state, projects: action.payload}
         case PROJECT_SHOW:
             return {...state, project: action.payload}
+        case PROJECT_STORE:
+            return {...state, projects: [...state.projects, action.payload]}
         default:
             return state;
     }

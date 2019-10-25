@@ -2,5 +2,11 @@
     "welcome": "مرحبًا",
     "toggle_lang_btn": "تغيير اللغه",
     "load_projects_btn": "تحميل",
-    "projects_title" : "مشروعاتك"
+    "projects_title" : "مشروعاتك",
+    "submit_form_btn": "اضافه",
+    "description_input_placeholder": "وصف المشروع",
+    "title_input_placeholder": "عنوان المشروع",
+    "min_error_msg": "يجب ادخال 3 احرف على الاقل ",
+    "max_error_msg": "لقد تجاوزت الحد الاقصي من الاحرف المسموح بها",
+    "required_field_error_msg": "يجب ملئ هذا الحقل"
 }

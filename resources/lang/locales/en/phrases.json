@@ -2,5 +2,12 @@
     "welcome" : "Welcome",
     "toggle_lang_btn": "Toggle Lang",
     "load_projects_btn": "Load Projects",
-    "projects_title" : "Herein your Projects"
+    "projects_title" : "Herein your Projects",
+    "submit_form_btn": "Submit",
+    "description_input_placeholder": "Description",
+    "title_input_placeholder": "Title",
+    "min_error_msg": "This field must contain 3 chars at least",
+    "max_error_msg": "You have exceeded the max limited chars for this field",
+    "required_field_error_msg": "This field is required"
+
 }
