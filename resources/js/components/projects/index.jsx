@@ -5,9 +5,10 @@ import { bindActionCreators } from 'redux';
 import { useHistory } from "react-router-dom";
 import { projectShowFlag } from "../../store/modules/projects/actions";
 
-const Index = connect(({ projects }) => ({ projects }), dispatch => bindActionCreators({ projectShowFlag }, dispatch))((props) => {
+const Index = connect(({ projects }) => ({ projects }), 
+    dispatch => bindActionCreators({ projectShowFlag }, dispatch))((props) => {
 
-    const { t } = useTranslation();
+    const { t } = useTranslation(); 
     const history = useHistory()
 
     return (
@@ -17,7 +18,7 @@ const Index = connect(({ projects }) => ({ projects }), dispatch => bindActionCr
                 {
                     props.projects.projects.map(project =>
                         <li className='cursor-pointer' key={project.id}>
-                            <p onClick={props.projectShowFlag({ id: project.id, history: history })}>{project.title}</p>
+                            <p onClick={() => props.projectShowFlag({ id: project.id, history: history })}>{project.title}</p>
                         </li>
                     )
                 }

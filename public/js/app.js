@@ -83989,10 +83989,12 @@ var Index = Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(function
       className: "cursor-pointer",
       key: project.id
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-      onClick: props.projectShowFlag({
-        id: project.id,
-        history: history
-      })
+      onClick: function onClick() {
+        return props.projectShowFlag({
+          id: project.id,
+          history: history
+        });
+      }
     }, project.title));
   })));
 });
@@ -84097,19 +84099,19 @@ var PROJECT_SHOW_FLAG = 'PROJECT_SHOW_FLAG';
 var PROJECT_SHOW = 'PROJECT_SHOW';
 function projectsIndex(payload) {
   return {
-    type: INDEX,
+    type: PROJECTS_INDEX,
     payload: payload
   };
 }
 function projectShowFlag(payload) {
   return {
-    type: SHOW_FLAG,
+    type: PROJECT_SHOW_FLAG,
     payload: payload
   };
 }
 function projectShow(payload) {
   return {
-    type: SHOW,
+    type: PROJECT_SHOW,
     payload: payload
   };
 }
