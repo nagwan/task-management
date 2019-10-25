@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { useTranslation } from "react-i18next";
+import { useHistory } from "react-router-dom";
 
 import { projectStoreFlag } from '../../store/modules/projects/actions'
 import { ErrorMessage, Field, Form, Formik } from "formik"
@@ -10,6 +11,7 @@ import * as Yup from "yup"
 const Store = connect(null, dispatch => bindActionCreators({ projectStoreFlag }, dispatch))((props) => {
 
     const { t } = useTranslation();
+    const history = useHistory();
 
     // Validation Schema
 
@@ -35,14 +37,23 @@ const Store = connect(null, dispatch => bindActionCreators({ projectStoreFlag },
             }
         }
             validationSchema={validationSchema}
+            onSubmit={(values, { setSubmitting, resetForm }) => {
+                setSubmitting(true)
+                props.projectStoreFlag({ values, history})
+                resetForm()
+                setSubmitting(false)
+            }
+
+            }
 
         >
             {({ errors, touched, handleSubmit, isSubmitting }) => (
-                <div className="container">
+                <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
                     <Form onSubmit={handleSubmit}>
                         <div className="my-12 mx-12">
-                            <Field className={touched.title && errors.title ? 'has-error form-control' : 'form-control'}
+                            <Field className={touched.title && errors.title ? 'has-error' : ''}
                                 placeholder={t('phrases:title_input_placeholder')} type="text" name="title" />
+
                             {touched.title && errors.title ? (<ErrorMessage name="title" component="div" />) : null}
 
                         </div>
@@ -65,7 +76,7 @@ const Store = connect(null, dispatch => bindActionCreators({ projectStoreFlag },
             )
             }
 
-        </Formik>
+        </Formik >
     )
 })
 

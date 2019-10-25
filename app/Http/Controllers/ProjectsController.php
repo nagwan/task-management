@@ -17,11 +17,13 @@ class ProjectsController extends Controller
 
     public function store()
     {
-        $project = request()->validate(['title' =>'required', 'description' =>'required']);
+        $project = request()->validate(['title' => 'required', 'description' => 'required']);
 
         Project::create($project);
 
-        return \response(['data' => $project]);
+        $projects = Project::all(); // how can i get the last added project
+
+        return \response(['data' => $projects]);
     }
 
     public function show(Project $project)

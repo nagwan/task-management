@@ -13,7 +13,7 @@ export default function reducer (state = INITIAL_STATE, action){
         case PROJECT_SHOW:
             return {...state, project: action.payload}
         case PROJECT_STORE:
-            return {...state, projects: [...state.projects, action.payload]}
+            return {...state, projects: action.payload}
         default:
             return state;
     }
