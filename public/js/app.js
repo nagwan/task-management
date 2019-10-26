@@ -90357,7 +90357,7 @@ function warning(message) {
 /*!***************************************************************!*\
   !*** ./node_modules/react-router-dom/esm/react-router-dom.js ***!
   \***************************************************************/
-/*! exports provided: MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, __RouterContext, generatePath, matchPath, useHistory, useLocation, useParams, useRouteMatch, withRouter, BrowserRouter, HashRouter, Link, NavLink */
+/*! exports provided: BrowserRouter, HashRouter, Link, NavLink, MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, __RouterContext, generatePath, matchPath, useHistory, useLocation, useParams, useRouteMatch, withRouter */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -94338,7 +94338,7 @@ if (false) {} else {
 /*!***********************************************************************!*\
   !*** ./node_modules/redux-saga/dist/redux-saga-core-npm-proxy.esm.js ***!
   \***********************************************************************/
-/*! exports provided: CANCEL, SAGA_LOCATION, buffers, detach, END, channel, eventChannel, isEnd, multicastChannel, runSaga, stdChannel, default */
+/*! exports provided: default, CANCEL, SAGA_LOCATION, buffers, detach, END, channel, eventChannel, isEnd, multicastChannel, runSaga, stdChannel */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -102760,10 +102760,10 @@ var _phrases__WEBPACK_IMPORTED_MODULE_0___namespace = /*#__PURE__*/__webpack_req
 /*!************************************************!*\
   !*** ./resources/lang/locales/ar/phrases.json ***!
   \************************************************/
-/*! exports provided: welcome, toggle_lang_btn, load_projects_btn, projects_title, submit_form_btn, description_input_placeholder, title_input_placeholder, min_error_msg, max_error_msg, required_field_error_msg, default */
+/*! exports provided: welcome, toggle_lang_btn, load_projects_btn, projects_title, submit_form_btn, description_input_placeholder, title_input_placeholder, min_error_msg, max_error_msg, required_field_error_msg, email_error_msg, name_input_placeholder, email_input_placeholder, password_input_placeholder, password_confirmation_input_placeholder, create_account_btn, login_btn, send_reset_password_link_btn, set_new_password_btn, default */
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"welcome\":\"مرحبًا\",\"toggle_lang_btn\":\"تغيير اللغه\",\"load_projects_btn\":\"تحميل\",\"projects_title\":\"مشروعاتك\",\"submit_form_btn\":\"اضافه\",\"description_input_placeholder\":\"وصف المشروع\",\"title_input_placeholder\":\"عنوان المشروع\",\"min_error_msg\":\"يجب ادخال 3 احرف على الاقل \",\"max_error_msg\":\"لقد تجاوزت الحد الاقصي من الاحرف المسموح بها\",\"required_field_error_msg\":\"يجب ملئ هذا الحقل\"}");
+module.exports = JSON.parse("{\"welcome\":\"مرحبًا\",\"toggle_lang_btn\":\"تغيير اللغه\",\"load_projects_btn\":\"تحميل\",\"projects_title\":\"مشروعاتك\",\"submit_form_btn\":\"اضافه\",\"description_input_placeholder\":\"وصف المشروع\",\"title_input_placeholder\":\"عنوان المشروع\",\"min_error_msg\":\"يجب ادخال 3 احرف على الاقل \",\"max_error_msg\":\"لقد تجاوزت الحد الاقصي من الاحرف المسموح بها\",\"required_field_error_msg\":\"يجب ملئ هذا الحقل\",\"email_error_msg\":\"هذا الايميل غير صالح \",\"name_input_placeholder\":\"الاسم\",\"email_input_placeholder\":\"البريد الاليكتروني\",\"password_input_placeholder\":\"كلمة المرور\",\"password_confirmation_input_placeholder\":\"اعد كتابة كلمة المرور\",\"create_account_btn\":\"تسجيل دخول\",\"login_btn\":\"تسجيل دخول\",\"send_reset_password_link_btn\":\"ارسل رابط اعادة تعيين كلمة السر\",\"set_new_password_btn\":\"تعيين كلمة سر جديده\"}");
 
 /***/ }),
 
@@ -102789,10 +102789,10 @@ var _phrases__WEBPACK_IMPORTED_MODULE_0___namespace = /*#__PURE__*/__webpack_req
 /*!************************************************!*\
   !*** ./resources/lang/locales/en/phrases.json ***!
   \************************************************/
-/*! exports provided: welcome, toggle_lang_btn, load_projects_btn, projects_title, submit_form_btn, description_input_placeholder, title_input_placeholder, min_error_msg, max_error_msg, required_field_error_msg, default */
+/*! exports provided: welcome, toggle_lang_btn, load_projects_btn, projects_title, submit_form_btn, description_input_placeholder, title_input_placeholder, min_error_msg, max_error_msg, required_field_error_msg, email_error_msg, name_input_placeholder, email_input_placeholder, password_input_placeholder, password_confirmation_input_placeholder, create_account_btn, login_btn, send_reset_password_link_btn, set_new_password_btn, default */
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"welcome\":\"Welcome\",\"toggle_lang_btn\":\"Toggle Lang\",\"load_projects_btn\":\"Load Projects\",\"projects_title\":\"Herein your Projects\",\"submit_form_btn\":\"Submit\",\"description_input_placeholder\":\"Description\",\"title_input_placeholder\":\"Title\",\"min_error_msg\":\"This field must contain 3 chars at least\",\"max_error_msg\":\"You have exceeded the max limited chars for this field\",\"required_field_error_msg\":\"This field is required\"}");
+module.exports = JSON.parse("{\"welcome\":\"Welcome\",\"toggle_lang_btn\":\"Toggle Lang\",\"load_projects_btn\":\"Load Projects\",\"projects_title\":\"Herein your Projects\",\"submit_form_btn\":\"Submit\",\"description_input_placeholder\":\"Description\",\"title_input_placeholder\":\"Title\",\"min_error_msg\":\"This field must contain 3 chars at least\",\"max_error_msg\":\"You have exceeded the max limited chars for this field\",\"required_field_error_msg\":\"This field is required\",\"email_error_msg\":\"Please add a valid email address\",\"name_input_placeholder\":\"Name\",\"email_input_placeholder\":\"Email address\",\"password_input_placeholder\":\"Password\",\"password_confirmation_input_placeholder\":\"RE-type password\",\"create_account_btn\":\"Create account\",\"login_btn\":\"Login\",\"send_reset_password_link_btn\":\"Send me a reset password link\",\"set_new_password_btn\":\"Set new password\"}");
 
 /***/ }),
 

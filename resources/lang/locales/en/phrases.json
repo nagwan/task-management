@@ -8,6 +8,15 @@
     "title_input_placeholder": "Title",
     "min_error_msg": "This field must contain 3 chars at least",
     "max_error_msg": "You have exceeded the max limited chars for this field",
-    "required_field_error_msg": "This field is required"
+    "required_field_error_msg": "This field is required",
+    "email_error_msg": "Please add a valid email address",
+    "name_input_placeholder": "Name",
+    "email_input_placeholder": "Email address",
+    "password_input_placeholder": "Password",
+    "password_confirmation_input_placeholder": "RE-type password",
+    "create_account_btn": "Create account",
+    "login_btn": "Login",
+    "send_reset_password_link_btn": "Send me a reset password link",
+    "set_new_password_btn": "Set new password"
 
 }

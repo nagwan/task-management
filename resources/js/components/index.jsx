@@ -5,7 +5,7 @@ import { BrowserRouter } from "react-router-dom";
 import store from '../store/index';
 import App from './app'
 import '../../lang/index'
-import '../../sass/app.sass'
+import '../../sass/app.sass' 
 
 render(
     <Provider store={store}>
