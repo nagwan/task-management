@@ -3,11 +3,12 @@ import { connect } from 'react-redux';
 import { useTranslation } from "react-i18next";
 import { bindActionCreators } from 'redux';
 import { useHistory } from "react-router-dom";
-import { projectShowFlag } from "../../store/modules/projects/actions";
+import { projectShowFlag, projectsIndexFlag} from "../../store/modules/projects/actions";
 
 const Index = connect(({ projects }) => ({ projects }), 
-    dispatch => bindActionCreators({ projectShowFlag }, dispatch))((props) => {
+    dispatch => bindActionCreators({ projectShowFlag, projectsIndexFlag }, dispatch))((props) => {
 
+    props.projectsIndexFlag();
     const { t } = useTranslation(); 
     const history = useHistory()
 

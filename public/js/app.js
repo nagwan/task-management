@@ -90357,7 +90357,7 @@ function warning(message) {
 /*!***************************************************************!*\
   !*** ./node_modules/react-router-dom/esm/react-router-dom.js ***!
   \***************************************************************/
-/*! exports provided: BrowserRouter, HashRouter, Link, NavLink, MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, __RouterContext, generatePath, matchPath, useHistory, useLocation, useParams, useRouteMatch, withRouter */
+/*! exports provided: MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, __RouterContext, generatePath, matchPath, useHistory, useLocation, useParams, useRouteMatch, withRouter, BrowserRouter, HashRouter, Link, NavLink */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -94338,7 +94338,7 @@ if (false) {} else {
 /*!***********************************************************************!*\
   !*** ./node_modules/redux-saga/dist/redux-saga-core-npm-proxy.esm.js ***!
   \***********************************************************************/
-/*! exports provided: default, CANCEL, SAGA_LOCATION, buffers, detach, END, channel, eventChannel, isEnd, multicastChannel, runSaga, stdChannel */
+/*! exports provided: CANCEL, SAGA_LOCATION, buffers, detach, END, channel, eventChannel, isEnd, multicastChannel, runSaga, stdChannel, default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -102159,9 +102159,12 @@ var Index = Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(function
   };
 }, function (dispatch) {
   return Object(redux__WEBPACK_IMPORTED_MODULE_3__["bindActionCreators"])({
-    projectShowFlag: _store_modules_projects_actions__WEBPACK_IMPORTED_MODULE_5__["projectShowFlag"]
+    projectShowFlag: _store_modules_projects_actions__WEBPACK_IMPORTED_MODULE_5__["projectShowFlag"],
+    projectsIndexFlag: _store_modules_projects_actions__WEBPACK_IMPORTED_MODULE_5__["projectsIndexFlag"]
   }, dispatch);
 })(function (props) {
+  props.projectsIndexFlag();
+
   var _useTranslation = Object(react_i18next__WEBPACK_IMPORTED_MODULE_2__["useTranslation"])(),
       t = _useTranslation.t;
 
@@ -102370,26 +102373,34 @@ sagaMiddleware.run(_root_saga__WEBPACK_IMPORTED_MODULE_2__["default"]);
 /*!********************************************************!*\
   !*** ./resources/js/store/modules/projects/actions.js ***!
   \********************************************************/
-/*! exports provided: PROJECTS_INDEX, PROJECT_SHOW_FLAG, PROJECT_SHOW, PROJECT_STORE_FLAG, PROJECT_STORE, projectsIndex, projectShowFlag, projectShow, projectStoreFlag, projectStore */
+/*! exports provided: PROJECTS_INDEX_FLAG, PROJECTS_INDEX, PROJECT_SHOW_FLAG, PROJECT_SHOW, PROJECT_STORE_FLAG, PROJECT_STORE, projectsIndexFlag, projectsIndex, projectShowFlag, projectShow, projectStoreFlag, projectStore */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PROJECTS_INDEX_FLAG", function() { return PROJECTS_INDEX_FLAG; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PROJECTS_INDEX", function() { return PROJECTS_INDEX; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PROJECT_SHOW_FLAG", function() { return PROJECT_SHOW_FLAG; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PROJECT_SHOW", function() { return PROJECT_SHOW; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PROJECT_STORE_FLAG", function() { return PROJECT_STORE_FLAG; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PROJECT_STORE", function() { return PROJECT_STORE; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "projectsIndexFlag", function() { return projectsIndexFlag; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "projectsIndex", function() { return projectsIndex; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "projectShowFlag", function() { return projectShowFlag; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "projectShow", function() { return projectShow; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "projectStoreFlag", function() { return projectStoreFlag; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "projectStore", function() { return projectStore; });
+var PROJECTS_INDEX_FLAG = 'PROJECTS_INDEX_FLAG';
 var PROJECTS_INDEX = 'PROJECTS_INDEX';
 var PROJECT_SHOW_FLAG = 'PROJECT_SHOW_FLAG';
 var PROJECT_SHOW = 'PROJECT_SHOW';
 var PROJECT_STORE_FLAG = 'PROJECT_STORE_FLAG';
 var PROJECT_STORE = 'PROJECT_STORE';
+function projectsIndexFlag(payload) {
+  return {
+    type: PROJECTS_INDEX_FLAG
+  };
+}
 function projectsIndex(payload) {
   return {
     type: PROJECTS_INDEX,
@@ -102477,12 +102488,13 @@ function reducer() {
 /*!******************************************************!*\
   !*** ./resources/js/store/modules/projects/sagas.js ***!
   \******************************************************/
-/*! exports provided: index, show, watchShow, store, watchStore */
+/*! exports provided: index, watchIndex, show, watchShow, store, watchStore */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "index", function() { return index; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "watchIndex", function() { return watchIndex; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "show", function() { return show; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "watchShow", function() { return watchShow; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "store", function() { return store; });
@@ -102498,14 +102510,17 @@ var _marked =
 _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(index),
     _marked2 =
 /*#__PURE__*/
-_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(show),
+_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(watchIndex),
     _marked3 =
 /*#__PURE__*/
-_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(watchShow),
+_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(show),
     _marked4 =
 /*#__PURE__*/
-_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(store),
+_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(watchShow),
     _marked5 =
+/*#__PURE__*/
+_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(store),
+    _marked6 =
 /*#__PURE__*/
 _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(watchStore);
 
@@ -102558,108 +102573,123 @@ function index(action) {
       }
     }
   }, _marked, null, [[0, 8]]);
-} // view a project
-
-function show(action) {
-  var project;
-  return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function show$(_context2) {
+}
+function watchIndex() {
+  return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function watchIndex$(_context2) {
     while (1) {
       switch (_context2.prev = _context2.next) {
         case 0:
-          _context2.prev = 0;
-          _context2.next = 3;
-          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["call"])(api, "/projects/".concat(action.payload.id), null, 'get');
+          _context2.next = 2;
+          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["takeLatest"])(_actions__WEBPACK_IMPORTED_MODULE_2__["PROJECTS_INDEX_FLAG"], index);
 
-        case 3:
-          project = _context2.sent;
-          _context2.next = 6;
-          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["put"])(Object(_actions__WEBPACK_IMPORTED_MODULE_2__["projectShow"])(project.data));
-
-        case 6:
-          _context2.next = 8;
-          return action.payload.history.push("/projects/".concat(project.data.id));
-
-        case 8:
-          _context2.next = 13;
-          break;
-
-        case 10:
-          _context2.prev = 10;
-          _context2.t0 = _context2["catch"](0);
-          console.log(_context2.t0);
-
-        case 13:
+        case 2:
         case "end":
           return _context2.stop();
       }
     }
-  }, _marked2, null, [[0, 10]]);
-}
-function watchShow() {
-  return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function watchShow$(_context3) {
+  }, _marked2);
+} // view a project
+
+function show(action) {
+  var project;
+  return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function show$(_context3) {
     while (1) {
       switch (_context3.prev = _context3.next) {
         case 0:
-          _context3.next = 2;
-          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["takeLatest"])(_actions__WEBPACK_IMPORTED_MODULE_2__["PROJECT_SHOW_FLAG"], show);
+          _context3.prev = 0;
+          _context3.next = 3;
+          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["call"])(api, "/projects/".concat(action.payload.id), null, 'get');
 
-        case 2:
+        case 3:
+          project = _context3.sent;
+          _context3.next = 6;
+          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["put"])(Object(_actions__WEBPACK_IMPORTED_MODULE_2__["projectShow"])(project.data));
+
+        case 6:
+          _context3.next = 8;
+          return action.payload.history.push("/projects/".concat(project.data.id));
+
+        case 8:
+          _context3.next = 13;
+          break;
+
+        case 10:
+          _context3.prev = 10;
+          _context3.t0 = _context3["catch"](0);
+          console.log(_context3.t0);
+
+        case 13:
         case "end":
           return _context3.stop();
       }
     }
-  }, _marked3);
-} // add new project 
-
-function store(action) {
-  var project;
-  return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function store$(_context4) {
+  }, _marked3, null, [[0, 10]]);
+}
+function watchShow() {
+  return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function watchShow$(_context4) {
     while (1) {
       switch (_context4.prev = _context4.next) {
         case 0:
-          _context4.prev = 0;
-          _context4.next = 3;
-          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["call"])(api, "/projects", action.payload.values, 'POST');
+          _context4.next = 2;
+          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["takeLatest"])(_actions__WEBPACK_IMPORTED_MODULE_2__["PROJECT_SHOW_FLAG"], show);
 
-        case 3:
-          project = _context4.sent;
-          _context4.next = 6;
-          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["put"])(Object(_actions__WEBPACK_IMPORTED_MODULE_2__["projectStore"])(project.data));
-
-        case 6:
-          _context4.next = 8;
-          return action.payload.history.push('/projects');
-
-        case 8:
-          _context4.next = 13;
-          break;
-
-        case 10:
-          _context4.prev = 10;
-          _context4.t0 = _context4["catch"](0);
-          console.log(_context4.t0);
-
-        case 13:
+        case 2:
         case "end":
           return _context4.stop();
       }
     }
-  }, _marked4, null, [[0, 10]]);
-}
-function watchStore() {
-  return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function watchStore$(_context5) {
+  }, _marked4);
+} // add new project 
+
+function store(action) {
+  var project;
+  return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function store$(_context5) {
     while (1) {
       switch (_context5.prev = _context5.next) {
         case 0:
-          _context5.next = 2;
-          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["takeLatest"])(_actions__WEBPACK_IMPORTED_MODULE_2__["PROJECT_STORE_FLAG"], store);
+          _context5.prev = 0;
+          _context5.next = 3;
+          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["call"])(api, "/projects", action.payload.values, 'POST');
 
-        case 2:
+        case 3:
+          project = _context5.sent;
+          _context5.next = 6;
+          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["put"])(Object(_actions__WEBPACK_IMPORTED_MODULE_2__["projectStore"])(project.data));
+
+        case 6:
+          _context5.next = 8;
+          return action.payload.history.push('/projects');
+
+        case 8:
+          _context5.next = 13;
+          break;
+
+        case 10:
+          _context5.prev = 10;
+          _context5.t0 = _context5["catch"](0);
+          console.log(_context5.t0);
+
+        case 13:
         case "end":
           return _context5.stop();
       }
     }
-  }, _marked5);
+  }, _marked5, null, [[0, 10]]);
+}
+function watchStore() {
+  return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function watchStore$(_context6) {
+    while (1) {
+      switch (_context6.prev = _context6.next) {
+        case 0:
+          _context6.next = 2;
+          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["takeLatest"])(_actions__WEBPACK_IMPORTED_MODULE_2__["PROJECT_STORE_FLAG"], store);
+
+        case 2:
+        case "end":
+          return _context6.stop();
+      }
+    }
+  }, _marked6);
 }
 
 /***/ }),
@@ -102692,7 +102722,7 @@ function root() {
       switch (_context.prev = _context.next) {
         case 0:
           _context.next = 2;
-          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["all"])([Object(_modules_projects_sagas__WEBPACK_IMPORTED_MODULE_2__["index"])(), Object(_modules_projects_sagas__WEBPACK_IMPORTED_MODULE_2__["watchShow"])(), Object(_modules_projects_sagas__WEBPACK_IMPORTED_MODULE_2__["watchStore"])()]);
+          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["all"])([Object(_modules_projects_sagas__WEBPACK_IMPORTED_MODULE_2__["watchIndex"])(), Object(_modules_projects_sagas__WEBPACK_IMPORTED_MODULE_2__["watchShow"])(), Object(_modules_projects_sagas__WEBPACK_IMPORTED_MODULE_2__["watchStore"])()]);
 
         case 2:
         case "end":

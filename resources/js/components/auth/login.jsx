@@ -19,6 +19,7 @@ const Login = (() => {
             .max(50, t('phrases:max_error_msg'))
             .required(t('phrases:required_field_error_msg')),
     })
+    
     return (
         <div>
             <h1>

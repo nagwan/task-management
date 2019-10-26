@@ -1,5 +1,5 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
-import { projectsIndex, projectShow, PROJECT_SHOW_FLAG, PROJECT_STORE_FLAG, projectStore } from './actions'
+import { PROJECTS_INDEX_FLAG, projectsIndex, projectShow, PROJECT_SHOW_FLAG, PROJECT_STORE_FLAG, projectStore } from './actions'
 
 
 function api(url, data, method) {
@@ -29,6 +29,10 @@ export function* index(action) {
     }
 }
 
+
+export function* watchIndex(){
+    yield takeLatest(PROJECTS_INDEX_FLAG, index)
+}
 
 // view a project
 export function* show(action) {
