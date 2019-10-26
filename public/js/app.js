@@ -102393,13 +102393,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
-/* harmony import */ var _store_index__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../store/index */ "./resources/js/store/index.js");
-/* harmony import */ var _router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../router */ "./resources/js/router/index.js");
-/* harmony import */ var _lang_index__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../lang/index */ "./resources/lang/index.js");
-/* harmony import */ var _sass_app_sass__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../sass/app.sass */ "./resources/sass/app.sass");
-/* harmony import */ var _sass_app_sass__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_sass_app_sass__WEBPACK_IMPORTED_MODULE_7__);
-
+/* harmony import */ var _store_index__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../store/index */ "./resources/js/store/index.js");
+/* harmony import */ var _router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../router */ "./resources/js/router/index.js");
+/* harmony import */ var _lang_index__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../lang/index */ "./resources/lang/index.js");
+/* harmony import */ var _sass_app_sass__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../sass/app.sass */ "./resources/sass/app.sass");
+/* harmony import */ var _sass_app_sass__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_sass_app_sass__WEBPACK_IMPORTED_MODULE_6__);
 
 
 
@@ -102408,8 +102406,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 Object(react_dom__WEBPACK_IMPORTED_MODULE_1__["render"])(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_redux__WEBPACK_IMPORTED_MODULE_2__["Provider"], {
-  store: _store_index__WEBPACK_IMPORTED_MODULE_4__["default"]
-}, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["BrowserRouter"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_router__WEBPACK_IMPORTED_MODULE_5__["default"], null))), document.getElementById('root'));
+  store: _store_index__WEBPACK_IMPORTED_MODULE_3__["default"]
+}, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_router__WEBPACK_IMPORTED_MODULE_4__["default"], null)), document.getElementById('root'));
 
 /***/ }),
 
@@ -102427,7 +102425,11 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var NotFound = function NotFound() {
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "404| NOT Found"));
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "container"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
+    className: "text-xl"
+  }, "404| NOT Found"));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (NotFound);
@@ -102685,6 +102687,7 @@ var ManiRouter = function ManiRouter() {
     }, route)) : route.auth ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(AuthRoutes, _extends({
       key: index
     }, route)) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Redirect"], {
+      key: index,
       to: "/not-found"
     });
   }))));
