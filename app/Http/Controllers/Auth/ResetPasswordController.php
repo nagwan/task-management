@@ -26,4 +26,11 @@ class ResetPasswordController extends Controller
      * @var string
      */
     protected $redirectTo = '/home';
+
+    public function showResetForm(Request $request, $token = null)
+    {
+        return view('welcome')->with( // send them as a response
+            ['token' => $token, 'email' => $request->email]
+        );
+    }
 }

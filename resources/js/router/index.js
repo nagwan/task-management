@@ -22,9 +22,9 @@ const ManiRouter = (() => {
             <BrowserRouter>
                 <Switch>
                     {
-                        Routes.map((route, i) => (
-                            route.private ? <PrivateRoutes key={i} {...route} /> :
-                                (route.auth ? <AuthRoutes key={i} {...route} /> : <Redirect to='/not-found' />)
+                        Routes.map((route, index) => (
+                            route.private ? <PrivateRoutes key={index} {...route} /> :
+                                (route.auth ? <AuthRoutes key={index} {...route} /> : <Redirect to='/not-found' />)
                         ))
                     }
                 </Switch>
