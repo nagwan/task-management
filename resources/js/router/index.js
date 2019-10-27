@@ -1,26 +1,32 @@
 import React from 'react';
 import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
 import Routes from './routes';
+import { connect } from 'react-redux';
 
 
-const PrivateRoutes = ((route) => {
+const PrivateRoutes = connect(({ Authentication }) => ({ Authentication }))((route) => {
     return (
 
-        <Route path={route.path} exact={route.exact} component={route.component} />
+        route.Authentication.is_auth ? <Route path={route.path} exact={route.exact} component={route.component} /> :
+
+            <Redirect to='/login' />
     )
 })
 
-const AuthRoutes = ((route) => {
+const AuthRoutes = connect(({ Authentication }) => ({ Authentication }))((route) => {
+    
     return (
 
-        <Route path={route.path} exact={route.exact} component={route.component} />
+        route.Authentication.is_auth ? <Redirect to= {`/me/${route.Authentication.user.id}`} /> :
+
+            <Route path={route.path} exact={route.exact} component={route.component} />
     )
 })
 
 
 const ManiRouter = (() => {
     return (
-        
+
         <div>
             <BrowserRouter>
                 <Switch>
