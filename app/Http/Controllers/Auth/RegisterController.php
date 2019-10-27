@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Http\Request;
+
 use Illuminate\Support\Facades\Validator;
 
 class RegisterController extends Controller
@@ -21,7 +23,7 @@ class RegisterController extends Controller
     |
     */
 
-    use RegistersUsers, Validator;
+    use RegistersUsers;
 
     /**
      * Where to redirect users after registration.
@@ -86,15 +88,16 @@ class RegisterController extends Controller
         }
 
         $input = $request->all();
+
         $input['password'] = bcrypt($input['password']);
-        $user = User::create($input);
-        $success['token'] =  $user->createToken('MyApp')->accessToken;
-        $success['name'] =  $user->name;
-        return response(['success' => $success], 200);
+
+        $user = User::create($input); 
+
+        $response['token'] =  $user->createToken('MyApp')->accessToken;
+
+        $response['user'] =  $user;
+        
+        return response(['data' => $response], 200);
     }
 
-    // public function showRegistrationForm()
-    // {
-    //     return view('welcome');
-    // }
 }

@@ -2,6 +2,7 @@ import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import createSagaMiddleware from "redux-saga"
 import root from "./root-saga"
 import projects from './modules/projects/reducer'
+import Authentication from './modules/authentication/reducer'
 
 
 const sagaMiddleware = createSagaMiddleware()
@@ -18,7 +19,8 @@ const enhancer = composeEnhancers(
 
 
 const reducers = combineReducers({
-    projects
+    projects,
+    Authentication
 })
 
 const store = createStore(

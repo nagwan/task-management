@@ -1,21 +1,6 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
 import { PROJECTS_INDEX_FLAG, projectsIndex, projectShow, PROJECT_SHOW_FLAG, PROJECT_STORE_FLAG, projectStore } from './actions'
-
-
-function api(url, data, method) {
-    
-    let request = new Request(url, {
-        method: method,
-        body: data ? JSON.stringify(data) : null,
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        },
-    });
-
-    return fetch(request).then(response => response.json())
-}
+import {api} from '../../../helpers/functions'
 
 // fetch all projects
 export function* index(action) {

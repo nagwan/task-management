@@ -1,12 +1,19 @@
 import React from 'react'
 import { useTranslation } from "react-i18next";
+import { useHistory } from "react-router-dom";
+import { connect } from 'react-redux';
 
 import { ErrorMessage, Field, Form, Formik } from "formik"
 import * as Yup from "yup"
 
+import {registrationFlag} from '../../store/modules/authentication/actions'
+import { bindActionCreators } from 'redux';
 
-const Register = (() => {
+const Register = connect(null, dispatch => bindActionCreators({registrationFlag}, dispatch))((props) => {
+
     const { t } = useTranslation();
+    const history = useHistory();
+
     const validationSchema = Yup.object().shape({
         name: Yup
             .string()
@@ -46,7 +53,8 @@ const Register = (() => {
                 validationSchema={validationSchema}
                 onSubmit={(values, { setSubmitting, resetForm }) => {
                     setSubmitting(true)
-                    console.log(values)
+                    props.registrationFlag({data: values, history})
+                    //console.log(values)
                     setSubmitting(false)
                 }
 
@@ -55,7 +63,7 @@ const Register = (() => {
             >
                 {({ errors, touched, handleSubmit, isSubmitting }) => (
                     <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
-                        <Form onSubmit={handleSubmit}>
+                        <Form method ="post" onSubmit={handleSubmit}>
 
                             <div className="my-12 mx-12">
                                 <Field className={touched.name && errors.name ? 'has-error' : ''}
