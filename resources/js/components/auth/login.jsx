@@ -1,12 +1,20 @@
 import React from 'react'
 import { useTranslation } from "react-i18next";
+import { useHistory } from "react-router-dom";
+import { connect } from 'react-redux';
 
 import { ErrorMessage, Field, Form, Formik } from "formik"
 import * as Yup from "yup"
 
+import { bindActionCreators } from 'redux';
 
-const Login = (() => {
+import { loginFlag } from '../../store/modules/authentication/actions'
+
+
+const Login = connect(null, dispatch => bindActionCreators({ loginFlag }, dispatch))((props) => {
+
     const { t } = useTranslation();
+    const history = useHistory();
 
     const validationSchema = Yup.object().shape({
         email: Yup
@@ -19,7 +27,7 @@ const Login = (() => {
             .max(50, t('phrases:max_error_msg'))
             .required(t('phrases:required_field_error_msg')),
     })
-    
+
     return (
         <div>
             <h1>
@@ -35,7 +43,7 @@ const Login = (() => {
                 validationSchema={validationSchema}
                 onSubmit={(values, { setSubmitting, resetForm }) => {
                     setSubmitting(true)
-                    console.log(values)
+                    props.loginFlag({ data: values, history })
                     setSubmitting(false)
                 }
 

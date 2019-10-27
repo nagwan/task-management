@@ -102127,23 +102127,35 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_i18next__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-i18next */ "./node_modules/react-i18next/dist/es/index.js");
-/* harmony import */ var formik__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! formik */ "./node_modules/formik/dist/formik.esm.js");
-/* harmony import */ var yup__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! yup */ "./node_modules/yup/lib/index.js");
-/* harmony import */ var yup__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(yup__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var formik__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! formik */ "./node_modules/formik/dist/formik.esm.js");
+/* harmony import */ var yup__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! yup */ "./node_modules/yup/lib/index.js");
+/* harmony import */ var yup__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(yup__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
+/* harmony import */ var _store_modules_authentication_actions__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../store/modules/authentication/actions */ "./resources/js/store/modules/authentication/actions.js");
 
 
 
 
 
-var Login = function Login() {
+
+
+
+var Login = Object(react_redux__WEBPACK_IMPORTED_MODULE_3__["connect"])(null, function (dispatch) {
+  return Object(redux__WEBPACK_IMPORTED_MODULE_6__["bindActionCreators"])({
+    loginFlag: _store_modules_authentication_actions__WEBPACK_IMPORTED_MODULE_7__["loginFlag"]
+  }, dispatch);
+})(function (props) {
   var _useTranslation = Object(react_i18next__WEBPACK_IMPORTED_MODULE_1__["useTranslation"])(),
       t = _useTranslation.t;
 
-  var validationSchema = yup__WEBPACK_IMPORTED_MODULE_3__["object"]().shape({
-    email: yup__WEBPACK_IMPORTED_MODULE_3__["string"]().email(t('phrases:email_error_msg')).required(t('phrases:required_field_error_msg')),
-    password: yup__WEBPACK_IMPORTED_MODULE_3__["string"]().min(6, t('phrases:min_error_msg')).max(50, t('phrases:max_error_msg')).required(t('phrases:required_field_error_msg'))
+  var history = Object(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["useHistory"])();
+  var validationSchema = yup__WEBPACK_IMPORTED_MODULE_5__["object"]().shape({
+    email: yup__WEBPACK_IMPORTED_MODULE_5__["string"]().email(t('phrases:email_error_msg')).required(t('phrases:required_field_error_msg')),
+    password: yup__WEBPACK_IMPORTED_MODULE_5__["string"]().min(6, t('phrases:min_error_msg')).max(50, t('phrases:max_error_msg')).required(t('phrases:required_field_error_msg'))
   });
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "LOGIN COMPONENT"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_2__["Formik"], {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "LOGIN COMPONENT"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_4__["Formik"], {
     initialValues: {
       email: '',
       password: ''
@@ -102153,7 +102165,10 @@ var Login = function Login() {
       var setSubmitting = _ref.setSubmitting,
           resetForm = _ref.resetForm;
       setSubmitting(true);
-      console.log(values);
+      props.loginFlag({
+        data: values,
+        history: history
+      });
       setSubmitting(false);
     }
   }, function (_ref2) {
@@ -102163,26 +102178,26 @@ var Login = function Login() {
         isSubmitting = _ref2.isSubmitting;
     return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_2__["Form"], {
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_4__["Form"], {
       onSubmit: handleSubmit
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "my-12 mx-12"
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_2__["Field"], {
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_4__["Field"], {
       className: touched.email && errors.email ? 'has-error form-control' : 'form-control',
       placeholder: t('phrases:email_input_placeholder'),
       type: "email",
       name: "email"
-    }), touched.email && errors.email ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_2__["ErrorMessage"], {
+    }), touched.email && errors.email ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_4__["ErrorMessage"], {
       name: "email",
       component: "div"
     }) : null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "my-12 mx-12"
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_2__["Field"], {
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_4__["Field"], {
       className: touched.password && errors.password ? 'has-error form-control' : 'form-control',
       placeholder: t('phrases:password_input_placeholder'),
       type: "password",
       name: "password"
-    }), touched.password && errors.password ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_2__["ErrorMessage"], {
+    }), touched.password && errors.password ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_4__["ErrorMessage"], {
       name: "password",
       component: "div"
     }) : null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -102193,8 +102208,7 @@ var Login = function Login() {
       disabled: isSubmitting
     }, t('phrases:login_btn')))));
   }));
-};
-
+});
 /* harmony default export */ __webpack_exports__["default"] = (Login);
 
 /***/ }),
@@ -102258,7 +102272,7 @@ var Register = Object(react_redux__WEBPACK_IMPORTED_MODULE_3__["connect"])(null,
         history: history
       }); //console.log(values)
 
-      setSubmitting(false);
+      setSubmitting(false); // dispatch an action to reset the form
     }
   }, function (_ref2) {
     var errors = _ref2.errors,
@@ -102894,7 +102908,7 @@ sagaMiddleware.run(_root_saga__WEBPACK_IMPORTED_MODULE_2__["default"]);
 /*!**************************************************************!*\
   !*** ./resources/js/store/modules/authentication/actions.js ***!
   \**************************************************************/
-/*! exports provided: REGISTRATION_FLAG, IS_AUTHORIZED, AUTH_USER, registrationFlag, isAuthorized, authUser */
+/*! exports provided: REGISTRATION_FLAG, IS_AUTHORIZED, AUTH_USER, LOGIN_FLAG, registrationFlag, loginFlag, isAuthorized, authUser */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -102902,15 +102916,24 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "REGISTRATION_FLAG", function() { return REGISTRATION_FLAG; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "IS_AUTHORIZED", function() { return IS_AUTHORIZED; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AUTH_USER", function() { return AUTH_USER; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LOGIN_FLAG", function() { return LOGIN_FLAG; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "registrationFlag", function() { return registrationFlag; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "loginFlag", function() { return loginFlag; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isAuthorized", function() { return isAuthorized; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "authUser", function() { return authUser; });
 var REGISTRATION_FLAG = 'REGISTRATION_FLAG';
 var IS_AUTHORIZED = 'IS_AUTHORIZED';
 var AUTH_USER = 'AUTH_USER';
+var LOGIN_FLAG = 'LOGIN_FLAG';
 function registrationFlag(payload) {
   return {
     type: REGISTRATION_FLAG,
+    payload: payload
+  };
+}
+function loginFlag(payload) {
+  return {
+    type: LOGIN_FLAG,
     payload: payload
   };
 }
@@ -102977,13 +103000,15 @@ function reducer() {
 /*!************************************************************!*\
   !*** ./resources/js/store/modules/authentication/sagas.js ***!
   \************************************************************/
-/*! exports provided: register, watchRegistration */
+/*! exports provided: register, watchRegistration, login, watchLogin */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "register", function() { return register; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "watchRegistration", function() { return watchRegistration; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "login", function() { return login; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "watchLogin", function() { return watchLogin; });
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! redux-saga/effects */ "./node_modules/redux-saga/dist/redux-saga-effects-npm-proxy.esm.js");
@@ -102996,7 +103021,13 @@ var _marked =
 _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(register),
     _marked2 =
 /*#__PURE__*/
-_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(watchRegistration);
+_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(watchRegistration),
+    _marked3 =
+/*#__PURE__*/
+_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(login),
+    _marked4 =
+/*#__PURE__*/
+_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(watchLogin);
 
 
 
@@ -103013,32 +103044,45 @@ function register(action) {
 
         case 3:
           response = _context.sent;
-          _context.next = 6;
+
+          if (!response.data) {
+            _context.next = 13;
+            break;
+          }
+
+          _context.next = 7;
           return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["put"])(Object(_actions__WEBPACK_IMPORTED_MODULE_2__["isAuthorized"])(true));
 
-        case 6:
-          _context.next = 8;
+        case 7:
+          _context.next = 9;
           return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["put"])(Object(_actions__WEBPACK_IMPORTED_MODULE_2__["authUser"])(response.data.user));
 
-        case 8:
-          _context.next = 10;
+        case 9:
+          _context.next = 11;
           return action.payload.history.push("/me/".concat(response.data.user.id));
 
-        case 10:
-          _context.next = 15;
+        case 11:
+          _context.next = 14;
           break;
 
-        case 12:
-          _context.prev = 12;
+        case 13:
+          console.log(response.error);
+
+        case 14:
+          _context.next = 19;
+          break;
+
+        case 16:
+          _context.prev = 16;
           _context.t0 = _context["catch"](0);
           console.log(_context.t0);
 
-        case 15:
+        case 19:
         case "end":
           return _context.stop();
       }
     }
-  }, _marked, null, [[0, 12]]);
+  }, _marked, null, [[0, 16]]);
 }
 function watchRegistration() {
   return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function watchRegistration$(_context2) {
@@ -103054,6 +103098,74 @@ function watchRegistration() {
       }
     }
   }, _marked2);
+}
+function login(action) {
+  var response;
+  return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function login$(_context3) {
+    while (1) {
+      switch (_context3.prev = _context3.next) {
+        case 0:
+          _context3.prev = 0;
+          _context3.next = 3;
+          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["call"])(_helpers_functions__WEBPACK_IMPORTED_MODULE_3__["api"], "api/login", action.payload.data, 'POST');
+
+        case 3:
+          response = _context3.sent;
+          console.log(response);
+
+          if (!response.data) {
+            _context3.next = 14;
+            break;
+          }
+
+          _context3.next = 8;
+          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["put"])(Object(_actions__WEBPACK_IMPORTED_MODULE_2__["isAuthorized"])(true));
+
+        case 8:
+          _context3.next = 10;
+          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["put"])(Object(_actions__WEBPACK_IMPORTED_MODULE_2__["authUser"])(response.data.user));
+
+        case 10:
+          _context3.next = 12;
+          return action.payload.history.push("/me/".concat(response.data.user.id));
+
+        case 12:
+          _context3.next = 15;
+          break;
+
+        case 14:
+          console.log(response.error);
+
+        case 15:
+          _context3.next = 20;
+          break;
+
+        case 17:
+          _context3.prev = 17;
+          _context3.t0 = _context3["catch"](0);
+          console.log(_context3.t0);
+
+        case 20:
+        case "end":
+          return _context3.stop();
+      }
+    }
+  }, _marked3, null, [[0, 17]]);
+}
+function watchLogin() {
+  return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function watchLogin$(_context4) {
+    while (1) {
+      switch (_context4.prev = _context4.next) {
+        case 0:
+          _context4.next = 2;
+          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["takeLatest"])(_actions__WEBPACK_IMPORTED_MODULE_2__["LOGIN_FLAG"], login);
+
+        case 2:
+        case "end":
+          return _context4.stop();
+      }
+    }
+  }, _marked4);
 }
 
 /***/ }),
@@ -103399,7 +103511,7 @@ function root() {
       switch (_context.prev = _context.next) {
         case 0:
           _context.next = 2;
-          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["all"])([Object(_modules_projects_sagas__WEBPACK_IMPORTED_MODULE_2__["watchIndex"])(), Object(_modules_projects_sagas__WEBPACK_IMPORTED_MODULE_2__["watchShow"])(), Object(_modules_projects_sagas__WEBPACK_IMPORTED_MODULE_2__["watchStore"])(), Object(_modules_authentication_sagas__WEBPACK_IMPORTED_MODULE_3__["watchRegistration"])()]);
+          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["all"])([Object(_modules_projects_sagas__WEBPACK_IMPORTED_MODULE_2__["watchIndex"])(), Object(_modules_projects_sagas__WEBPACK_IMPORTED_MODULE_2__["watchShow"])(), Object(_modules_projects_sagas__WEBPACK_IMPORTED_MODULE_2__["watchStore"])(), Object(_modules_authentication_sagas__WEBPACK_IMPORTED_MODULE_3__["watchRegistration"])(), Object(_modules_authentication_sagas__WEBPACK_IMPORTED_MODULE_3__["watchLogin"])()]);
 
         case 2:
         case "end":

@@ -56,6 +56,7 @@ const Register = connect(null, dispatch => bindActionCreators({registrationFlag}
                     props.registrationFlag({data: values, history})
                     //console.log(values)
                     setSubmitting(false)
+                    // dispatch an action to reset the form
                 }
 
                 }

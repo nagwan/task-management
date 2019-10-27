@@ -4,13 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-
-
-//namespace App\Http\Controllers;
-//use Illuminate\Http\Request; 
-//use App\User; 
-//use Illuminate\Support\Facades\Auth; 
-//use Validator;
+use Illuminate\Support\Facades\Auth;
 
 
 class LoginController extends Controller
@@ -52,22 +46,19 @@ class LoginController extends Controller
 
             $user = Auth::user();
 
-            $success['token'] =  $user->createToken('MyApp')->accessToken;
+            $response['token'] =  $user->createToken('MyApp')->accessToken;
 
-            return \response(['success' =>  $success], 200);
+            $response['user'] = $user;
+
+            return \response(['data' =>  $response], 200);
 
             //return response()->json(['success' => $success], $this->successStatus);
             
         } else {
+
             return \response()(['error' => 'Unauthorized'], 401);
         }
 
     }
-
-    // public function showLoginForm()
-    // {
-    //     return view('welcome');
-    // }
-
 
 }
