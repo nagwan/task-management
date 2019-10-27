@@ -21,7 +21,7 @@ class RegisterController extends Controller
     |
     */
 
-    use RegistersUsers;
+    use RegistersUsers, Validator;
 
     /**
      * Where to redirect users after registration.
@@ -71,8 +71,30 @@ class RegisterController extends Controller
         ]);
     }
 
-    public function showRegistrationForm()
+
+    public function register(Request $request)
     {
-        return view('welcome');
+        $validator = Validator::make($request->all(), [
+            'name' => 'required',
+            'email' => 'required|email',
+            'password' => 'required',
+            'password_confirmation' => 'required|same:password',
+        ]);
+
+        if ($validator->fails()) {
+            return response(['error' => $validator->errors()], 401);
+        }
+
+        $input = $request->all();
+        $input['password'] = bcrypt($input['password']);
+        $user = User::create($input);
+        $success['token'] =  $user->createToken('MyApp')->accessToken;
+        $success['name'] =  $user->name;
+        return response(['success' => $success], 200);
     }
+
+    // public function showRegistrationForm()
+    // {
+    //     return view('welcome');
+    // }
 }

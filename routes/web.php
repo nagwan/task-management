@@ -11,13 +11,18 @@
 |
 */
 
-Route::fallback(function () {
-    return view('welcome');
-});
+Route::view('/{path?}', 'welcome')
+     ->where('path', '.*')
+     ->name('react');
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
+// Route::fallback(function () {
+//     return view('welcome');
+// });
+
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 Route::group(['middleware' => 'auth'], function () {
 
@@ -30,8 +35,3 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/home', 'HomeController@index')->name('home');
 
 });
-
-Auth::routes();
-
-
-
