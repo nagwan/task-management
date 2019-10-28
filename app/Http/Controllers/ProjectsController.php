@@ -12,7 +12,7 @@ class ProjectsController extends Controller
 
         $projects = auth()->user()->projects;
 
-        return \response(['data' =>  $projects]);
+        return response()->json(['data' =>  $projects], 200);
     }
 
     public function store()
@@ -26,15 +26,18 @@ class ProjectsController extends Controller
 
         $projects = Project::orderBy('created_at', 'desc')->get(); // how can i get the last added project
 
-        return \response(['data' => $projects]);
+        return response()->json(['data' => $projects]);
     }
 
     public function show(Project $project)
     {
-        if (auth()->user()->isNot($project->owner)) {
-            abort(403);
+        if (auth()->user()->isNot($project->owner) || !$project) {
+            return response()->json([
+                'success' => false,
+                'message' =>  'not found'
+            ], 400);
         }
-        
-        return \response(['data' => $project]);
+
+        return response()->json(['data' => $project]);
     }
 }

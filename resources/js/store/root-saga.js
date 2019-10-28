@@ -1,6 +1,6 @@
 import { all } from 'redux-saga/effects';
 import { watchIndex, watchShow, watchStore } from "./modules/projects/sagas"
-import { watchRegistration, watchLogin } from './modules/authentication/sagas'
+import { watchRegistration, watchLogin, watchFetchUser } from './modules/authentication/sagas'
 
 export default function* root() {
     yield all([
@@ -8,7 +8,8 @@ export default function* root() {
         watchShow(),
         watchStore(),
         watchRegistration(),
-        watchLogin()
+        watchLogin(),
+        watchFetchUser()
     ])
 
 }

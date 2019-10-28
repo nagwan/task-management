@@ -1,3 +1,6 @@
+import axios from 'axios';
+
+
 export const toggleLang = (i18n) => {
     if (i18n.language === 'ar') {
         i18n.changeLanguage("en")
@@ -6,18 +9,20 @@ export const toggleLang = (i18n) => {
     }
 }
 
-export const api = (url, data, method) => {
 
-    let request = new Request(url, {
-        method: method,
-        body: data ? JSON.stringify(data) : null,
+export const api = (url, data, method) => {
+    
+    const request = axios({
+        method,
+        url,
+        data,
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        },
-    });
+        }
+    })
 
-    return fetch(request).then(response => response.json())
+    return request
 }
 

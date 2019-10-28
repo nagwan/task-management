@@ -93,9 +93,9 @@ class RegisterController extends Controller
 
         $user = User::create($input); 
 
-        $response['token'] =  $user->createToken('MyApp')->accessToken;
+        $response['token'] = $user->createToken('MyApp')->accessToken;
 
-        $response['user'] =  $user;
+        $response['user'] = $user;
         
         return response(['data' => $response], 200);
     }

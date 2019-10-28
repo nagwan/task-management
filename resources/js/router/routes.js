@@ -6,7 +6,6 @@ import Login from "../components/auth/login";
 import ResetPassword from "../components/auth/reset-password";
 import ForgetPassword from "../components/auth/forget-password";
 import Update from "../components/projects/update";
-import NotFound from "../components/pages/404";
 import User from "../components/user";
 
 
@@ -56,9 +55,5 @@ export default [
         path: '/forget-password',
         component: ForgetPassword,
         auth: true
-    },
-    {
-        path: '/not-found',
-        component: NotFound,
     },
 ]

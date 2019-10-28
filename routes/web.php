@@ -11,18 +11,10 @@
 |
 */
 
-Route::view('/{path?}', 'welcome')
-     ->where('path', '.*')
-     ->name('react');
+Route::view('/{any?}', 'welcome')
+     ->where('any', '.*');
 
-
-// Route::fallback(function () {
-//     return view('welcome');
-// });
-
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+     
 
 Route::group(['middleware' => 'auth'], function () {
 
@@ -30,8 +22,11 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/projects', 'ProjectsController@index');
 
+    Route::post('/user', 'UsersController@fetch');
+
     Route::get('/projects/{project}', 'ProjectsController@show');
 
     Route::get('/home', 'HomeController@index')->name('home');
 
 });
+

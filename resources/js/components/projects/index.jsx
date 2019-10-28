@@ -11,17 +11,20 @@ const Index = connect(({ projects }) => ({ projects }),
     props.projectsIndexFlag();
     const { t } = useTranslation(); 
     const history = useHistory()
+    let data = props.projects.projects
 
     return (
         <div className='container py-112 px-12'>
             <p>{t('phrases:projects_title')}</p>
             <ul className='list-disc'>
                 {
-                    props.projects.projects.map(project =>
+                    data.length ? 
+                    data.map(project =>
                         <li className='cursor-pointer' key={project.id}>
                             <p onClick={() => props.projectShowFlag({ id: project.id, history: history })}>{project.title}</p>
                         </li>
-                    )
+                    ) :
+                    <li>No Projects Yet</li>
                 }
             </ul>
         </div>

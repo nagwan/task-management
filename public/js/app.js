@@ -102459,7 +102459,7 @@ var NotFound = function NotFound() {
     className: "container"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
     className: "text-xl"
-  }, "404| NOT Found"));
+  }, "Whoooooops 404| NOT Found"));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (NotFound);
@@ -102505,11 +102505,12 @@ var Index = Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(function
       t = _useTranslation.t;
 
   var history = Object(react_router_dom__WEBPACK_IMPORTED_MODULE_4__["useHistory"])();
+  var data = props.projects.projects;
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "container py-112 px-12"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, t('phrases:projects_title')), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
     className: "list-disc"
-  }, props.projects.projects.map(function (project) {
+  }, data.length ? data.map(function (project) {
     return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
       className: "cursor-pointer",
       key: project.id
@@ -102521,7 +102522,7 @@ var Index = Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(function
         });
       }
     }, project.title));
-  })));
+  }) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "No Projects Yet")));
 });
 /* harmony default export */ __webpack_exports__["default"] = (Index);
 
@@ -102686,10 +102687,16 @@ var Update = function Update() {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+
 
 
 var User = function User() {
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "USER PROFILE"));
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "USER PROFILE"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+    to: "/new-project"
+  }, "New Project"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+    to: "/projects"
+  }, "My Projects"));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (User);
@@ -102707,6 +102714,9 @@ var User = function User() {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "toggleLang", function() { return toggleLang; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "api", function() { return api; });
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+
 var toggleLang = function toggleLang(i18n) {
   if (i18n.language === 'ar') {
     i18n.changeLanguage("en");
@@ -102715,18 +102725,17 @@ var toggleLang = function toggleLang(i18n) {
   }
 };
 var api = function api(url, data, method) {
-  var request = new Request(url, {
+  var request = axios__WEBPACK_IMPORTED_MODULE_0___default()({
     method: method,
-    body: data ? JSON.stringify(data) : null,
+    url: url,
+    data: data,
     headers: {
       'Accept': 'application/json',
       'Content-Type': 'application/json',
       'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
     }
   });
-  return fetch(request).then(function (response) {
-    return response.json();
-  });
+  return request;
 };
 
 /***/ }),
@@ -102745,7 +102754,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var _routes__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./routes */ "./resources/js/router/routes.js");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _components_pages_404__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../components/pages/404 */ "./resources/js/components/pages/404.jsx");
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+
 
 
 
@@ -102762,6 +102773,7 @@ var PrivateRoutes = Object(react_redux__WEBPACK_IMPORTED_MODULE_3__["connect"])(
     exact: route.exact,
     component: route.component
   }) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Redirect"], {
+    push: true,
     to: "/login"
   });
 });
@@ -102771,7 +102783,8 @@ var AuthRoutes = Object(react_redux__WEBPACK_IMPORTED_MODULE_3__["connect"])(fun
     Authentication: Authentication
   };
 })(function (route) {
-  return route.Authentication.is_auth ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Redirect"], {
+  return route.Authentication.is_auth && route.Authentication.user.id ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Redirect"], {
+    push: true,
     to: "/me/".concat(route.Authentication.user.id)
   }) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
     path: route.path,
@@ -102786,10 +102799,14 @@ var ManiRouter = function ManiRouter() {
       key: index
     }, route)) : route.auth ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(AuthRoutes, _extends({
       key: index
-    }, route)) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Redirect"], {
+    }, route)) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
       key: index,
-      to: "/not-found"
+      path: route.path,
+      exact: route.exact,
+      component: route.component
     });
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
+    component: _components_pages_404__WEBPACK_IMPORTED_MODULE_4__["default"]
   }))));
 };
 
@@ -102814,9 +102831,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_auth_reset_password__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../components/auth/reset-password */ "./resources/js/components/auth/reset-password.jsx");
 /* harmony import */ var _components_auth_forget_password__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../components/auth/forget-password */ "./resources/js/components/auth/forget-password.jsx");
 /* harmony import */ var _components_projects_update__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../components/projects/update */ "./resources/js/components/projects/update.jsx");
-/* harmony import */ var _components_pages_404__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../components/pages/404 */ "./resources/js/components/pages/404.jsx");
-/* harmony import */ var _components_user__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../components/user */ "./resources/js/components/user/index.jsx");
-
+/* harmony import */ var _components_user__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../components/user */ "./resources/js/components/user/index.jsx");
 
 
 
@@ -102845,7 +102860,7 @@ __webpack_require__.r(__webpack_exports__);
   "private": true
 }, {
   path: '/me/:id',
-  component: _components_user__WEBPACK_IMPORTED_MODULE_9__["default"],
+  component: _components_user__WEBPACK_IMPORTED_MODULE_8__["default"],
   "private": true
 }, {
   path: '/registration',
@@ -102863,9 +102878,6 @@ __webpack_require__.r(__webpack_exports__);
   path: '/forget-password',
   component: _components_auth_forget_password__WEBPACK_IMPORTED_MODULE_6__["default"],
   auth: true
-}, {
-  path: '/not-found',
-  component: _components_pages_404__WEBPACK_IMPORTED_MODULE_8__["default"]
 }]);
 
 /***/ }),
@@ -102908,7 +102920,7 @@ sagaMiddleware.run(_root_saga__WEBPACK_IMPORTED_MODULE_2__["default"]);
 /*!**************************************************************!*\
   !*** ./resources/js/store/modules/authentication/actions.js ***!
   \**************************************************************/
-/*! exports provided: REGISTRATION_FLAG, IS_AUTHORIZED, AUTH_USER, LOGIN_FLAG, registrationFlag, loginFlag, isAuthorized, authUser */
+/*! exports provided: REGISTRATION_FLAG, IS_AUTHORIZED, AUTH_USER, LOGIN_FLAG, FETCH_USER_FLAG, registrationFlag, loginFlag, isAuthorized, fetchUserFlag, authUser */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -102917,14 +102929,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "IS_AUTHORIZED", function() { return IS_AUTHORIZED; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AUTH_USER", function() { return AUTH_USER; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LOGIN_FLAG", function() { return LOGIN_FLAG; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FETCH_USER_FLAG", function() { return FETCH_USER_FLAG; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "registrationFlag", function() { return registrationFlag; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "loginFlag", function() { return loginFlag; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isAuthorized", function() { return isAuthorized; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchUserFlag", function() { return fetchUserFlag; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "authUser", function() { return authUser; });
 var REGISTRATION_FLAG = 'REGISTRATION_FLAG';
 var IS_AUTHORIZED = 'IS_AUTHORIZED';
 var AUTH_USER = 'AUTH_USER';
 var LOGIN_FLAG = 'LOGIN_FLAG';
+var FETCH_USER_FLAG = 'FETCH_USER_FLAG';
 function registrationFlag(payload) {
   return {
     type: REGISTRATION_FLAG,
@@ -102940,6 +102955,12 @@ function loginFlag(payload) {
 function isAuthorized(payload) {
   return {
     type: IS_AUTHORIZED,
+    payload: payload
+  };
+}
+function fetchUserFlag(payload) {
+  return {
+    type: FETCH_USER_FLAG,
     payload: payload
   };
 }
@@ -103000,7 +103021,7 @@ function reducer() {
 /*!************************************************************!*\
   !*** ./resources/js/store/modules/authentication/sagas.js ***!
   \************************************************************/
-/*! exports provided: register, watchRegistration, login, watchLogin */
+/*! exports provided: register, watchRegistration, login, watchLogin, fetchUser, watchFetchUser */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -103009,6 +103030,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "watchRegistration", function() { return watchRegistration; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "login", function() { return login; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "watchLogin", function() { return watchLogin; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchUser", function() { return fetchUser; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "watchFetchUser", function() { return watchFetchUser; });
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! redux-saga/effects */ "./node_modules/redux-saga/dist/redux-saga-effects-npm-proxy.esm.js");
@@ -103027,7 +103050,13 @@ _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(watchRegi
 _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(login),
     _marked4 =
 /*#__PURE__*/
-_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(watchLogin);
+_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(watchLogin),
+    _marked5 =
+/*#__PURE__*/
+_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(fetchUser),
+    _marked6 =
+/*#__PURE__*/
+_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(watchFetchUser);
 
 
 
@@ -103044,29 +103073,29 @@ function register(action) {
 
         case 3:
           response = _context.sent;
+          console.log(response.data, 'registration response');
 
-          if (!response.data) {
+          if (!response.data.token) {
             _context.next = 13;
             break;
           }
 
-          _context.next = 7;
-          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["put"])(Object(_actions__WEBPACK_IMPORTED_MODULE_2__["isAuthorized"])(true));
-
-        case 7:
+          localStorage.setItem('token', response.data.token);
           _context.next = 9;
-          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["put"])(Object(_actions__WEBPACK_IMPORTED_MODULE_2__["authUser"])(response.data.user));
+          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["put"])(Object(_actions__WEBPACK_IMPORTED_MODULE_2__["isAuthorized"])(true));
 
         case 9:
           _context.next = 11;
-          return action.payload.history.push("/me/".concat(response.data.user.id));
+          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["put"])(Object(_actions__WEBPACK_IMPORTED_MODULE_2__["fetchUserFlag"])({
+            history: action.payload.history
+          }));
 
         case 11:
           _context.next = 14;
           break;
 
         case 13:
-          console.log(response.error);
+          console.log(response, 'response error');
 
         case 14:
           _context.next = 19;
@@ -103075,7 +103104,7 @@ function register(action) {
         case 16:
           _context.prev = 16;
           _context.t0 = _context["catch"](0);
-          console.log(_context.t0);
+          console.log(_context.t0, 'catch error'); // this what prints in the console
 
         case 19:
         case "end":
@@ -103111,46 +103140,39 @@ function login(action) {
 
         case 3:
           response = _context3.sent;
-          console.log(response);
+          console.log(response.data, 'login');
+          return _context3.abrupt("return");
 
-          if (!response.data) {
-            _context3.next = 14;
-            break;
-          }
-
-          _context3.next = 8;
-          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["put"])(Object(_actions__WEBPACK_IMPORTED_MODULE_2__["isAuthorized"])(true));
-
-        case 8:
-          _context3.next = 10;
+        case 11:
+          _context3.next = 13;
           return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["put"])(Object(_actions__WEBPACK_IMPORTED_MODULE_2__["authUser"])(response.data.user));
 
-        case 10:
-          _context3.next = 12;
+        case 13:
+          _context3.next = 15;
           return action.payload.history.push("/me/".concat(response.data.user.id));
 
-        case 12:
-          _context3.next = 15;
-          break;
-
-        case 14:
-          console.log(response.error);
-
         case 15:
-          _context3.next = 20;
+          _context3.next = 18;
           break;
 
         case 17:
-          _context3.prev = 17;
+          console.log(response.error);
+
+        case 18:
+          _context3.next = 23;
+          break;
+
+        case 20:
+          _context3.prev = 20;
           _context3.t0 = _context3["catch"](0);
           console.log(_context3.t0);
 
-        case 20:
+        case 23:
         case "end":
           return _context3.stop();
       }
     }
-  }, _marked3, null, [[0, 17]]);
+  }, _marked3, null, [[0, 20]]);
 }
 function watchLogin() {
   return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function watchLogin$(_context4) {
@@ -103166,6 +103188,51 @@ function watchLogin() {
       }
     }
   }, _marked4);
+}
+function fetchUser(action) {
+  var response;
+  return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function fetchUser$(_context5) {
+    while (1) {
+      switch (_context5.prev = _context5.next) {
+        case 0:
+          _context5.prev = 0;
+          _context5.next = 3;
+          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["call"])(_helpers_functions__WEBPACK_IMPORTED_MODULE_3__["api"], "/user", null, 'get');
+
+        case 3:
+          response = _context5.sent;
+          console.log(response, 'fetch user response'); //yield put(authUser(response.data.user))
+          //yield action.payload.history.push(`/me/${response.data.user.id}`)
+
+          _context5.next = 10;
+          break;
+
+        case 7:
+          _context5.prev = 7;
+          _context5.t0 = _context5["catch"](0);
+          console.log(_context5.t0);
+
+        case 10:
+        case "end":
+          return _context5.stop();
+      }
+    }
+  }, _marked5, null, [[0, 7]]);
+}
+function watchFetchUser() {
+  return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function watchFetchUser$(_context6) {
+    while (1) {
+      switch (_context6.prev = _context6.next) {
+        case 0:
+          _context6.next = 2;
+          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["takeLatest"])(_actions__WEBPACK_IMPORTED_MODULE_2__["FETCH_USER_FLAG"], fetchUser);
+
+        case 2:
+        case "end":
+          return _context6.stop();
+      }
+    }
+  }, _marked6);
 }
 
 /***/ }),
@@ -103342,24 +103409,25 @@ function index(action) {
 
         case 3:
           projects = _context.sent;
-          _context.next = 6;
+          console.log(projects, 'projects');
+          _context.next = 7;
           return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["put"])(Object(_actions__WEBPACK_IMPORTED_MODULE_2__["projectsIndex"])(projects.data));
 
-        case 6:
-          _context.next = 11;
+        case 7:
+          _context.next = 12;
           break;
 
-        case 8:
-          _context.prev = 8;
+        case 9:
+          _context.prev = 9;
           _context.t0 = _context["catch"](0);
           console.log(_context.t0);
 
-        case 11:
+        case 12:
         case "end":
           return _context.stop();
       }
     }
-  }, _marked, null, [[0, 8]]);
+  }, _marked, null, [[0, 9]]);
 }
 function watchIndex() {
   return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function watchIndex$(_context2) {
@@ -103511,7 +103579,7 @@ function root() {
       switch (_context.prev = _context.next) {
         case 0:
           _context.next = 2;
-          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["all"])([Object(_modules_projects_sagas__WEBPACK_IMPORTED_MODULE_2__["watchIndex"])(), Object(_modules_projects_sagas__WEBPACK_IMPORTED_MODULE_2__["watchShow"])(), Object(_modules_projects_sagas__WEBPACK_IMPORTED_MODULE_2__["watchStore"])(), Object(_modules_authentication_sagas__WEBPACK_IMPORTED_MODULE_3__["watchRegistration"])(), Object(_modules_authentication_sagas__WEBPACK_IMPORTED_MODULE_3__["watchLogin"])()]);
+          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["all"])([Object(_modules_projects_sagas__WEBPACK_IMPORTED_MODULE_2__["watchIndex"])(), Object(_modules_projects_sagas__WEBPACK_IMPORTED_MODULE_2__["watchShow"])(), Object(_modules_projects_sagas__WEBPACK_IMPORTED_MODULE_2__["watchStore"])(), Object(_modules_authentication_sagas__WEBPACK_IMPORTED_MODULE_3__["watchRegistration"])(), Object(_modules_authentication_sagas__WEBPACK_IMPORTED_MODULE_3__["watchLogin"])(), Object(_modules_authentication_sagas__WEBPACK_IMPORTED_MODULE_3__["watchFetchUser"])()]);
 
         case 2:
         case "end":

@@ -1,12 +1,15 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
 import { PROJECTS_INDEX_FLAG, projectsIndex, projectShow, PROJECT_SHOW_FLAG, PROJECT_STORE_FLAG, projectStore } from './actions'
-import {api} from '../../../helpers/functions'
+import { api } from '../../../helpers/functions'
 
 // fetch all projects
 export function* index(action) {
 
     try {
         const projects = yield call(api, `/projects`, null, 'get')
+
+        console.log(projects, 'projects')
+
         yield put(projectsIndex(projects.data))
 
     } catch (error) {
@@ -15,7 +18,7 @@ export function* index(action) {
 }
 
 
-export function* watchIndex(){
+export function* watchIndex() {
     yield takeLatest(PROJECTS_INDEX_FLAG, index)
 }
 

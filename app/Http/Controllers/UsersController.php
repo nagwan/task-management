@@ -2,14 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 
 class UsersController extends Controller
 {
-    public function show(Request $request)
+    public function fetch()
     {
-        $user = $request->user();
 
-        return \response(['data' => $user]);
+        $user = auth()->user();
+
+        if($user->id){
+            return response(['user' => $user], 200);
+        }        
     }
 }
