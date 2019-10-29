@@ -10,13 +10,14 @@ export const toggleLang = (i18n) => {
 }
 
 
-export const api = (url, data, method) => {
+export const api = (url, data, method, token) => {
     
     const request = axios({
         method,
         url,
         data,
         headers: {
+            //'Authorization': 'Bearer '.token,
             'Accept': 'application/json',
             'Content-Type': 'application/json',
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

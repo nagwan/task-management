@@ -15,14 +15,14 @@ Route::view('/{any?}', 'welcome')
      ->where('any', '.*');
 
      
-
+     Route::post('/user', 'UsersController@fetch');
 Route::group(['middleware' => 'auth'], function () {
 
     Route::post('/projects', 'ProjectsController@store');
 
     Route::get('/projects', 'ProjectsController@index');
 
-    Route::post('/user', 'UsersController@fetch');
+    //Route::post('/user', 'UsersController@fetch');
 
     Route::get('/projects/{project}', 'ProjectsController@show');
 

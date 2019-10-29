@@ -5,13 +5,11 @@ namespace App\Http\Controllers;
 
 class UsersController extends Controller
 {
-    public function fetch()
+    public function fetch(Request $request)
     {
 
-        $user = auth()->user();
+        $user = Auth::user();
 
-        if($user->id){
-            return response(['user' => $user], 200);
-        }        
+        return response()->json(['user' => $user]);
     }
 }

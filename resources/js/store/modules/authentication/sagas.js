@@ -39,9 +39,8 @@ export function* login(action) {
     try {
 
         const response = yield call(api, `api/login`, action.payload.data, 'POST')
-        console.log(response.data, 'login')
 
-        return
+        console.log(response.data, 'login')
 
         if (response.data) {
 
@@ -51,9 +50,9 @@ export function* login(action) {
 
             yield put(isAuthorized(true))
 
-            yield put(authUser(response.data.user))
+            yield put(fetchUserFlag({ history: action.payload.history }))
 
-            yield action.payload.history.push(`/me/${response.data.user.id}`)
+            //yield action.payload.history.push(`/me/${response.data.user.id}`)
 
         } else {
 
@@ -74,7 +73,7 @@ export function* watchLogin() {
 export function* fetchUser(action) {
     try {
 
-        const response = yield call(api, `/user`, null, 'get')
+        const response = yield call(api, `/user`, null, 'POST')
 
         console.log(response, 'fetch user response')
 

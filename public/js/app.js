@@ -102724,12 +102724,13 @@ var toggleLang = function toggleLang(i18n) {
     i18n.changeLanguage("ar");
   }
 };
-var api = function api(url, data, method) {
+var api = function api(url, data, method, token) {
   var request = axios__WEBPACK_IMPORTED_MODULE_0___default()({
     method: method,
     url: url,
     data: data,
     headers: {
+      //'Authorization': 'Bearer '.token,
       'Accept': 'application/json',
       'Content-Type': 'application/json',
       'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -103141,38 +103142,45 @@ function login(action) {
         case 3:
           response = _context3.sent;
           console.log(response.data, 'login');
-          return _context3.abrupt("return");
 
-        case 11:
-          _context3.next = 13;
-          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["put"])(Object(_actions__WEBPACK_IMPORTED_MODULE_2__["authUser"])(response.data.user));
+          if (!response.data) {
+            _context3.next = 14;
+            break;
+          }
 
-        case 13:
+          console.log(response.data.user, 'login');
+          localStorage.setItem('token', response.data.token);
+          _context3.next = 10;
+          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["put"])(Object(_actions__WEBPACK_IMPORTED_MODULE_2__["isAuthorized"])(true));
+
+        case 10:
+          _context3.next = 12;
+          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["put"])(Object(_actions__WEBPACK_IMPORTED_MODULE_2__["fetchUserFlag"])({
+            history: action.payload.history
+          }));
+
+        case 12:
           _context3.next = 15;
-          return action.payload.history.push("/me/".concat(response.data.user.id));
+          break;
+
+        case 14:
+          console.log(response.error);
 
         case 15:
-          _context3.next = 18;
+          _context3.next = 20;
           break;
 
         case 17:
-          console.log(response.error);
-
-        case 18:
-          _context3.next = 23;
-          break;
-
-        case 20:
-          _context3.prev = 20;
+          _context3.prev = 17;
           _context3.t0 = _context3["catch"](0);
           console.log(_context3.t0);
 
-        case 23:
+        case 20:
         case "end":
           return _context3.stop();
       }
     }
-  }, _marked3, null, [[0, 20]]);
+  }, _marked3, null, [[0, 17]]);
 }
 function watchLogin() {
   return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function watchLogin$(_context4) {
@@ -103197,7 +103205,7 @@ function fetchUser(action) {
         case 0:
           _context5.prev = 0;
           _context5.next = 3;
-          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["call"])(_helpers_functions__WEBPACK_IMPORTED_MODULE_3__["api"], "/user", null, 'get');
+          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["call"])(_helpers_functions__WEBPACK_IMPORTED_MODULE_3__["api"], "/user", null, 'POST');
 
         case 3:
           response = _context5.sent;

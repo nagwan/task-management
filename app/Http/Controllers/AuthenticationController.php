@@ -17,16 +17,16 @@ class AuthenticationController extends Controller
             'password_confirmation' => 'required|same:password'
         ]);
 
+        $token = Str::random(80);
+
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'password' => bcrypt($request->password)
+            'password' => bcrypt($request->password),
+            'api_token' => hash('sha256', $token),
         ]);
-        
 
-        $token = $user->createToken('taskyDo')->accessToken;
-
-        return response(['token' => $token]);
+        return response(['token' => $user->api_token]);
     }
 
     public function login(Request $request)
@@ -37,10 +37,12 @@ class AuthenticationController extends Controller
         ];
 
         if (auth()->attempt($credentials)) {
+
             $token = auth()->user()->createToken('taskyDo')->accessToken;
+
             return response()->json(['token' => $token], 200);
         } else {
-            return response()->json(['error' => 'UnAuthorised'], 401);
+            return response()->json(['error' => 'UnAuthorized'], 401);
         }
     }
 }
