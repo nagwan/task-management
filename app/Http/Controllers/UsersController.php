@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 
 class UsersController extends Controller
 {
-    public function fetch(Request $request)
+    public function fetch()
     {
 
         $user = Auth::user();

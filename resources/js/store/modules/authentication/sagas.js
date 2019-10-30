@@ -9,11 +9,7 @@ export function* register(action) {
 
         const response = yield call(api, `api/register`, action.payload.data, 'POST')
 
-        console.log(response.data, 'registration response')
-
-        if (response.data.token) {
-
-            localStorage.setItem('token', response.data.token)
+        if (response.data.success) {
 
             yield put(isAuthorized(true))
 
@@ -26,7 +22,7 @@ export function* register(action) {
 
     } catch (error) {
 
-        console.log(error, 'catch error') // this what prints in the console
+        console.log(error, 'catch error') 
     }
 }
 
@@ -40,19 +36,11 @@ export function* login(action) {
 
         const response = yield call(api, `api/login`, action.payload.data, 'POST')
 
-        console.log(response.data, 'login')
-
-        if (response.data) {
-
-            console.log(response.data.user, 'login')
-
-            localStorage.setItem('token', response.data.token)
+        if (response.data.success) {
 
             yield put(isAuthorized(true))
 
-            yield put(fetchUserFlag({ history: action.payload.history }))
-
-            //yield action.payload.history.push(`/me/${response.data.user.id}`)
+            yield put(fetchUserFlag({ history: action.payload.history, token: response.data.data.api_token }))
 
         } else {
 
@@ -71,9 +59,10 @@ export function* watchLogin() {
 
 
 export function* fetchUser(action) {
+    console.log(action)
     try {
 
-        const response = yield call(api, `/user`, null, 'POST')
+        const response = yield call(api, `/user`, null, 'POST', action.payload.token)
 
         console.log(response, 'fetch user response')
 

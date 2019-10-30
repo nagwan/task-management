@@ -3,6 +3,8 @@ import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
 import Routes from './routes';
 import { connect } from 'react-redux';
 import NotFound from '../components/pages/404';
+import createHistory from 'history/createBrowserHistory'
+const history = createHistory()
 
 
 const PrivateRoutes = connect(({ Authentication }) => ({ Authentication }))((route) => {
@@ -29,7 +31,7 @@ const ManiRouter = (() => {
     return (
 
         <div>
-            <BrowserRouter>
+            <BrowserRouter history={history}>
                 <Switch>
                     {
                         Routes.map((route, index) => (

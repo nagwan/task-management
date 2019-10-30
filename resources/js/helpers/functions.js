@@ -17,7 +17,7 @@ export const api = (url, data, method, token) => {
         url,
         data,
         headers: {
-            //'Authorization': 'Bearer '.token,
+            'Authorization': token ? 'Bearer '+token :'', 
             'Accept': 'application/json',
             'Content-Type': 'application/json',
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

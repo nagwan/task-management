@@ -5,11 +5,14 @@ namespace App\Http\Controllers;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class AuthenticationController extends Controller
 {
     public function register(Request $request)
     {
+
         $this->validate($request, [
             'name' => 'required|min:3',
             'email' => 'required|email|unique:users',
@@ -17,32 +20,55 @@ class AuthenticationController extends Controller
             'password_confirmation' => 'required|same:password'
         ]);
 
-        $token = Str::random(80);
+        $token = hash('sha256', Str::random(80)) ;
 
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'password' => bcrypt($request->password),
-            'api_token' => hash('sha256', $token),
+            'password' => Hash::make($request['password']),
+            'api_token' => $token,
         ]);
 
-        return response(['token' => $user->api_token]);
+        if ($user->save()) {
+            $response = [
+                'success' => true,
+                'data' => [
+                    'name' => $user->name,
+                    'id' => $user->id,
+                    'email' => $user->email,
+                    'api_token' => $user->api_token
+                ]
+            ];
+        } else
+            $response = ['success' => false, 'data' => 'Couldnt register user'];
+
+        return response()->json($response, 201);
     }
 
     public function login(Request $request)
     {
-        $credentials = [
-            'email' => $request->email,
-            'password' => $request->password
-        ];
 
-        if (auth()->attempt($credentials)) {
+        $this->validate($request, [
+            'email' => 'required|email',
+            'password' => 'required|min:6',
+        ]);
 
-            $token = auth()->user()->createToken('taskyDo')->accessToken;
+        $user = User::where('email', $request->email)->get()->first();
 
-            return response()->json(['token' => $token], 200);
-        } else {
-            return response()->json(['error' => 'UnAuthorized'], 401);
-        }
+    
+        if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
+
+            $token = hash('sha256', Str::random(80));
+            $user->api_token = $token;
+            $user->save();
+
+            $response = ['success' => true, 'data' => ['id' => $user->id, 'api_token' => $user->api_token, 'name' => $user->name, 'email' => $user->email]];
+
+            //Auth::login($user, true);
+
+        } else
+            $response = ['success' => false, 'data' => 'Record doesn`t exists'];
+
+        return response()->json($response, 201);
     }
 }
