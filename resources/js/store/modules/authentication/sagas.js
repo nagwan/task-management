@@ -32,6 +32,7 @@ export function* watchRegistration() {
 
 
 export function* login(action) {
+
     try {
 
         const response = yield call(api, `api/login`, action.payload.data, 'POST')
@@ -54,6 +55,7 @@ export function* login(action) {
 }
 
 export function* watchLogin() {
+    
     yield takeLatest(LOGIN_FLAG, login)
 }
 
@@ -62,7 +64,7 @@ export function* fetchUser(action) {
     console.log(action)
     try {
 
-        const response = yield call(api, `/user`, null, 'POST', action.payload.token)
+        const response = yield call(api, `api/user`, null, 'POST', action.payload.token)
 
         console.log(response, 'fetch user response')
 
