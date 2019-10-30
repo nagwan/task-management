@@ -6,6 +6,7 @@ use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
 class AuthenticationController extends Controller
@@ -20,13 +21,12 @@ class AuthenticationController extends Controller
             'password_confirmation' => 'required|same:password'
         ]);
 
-        $token = hash('sha256', Str::random(80)) ;
 
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request['password']),
-            'api_token' => $token,
+            'api_token' => Str::random(80),
         ]);
 
         if ($user->save()) {
@@ -58,8 +58,8 @@ class AuthenticationController extends Controller
     
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
 
-            $token = hash('sha256', Str::random(80));
-            $user->api_token = $token;
+            $user->api_token = Str::random(80);
+            
             $user->save();
 
             $response = ['success' => true, 'data' => ['id' => $user->id, 'api_token' => $user->api_token, 'name' => $user->name, 'email' => $user->email]];
@@ -67,7 +67,7 @@ class AuthenticationController extends Controller
             //Auth::login($user, true);
 
         } else
-            $response = ['success' => false, 'data' => 'Record doesn`t exists'];
+            $response = ['success' => false, 'data' => 'Record doest`t exists'];
 
         return response()->json($response, 201);
     }

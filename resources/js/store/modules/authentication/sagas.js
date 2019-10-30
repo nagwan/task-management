@@ -13,7 +13,7 @@ export function* register(action) {
 
             yield put(isAuthorized(true))
 
-            yield put(fetchUserFlag({ history: action.payload.history }))
+            yield put(fetchUserFlag({ history: action.payload.history, token: response.data.data.api_token }))
 
         } else {
 
