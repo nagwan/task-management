@@ -20,3 +20,17 @@ Route::group(['middleware' => 'guest'], function(){
 
     Route::post('/login', 'AuthenticationController@login');
 });
+
+Route::group(['middleware' => 'auth:api'], function () {
+
+    Route::post('/projects', 'ProjectsController@store');
+
+    Route::get('/projects', 'ProjectsController@index');
+
+    Route::post('/user', 'UsersController@fetch');
+
+    Route::get('/projects/{project}', 'ProjectsController@show');
+
+    Route::get('/home', 'HomeController@index')->name('home');
+
+});

@@ -6,7 +6,7 @@ import { api } from '../../../helpers/functions'
 export function* index(action) {
 
     try {
-        const projects = yield call(api, `/projects`, null, 'get')
+        const projects = yield call(api, `api/projects`, null, 'get')
 
         console.log(projects, 'projects')
 
@@ -26,7 +26,7 @@ export function* watchIndex() {
 export function* show(action) {
 
     try {
-        const project = yield call(api, `/projects/${action.payload.id}`, null, 'get')
+        const project = yield call(api, `api/projects/${action.payload.id}`, null, 'get')
 
         yield put(projectShow(project.data))
 
@@ -48,7 +48,7 @@ export function* watchShow() {
 export function* store(action) {
 
     try {
-        const project = yield call(api, `/projects`, action.payload.values, 'POST')
+        const project = yield call(api, `api/projects`, action.payload.values, 'POST')
 
         yield put(projectStore(project.data))
 

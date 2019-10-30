@@ -21,7 +21,6 @@ class AuthenticationController extends Controller
             'password_confirmation' => 'required|same:password'
         ]);
 
-
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
@@ -55,17 +54,21 @@ class AuthenticationController extends Controller
 
         $user = User::where('email', $request->email)->get()->first();
 
-    
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
 
             $user->api_token = Str::random(80);
-            
+
             $user->save();
 
-            $response = ['success' => true, 'data' => ['id' => $user->id, 'api_token' => $user->api_token, 'name' => $user->name, 'email' => $user->email]];
-
-            //Auth::login($user, true);
-
+            $response = [
+                'success' => true,
+                'data' => [
+                    'id' => $user->id,
+                    'api_token' => $user->api_token,
+                    'name' => $user->name,
+                    'email' => $user->email
+                ]
+            ];
         } else
             $response = ['success' => false, 'data' => 'Record doest`t exists'];
 
