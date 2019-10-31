@@ -102360,8 +102360,13 @@ var enhancer = composeEnhancers(Object(redux__WEBPACK_IMPORTED_MODULE_0__["apply
 var reducers = Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"])({
   projects: _modules_projects_reducer__WEBPACK_IMPORTED_MODULE_3__["default"]
 });
+<<<<<<< HEAD
 var store = Object(redux__WEBPACK_IMPORTED_MODULE_0__["createStore"])(reducers, enhancer);
 sagaMiddleware.run(_root_saga__WEBPACK_IMPORTED_MODULE_2__["default"]);
+=======
+var store = Object(redux__WEBPACK_IMPORTED_MODULE_0__["createStore"])(reducers, enhancer); //sagaMiddleware.run(root)
+
+>>>>>>> master
 /* harmony default export */ __webpack_exports__["default"] = (store);
 
 /***/ }),
