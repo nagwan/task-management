@@ -11,6 +11,7 @@ const User = connect(null, dispatch => bindActionCreators({ projectsIndexFlag },
             <h1>USER PROFILE</h1>
 
             <Link to='/new-project'>New Project</Link>
+            
             <Link onClick={props.projectsIndexFlag} to='/projects'>My Projects</Link>
 
         </div>

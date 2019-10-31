@@ -101746,6 +101746,27 @@ var NotFound = function NotFound() {
 
 /***/ }),
 
+/***/ "./resources/js/components/pages/home.jsx":
+/*!************************************************!*\
+  !*** ./resources/js/components/pages/home.jsx ***!
+  \************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+
+var Home = function Home() {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "WELCOME HOME");
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Home);
+
+/***/ }),
+
 /***/ "./resources/js/components/partials/nav.jsx":
 /*!**************************************************!*\
   !*** ./resources/js/components/partials/nav.jsx ***!
@@ -102189,6 +102210,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_auth_forget_password__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../components/auth/forget-password */ "./resources/js/components/auth/forget-password.jsx");
 /* harmony import */ var _components_projects_update__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../components/projects/update */ "./resources/js/components/projects/update.jsx");
 /* harmony import */ var _components_user__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../components/user */ "./resources/js/components/user/index.jsx");
+/* harmony import */ var _components_pages_home__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../components/pages/home */ "./resources/js/components/pages/home.jsx");
+
 
 
 
@@ -102199,8 +102222,13 @@ __webpack_require__.r(__webpack_exports__);
 
 
 /* harmony default export */ __webpack_exports__["default"] = ([{
-  path: '/projects',
+  path: '/',
   exact: true,
+  component: _components_pages_home__WEBPACK_IMPORTED_MODULE_9__["default"],
+  "private": false
+}, {
+  path: '/projects',
+  exact: false,
   component: _components_projects__WEBPACK_IMPORTED_MODULE_1__["default"],
   "private": true
 }, {

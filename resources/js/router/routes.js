@@ -7,12 +7,19 @@ import ResetPassword from "../components/auth/reset-password";
 import ForgetPassword from "../components/auth/forget-password";
 import Update from "../components/projects/update";
 import User from "../components/user";
+import Home from "../components/pages/home";
 
 
 export default [
     {
-        path: '/projects',
+        path: '/',
         exact: true,
+        component: Home,
+        private: false
+    },
+    {
+        path: '/projects',
+        exact: false,
         component: Index,
         private: true
     },

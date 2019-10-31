@@ -16,7 +16,7 @@ class ProjectTest extends TestCase
     {
         $project = factory('App\Project')->create();
 
-        $this->assertEquals('/projects/' . $project->id, $project->path());
+        $this->assertEquals('http://localhost/api/projects/' . $project->id, $project->path());
     }
 
     /** @test */

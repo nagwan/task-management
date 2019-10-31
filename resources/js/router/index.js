@@ -43,9 +43,7 @@ const ManiRouter = (() => {
 
                         <Route component={NotFound} />
                     </Switch>
-
                 </div>
-
             </BrowserRouter>
         </div>
     )

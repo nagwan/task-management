@@ -10,7 +10,7 @@ class Project extends Model
 
     public function path()
     {
-        return  route('projects.show' , ['id' => $this->id]);
+        return  route('projects.show' , ['project' => $this->id]);
     }
 
     public function owner()

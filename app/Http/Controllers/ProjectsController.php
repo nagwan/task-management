@@ -31,12 +31,23 @@ class ProjectsController extends Controller
 
     public function show(Project $project)
     {
-        if (auth()->user()->isNot($project->owner) || !$project) {
+       
+
+        if (auth()->user()->isNot($project->owner)) {
             return response()->json([
                 'success' => false,
-                'message' =>  'not found'
-            ], 400);
+                'message' =>  'unauthorized'
+            ], 403);
         }
+
+
+        // if($project->id != auth()->user()->id || !$project){
+        //     return response()->json([
+        //         'success' => false,
+        //         'message' =>  'unauthorized'
+        //     ], 403);
+        // }
+
 
         return response()->json(['data' => $project]);
     }
