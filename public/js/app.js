@@ -102495,12 +102495,9 @@ var Index = Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(function
   };
 }, function (dispatch) {
   return Object(redux__WEBPACK_IMPORTED_MODULE_3__["bindActionCreators"])({
-    projectShowFlag: _store_modules_projects_actions__WEBPACK_IMPORTED_MODULE_5__["projectShowFlag"],
-    projectsIndexFlag: _store_modules_projects_actions__WEBPACK_IMPORTED_MODULE_5__["projectsIndexFlag"]
+    projectShowFlag: _store_modules_projects_actions__WEBPACK_IMPORTED_MODULE_5__["projectShowFlag"]
   }, dispatch);
 })(function (props) {
-  props.projectsIndexFlag();
-
   var _useTranslation = Object(react_i18next__WEBPACK_IMPORTED_MODULE_2__["useTranslation"])(),
       t = _useTranslation.t;
 
@@ -102688,17 +102685,26 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
+/* harmony import */ var _store_modules_projects_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../store/modules/projects/actions */ "./resources/js/store/modules/projects/actions.js");
 
 
 
-var User = function User() {
+
+
+var User = Object(react_redux__WEBPACK_IMPORTED_MODULE_2__["connect"])(null, function (dispatch) {
+  return Object(redux__WEBPACK_IMPORTED_MODULE_3__["bindActionCreators"])({
+    projectsIndexFlag: _store_modules_projects_actions__WEBPACK_IMPORTED_MODULE_4__["projectsIndexFlag"]
+  }, dispatch);
+})(function (props) {
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "USER PROFILE"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
     to: "/new-project"
   }, "New Project"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+    onClick: props.projectsIndexFlag,
     to: "/projects"
   }, "My Projects"));
-};
-
+});
 /* harmony default export */ __webpack_exports__["default"] = (User);
 
 /***/ }),
@@ -103076,42 +103082,35 @@ function register(action) {
           response = _context.sent;
 
           if (!response.data.success) {
-            _context.next = 11;
+            _context.next = 9;
             break;
           }
 
           _context.next = 7;
-          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["put"])(Object(_actions__WEBPACK_IMPORTED_MODULE_2__["isAuthorized"])(true));
+          return action.payload.history.push("/login");
 
         case 7:
-          _context.next = 9;
-          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["put"])(Object(_actions__WEBPACK_IMPORTED_MODULE_2__["fetchUserFlag"])({
-            history: action.payload.history,
-            token: response.data.data.api_token
-          }));
+          _context.next = 10;
+          break;
 
         case 9:
-          _context.next = 12;
-          break;
-
-        case 11:
           console.log(response, 'response error');
 
-        case 12:
-          _context.next = 17;
+        case 10:
+          _context.next = 15;
           break;
 
-        case 14:
-          _context.prev = 14;
+        case 12:
+          _context.prev = 12;
           _context.t0 = _context["catch"](0);
           console.log(_context.t0, 'catch error');
 
-        case 17:
+        case 15:
         case "end":
           return _context.stop();
       }
     }
-  }, _marked, null, [[0, 14]]);
+  }, _marked, null, [[0, 12]]);
 }
 function watchRegistration() {
   return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function watchRegistration$(_context2) {
@@ -103200,30 +103199,36 @@ function fetchUser(action) {
     while (1) {
       switch (_context5.prev = _context5.next) {
         case 0:
-          console.log(action);
-          _context5.prev = 1;
-          _context5.next = 4;
+          _context5.prev = 0;
+          _context5.next = 3;
           return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["call"])(_helpers_functions__WEBPACK_IMPORTED_MODULE_3__["api"], "api/user", null, 'POST', action.payload.token);
 
-        case 4:
+        case 3:
           response = _context5.sent;
-          console.log(response, 'fetch user response'); //yield put(authUser(response.data.user))
-          //yield action.payload.history.push(`/me/${response.data.user.id}`)
-
-          _context5.next = 11;
-          break;
+          console.log(response, 'fetch user response');
+          localStorage.setItem('token', JSON.stringify(response.data.user.api_token));
+          _context5.next = 8;
+          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["put"])(Object(_actions__WEBPACK_IMPORTED_MODULE_2__["authUser"])(response.data.user));
 
         case 8:
-          _context5.prev = 8;
-          _context5.t0 = _context5["catch"](1);
+          _context5.next = 10;
+          return action.payload.history.push("/me/".concat(response.data.user.id));
+
+        case 10:
+          _context5.next = 15;
+          break;
+
+        case 12:
+          _context5.prev = 12;
+          _context5.t0 = _context5["catch"](0);
           console.log(_context5.t0);
 
-        case 11:
+        case 15:
         case "end":
           return _context5.stop();
       }
     }
-  }, _marked5, null, [[1, 8]]);
+  }, _marked5, null, [[0, 12]]);
 }
 function watchFetchUser() {
   return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function watchFetchUser$(_context6) {
@@ -103404,36 +103409,42 @@ _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(watchStor
  // fetch all projects
 
 function index(action) {
-  var projects;
+  var token, projects;
   return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function index$(_context) {
     while (1) {
       switch (_context.prev = _context.next) {
         case 0:
           _context.prev = 0;
-          _context.next = 3;
-          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["call"])(_helpers_functions__WEBPACK_IMPORTED_MODULE_3__["api"], "api/projects", null, 'get');
+          token = localStorage.getItem('token');
 
-        case 3:
+          if (!(token != null)) {
+            _context.next = 8;
+            break;
+          }
+
+          _context.next = 5;
+          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["call"])(_helpers_functions__WEBPACK_IMPORTED_MODULE_3__["api"], "api/projects", null, 'get', JSON.parse(token));
+
+        case 5:
           projects = _context.sent;
-          console.log(projects, 'projects');
-          _context.next = 7;
-          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["put"])(Object(_actions__WEBPACK_IMPORTED_MODULE_2__["projectsIndex"])(projects.data));
+          _context.next = 8;
+          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["put"])(Object(_actions__WEBPACK_IMPORTED_MODULE_2__["projectsIndex"])(projects.data.data));
 
-        case 7:
-          _context.next = 12;
+        case 8:
+          _context.next = 13;
           break;
 
-        case 9:
-          _context.prev = 9;
+        case 10:
+          _context.prev = 10;
           _context.t0 = _context["catch"](0);
           console.log(_context.t0);
 
-        case 12:
+        case 13:
         case "end":
           return _context.stop();
       }
     }
-  }, _marked, null, [[0, 9]]);
+  }, _marked, null, [[0, 10]]);
 }
 function watchIndex() {
   return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function watchIndex$(_context2) {
@@ -103452,39 +103463,46 @@ function watchIndex() {
 } // view a project
 
 function show(action) {
-  var project;
+  var token, project;
   return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function show$(_context3) {
     while (1) {
       switch (_context3.prev = _context3.next) {
         case 0:
           _context3.prev = 0;
-          _context3.next = 3;
-          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["call"])(_helpers_functions__WEBPACK_IMPORTED_MODULE_3__["api"], "api/projects/".concat(action.payload.id), null, 'get');
+          token = localStorage.getItem('token');
 
-        case 3:
+          if (!(token != null)) {
+            _context3.next = 10;
+            break;
+          }
+
+          _context3.next = 5;
+          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["call"])(_helpers_functions__WEBPACK_IMPORTED_MODULE_3__["api"], "api/projects/".concat(action.payload.id), null, 'get', JSON.parse(token));
+
+        case 5:
           project = _context3.sent;
-          _context3.next = 6;
-          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["put"])(Object(_actions__WEBPACK_IMPORTED_MODULE_2__["projectShow"])(project.data));
-
-        case 6:
           _context3.next = 8;
-          return action.payload.history.push("/projects/".concat(project.data.id));
+          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["put"])(Object(_actions__WEBPACK_IMPORTED_MODULE_2__["projectShow"])(project.data.data));
 
         case 8:
-          _context3.next = 13;
-          break;
+          _context3.next = 10;
+          return action.payload.history.push("/projects/".concat(project.data.data.id));
 
         case 10:
-          _context3.prev = 10;
+          _context3.next = 15;
+          break;
+
+        case 12:
+          _context3.prev = 12;
           _context3.t0 = _context3["catch"](0);
           console.log(_context3.t0);
 
-        case 13:
+        case 15:
         case "end":
           return _context3.stop();
       }
     }
-  }, _marked3, null, [[0, 10]]);
+  }, _marked3, null, [[0, 12]]);
 }
 function watchShow() {
   return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function watchShow$(_context4) {
@@ -103503,39 +103521,46 @@ function watchShow() {
 } // add new project 
 
 function store(action) {
-  var project;
+  var token, project;
   return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function store$(_context5) {
     while (1) {
       switch (_context5.prev = _context5.next) {
         case 0:
           _context5.prev = 0;
-          _context5.next = 3;
-          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["call"])(_helpers_functions__WEBPACK_IMPORTED_MODULE_3__["api"], "api/projects", action.payload.values, 'POST');
+          token = localStorage.getItem('token');
 
-        case 3:
+          if (!(token != null)) {
+            _context5.next = 10;
+            break;
+          }
+
+          _context5.next = 5;
+          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["call"])(_helpers_functions__WEBPACK_IMPORTED_MODULE_3__["api"], "api/projects", action.payload.values, 'POST', JSON.parse(token));
+
+        case 5:
           project = _context5.sent;
-          _context5.next = 6;
-          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["put"])(Object(_actions__WEBPACK_IMPORTED_MODULE_2__["projectStore"])(project.data));
-
-        case 6:
           _context5.next = 8;
-          return action.payload.history.push('/projects');
+          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["put"])(Object(_actions__WEBPACK_IMPORTED_MODULE_2__["projectStore"])(project.data.data));
 
         case 8:
-          _context5.next = 13;
-          break;
+          _context5.next = 10;
+          return action.payload.history.push('/projects');
 
         case 10:
-          _context5.prev = 10;
+          _context5.next = 15;
+          break;
+
+        case 12:
+          _context5.prev = 12;
           _context5.t0 = _context5["catch"](0);
           console.log(_context5.t0);
 
-        case 13:
+        case 15:
         case "end":
           return _context5.stop();
       }
     }
-  }, _marked5, null, [[0, 10]]);
+  }, _marked5, null, [[0, 12]]);
 }
 function watchStore() {
   return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function watchStore$(_context6) {

@@ -6,13 +6,20 @@ import { api } from '../../../helpers/functions'
 export function* index(action) {
 
     try {
-        const projects = yield call(api, `api/projects`, null, 'get')
 
-        console.log(projects, 'projects')
+        let token = localStorage.getItem('token')
 
-        yield put(projectsIndex(projects.data))
+        if (token != null) {
+
+            const projects = yield call(api, `api/projects`, null, 'get', JSON.parse(token))
+
+            yield put(projectsIndex(projects.data.data))
+
+        }
+
 
     } catch (error) {
+
         console.log(error)
     }
 }
@@ -26,11 +33,19 @@ export function* watchIndex() {
 export function* show(action) {
 
     try {
-        const project = yield call(api, `api/projects/${action.payload.id}`, null, 'get')
 
-        yield put(projectShow(project.data))
+        let token = localStorage.getItem('token')
 
-        yield action.payload.history.push(`/projects/${project.data.id}`)
+        if (token != null) {
+
+            const project = yield call(api, `api/projects/${action.payload.id}`, null, 'get', JSON.parse(token))
+
+            yield put(projectShow(project.data.data))
+
+            yield action.payload.history.push(`/projects/${project.data.data.id}`)
+
+        }
+
 
     } catch (error) {
 
@@ -48,11 +63,16 @@ export function* watchShow() {
 export function* store(action) {
 
     try {
-        const project = yield call(api, `api/projects`, action.payload.values, 'POST')
+        let token = localStorage.getItem('token')
 
-        yield put(projectStore(project.data))
+        if (token != null) {
 
-        yield action.payload.history.push('/projects')
+            const project = yield call(api, `api/projects`, action.payload.values, 'POST', JSON.parse(token))
+
+            yield put(projectStore(project.data.data))
+
+            yield action.payload.history.push('/projects')
+        }
 
     } catch (error) {
 

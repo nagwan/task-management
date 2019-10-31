@@ -11,9 +11,7 @@ export function* register(action) {
 
         if (response.data.success) {
 
-            yield put(isAuthorized(true))
-
-            yield put(fetchUserFlag({ history: action.payload.history, token: response.data.data.api_token }))
+            yield action.payload.history.push(`/login`)
 
         } else {
 
@@ -61,18 +59,21 @@ export function* watchLogin() {
 
 
 export function* fetchUser(action) {
-    console.log(action)
+
     try {
 
         const response = yield call(api, `api/user`, null, 'POST', action.payload.token)
 
         console.log(response, 'fetch user response')
+        
+        localStorage.setItem('token', JSON.stringify(response.data.user.api_token))
 
-        //yield put(authUser(response.data.user))
+        yield put(authUser(response.data.user))
 
-        //yield action.payload.history.push(`/me/${response.data.user.id}`)
+        yield action.payload.history.push(`/me/${response.data.user.id}`)
 
     } catch (error) {
+
         console.log(error)
     }
 
