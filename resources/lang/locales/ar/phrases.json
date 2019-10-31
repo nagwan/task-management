@@ -8,5 +8,14 @@
     "title_input_placeholder": "عنوان المشروع",
     "min_error_msg": "يجب ادخال 3 احرف على الاقل ",
     "max_error_msg": "لقد تجاوزت الحد الاقصي من الاحرف المسموح بها",
-    "required_field_error_msg": "يجب ملئ هذا الحقل"
+    "required_field_error_msg": "يجب ملئ هذا الحقل",
+    "email_error_msg": "هذا الايميل غير صالح ",
+    "name_input_placeholder": "الاسم",
+    "email_input_placeholder": "البريد الاليكتروني",
+    "password_input_placeholder": "كلمة المرور",
+    "password_confirmation_input_placeholder": "اعد كتابة كلمة المرور",
+    "create_account_btn": "تسجيل دخول",
+    "login_btn": "تسجيل دخول",
+    "send_reset_password_link_btn": "ارسل رابط اعادة تعيين كلمة السر",
+    "set_new_password_btn": "تعيين كلمة سر جديده"
 }

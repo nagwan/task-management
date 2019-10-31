@@ -11,27 +11,6 @@
 |
 */
 
-Route::fallback(function () {
-    return view('welcome');
-});
-
-Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::group(['middleware' => 'auth'], function () {
-
-    Route::post('/projects', 'ProjectsController@store');
-
-    Route::get('/projects', 'ProjectsController@index');
-
-    Route::get('/projects/{project}', 'ProjectsController@show');
-
-    Route::get('/home', 'HomeController@index')->name('home');
-
-});
-
-Auth::routes();
-
-
+Route::view('/{any?}', 'welcome')
+     ->where('any', '.*');
 

@@ -1,17 +1,14 @@
 import React from 'react';
 import { render } from "react-dom";
 import { Provider } from "react-redux";
-import { BrowserRouter } from "react-router-dom";
 import store from '../store/index';
-import App from './app'
+import Routes from '../router'
 import '../../lang/index'
 import '../../sass/app.sass'
 
 render(
     <Provider store={store}>
-        <BrowserRouter>
-            <App />
-        </BrowserRouter>
+        <Routes />
     </Provider>,
     document.getElementById('root')
 );

@@ -1,8 +1,14 @@
+export const PROJECTS_INDEX_FLAG = 'PROJECTS_INDEX_FLAG' 
 export const PROJECTS_INDEX = 'PROJECTS_INDEX'
 export const PROJECT_SHOW_FLAG = 'PROJECT_SHOW_FLAG'
 export const PROJECT_SHOW = 'PROJECT_SHOW'
 export const PROJECT_STORE_FLAG = 'PROJECT_STORE_FLAG'
 export const PROJECT_STORE = 'PROJECT_STORE'
+
+
+export function projectsIndexFlag(payload){
+    return { type: PROJECTS_INDEX_FLAG}
+}
 
 export function projectsIndex(payload) {
     return { type: PROJECTS_INDEX, payload: payload }

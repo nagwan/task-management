@@ -10,9 +10,9 @@ class ProjectsController extends Controller
     public function index()
     {
 
-        $projects = auth()->user()->projects;
+        $projects = Project::where('owner_id', auth()->user()->id)->orderBy('created_at', 'desc')->get();
 
-        return \response(['data' =>  $projects]);
+        return response()->json(['data' =>  $projects], 200);
     }
 
     public function store()
@@ -24,17 +24,20 @@ class ProjectsController extends Controller
 
         auth()->user()->projects()->create($project);
 
-        $projects = Project::orderBy('created_at', 'desc')->get(); // how can i get the last added project
+        $projects = $projects = Project::where('owner_id', auth()->user()->id)->orderBy('created_at', 'desc')->get();  // how can i get the last added project
 
-        return \response(['data' => $projects]);
+        return response()->json(['data' => $projects], 200);
     }
 
     public function show(Project $project)
     {
-        if (auth()->user()->isNot($project->owner)) {
-            abort(403);
+        if (auth()->user()->isNot($project->owner) || !$project) {
+            return response()->json([
+                'success' => false,
+                'message' =>  'not found'
+            ], 400);
         }
-        
-        return \response(['data' => $project]);
+
+        return response()->json(['data' => $project]);
     }
 }

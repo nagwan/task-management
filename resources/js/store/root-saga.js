@@ -1,11 +1,15 @@
 import { all } from 'redux-saga/effects';
-import { index, watchShow, watchStore} from "./modules/projects/sagas"
+import { watchIndex, watchShow, watchStore } from "./modules/projects/sagas"
+import { watchRegistration, watchLogin, watchFetchUser } from './modules/authentication/sagas'
 
-export default function* root(){
+export default function* root() {
     yield all([
-        index(),
+        watchIndex(),
         watchShow(),
-        watchStore()
+        watchStore(),
+        watchRegistration(),
+        watchLogin(),
+        watchFetchUser()
     ])
 
 }
