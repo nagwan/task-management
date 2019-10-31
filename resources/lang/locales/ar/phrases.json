@@ -17,5 +17,8 @@
     "create_account_btn": "تسجيل دخول",
     "login_btn": "تسجيل دخول",
     "send_reset_password_link_btn": "ارسل رابط اعادة تعيين كلمة السر",
-    "set_new_password_btn": "تعيين كلمة سر جديده"
+    "set_new_password_btn": "تعيين كلمة سر جديده",
+    "logout": "تسجيل خروج",
+    "create_account": "انشاء حساب",
+    "log_in": "تسجيل دخول"
 }

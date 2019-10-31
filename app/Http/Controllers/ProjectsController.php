@@ -18,13 +18,13 @@ class ProjectsController extends Controller
     public function store()
     {
         $project = request()->validate([
-            'title' => 'required',
-            'description' => 'required',
+            'title' => 'required|min:3|max:50',
+            'description' => 'required|min:5|max:250',
         ]);
 
         auth()->user()->projects()->create($project);
 
-        $projects = $projects = Project::where('owner_id', auth()->user()->id)->orderBy('created_at', 'desc')->get();  // how can i get the last added project
+        $projects = Project::where('owner_id', auth()->user()->id)->orderBy('created_at', 'desc')->get();  // how can i get the last added project
 
         return response()->json(['data' => $projects], 200);
     }

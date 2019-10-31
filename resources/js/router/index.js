@@ -3,6 +3,7 @@ import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
 import Routes from './routes';
 import { connect } from 'react-redux';
 import NotFound from '../components/pages/404';
+import Navbar from '../components/partials/nav'
 
 const PrivateRoutes = connect(({ Authentication }) => ({ Authentication }))((route) => {
     return (
@@ -29,17 +30,22 @@ const ManiRouter = (() => {
 
         <div>
             <BrowserRouter>
-                <Switch>
-                    {
-                        Routes.map((route, index) => (
-                            route.private ? <PrivateRoutes key={index} {...route} /> :
-                                (route.auth ? <AuthRoutes key={index} {...route} /> : 
-                                <Route key={index} path={route.path} exact={route.exact} component={route.component} />)
-                        ))
-                    }
+                <Navbar />
+                <div className='container border-solid border-info-500 border-4'>
+                    <Switch>
+                        {
+                            Routes.map((route, index) => (
+                                route.private ? <PrivateRoutes key={index} {...route} /> :
+                                    (route.auth ? <AuthRoutes key={index} {...route} /> :
+                                        <Route key={index} path={route.path} exact={route.exact} component={route.component} />)
+                            ))
+                        }
 
-                    <Route component={NotFound} />
-                </Switch>
+                        <Route component={NotFound} />
+                    </Switch>
+
+                </div>
+
             </BrowserRouter>
         </div>
     )

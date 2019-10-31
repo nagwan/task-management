@@ -90223,7 +90223,7 @@ function warning(message) {
 /*!***************************************************************!*\
   !*** ./node_modules/react-router-dom/esm/react-router-dom.js ***!
   \***************************************************************/
-/*! exports provided: BrowserRouter, HashRouter, Link, NavLink, MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, __RouterContext, generatePath, matchPath, useHistory, useLocation, useParams, useRouteMatch, withRouter */
+/*! exports provided: MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, __RouterContext, generatePath, matchPath, useHistory, useLocation, useParams, useRouteMatch, withRouter, BrowserRouter, HashRouter, Link, NavLink */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -94204,7 +94204,7 @@ if (false) {} else {
 /*!***********************************************************************!*\
   !*** ./node_modules/redux-saga/dist/redux-saga-core-npm-proxy.esm.js ***!
   \***********************************************************************/
-/*! exports provided: default, CANCEL, SAGA_LOCATION, buffers, detach, END, channel, eventChannel, isEnd, multicastChannel, runSaga, stdChannel */
+/*! exports provided: CANCEL, SAGA_LOCATION, buffers, detach, END, channel, eventChannel, isEnd, multicastChannel, runSaga, stdChannel, default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -101457,7 +101457,7 @@ var Login = Object(react_redux__WEBPACK_IMPORTED_MODULE_3__["connect"])(null, fu
         handleSubmit = _ref2.handleSubmit,
         isSubmitting = _ref2.isSubmitting;
     return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
+      className: ""
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_4__["Form"], {
       onSubmit: handleSubmit
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -101746,6 +101746,72 @@ var NotFound = function NotFound() {
 
 /***/ }),
 
+/***/ "./resources/js/components/partials/nav.jsx":
+/*!**************************************************!*\
+  !*** ./resources/js/components/partials/nav.jsx ***!
+  \**************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
+/* harmony import */ var react_i18next__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-i18next */ "./node_modules/react-i18next/dist/es/index.js");
+/* harmony import */ var _store_modules_authentication_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../store/modules/authentication/actions */ "./resources/js/store/modules/authentication/actions.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+
+
+
+
+
+
+var Navbar = Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(function (_ref) {
+  var Authentication = _ref.Authentication;
+  return {
+    Authentication: Authentication
+  };
+}, function (dispatch) {
+  return Object(redux__WEBPACK_IMPORTED_MODULE_2__["bindActionCreators"])({
+    logOutFlag: _store_modules_authentication_actions__WEBPACK_IMPORTED_MODULE_4__["logOutFlag"]
+  }, dispatch);
+})(function (props) {
+  var _useTranslation = Object(react_i18next__WEBPACK_IMPORTED_MODULE_3__["useTranslation"])(),
+      t = _useTranslation.t;
+
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("nav", {
+    className: "shadow h-80 w-full mb-60 flex justify-between items-center"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "logo text-white bg-primary-900 w-2/12 h-60 mx-20 text-center flex cursor-pointer justify-center items-center text-bold"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__["Link"], {
+    to: props.Authentication.is_auth ? '/' : '/projects'
+  }, "TASKY DO")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "border-info-900 border-solid w-3/12 h-60"
+  }, props.Authentication.user.id ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    className: ""
+  }, props.Authentication.user.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: ""
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    className: "",
+    href: "#"
+  }, t('phrases:logout')))) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    className: "mx-20 bg-primary-900 hover:bg-transparent text-white hover:text-primary-900 border border-transparent hover:border hover:border-primary-900 font-bold py-12 px-12 rounded rounded-8"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__["Link"], {
+    to: "/registration",
+    className: ""
+  }, t('phrases:create_account'))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    className: "mx-20 bg-transparent hover:bg-primary-900 text-primary-900 font-semibold hover:text-white py-12 px-12 border border-primary-900 hover:border-transparent rounded radius-8"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__["Link"], {
+    to: "/login",
+    className: ""
+  }, t('phrases:log_in'))))));
+});
+/* harmony default export */ __webpack_exports__["default"] = (Navbar);
+
+/***/ }),
+
 /***/ "./resources/js/components/projects/index.jsx":
 /*!****************************************************!*\
   !*** ./resources/js/components/projects/index.jsx ***!
@@ -101869,8 +101935,8 @@ var Store = Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(null, fu
   var history = Object(react_router_dom__WEBPACK_IMPORTED_MODULE_4__["useHistory"])(); // Validation Schema
 
   var validationSchema = yup__WEBPACK_IMPORTED_MODULE_7__["object"]().shape({
-    title: yup__WEBPACK_IMPORTED_MODULE_7__["string"]().min(3, t('phrases:min_error_msg')).max(100, t('phrases:max_error_msg')).required(t('phrases:required_field_error_msg')),
-    description: yup__WEBPACK_IMPORTED_MODULE_7__["string"]().min(3, t('phrases:min_error_msg')).max(1000, t('phrases:max_error_msg')).required(t('phrases:required_field_error_msg'))
+    title: yup__WEBPACK_IMPORTED_MODULE_7__["string"]().min(3, t('phrases:min_error_msg')).max(50, t('phrases:max_error_msg')).required(t('phrases:required_field_error_msg')),
+    description: yup__WEBPACK_IMPORTED_MODULE_7__["string"]().min(5, t('phrases:min_error_msg')).max(250, t('phrases:max_error_msg')).required(t('phrases:required_field_error_msg'))
   });
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_6__["Formik"], {
     initialValues: {
@@ -102042,7 +102108,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _routes__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./routes */ "./resources/js/router/routes.js");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _components_pages_404__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../components/pages/404 */ "./resources/js/components/pages/404.jsx");
+/* harmony import */ var _components_partials_nav__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../components/partials/nav */ "./resources/js/components/partials/nav.jsx");
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+
 
 
 
@@ -102081,7 +102149,9 @@ var AuthRoutes = Object(react_redux__WEBPACK_IMPORTED_MODULE_3__["connect"])(fun
 });
 
 var ManiRouter = function ManiRouter() {
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["BrowserRouter"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Switch"], null, _routes__WEBPACK_IMPORTED_MODULE_2__["default"].map(function (route, index) {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["BrowserRouter"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_partials_nav__WEBPACK_IMPORTED_MODULE_5__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "container border-solid border-info-500 border-4"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Switch"], null, _routes__WEBPACK_IMPORTED_MODULE_2__["default"].map(function (route, index) {
     return route["private"] ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(PrivateRoutes, _extends({
       key: index
     }, route)) : route.auth ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(AuthRoutes, _extends({
@@ -102094,7 +102164,7 @@ var ManiRouter = function ManiRouter() {
     });
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
     component: _components_pages_404__WEBPACK_IMPORTED_MODULE_4__["default"]
-  }))));
+  })))));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (ManiRouter);
@@ -102207,7 +102277,7 @@ sagaMiddleware.run(_root_saga__WEBPACK_IMPORTED_MODULE_2__["default"]);
 /*!**************************************************************!*\
   !*** ./resources/js/store/modules/authentication/actions.js ***!
   \**************************************************************/
-/*! exports provided: REGISTRATION_FLAG, IS_AUTHORIZED, AUTH_USER, LOGIN_FLAG, FETCH_USER_FLAG, registrationFlag, loginFlag, isAuthorized, fetchUserFlag, authUser */
+/*! exports provided: REGISTRATION_FLAG, IS_AUTHORIZED, AUTH_USER, LOGIN_FLAG, FETCH_USER_FLAG, LOG_OUT_FLAG, registrationFlag, loginFlag, isAuthorized, fetchUserFlag, authUser, logOutFlag */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -102217,16 +102287,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AUTH_USER", function() { return AUTH_USER; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LOGIN_FLAG", function() { return LOGIN_FLAG; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FETCH_USER_FLAG", function() { return FETCH_USER_FLAG; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LOG_OUT_FLAG", function() { return LOG_OUT_FLAG; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "registrationFlag", function() { return registrationFlag; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "loginFlag", function() { return loginFlag; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isAuthorized", function() { return isAuthorized; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchUserFlag", function() { return fetchUserFlag; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "authUser", function() { return authUser; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "logOutFlag", function() { return logOutFlag; });
 var REGISTRATION_FLAG = 'REGISTRATION_FLAG';
 var IS_AUTHORIZED = 'IS_AUTHORIZED';
 var AUTH_USER = 'AUTH_USER';
 var LOGIN_FLAG = 'LOGIN_FLAG';
 var FETCH_USER_FLAG = 'FETCH_USER_FLAG';
+var LOG_OUT_FLAG = 'LOG_OUT_FLAG';
 function registrationFlag(payload) {
   return {
     type: REGISTRATION_FLAG,
@@ -102254,6 +102327,12 @@ function fetchUserFlag(payload) {
 function authUser(payload) {
   return {
     type: AUTH_USER,
+    payload: payload
+  };
+}
+function logOutFlag(payload) {
+  return {
+    type: LOG_OUT_FLAG,
     payload: payload
   };
 }
@@ -102485,30 +102564,29 @@ function fetchUser(action) {
 
         case 3:
           response = _context5.sent;
-          console.log(response, 'fetch user response');
           localStorage.setItem('token', JSON.stringify(response.data.user.api_token));
-          _context5.next = 8;
+          _context5.next = 7;
           return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["put"])(Object(_actions__WEBPACK_IMPORTED_MODULE_2__["authUser"])(response.data.user));
 
-        case 8:
-          _context5.next = 10;
+        case 7:
+          _context5.next = 9;
           return action.payload.history.push("/me/".concat(response.data.user.id));
 
-        case 10:
-          _context5.next = 15;
+        case 9:
+          _context5.next = 14;
           break;
 
-        case 12:
-          _context5.prev = 12;
+        case 11:
+          _context5.prev = 11;
           _context5.t0 = _context5["catch"](0);
           console.log(_context5.t0);
 
-        case 15:
+        case 14:
         case "end":
           return _context5.stop();
       }
     }
-  }, _marked5, null, [[0, 12]]);
+  }, _marked5, null, [[0, 11]]);
 }
 function watchFetchUser() {
   return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function watchFetchUser$(_context6) {
@@ -102958,10 +103036,10 @@ var _phrases__WEBPACK_IMPORTED_MODULE_0___namespace = /*#__PURE__*/__webpack_req
 /*!************************************************!*\
   !*** ./resources/lang/locales/ar/phrases.json ***!
   \************************************************/
-/*! exports provided: welcome, toggle_lang_btn, load_projects_btn, projects_title, submit_form_btn, description_input_placeholder, title_input_placeholder, min_error_msg, max_error_msg, required_field_error_msg, email_error_msg, name_input_placeholder, email_input_placeholder, password_input_placeholder, password_confirmation_input_placeholder, create_account_btn, login_btn, send_reset_password_link_btn, set_new_password_btn, default */
+/*! exports provided: welcome, toggle_lang_btn, load_projects_btn, projects_title, submit_form_btn, description_input_placeholder, title_input_placeholder, min_error_msg, max_error_msg, required_field_error_msg, email_error_msg, name_input_placeholder, email_input_placeholder, password_input_placeholder, password_confirmation_input_placeholder, create_account_btn, login_btn, send_reset_password_link_btn, set_new_password_btn, logout, create_account, log_in, default */
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"welcome\":\"مرحبًا\",\"toggle_lang_btn\":\"تغيير اللغه\",\"load_projects_btn\":\"تحميل\",\"projects_title\":\"مشروعاتك\",\"submit_form_btn\":\"اضافه\",\"description_input_placeholder\":\"وصف المشروع\",\"title_input_placeholder\":\"عنوان المشروع\",\"min_error_msg\":\"يجب ادخال 3 احرف على الاقل \",\"max_error_msg\":\"لقد تجاوزت الحد الاقصي من الاحرف المسموح بها\",\"required_field_error_msg\":\"يجب ملئ هذا الحقل\",\"email_error_msg\":\"هذا الايميل غير صالح \",\"name_input_placeholder\":\"الاسم\",\"email_input_placeholder\":\"البريد الاليكتروني\",\"password_input_placeholder\":\"كلمة المرور\",\"password_confirmation_input_placeholder\":\"اعد كتابة كلمة المرور\",\"create_account_btn\":\"تسجيل دخول\",\"login_btn\":\"تسجيل دخول\",\"send_reset_password_link_btn\":\"ارسل رابط اعادة تعيين كلمة السر\",\"set_new_password_btn\":\"تعيين كلمة سر جديده\"}");
+module.exports = JSON.parse("{\"welcome\":\"مرحبًا\",\"toggle_lang_btn\":\"تغيير اللغه\",\"load_projects_btn\":\"تحميل\",\"projects_title\":\"مشروعاتك\",\"submit_form_btn\":\"اضافه\",\"description_input_placeholder\":\"وصف المشروع\",\"title_input_placeholder\":\"عنوان المشروع\",\"min_error_msg\":\"يجب ادخال 3 احرف على الاقل \",\"max_error_msg\":\"لقد تجاوزت الحد الاقصي من الاحرف المسموح بها\",\"required_field_error_msg\":\"يجب ملئ هذا الحقل\",\"email_error_msg\":\"هذا الايميل غير صالح \",\"name_input_placeholder\":\"الاسم\",\"email_input_placeholder\":\"البريد الاليكتروني\",\"password_input_placeholder\":\"كلمة المرور\",\"password_confirmation_input_placeholder\":\"اعد كتابة كلمة المرور\",\"create_account_btn\":\"تسجيل دخول\",\"login_btn\":\"تسجيل دخول\",\"send_reset_password_link_btn\":\"ارسل رابط اعادة تعيين كلمة السر\",\"set_new_password_btn\":\"تعيين كلمة سر جديده\",\"logout\":\"تسجيل خروج\",\"create_account\":\"انشاء حساب\",\"log_in\":\"تسجيل دخول\"}");
 
 /***/ }),
 
@@ -102987,10 +103065,10 @@ var _phrases__WEBPACK_IMPORTED_MODULE_0___namespace = /*#__PURE__*/__webpack_req
 /*!************************************************!*\
   !*** ./resources/lang/locales/en/phrases.json ***!
   \************************************************/
-/*! exports provided: welcome, toggle_lang_btn, load_projects_btn, projects_title, submit_form_btn, description_input_placeholder, title_input_placeholder, min_error_msg, max_error_msg, required_field_error_msg, email_error_msg, name_input_placeholder, email_input_placeholder, password_input_placeholder, password_confirmation_input_placeholder, create_account_btn, login_btn, send_reset_password_link_btn, set_new_password_btn, default */
+/*! exports provided: welcome, toggle_lang_btn, load_projects_btn, projects_title, submit_form_btn, description_input_placeholder, title_input_placeholder, min_error_msg, max_error_msg, required_field_error_msg, email_error_msg, name_input_placeholder, email_input_placeholder, password_input_placeholder, password_confirmation_input_placeholder, create_account_btn, login_btn, send_reset_password_link_btn, set_new_password_btn, logout, create_account, log_in, default */
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"welcome\":\"Welcome\",\"toggle_lang_btn\":\"Toggle Lang\",\"load_projects_btn\":\"Load Projects\",\"projects_title\":\"Herein your Projects\",\"submit_form_btn\":\"Submit\",\"description_input_placeholder\":\"Description\",\"title_input_placeholder\":\"Title\",\"min_error_msg\":\"This field must contain 3 chars at least\",\"max_error_msg\":\"You have exceeded the max limited chars for this field\",\"required_field_error_msg\":\"This field is required\",\"email_error_msg\":\"Please add a valid email address\",\"name_input_placeholder\":\"Name\",\"email_input_placeholder\":\"Email address\",\"password_input_placeholder\":\"Password\",\"password_confirmation_input_placeholder\":\"RE-type password\",\"create_account_btn\":\"Create account\",\"login_btn\":\"Login\",\"send_reset_password_link_btn\":\"Send me a reset password link\",\"set_new_password_btn\":\"Set new password\"}");
+module.exports = JSON.parse("{\"welcome\":\"Welcome\",\"toggle_lang_btn\":\"Toggle Lang\",\"load_projects_btn\":\"Load Projects\",\"projects_title\":\"Herein your Projects\",\"submit_form_btn\":\"Submit\",\"description_input_placeholder\":\"Description\",\"title_input_placeholder\":\"Title\",\"min_error_msg\":\"This field must contain 3 chars at least\",\"max_error_msg\":\"You have exceeded the max limited chars for this field\",\"required_field_error_msg\":\"This field is required\",\"email_error_msg\":\"Please add a valid email address\",\"name_input_placeholder\":\"Name\",\"email_input_placeholder\":\"Email address\",\"password_input_placeholder\":\"Password\",\"password_confirmation_input_placeholder\":\"RE-type password\",\"create_account_btn\":\"Create account\",\"login_btn\":\"Login\",\"send_reset_password_link_btn\":\"Send me a reset password link\",\"set_new_password_btn\":\"Set new password\",\"logout\":\"Log out\",\"create_account\":\"Create Account\",\"log_in\":\"Log In\"}");
 
 /***/ }),
 

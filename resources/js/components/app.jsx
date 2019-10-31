@@ -18,7 +18,7 @@ const App = connect(({ projects }) => ({ projects }))((props) => {
 
          <h1>{t('phrases:welcome')}</h1>
 
-         <Switch>
+         <Switch> 
             <Route exact path='/projects' component={Index} />
             <Route path='/new-project' component={Store} />
             <Route path='/projects/:id' component={Show} />

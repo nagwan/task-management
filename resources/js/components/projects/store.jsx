@@ -19,12 +19,12 @@ const Store = connect(null, dispatch => bindActionCreators({ projectStoreFlag },
         title: Yup
             .string()
             .min(3, t('phrases:min_error_msg'))
-            .max(100, t('phrases:max_error_msg'))
+            .max(50, t('phrases:max_error_msg'))
             .required(t('phrases:required_field_error_msg')),
         description: Yup
             .string()
-            .min(3, t('phrases:min_error_msg'))
-            .max(1000, t('phrases:max_error_msg'))
+            .min(5, t('phrases:min_error_msg'))
+            .max(250, t('phrases:max_error_msg'))
             .required(t('phrases:required_field_error_msg')),
     })
 

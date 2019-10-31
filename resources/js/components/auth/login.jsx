@@ -51,7 +51,7 @@ const Login = connect(null, dispatch => bindActionCreators({ loginFlag }, dispat
 
             >
                 {({ errors, touched, handleSubmit, isSubmitting }) => (
-                    <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+                    <div className="">
                         <Form onSubmit={handleSubmit}>
                             <div className="my-12 mx-12">
                                 <Field className={touched.email && errors.email ? 'has-error form-control' : 'form-control'}

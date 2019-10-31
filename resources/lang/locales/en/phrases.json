@@ -17,6 +17,8 @@
     "create_account_btn": "Create account",
     "login_btn": "Login",
     "send_reset_password_link_btn": "Send me a reset password link",
-    "set_new_password_btn": "Set new password"
-
+    "set_new_password_btn": "Set new password",
+    "logout": "Log out",
+    "create_account": "Create Account",
+    "log_in": "Log In"
 }

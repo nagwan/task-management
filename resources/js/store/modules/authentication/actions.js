@@ -3,6 +3,7 @@ export const IS_AUTHORIZED = 'IS_AUTHORIZED'
 export const AUTH_USER = 'AUTH_USER'
 export const LOGIN_FLAG = 'LOGIN_FLAG'
 export const FETCH_USER_FLAG = 'FETCH_USER_FLAG'
+export const LOG_OUT_FLAG = 'LOG_OUT_FLAG'
 
 export function registrationFlag(payload){
     return {type: REGISTRATION_FLAG, payload: payload}
@@ -22,5 +23,9 @@ export function fetchUserFlag(payload){
 
 export function authUser(payload){
     return { type: AUTH_USER, payload}
+}
+
+export function logOutFlag(payload){
+    return {type: LOG_OUT_FLAG, payload}
 }
 
