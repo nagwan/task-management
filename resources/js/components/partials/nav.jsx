@@ -19,12 +19,15 @@ const Navbar = connect(({ Authentication }) => ({ Authentication }), dispatch =>
                 {
                     props.Authentication.user.id ?
                         <React.Fragment>
-                            <button className="">
+                            <Link className="" to={`/me/${props.Authentication.user.id}`}>
                                 {props.Authentication.user.name}
-                            </button>
+                            </Link>
 
                             <div className="">
-                                <a className="" href="#">{t('phrases:logout')}</a>
+                                <Link className='block' to='/projects'>{t('phrases:projects')}</Link>
+                                <Link className='block' to='/new-project'>{t('phrases:create_project')}</Link>
+                                <button onClick={() => toggleLang(i18n)} className="block font-bold text-sm text-primary-900 hover:underline">{t('phrases:toggle_lang_btn')}</button>
+                                <Link className='block' to=''>{t('phrases:logout')}</Link>
                             </div>
                         </React.Fragment>
                         :

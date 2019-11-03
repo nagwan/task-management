@@ -11,7 +11,7 @@ export function* index(action) {
 
         if (token != null) {
 
-            const projects = yield call(api, `api/projects`, null, 'get', JSON.parse(token))
+            const projects = yield call(api, `/api/projects`, null, 'get', JSON.parse(token))
 
             yield put(projectsIndex(projects.data.data))
 
@@ -38,12 +38,15 @@ export function* show(action) {
 
         if (token != null) {
 
-            const project = yield call(api, `api/projects/${action.payload.id}`, null, 'get', JSON.parse(token))
+            const project = yield call(api, `/api/projects/${action.payload.id}`, null, 'get', JSON.parse(token))
 
             yield put(projectShow(project.data.data))
 
             yield action.payload.history.push(`/projects/${project.data.data.id}`)
 
+        }else {
+
+            yield action.payload.history.push(`/login`)
         }
 
 
@@ -67,7 +70,7 @@ export function* store(action) {
 
         if (token != null) {
 
-            const project = yield call(api, `api/projects`, action.payload.values, 'POST', JSON.parse(token))
+            const project = yield call(api, `/api/projects`, action.payload.values, 'POST', JSON.parse(token))
 
             yield put(projectStore(project.data.data))
 

@@ -26,5 +26,10 @@
     "password_label": "كلمة المرور",
     "password_confirmation_label": "تأكيد كلمة المرور",
     "name_label": "الاسم",
-    "forget_password_feedback_msg": "تم ارسال رابط اعادة تعيين كلمة المرور"
+    "forget_password_feedback_msg": "تم ارسال رابط اعادة تعيين كلمة المرور",
+    "title_label": "عنوان المشروع",
+    "description_label": "وصف المشروع",
+    "cancel_btn": "الغاء",
+    "projects": "مشروعاتي",
+    "create_project": "مشروع جديد"
 }

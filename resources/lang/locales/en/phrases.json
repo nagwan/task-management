@@ -2,7 +2,6 @@
     "welcome" : "Welcome",
     "toggle_lang_btn": "Toggle Lang",
     "load_projects_btn": "Load Projects",
-    "projects_title" : "Herein your Projects",
     "submit_form_btn": "Submit",
     "description_input_placeholder": "Description",
     "title_input_placeholder": "Title",
@@ -13,7 +12,7 @@
     "name_input_placeholder": "Name",
     "email_input_placeholder": "Email address",
     "password_input_placeholder": "Password",
-    "password_confirmation_input_placeholder": "RE-type password",
+    "password_confirmation_input_placeholder": "Re-type password",
     "create_account_btn": "Create account",
     "login_btn": "Login",
     "send_reset_password_link_btn": "Send me a reset password link",
@@ -26,5 +25,10 @@
     "password_label" : "Password",
     "password_confirmation_label": "Re-type password",
     "name_label": "Name",
-    "forget_password_feedback_msg": "We have sent u a reset password link"
+    "forget_password_feedback_msg": "We have sent u a reset password link",
+    "title_label": "Project Title",
+    "description_label": "Project Description",
+    "cancel_btn": "Cancel",
+    "projects": "My Projects",
+    "create_project": "Create Project"
 }

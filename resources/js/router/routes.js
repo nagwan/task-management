@@ -19,7 +19,7 @@ export default [
     },
     {
         path: '/projects',
-        exact: false,
+        exact: true,
         component: Index,
         private: true
     },

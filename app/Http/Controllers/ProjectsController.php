@@ -32,7 +32,6 @@ class ProjectsController extends Controller
     public function show(Project $project)
     {
        
-
         if (auth()->user()->isNot($project->owner)) {
             return response()->json([
                 'success' => false,
