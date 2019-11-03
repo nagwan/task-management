@@ -31,7 +31,7 @@ const ManiRouter = (() => {
 		<div>
 			<BrowserRouter>
 				<Navbar />
-				<div className='container border-solid border-info-500 border-4'>
+				<div className='container'>
 					<Switch>
 						{
 							Routes.map((route, index) => (

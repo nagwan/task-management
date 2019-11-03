@@ -2,7 +2,7 @@
     "welcome": "مرحبًا",
     "toggle_lang_btn": "تغيير اللغه",
     "load_projects_btn": "تحميل",
-    "projects_title" : "مشروعاتك",
+    "projects_title": "مشروعاتك",
     "submit_form_btn": "اضافه",
     "description_input_placeholder": "وصف المشروع",
     "title_input_placeholder": "عنوان المشروع",
@@ -20,5 +20,11 @@
     "set_new_password_btn": "تعيين كلمة سر جديده",
     "logout": "تسجيل خروج",
     "create_account": "انشاء حساب",
-    "log_in": "تسجيل دخول"
+    "log_in": "تسجيل دخول",
+    "forget_password": "نسيت كلمة المرور",
+    "email_label": "البريد الاليكتروني",
+    "password_label": "كلمة المرور",
+    "password_confirmation_label": "تأكيد كلمة المرور",
+    "name_label": "الاسم",
+    "forget_password_feedback_msg": "تم ارسال رابط اعادة تعيين كلمة المرور"
 }

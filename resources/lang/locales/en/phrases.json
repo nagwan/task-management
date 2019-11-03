@@ -20,5 +20,11 @@
     "set_new_password_btn": "Set new password",
     "logout": "Log out",
     "create_account": "Create Account",
-    "log_in": "Log In"
+    "log_in": "Log In",
+    "forget_password" : "Forget Password",
+    "email_label": "Email",
+    "password_label" : "Password",
+    "password_confirmation_label": "Re-type password",
+    "name_label": "Name",
+    "forget_password_feedback_msg": "We have sent u a reset password link"
 }

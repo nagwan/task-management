@@ -90223,7 +90223,7 @@ function warning(message) {
 /*!***************************************************************!*\
   !*** ./node_modules/react-router-dom/esm/react-router-dom.js ***!
   \***************************************************************/
-/*! exports provided: BrowserRouter, HashRouter, Link, NavLink, MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, __RouterContext, generatePath, matchPath, useHistory, useLocation, useParams, useRouteMatch, withRouter */
+/*! exports provided: MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, __RouterContext, generatePath, matchPath, useHistory, useLocation, useParams, useRouteMatch, withRouter, BrowserRouter, HashRouter, Link, NavLink */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -94204,7 +94204,7 @@ if (false) {} else {
 /*!***********************************************************************!*\
   !*** ./node_modules/redux-saga/dist/redux-saga-core-npm-proxy.esm.js ***!
   \***********************************************************************/
-/*! exports provided: default, CANCEL, SAGA_LOCATION, buffers, detach, END, channel, eventChannel, isEnd, multicastChannel, runSaga, stdChannel */
+/*! exports provided: CANCEL, SAGA_LOCATION, buffers, detach, END, channel, eventChannel, isEnd, multicastChannel, runSaga, stdChannel, default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -101326,6 +101326,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var formik__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! formik */ "./node_modules/formik/dist/formik.esm.js");
 /* harmony import */ var yup__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! yup */ "./node_modules/yup/lib/index.js");
 /* harmony import */ var yup__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(yup__WEBPACK_IMPORTED_MODULE_3__);
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 
 
@@ -101336,13 +101338,13 @@ var ForgetPassword = function ForgetPassword() {
       t = _useTranslation.t;
 
   var validationSchema = yup__WEBPACK_IMPORTED_MODULE_3__["object"]().shape({
-    password: yup__WEBPACK_IMPORTED_MODULE_3__["string"]().min(6, t('phrases:min_error_msg')).max(50, t('phrases:max_error_msg')).required(t('phrases:required_field_error_msg')),
-    password_confirmation: yup__WEBPACK_IMPORTED_MODULE_3__["string"]().min(6, t('phrases:min_error_msg')).max(50, t('phrases:max_error_msg')).required(t('phrases:required_field_error_msg'))
+    email: yup__WEBPACK_IMPORTED_MODULE_3__["string"]().email(t('phrases:email_error_msg')).required(t('phrases:required_field_error_msg'))
   });
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "FORGET PASSWORD COMPONENT"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_2__["Formik"], {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "w-4/12 m-auto"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_2__["Formik"], {
     initialValues: {
-      password: '',
-      password_confirmation: ''
+      email: ''
     },
     validationSchema: validationSchema,
     onSubmit: function onSubmit(values, _ref) {
@@ -101358,36 +101360,30 @@ var ForgetPassword = function ForgetPassword() {
         handleSubmit = _ref2.handleSubmit,
         isSubmitting = _ref2.isSubmitting;
     return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
+      className: "bg-white shadow-md rounded px-28 py-28"
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_2__["Form"], {
       onSubmit: handleSubmit
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "my-12 mx-12"
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_2__["Field"], {
-      className: touched.password && errors.password ? 'has-error form-control' : 'form-control',
-      placeholder: t('phrases:password_input_placeholder'),
-      type: "password",
-      name: "password"
-    }), touched.password && errors.password ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_2__["ErrorMessage"], {
-      name: "password",
+      className: "my-20 mx-12"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+      className: "px-4 block text-primary-700 text-sm font-bold mb-4",
+      htmlFor: "email"
+    }, t('phrases:email_label')), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_2__["Field"], {
+      className: 'shadow appearance-none border rounded w-full h-40 px-8 py-8 text-gray-700 leading-tight focus:outline-none focus:shadow-outline' + (touched.email && errors.email ? 'border-solid border-1 border-danger-500' : ''),
+      placeholder: t('phrases:email_input_placeholder'),
+      type: "email",
+      name: "email"
+    }), touched.email && errors.email ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_2__["ErrorMessage"], {
+      className: "px-8 py-8 text-danger-500 text-xs italic",
+      name: "email",
       component: "div"
     }) : null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "my-12 mx-12"
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_2__["Field"], {
-      className: touched.password_confirmation && errors.password_confirmation ? 'has-error form-control' : 'form-control',
-      placeholder: t('phrases:password_confirmation_input_placeholder'),
-      type: "password",
-      name: "password_confirmation"
-    }), touched.password_confirmation && errors.password_confirmation ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_2__["ErrorMessage"], {
-      name: "password_confirmation",
-      component: "div"
-    }) : null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "my-12 mx-12"
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-      className: "btn btn-primary",
+      className: "my-20 mx-12"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", _defineProperty({
+      className: 'w-full h-40 bg-primary-900 hover:bg-transparent text-white hover:text-primary-900 border border-transparent hover:border hover:border-primary-900 font-bold py-8 px-8 rounded rounded-8' + (isSubmitting || errors.email ? ' opacity-50 cursor-not-allowed' : ''),
       type: "submit",
-      disabled: isSubmitting
-    }, t('phrases:set_new_password_btn')))));
+      disabled: isSubmitting || errors.email
+    }, "type", "submit"), t('phrases:send_reset_password_link_btn')))));
   }));
 };
 
@@ -101422,6 +101418,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
 var Login = Object(react_redux__WEBPACK_IMPORTED_MODULE_3__["connect"])(null, function (dispatch) {
   return Object(redux__WEBPACK_IMPORTED_MODULE_6__["bindActionCreators"])({
     loginFlag: _store_modules_authentication_actions__WEBPACK_IMPORTED_MODULE_7__["loginFlag"]
@@ -101435,7 +101432,9 @@ var Login = Object(react_redux__WEBPACK_IMPORTED_MODULE_3__["connect"])(null, fu
     email: yup__WEBPACK_IMPORTED_MODULE_5__["string"]().email(t('phrases:email_error_msg')).required(t('phrases:required_field_error_msg')),
     password: yup__WEBPACK_IMPORTED_MODULE_5__["string"]().min(6, t('phrases:min_error_msg')).max(50, t('phrases:max_error_msg')).required(t('phrases:required_field_error_msg'))
   });
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "LOGIN COMPONENT"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_4__["Formik"], {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "w-4/12 m-auto"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_4__["Formik"], {
     initialValues: {
       email: '',
       password: ''
@@ -101457,36 +101456,47 @@ var Login = Object(react_redux__WEBPACK_IMPORTED_MODULE_3__["connect"])(null, fu
         handleSubmit = _ref2.handleSubmit,
         isSubmitting = _ref2.isSubmitting;
     return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: ""
+      className: "bg-white shadow-md rounded px-28 py-28"
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_4__["Form"], {
       onSubmit: handleSubmit
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "my-12 mx-12"
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_4__["Field"], {
-      className: touched.email && errors.email ? 'has-error form-control' : 'form-control',
+      className: "my-20 mx-12"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+      className: "px-4 block text-primary-700 text-sm font-bold mb-4",
+      htmlFor: "email"
+    }, t('phrases:email_label')), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_4__["Field"], {
+      className: 'shadow appearance-none border rounded w-full h-40 px-8 py-8 text-gray-700 leading-tight focus:outline-none focus:shadow-outline' + (touched.email && errors.email ? 'border-solid border-1 border-danger-500' : ''),
       placeholder: t('phrases:email_input_placeholder'),
       type: "email",
       name: "email"
     }), touched.email && errors.email ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_4__["ErrorMessage"], {
+      className: "px-8 py-8 text-danger-500 text-xs italic",
       name: "email",
       component: "div"
     }) : null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "my-12 mx-12"
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_4__["Field"], {
-      className: touched.password && errors.password ? 'has-error form-control' : 'form-control',
+      className: "my-20 mx-12"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+      className: "px-4 block text-primary-700 text-sm font-bold mb-4",
+      htmlFor: "password"
+    }, t('phrases:password_label')), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_4__["Field"], {
+      className: 'shadow appearance-none border rounded w-full h-40 px-8 py-8 text-gray-700 leading-tight focus:outline-none focus:shadow-outline' + (touched.password && errors.password ? 'border-solid border-1 border-danger-500' : ''),
       placeholder: t('phrases:password_input_placeholder'),
       type: "password",
       name: "password"
     }), touched.password && errors.password ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_4__["ErrorMessage"], {
+      className: "px-8 py-8 text-danger-500 text-xs italic",
       name: "password",
       component: "div"
     }) : null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "my-12 mx-12"
+      className: "my-28 mx-12 flex items-center justify-between"
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-      className: "btn btn-primary",
+      className: 'bg-primary-900 hover:bg-transparent text-white hover:text-primary-900 border border-transparent hover:border hover:border-primary-900 font-bold py-8 px-8 rounded rounded-8' + (isSubmitting || errors.password || errors.email ? ' opacity-50 cursor-not-allowed' : ''),
       type: "submit",
-      disabled: isSubmitting
-    }, t('phrases:login_btn')))));
+      disabled: isSubmitting || errors.password || errors.email
+    }, t('phrases:login_btn')), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
+      to: "/forget-password",
+      className: "inline-block align-baseline font-bold text-sm text-primary-900 hover:underline"
+    }, t('phrases:forget_password')))));
   }));
 });
 /* harmony default export */ __webpack_exports__["default"] = (Login);
@@ -101512,6 +101522,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var yup__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(yup__WEBPACK_IMPORTED_MODULE_5__);
 /* harmony import */ var _store_modules_authentication_actions__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../store/modules/authentication/actions */ "./resources/js/store/modules/authentication/actions.js");
 /* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 
 
@@ -101535,7 +101547,9 @@ var Register = Object(react_redux__WEBPACK_IMPORTED_MODULE_3__["connect"])(null,
     password: yup__WEBPACK_IMPORTED_MODULE_5__["string"]().min(6, t('phrases:min_error_msg')).max(50, t('phrases:max_error_msg')).required(t('phrases:required_field_error_msg')),
     password_confirmation: yup__WEBPACK_IMPORTED_MODULE_5__["string"]().min(6, t('phrases:min_error_msg')).max(50, t('phrases:max_error_msg')).required(t('phrases:required_field_error_msg'))
   });
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "REGISTRATION COMPONENT"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_4__["Formik"], {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "w-4/12 m-auto"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_4__["Formik"], {
     initialValues: {
       name: '',
       email: '',
@@ -101560,57 +101574,73 @@ var Register = Object(react_redux__WEBPACK_IMPORTED_MODULE_3__["connect"])(null,
         handleSubmit = _ref2.handleSubmit,
         isSubmitting = _ref2.isSubmitting;
     return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
+      className: "bg-white shadow-md rounded px-28 py-28"
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_4__["Form"], {
       method: "post",
       onSubmit: handleSubmit
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "my-12 mx-12"
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_4__["Field"], {
-      className: touched.name && errors.name ? 'has-error' : '',
+      className: "my-20 mx-12"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+      className: "px-4 block text-primary-700 text-sm font-bold mb-4",
+      htmlFor: "name"
+    }, t('phrases:name_label')), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_4__["Field"], {
+      className: 'shadow appearance-none border rounded w-full h-40 px-8 py-8 text-gray-700 leading-tight focus:outline-none focus:shadow-outline' + (touched.name && errors.name ? 'border-solid border-1 border-danger-500' : ''),
       placeholder: t('phrases:name_input_placeholder'),
       type: "text",
       name: "name"
     }), touched.name && errors.name ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_4__["ErrorMessage"], {
+      className: "px-8 py-8 text-danger-500 text-xs italic",
       name: "name",
       component: "div"
     }) : null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "my-12 mx-12"
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_4__["Field"], {
-      className: touched.email && errors.email ? 'has-error form-control' : 'form-control',
+      className: "my-20 mx-12"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+      className: "px-4 block text-primary-700 text-sm font-bold mb-4",
+      htmlFor: "email"
+    }, t('phrases:email_label')), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_4__["Field"], {
+      className: 'shadow appearance-none border rounded w-full h-40 px-8 py-8 text-gray-700 leading-tight focus:outline-none focus:shadow-outline' + (touched.email && errors.email ? 'border-solid border-1 border-danger-500' : ''),
       placeholder: t('phrases:email_input_placeholder'),
       type: "email",
       name: "email"
     }), touched.email && errors.email ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_4__["ErrorMessage"], {
+      className: "px-8 py-8 text-danger-500 text-xs italic",
       name: "email",
       component: "div"
     }) : null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "my-12 mx-12"
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_4__["Field"], {
-      className: touched.password && errors.password ? 'has-error form-control' : 'form-control',
+      className: "my-20 mx-12"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+      className: "px-4 block text-primary-700 text-sm font-bold mb-4",
+      htmlFor: "password"
+    }, t('phrases:password_label')), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_4__["Field"], {
+      className: 'shadow appearance-none border rounded w-full h-40 px-8 py-8 text-gray-700 leading-tight focus:outline-none focus:shadow-outline' + (touched.password && errors.password ? 'border-solid border-1 border-danger-500' : ''),
       placeholder: t('phrases:password_input_placeholder'),
       type: "password",
       name: "password"
     }), touched.password && errors.password ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_4__["ErrorMessage"], {
+      className: "px-8 py-8 text-danger-500 text-xs italic",
       name: "password",
       component: "div"
     }) : null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "my-12 mx-12"
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_4__["Field"], {
-      className: touched.password_confirmation && errors.password_confirmation ? 'has-error form-control' : 'form-control',
+      className: "my-20 mx-12"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+      className: "px-4 block text-primary-700 text-sm font-bold mb-4",
+      htmlFor: "password_confirmation"
+    }, t('phrases:password_confirmation_label')), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_4__["Field"], {
+      className: 'shadow appearance-none border rounded w-full h-40 px-8 py-8 text-gray-700 leading-tight focus:outline-none focus:shadow-outline' + (touched.password_confirmation && errors.password_confirmation ? 'border-solid border-1 border-danger-500' : ''),
       placeholder: t('phrases:password_confirmation_input_placeholder'),
       type: "password",
       name: "password_confirmation"
     }), touched.password_confirmation && errors.password_confirmation ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_4__["ErrorMessage"], {
+      className: "px-8 py-8 text-danger-500 text-xs italic",
       name: "password_confirmation",
       component: "div"
     }) : null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "my-12 mx-12"
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-      className: "btn btn-primary",
+      className: "my-28 mx-12 flex justify-center"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", _defineProperty({
+      className: 'bg-primary-900 hover:bg-transparent text-white hover:text-primary-900 border border-transparent hover:border hover:border-primary-900 font-bold py-8 px-8 rounded rounded-8' + (isSubmitting || errors.name || errors.email || errors.password || errors.password_confirmation ? ' opacity-50 cursor-not-allowed' : ''),
       type: "submit",
-      disabled: isSubmitting
-    }, t('phrases:create_account_btn')))));
+      disabled: isSubmitting || errors.name || errors.password || errors.password_confirmation || errors.email
+    }, "type", "submit"), t('phrases:create_account_btn')))));
   }));
 });
 /* harmony default export */ __webpack_exports__["default"] = (Register);
@@ -101642,11 +101672,15 @@ var ResetPassword = function ResetPassword() {
       t = _useTranslation.t;
 
   var validationSchema = yup__WEBPACK_IMPORTED_MODULE_3__["object"]().shape({
-    email: yup__WEBPACK_IMPORTED_MODULE_3__["string"]().email(t('phrases:email_error_msg')).required(t('phrases:required_field_error_msg'))
+    password: yup__WEBPACK_IMPORTED_MODULE_3__["string"]().min(6, t('phrases:min_error_msg')).max(50, t('phrases:max_error_msg')).required(t('phrases:required_field_error_msg')),
+    password_confirmation: yup__WEBPACK_IMPORTED_MODULE_3__["string"]().min(6, t('phrases:min_error_msg')).max(50, t('phrases:max_error_msg')).required(t('phrases:required_field_error_msg'))
   });
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "RESET PASSWORD COMPONENT"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_2__["Formik"], {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "w-4/12 m-auto"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_2__["Formik"], {
     initialValues: {
-      email: ''
+      password: '',
+      password_confirmation: ''
     },
     validationSchema: validationSchema,
     onSubmit: function onSubmit(values, _ref) {
@@ -101662,26 +101696,44 @@ var ResetPassword = function ResetPassword() {
         handleSubmit = _ref2.handleSubmit,
         isSubmitting = _ref2.isSubmitting;
     return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
+      className: "bg-white shadow-md rounded px-28 py-28"
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_2__["Form"], {
       onSubmit: handleSubmit
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "my-12 mx-12"
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_2__["Field"], {
-      className: touched.email && errors.email ? 'has-error form-control' : 'form-control',
-      placeholder: t('phrases:email_input_placeholder'),
-      type: "email",
-      name: "email"
-    }), touched.email && errors.email ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_2__["ErrorMessage"], {
-      name: "email",
+      className: "my-20 mx-12"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+      className: "px-4 block text-primary-700 text-sm font-bold mb-4",
+      htmlFor: "password"
+    }, t('phrases:password_label')), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_2__["Field"], {
+      className: 'shadow appearance-none border rounded w-full h-40 px-8 py-8 text-gray-700 leading-tight focus:outline-none focus:shadow-outline' + (touched.password && errors.password ? 'border-solid border-1 border-danger-500' : ''),
+      placeholder: t('phrases:password_input_placeholder'),
+      type: "password",
+      name: "password"
+    }), touched.password && errors.password ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_2__["ErrorMessage"], {
+      className: "px-8 py-8 text-danger-500 text-xs italic",
+      name: "password",
       component: "div"
     }) : null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "my-12 mx-12"
+      className: "my-20 mx-12"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+      className: "px-4 block text-primary-700 text-sm font-bold mb-4",
+      htmlFor: "password_confirmation"
+    }, t('phrases:password_confirmation_label')), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_2__["Field"], {
+      className: 'shadow appearance-none border rounded w-full h-40 px-8 py-8 text-gray-700 leading-tight focus:outline-none focus:shadow-outline' + (touched.password_confirmation && errors.password_confirmation ? 'border-solid border-1 border-danger-500' : ''),
+      placeholder: t('phrases:password_confirmation_input_placeholder'),
+      type: "password",
+      name: "password_confirmation"
+    }), touched.password_confirmation && errors.password_confirmation ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_2__["ErrorMessage"], {
+      className: "px-8 py-8 text-danger-500 text-xs italic",
+      name: "password_confirmation",
+      component: "div"
+    }) : null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "my-28 mx-12 flex justify-center"
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-      className: "btn btn-primary",
+      className: 'bg-primary-900 hover:bg-transparent text-white hover:text-primary-900 border border-transparent hover:border hover:border-primary-900 font-bold py-8 px-8 rounded rounded-8' + (isSubmitting || errors.password || errors.password_confirmation ? ' opacity-50 cursor-not-allowed' : ''),
       type: "submit",
-      disabled: isSubmitting
-    }, t('phrases:send_reset_password_link_btn')))));
+      disabled: isSubmitting || errors.password || errors.password_confirmation
+    }, t('phrases:set_new_password_btn')))));
   }));
 };
 
@@ -101783,6 +101835,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_i18next__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-i18next */ "./node_modules/react-i18next/dist/es/index.js");
 /* harmony import */ var _store_modules_authentication_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../store/modules/authentication/actions */ "./resources/js/store/modules/authentication/actions.js");
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _helpers_functions__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../helpers/functions */ "./resources/js/helpers/functions.js");
+
 
 
 
@@ -101800,7 +101854,8 @@ var Navbar = Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(functio
   }, dispatch);
 })(function (props) {
   var _useTranslation = Object(react_i18next__WEBPACK_IMPORTED_MODULE_3__["useTranslation"])(),
-      t = _useTranslation.t;
+      t = _useTranslation.t,
+      i18n = _useTranslation.i18n;
 
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("nav", {
     className: "shadow h-80 w-full mb-60 flex justify-between items-center"
@@ -101827,7 +101882,12 @@ var Navbar = Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(functio
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__["Link"], {
     to: "/login",
     className: ""
-  }, t('phrases:log_in'))))));
+  }, t('phrases:log_in'))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    onClick: function onClick() {
+      return Object(_helpers_functions__WEBPACK_IMPORTED_MODULE_6__["toggleLang"])(i18n);
+    },
+    className: "inline-block align-baseline font-bold text-sm text-primary-900 hover:underline"
+  }, t('phrases:toggle_lang_btn')))));
 });
 /* harmony default export */ __webpack_exports__["default"] = (Navbar);
 
@@ -102093,8 +102153,10 @@ __webpack_require__.r(__webpack_exports__);
 var toggleLang = function toggleLang(i18n) {
   if (i18n.language === 'ar') {
     i18n.changeLanguage("en");
+    $("body").removeClass("ar");
   } else {
     i18n.changeLanguage("ar");
+    $("body").addClass("ar");
   }
 };
 var api = function api(url, data, method, token) {
@@ -102171,7 +102233,7 @@ var AuthRoutes = Object(react_redux__WEBPACK_IMPORTED_MODULE_3__["connect"])(fun
 
 var ManiRouter = function ManiRouter() {
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["BrowserRouter"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_partials_nav__WEBPACK_IMPORTED_MODULE_5__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "container border-solid border-info-500 border-4"
+    className: "container"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Switch"], null, _routes__WEBPACK_IMPORTED_MODULE_2__["default"].map(function (route, index) {
     return route["private"] ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(PrivateRoutes, _extends({
       key: index
@@ -103064,10 +103126,10 @@ var _phrases__WEBPACK_IMPORTED_MODULE_0___namespace = /*#__PURE__*/__webpack_req
 /*!************************************************!*\
   !*** ./resources/lang/locales/ar/phrases.json ***!
   \************************************************/
-/*! exports provided: welcome, toggle_lang_btn, load_projects_btn, projects_title, submit_form_btn, description_input_placeholder, title_input_placeholder, min_error_msg, max_error_msg, required_field_error_msg, email_error_msg, name_input_placeholder, email_input_placeholder, password_input_placeholder, password_confirmation_input_placeholder, create_account_btn, login_btn, send_reset_password_link_btn, set_new_password_btn, logout, create_account, log_in, default */
+/*! exports provided: welcome, toggle_lang_btn, load_projects_btn, projects_title, submit_form_btn, description_input_placeholder, title_input_placeholder, min_error_msg, max_error_msg, required_field_error_msg, email_error_msg, name_input_placeholder, email_input_placeholder, password_input_placeholder, password_confirmation_input_placeholder, create_account_btn, login_btn, send_reset_password_link_btn, set_new_password_btn, logout, create_account, log_in, forget_password, email_label, password_label, password_confirmation_label, name_label, forget_password_feedback_msg, default */
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"welcome\":\"مرحبًا\",\"toggle_lang_btn\":\"تغيير اللغه\",\"load_projects_btn\":\"تحميل\",\"projects_title\":\"مشروعاتك\",\"submit_form_btn\":\"اضافه\",\"description_input_placeholder\":\"وصف المشروع\",\"title_input_placeholder\":\"عنوان المشروع\",\"min_error_msg\":\"يجب ادخال 3 احرف على الاقل \",\"max_error_msg\":\"لقد تجاوزت الحد الاقصي من الاحرف المسموح بها\",\"required_field_error_msg\":\"يجب ملئ هذا الحقل\",\"email_error_msg\":\"هذا الايميل غير صالح \",\"name_input_placeholder\":\"الاسم\",\"email_input_placeholder\":\"البريد الاليكتروني\",\"password_input_placeholder\":\"كلمة المرور\",\"password_confirmation_input_placeholder\":\"اعد كتابة كلمة المرور\",\"create_account_btn\":\"تسجيل دخول\",\"login_btn\":\"تسجيل دخول\",\"send_reset_password_link_btn\":\"ارسل رابط اعادة تعيين كلمة السر\",\"set_new_password_btn\":\"تعيين كلمة سر جديده\",\"logout\":\"تسجيل خروج\",\"create_account\":\"انشاء حساب\",\"log_in\":\"تسجيل دخول\"}");
+module.exports = JSON.parse("{\"welcome\":\"مرحبًا\",\"toggle_lang_btn\":\"تغيير اللغه\",\"load_projects_btn\":\"تحميل\",\"projects_title\":\"مشروعاتك\",\"submit_form_btn\":\"اضافه\",\"description_input_placeholder\":\"وصف المشروع\",\"title_input_placeholder\":\"عنوان المشروع\",\"min_error_msg\":\"يجب ادخال 3 احرف على الاقل \",\"max_error_msg\":\"لقد تجاوزت الحد الاقصي من الاحرف المسموح بها\",\"required_field_error_msg\":\"يجب ملئ هذا الحقل\",\"email_error_msg\":\"هذا الايميل غير صالح \",\"name_input_placeholder\":\"الاسم\",\"email_input_placeholder\":\"البريد الاليكتروني\",\"password_input_placeholder\":\"كلمة المرور\",\"password_confirmation_input_placeholder\":\"اعد كتابة كلمة المرور\",\"create_account_btn\":\"تسجيل دخول\",\"login_btn\":\"تسجيل دخول\",\"send_reset_password_link_btn\":\"ارسل رابط اعادة تعيين كلمة السر\",\"set_new_password_btn\":\"تعيين كلمة سر جديده\",\"logout\":\"تسجيل خروج\",\"create_account\":\"انشاء حساب\",\"log_in\":\"تسجيل دخول\",\"forget_password\":\"نسيت كلمة المرور\",\"email_label\":\"البريد الاليكتروني\",\"password_label\":\"كلمة المرور\",\"password_confirmation_label\":\"تأكيد كلمة المرور\",\"name_label\":\"الاسم\",\"forget_password_feedback_msg\":\"تم ارسال رابط اعادة تعيين كلمة المرور\"}");
 
 /***/ }),
 
@@ -103093,10 +103155,10 @@ var _phrases__WEBPACK_IMPORTED_MODULE_0___namespace = /*#__PURE__*/__webpack_req
 /*!************************************************!*\
   !*** ./resources/lang/locales/en/phrases.json ***!
   \************************************************/
-/*! exports provided: welcome, toggle_lang_btn, load_projects_btn, projects_title, submit_form_btn, description_input_placeholder, title_input_placeholder, min_error_msg, max_error_msg, required_field_error_msg, email_error_msg, name_input_placeholder, email_input_placeholder, password_input_placeholder, password_confirmation_input_placeholder, create_account_btn, login_btn, send_reset_password_link_btn, set_new_password_btn, logout, create_account, log_in, default */
+/*! exports provided: welcome, toggle_lang_btn, load_projects_btn, projects_title, submit_form_btn, description_input_placeholder, title_input_placeholder, min_error_msg, max_error_msg, required_field_error_msg, email_error_msg, name_input_placeholder, email_input_placeholder, password_input_placeholder, password_confirmation_input_placeholder, create_account_btn, login_btn, send_reset_password_link_btn, set_new_password_btn, logout, create_account, log_in, forget_password, email_label, password_label, password_confirmation_label, name_label, forget_password_feedback_msg, default */
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"welcome\":\"Welcome\",\"toggle_lang_btn\":\"Toggle Lang\",\"load_projects_btn\":\"Load Projects\",\"projects_title\":\"Herein your Projects\",\"submit_form_btn\":\"Submit\",\"description_input_placeholder\":\"Description\",\"title_input_placeholder\":\"Title\",\"min_error_msg\":\"This field must contain 3 chars at least\",\"max_error_msg\":\"You have exceeded the max limited chars for this field\",\"required_field_error_msg\":\"This field is required\",\"email_error_msg\":\"Please add a valid email address\",\"name_input_placeholder\":\"Name\",\"email_input_placeholder\":\"Email address\",\"password_input_placeholder\":\"Password\",\"password_confirmation_input_placeholder\":\"RE-type password\",\"create_account_btn\":\"Create account\",\"login_btn\":\"Login\",\"send_reset_password_link_btn\":\"Send me a reset password link\",\"set_new_password_btn\":\"Set new password\",\"logout\":\"Log out\",\"create_account\":\"Create Account\",\"log_in\":\"Log In\"}");
+module.exports = JSON.parse("{\"welcome\":\"Welcome\",\"toggle_lang_btn\":\"Toggle Lang\",\"load_projects_btn\":\"Load Projects\",\"projects_title\":\"Herein your Projects\",\"submit_form_btn\":\"Submit\",\"description_input_placeholder\":\"Description\",\"title_input_placeholder\":\"Title\",\"min_error_msg\":\"This field must contain 3 chars at least\",\"max_error_msg\":\"You have exceeded the max limited chars for this field\",\"required_field_error_msg\":\"This field is required\",\"email_error_msg\":\"Please add a valid email address\",\"name_input_placeholder\":\"Name\",\"email_input_placeholder\":\"Email address\",\"password_input_placeholder\":\"Password\",\"password_confirmation_input_placeholder\":\"RE-type password\",\"create_account_btn\":\"Create account\",\"login_btn\":\"Login\",\"send_reset_password_link_btn\":\"Send me a reset password link\",\"set_new_password_btn\":\"Set new password\",\"logout\":\"Log out\",\"create_account\":\"Create Account\",\"log_in\":\"Log In\",\"forget_password\":\"Forget Password\",\"email_label\":\"Email\",\"password_label\":\"Password\",\"password_confirmation_label\":\"Re-type password\",\"name_label\":\"Name\",\"forget_password_feedback_msg\":\"We have sent u a reset password link\"}");
 
 /***/ }),
 
