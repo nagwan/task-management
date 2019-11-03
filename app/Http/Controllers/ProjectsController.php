@@ -40,15 +40,6 @@ class ProjectsController extends Controller
             ], 403);
         }
 
-
-        // if($project->id != auth()->user()->id || !$project){
-        //     return response()->json([
-        //         'success' => false,
-        //         'message' =>  'unauthorized'
-        //     ], 403);
-        // }
-
-
         return response()->json(['data' => $project]);
     }
 }

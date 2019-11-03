@@ -41,7 +41,7 @@ class ManageProjectsTest extends TestCase
 
     public function a_user_can_create_a_project()
     {
-        $this->withoutExceptionHandling();
+        //$this->withoutExceptionHandling();
 
         $user = factory('App\User')->create();
 
