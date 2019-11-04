@@ -31,5 +31,8 @@
     "description_label": "وصف المشروع",
     "cancel_btn": "الغاء",
     "projects": "مشروعاتي",
-    "create_project": "مشروع جديد"
+    "create_project": "مشروع جديد",
+    "go_back_btn": "رجوع",
+    "tasks_label": "مهمات",
+    "general_notes_label": "ملاحظات"
 }

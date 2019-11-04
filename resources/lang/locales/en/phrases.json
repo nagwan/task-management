@@ -30,5 +30,8 @@
     "description_label": "Project Description",
     "cancel_btn": "Cancel",
     "projects": "My Projects",
-    "create_project": "Create Project"
+    "create_project": "Create Project",
+    "go_back_btn": "Go Back",
+    "tasks_label": "Tasks",
+    "general_notes_label": "General Notes"
 }

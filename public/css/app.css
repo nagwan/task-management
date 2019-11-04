@@ -17177,6 +17177,23 @@ video {
   direction: rtl;
 }
 
+.ar .border-l-4 {
+  border-left: none !important;
+  border-right: 4px solid #403886 !important;
+}
+
+.card {
+  margin-top: 1.25rem;
+  margin-bottom: 1.25rem;
+  margin-left: 1.25rem;
+  margin-right: 1.25rem;
+  background-color: #fff;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  border-radius: 0.25rem;
+  padding-top: 1.25rem;
+  padding-bottom: 1.25rem;
+}
+
 @media (min-width: 640px) {
   .sm\:sr-only {
     position: absolute;
