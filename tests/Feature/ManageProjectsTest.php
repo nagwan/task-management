@@ -114,6 +114,7 @@ class ManageProjectsTest extends TestCase
         $project = factory('App\Project')->create();
 
         $this->withoutExceptionHandling();
+        
         $this->getJson($project->path(), [
             'authorization' => 'Bearer '. $user->api_token
         ])->assertStatus(403);

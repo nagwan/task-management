@@ -29,6 +29,8 @@ Route::group(['middleware' => 'auth:api'], function () {
  
     Route::post('/user', 'UsersController@fetch');
 
+    Route::post('/projects/{project}/tasks', 'ProjectTasksController@store');
+
     Route::get('/projects/{project}', 'ProjectsController@show')->name('projects.show');
 
     Route::get('/home', 'HomeController@index')->name('home');
