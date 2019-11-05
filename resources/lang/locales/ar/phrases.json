@@ -37,5 +37,6 @@
     "general_notes_label": "ملاحظات",
     "no_tasks_yet": "لا توجد اي مهمات",
     "task_body_input_placeholder": "مهمه جديده",
-    "add_task_btn": "اضافة مهمه"
+    "add_task_btn": "اضافة مهمه",
+    "update_task_btn": "تعديل"
 }

@@ -30,7 +30,7 @@ const Store = connect(null, dispatch => bindActionCreators({ taskStoreFlag }, di
                 validationSchema={validationSchema}
                 onSubmit={(values, { setSubmitting, resetForm }) => {
                     setSubmitting(true)
-                    props.taskStoreFlag({values})
+                    props.taskStoreFlag({ values })
                     resetForm()
                     setSubmitting(false)
                 }

@@ -9,6 +9,8 @@ import { updateTaskFlag } from '../../../store/modules/projects/actions'
 
 const Task = connect(null, dispatch => bindActionCreators({ updateTaskFlag }, dispatch))((props) => {
 
+    console.log(props.task, 'props')
+
     const { t } = useTranslation();
 
     const validationSchema = Yup.object().shape({
@@ -25,9 +27,10 @@ const Task = connect(null, dispatch => bindActionCreators({ updateTaskFlag }, di
             <Formik initialValues={
                 {
                     body: props.task.body,
-                    completed: props.task.completed ? props.task.completed : false
+                    completed: props.task.completed
                 }
             }
+                enableReinitialize
                 validationSchema={validationSchema}
                 onSubmit={(values, { setSubmitting, resetForm }) => {
                     setSubmitting(true)
@@ -47,12 +50,11 @@ const Task = connect(null, dispatch => bindActionCreators({ updateTaskFlag }, di
 
                         {errors.body ? (<ErrorMessage className='px-8 py-8 text-danger-500 text-xs italic' name="body" component="div" />) : null}
 
-                        <Field className='shadow border rounded border-solid border-1 border-primary-900 w-full h-40 px-8 py-8 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
-                            type="checkbox" name="completed" />
+                        <Field type="checkbox" defaultChecked={props.task.completed} name="completed" />
 
                         <div className="my-28 mx-12 flex justify-between items-center">
                             <button className={'bg-primary-900 hover:bg-transparent text-white hover:text-primary-900 border border-transparent hover:border hover:border-primary-900 font-bold py-8 px-8 rounded rounded-8' + (isSubmitting || errors.body ? ' opacity-50 cursor-not-allowed' : '')} type="submit" disabled={isSubmitting || errors.body} type="submit">
-                                {t('phrases:add_task_btn')}
+                                {t('phrases:update_task_btn')}
                             </button>
                         </div>
                     </Form>

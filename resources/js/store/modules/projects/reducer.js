@@ -15,7 +15,7 @@ export default function reducer(state = INITIAL_STATE, action) {
         case PROJECT_STORE:
             return { ...state, projects: action.payload } // to be edited to just add the new project after the back-end fix
         case UPDATE_PROJECT_TASKS:
-            return { ...state, project: action.payload }
+            return { ...state, project: Object.assign({}, state.project, {tasks: action.payload}) }
         default:
             return state;
     }

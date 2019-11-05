@@ -9,7 +9,7 @@ import Task from './tasks';
 const Show = connect(({ projects }) => ({ projects }))((props) => {
     const { t } = useTranslation();
 
-    const data = props.projects.project.tasks;
+    const tasks = props.projects.project.tasks;
 
     return (
         <div className='w-full flex justify-between'>
@@ -20,12 +20,8 @@ const Show = connect(({ projects }) => ({ projects }))((props) => {
                     <div className='w-8/12'>
                         <p className='text-gray-500 text-lg mx-24 -mb-16'>{t('phrases:tasks_label')}</p>
                         {
-                            data && data.length ? data.map(task =>
+                            tasks && tasks.length ? tasks.map(task =>
                                 <Task key={task.id} task={task}/>
-
-                                // <div className='card border-l-4 border-primary-900' key={task.id}>
-                                //     <span className='px-20'>{task.body}</span>
-                                // </div>
 
                             ) : ''
                         }
@@ -37,10 +33,10 @@ const Show = connect(({ projects }) => ({ projects }))((props) => {
                     {/* projects` card */}
                     <div className='w-4/12 h-240 card hover:shadow-lg'>
                         <div className='w-full h-60 py-20 px-20 border-l-4 border-primary-900'>
-                            <p className='text-primary-900 font-semibold font-harmattan'>{props.projects.project.title}</p>
+                            <p className='text-primary-900 font-semibold'>{props.projects.project.title}</p>
                         </div>
                         <div className='w-full py-20 px-20'>
-                            <p className='text-gray-700 font-medium font-tajawal-medium italic'>{props.projects.project.description.substring(0, 100) + " ... "}</p>
+                            <p className='text-gray-700 font-medium italic'>{props.projects.project.description.substring(0, 100) + " ... "}</p>
                         </div>
                     </div>
                 </div>
