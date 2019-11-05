@@ -103000,7 +103000,7 @@ function show(action) {
           token = localStorage.getItem('token');
 
           if (!(token != null)) {
-            _context3.next = 13;
+            _context3.next = 12;
             break;
           }
 
@@ -103009,37 +103009,36 @@ function show(action) {
 
         case 5:
           project = _context3.sent;
-          console.log(project);
-          _context3.next = 9;
+          _context3.next = 8;
           return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["put"])(Object(_actions__WEBPACK_IMPORTED_MODULE_2__["projectShow"])(project.data.data));
 
-        case 9:
-          _context3.next = 11;
+        case 8:
+          _context3.next = 10;
           return action.payload.history.push("/projects/".concat(project.data.data.id));
 
-        case 11:
-          _context3.next = 15;
+        case 10:
+          _context3.next = 14;
           break;
 
-        case 13:
-          _context3.next = 15;
+        case 12:
+          _context3.next = 14;
           return action.payload.history.push("/login");
 
-        case 15:
-          _context3.next = 20;
+        case 14:
+          _context3.next = 19;
           break;
 
-        case 17:
-          _context3.prev = 17;
+        case 16:
+          _context3.prev = 16;
           _context3.t0 = _context3["catch"](0);
           console.log(_context3.t0);
 
-        case 20:
+        case 19:
         case "end":
           return _context3.stop();
       }
     }
-  }, _marked3, null, [[0, 17]]);
+  }, _marked3, null, [[0, 16]]);
 }
 function watchShow() {
   return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function watchShow$(_context4) {

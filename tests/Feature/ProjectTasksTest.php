@@ -30,4 +30,20 @@ class ProjectTasksTest extends TestCase
         ])
             ->assertStatus(200);
     }
+
+
+    /** @test */
+
+    public function a_task_requires_a_body()
+    {
+        $user = factory('App\User')->create();
+
+        $project = factory('App\Project')->create(['owner_id' => $user->id]);
+
+        $attributes = factory('App\Task')->raw(['body' => '']);
+
+        $this->postJson($project->path() . '/tasks', $attributes, [
+            'authorization' => 'Bearer ' . $user->api_token
+        ])->assertStatus(422);
+    }
 }

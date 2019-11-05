@@ -15,7 +15,7 @@ class ProjectTasksController extends Controller
     public function store(Project $project)
     {
 
-        $task = request()->validate([
+        request()->validate([
             'body' => 'required|min:3|max:50',
         ]);
 
