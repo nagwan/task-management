@@ -138,9 +138,7 @@ export function* updateTask(action) {
         if (token != null) {
 
             const task = yield call(api, `/api/projects/${project.id}/tasks/${action.payload.id}`, action.payload.values, 'patch', JSON.parse(token))
-
-            console.log(task, 'response')
-
+            
             yield put(updateProjectTasks(task.data.data))
         }
 

@@ -9,8 +9,6 @@ import { updateTaskFlag } from '../../../store/modules/projects/actions'
 
 const Task = connect(null, dispatch => bindActionCreators({ updateTaskFlag }, dispatch))((props) => {
 
-    console.log(props.task, 'props')
-
     const { t } = useTranslation();
 
     const validationSchema = Yup.object().shape({

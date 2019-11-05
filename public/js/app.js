@@ -102193,8 +102193,6 @@ var Task = Object(react_redux__WEBPACK_IMPORTED_MODULE_3__["connect"])(null, fun
     updateTaskFlag: _store_modules_projects_actions__WEBPACK_IMPORTED_MODULE_6__["updateTaskFlag"]
   }, dispatch);
 })(function (props) {
-  console.log(props.task, 'props');
-
   var _useTranslation = Object(react_i18next__WEBPACK_IMPORTED_MODULE_5__["useTranslation"])(),
       t = _useTranslation.t;
 
@@ -103456,7 +103454,7 @@ function updateTask(action) {
           project = _context9.sent;
 
           if (!(token != null)) {
-            _context9.next = 12;
+            _context9.next = 11;
             break;
           }
 
@@ -103465,25 +103463,24 @@ function updateTask(action) {
 
         case 8:
           task = _context9.sent;
-          console.log(task, 'response');
-          _context9.next = 12;
+          _context9.next = 11;
           return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["put"])(Object(_actions__WEBPACK_IMPORTED_MODULE_2__["updateProjectTasks"])(task.data.data));
 
-        case 12:
-          _context9.next = 17;
+        case 11:
+          _context9.next = 16;
           break;
 
-        case 14:
-          _context9.prev = 14;
+        case 13:
+          _context9.prev = 13;
           _context9.t0 = _context9["catch"](0);
           console.log(_context9.t0);
 
-        case 17:
+        case 16:
         case "end":
           return _context9.stop();
       }
     }
-  }, _marked9, null, [[0, 14]]);
+  }, _marked9, null, [[0, 13]]);
 }
 function watchTaskUpdate() {
   return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function watchTaskUpdate$(_context10) {

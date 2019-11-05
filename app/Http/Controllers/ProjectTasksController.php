@@ -8,9 +8,7 @@ use Illuminate\Http\Request;
 
 class ProjectTasksController extends Controller
 {
-    public function index()
-    { }
-
+    
     public function store(Project $project)
     {
 
