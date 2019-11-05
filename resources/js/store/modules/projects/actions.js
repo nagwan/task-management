@@ -40,7 +40,7 @@ export function projectStore(payload) {
 export const TASK_STORE_FLAG = 'TASK_STORE_FLAG'
 export const TASK_STORE = 'TASK_STORE'
 export const UPDATE_PROJECT_TASKS = 'UPDATE_PROJECT_TASKS'
-
+export const TASK_UPDATE_FLAG = 'TASK_UPDATE_FLAG'
 
 export function taskStoreFlag(payload) {
     return { type: TASK_STORE_FLAG, payload }
@@ -52,4 +52,8 @@ export function taskStore(payload) {
 
 export function updateProjectTasks(payload) {
     return { type: UPDATE_PROJECT_TASKS, payload }
+}
+
+export function updateTaskFlag(payload){
+    return {type:TASK_UPDATE_FLAG, payload }
 }

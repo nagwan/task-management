@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { useTranslation } from "react-i18next";
 import Store from './tasks/store';
+import Task from './tasks';
 
 
 const Show = connect(({ projects }) => ({ projects }))((props) => {
@@ -20,10 +21,11 @@ const Show = connect(({ projects }) => ({ projects }))((props) => {
                         <p className='text-gray-500 text-lg mx-24 -mb-16'>{t('phrases:tasks_label')}</p>
                         {
                             data && data.length ? data.map(task =>
+                                <Task key={task.id} task={task}/>
 
-                                <div className='card border-l-4 border-primary-900' key={task.id}>
-                                    <span className='px-20'>{task.body}</span>
-                                </div>
+                                // <div className='card border-l-4 border-primary-900' key={task.id}>
+                                //     <span className='px-20'>{task.body}</span>
+                                // </div>
 
                             ) : ''
                         }
