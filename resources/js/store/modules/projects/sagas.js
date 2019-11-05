@@ -1,6 +1,6 @@
-import { call, put, takeLatest } from 'redux-saga/effects';
-import { PROJECTS_INDEX_FLAG, projectsIndex, projectShow, PROJECT_SHOW_FLAG, PROJECT_STORE_FLAG, projectStore } from './actions'
-import { api } from '../../../helpers/functions'
+import { call, put, takeLatest, select } from 'redux-saga/effects';
+import { PROJECTS_INDEX_FLAG, projectsIndex, projectShow, PROJECT_SHOW_FLAG, PROJECT_STORE_FLAG, projectStore, TASK_STORE_FLAG, TASK_STORE, updateProjectTasks } from './actions'
+import { api, getProject } from '../../../helpers/functions'
 
 // fetch all projects
 export function* index(action) {
@@ -44,7 +44,7 @@ export function* show(action) {
 
             yield action.payload.history.push(`/projects/${project.data.data.id}`)
 
-        }else {
+        } else {
 
             yield action.payload.history.push(`/login`)
         }
@@ -86,4 +86,36 @@ export function* store(action) {
 export function* watchStore() {
 
     yield takeLatest(PROJECT_STORE_FLAG, store)
+}
+
+
+/**
+ *  project`s tasks
+ */
+
+
+
+export function* storeTask(action) {
+
+    try {
+        let token = localStorage.getItem('token')
+
+        const project = yield select(getProject);
+
+        if (token != null) {
+
+            const task = yield call(api, `/api/projects/${project.id}/tasks`, action.payload.values, 'POST', JSON.parse(token))
+
+            yield put(updateProjectTasks(task.data.data))
+        }
+
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+
+export function* watchTaskStore() {
+    console.log('here we are')
+    yield takeLatest(TASK_STORE_FLAG, storeTask)
 }

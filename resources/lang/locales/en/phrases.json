@@ -33,5 +33,8 @@
     "create_project": "Create Project",
     "go_back_btn": "Go Back",
     "tasks_label": "Tasks",
-    "general_notes_label": "General Notes"
+    "general_notes_label": "General Notes",
+    "no_tasks_yet": "No Tasks Yet",
+    "task_body_input_placeholder": "New Task",
+    "add_task_btn": "Add Task"
 }

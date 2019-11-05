@@ -46,4 +46,17 @@ class ProjectTasksTest extends TestCase
             'authorization' => 'Bearer ' . $user->api_token
         ])->assertStatus(422);
     }
+
+    /** @test */
+
+    public function only_the_owner_of_a_project_may_add_tasks()
+    {
+        $user = factory('App\User')->create();
+
+        $project = factory('App\Project')->create();
+
+        $this->postJson($project->path() . '/tasks', ['body' => 'new test task'], [
+            'authorization' => 'Bearer ' . $user->api_token
+        ])->assertStatus(403);
+    }
 }

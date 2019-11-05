@@ -101985,6 +101985,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var react_i18next__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-i18next */ "./node_modules/react-i18next/dist/es/index.js");
+/* harmony import */ var _tasks_store__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./tasks/store */ "./resources/js/components/projects/tasks/store.jsx");
+
 
 
 
@@ -102011,12 +102013,12 @@ var Show = Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(function 
     className: "text-gray-500 text-lg mx-24 -mb-16"
   }, t('phrases:tasks_label')), data && data.length ? data.map(function (task) {
     return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "card px-20",
+      className: "card border-l-4 border-primary-900",
       key: task.id
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, task.body));
-  }) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "card"
-  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+      className: "px-20"
+    }, task.body));
+  }) : '', react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_tasks_store__WEBPACK_IMPORTED_MODULE_4__["default"], null)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "w-4/12 h-240 card hover:shadow-lg"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "w-full h-60 py-20 px-20 border-l-4 border-primary-900"
@@ -102159,6 +102161,89 @@ var Store = Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(null, fu
 
 /***/ }),
 
+/***/ "./resources/js/components/projects/tasks/store.jsx":
+/*!**********************************************************!*\
+  !*** ./resources/js/components/projects/tasks/store.jsx ***!
+  \**********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var formik__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! formik */ "./node_modules/formik/dist/formik.esm.js");
+/* harmony import */ var yup__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! yup */ "./node_modules/yup/lib/index.js");
+/* harmony import */ var yup__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(yup__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
+/* harmony import */ var react_i18next__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-i18next */ "./node_modules/react-i18next/dist/es/index.js");
+/* harmony import */ var _store_modules_projects_actions__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../store/modules/projects/actions */ "./resources/js/store/modules/projects/actions.js");
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+
+
+
+
+
+var Store = Object(react_redux__WEBPACK_IMPORTED_MODULE_3__["connect"])(null, function (dispatch) {
+  return Object(redux__WEBPACK_IMPORTED_MODULE_4__["bindActionCreators"])({
+    taskStoreFlag: _store_modules_projects_actions__WEBPACK_IMPORTED_MODULE_6__["taskStoreFlag"]
+  }, dispatch);
+})(function (props) {
+  var _useTranslation = Object(react_i18next__WEBPACK_IMPORTED_MODULE_5__["useTranslation"])(),
+      t = _useTranslation.t;
+
+  var validationSchema = yup__WEBPACK_IMPORTED_MODULE_2__["object"]().shape({
+    body: yup__WEBPACK_IMPORTED_MODULE_2__["string"]().min(3, t('phrases:min_error_msg')).max(50, t('phrases:max_error_msg')).required(t('phrases:required_field_error_msg'))
+  });
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "card"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_1__["Formik"], {
+    initialValues: {
+      body: ''
+    },
+    validationSchema: validationSchema,
+    onSubmit: function onSubmit(values, _ref) {
+      var setSubmitting = _ref.setSubmitting,
+          resetForm = _ref.resetForm;
+      setSubmitting(true);
+      props.taskStoreFlag({
+        values: values
+      });
+      resetForm();
+      setSubmitting(false);
+    }
+  }, function (_ref2) {
+    var errors = _ref2.errors,
+        handleSubmit = _ref2.handleSubmit,
+        isSubmitting = _ref2.isSubmitting;
+    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_1__["Form"], {
+      onSubmit: handleSubmit
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_1__["Field"], {
+      className: 'shadow appearance-none border rounded w-full h-40 px-8 py-8 text-gray-700 leading-tight focus:outline-none focus:shadow-outline' + (errors.body ? 'border-solid border-1 border-danger-500' : ''),
+      placeholder: t('phrases:task_body_input_placeholder'),
+      type: "text",
+      name: "body"
+    }), errors.body ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_1__["ErrorMessage"], {
+      className: "px-8 py-8 text-danger-500 text-xs italic",
+      name: "body",
+      component: "div"
+    }) : null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "my-28 mx-12 flex justify-between items-center"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", _defineProperty({
+      className: 'bg-primary-900 hover:bg-transparent text-white hover:text-primary-900 border border-transparent hover:border hover:border-primary-900 font-bold py-8 px-8 rounded rounded-8' + (isSubmitting || errors.body ? ' opacity-50 cursor-not-allowed' : ''),
+      type: "submit",
+      disabled: isSubmitting || errors.body
+    }, "type", "submit"), t('phrases:add_task_btn'))));
+  }));
+});
+/* harmony default export */ __webpack_exports__["default"] = (Store);
+
+/***/ }),
+
 /***/ "./resources/js/components/projects/update.jsx":
 /*!*****************************************************!*\
   !*** ./resources/js/components/projects/update.jsx ***!
@@ -102220,16 +102305,20 @@ var User = Object(react_redux__WEBPACK_IMPORTED_MODULE_2__["connect"])(null, fun
 /*!*******************************************!*\
   !*** ./resources/js/helpers/functions.js ***!
   \*******************************************/
-/*! exports provided: toggleLang, api */
+/*! exports provided: getProject, toggleLang, api */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getProject", function() { return getProject; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "toggleLang", function() { return toggleLang; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "api", function() { return api; });
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 
+var getProject = function getProject(state) {
+  return state.projects.project;
+};
 var toggleLang = function toggleLang(i18n) {
   if (i18n.language === 'ar') {
     i18n.changeLanguage("en");
@@ -102780,7 +102869,7 @@ function watchFetchUser() {
 /*!********************************************************!*\
   !*** ./resources/js/store/modules/projects/actions.js ***!
   \********************************************************/
-/*! exports provided: PROJECTS_INDEX_FLAG, PROJECTS_INDEX, PROJECT_SHOW_FLAG, PROJECT_SHOW, PROJECT_STORE_FLAG, PROJECT_STORE, projectsIndexFlag, projectsIndex, projectShowFlag, projectShow, projectStoreFlag, projectStore */
+/*! exports provided: PROJECTS_INDEX_FLAG, PROJECTS_INDEX, PROJECT_SHOW_FLAG, PROJECT_SHOW, PROJECT_STORE_FLAG, PROJECT_STORE, projectsIndexFlag, projectsIndex, projectShowFlag, projectShow, projectStoreFlag, projectStore, TASK_STORE_FLAG, TASK_STORE, UPDATE_PROJECT_TASKS, taskStoreFlag, taskStore, updateProjectTasks */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -102797,6 +102886,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "projectShow", function() { return projectShow; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "projectStoreFlag", function() { return projectStoreFlag; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "projectStore", function() { return projectStore; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TASK_STORE_FLAG", function() { return TASK_STORE_FLAG; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TASK_STORE", function() { return TASK_STORE; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UPDATE_PROJECT_TASKS", function() { return UPDATE_PROJECT_TASKS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "taskStoreFlag", function() { return taskStoreFlag; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "taskStore", function() { return taskStore; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateProjectTasks", function() { return updateProjectTasks; });
 var PROJECTS_INDEX_FLAG = 'PROJECTS_INDEX_FLAG';
 var PROJECTS_INDEX = 'PROJECTS_INDEX';
 var PROJECT_SHOW_FLAG = 'PROJECT_SHOW_FLAG';
@@ -102835,6 +102930,31 @@ function projectStoreFlag(payload) {
 function projectStore(payload) {
   return {
     type: PROJECT_STORE,
+    payload: payload
+  };
+}
+/**
+ * project`s tasks  
+ */
+
+var TASK_STORE_FLAG = 'TASK_STORE_FLAG';
+var TASK_STORE = 'TASK_STORE';
+var UPDATE_PROJECT_TASKS = 'UPDATE_PROJECT_TASKS';
+function taskStoreFlag(payload) {
+  return {
+    type: TASK_STORE_FLAG,
+    payload: payload
+  };
+}
+function taskStore(payload) {
+  return {
+    type: TASK_STORE,
+    payload: payload
+  };
+}
+function updateProjectTasks(payload) {
+  return {
+    type: UPDATE_PROJECT_TASKS,
     payload: payload
   };
 }
@@ -102884,6 +103004,11 @@ function reducer() {
       });
     // to be edited to just add the new project after the back-end fix
 
+    case _actions__WEBPACK_IMPORTED_MODULE_0__["UPDATE_PROJECT_TASKS"]:
+      return _objectSpread({}, state, {
+        project: action.payload
+      });
+
     default:
       return state;
   }
@@ -102895,7 +103020,7 @@ function reducer() {
 /*!******************************************************!*\
   !*** ./resources/js/store/modules/projects/sagas.js ***!
   \******************************************************/
-/*! exports provided: index, watchIndex, show, watchShow, store, watchStore */
+/*! exports provided: index, watchIndex, show, watchShow, store, watchStore, storeTask, watchTaskStore */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -102906,6 +103031,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "watchShow", function() { return watchShow; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "store", function() { return store; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "watchStore", function() { return watchStore; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "storeTask", function() { return storeTask; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "watchTaskStore", function() { return watchTaskStore; });
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! redux-saga/effects */ "./node_modules/redux-saga/dist/redux-saga-effects-npm-proxy.esm.js");
@@ -102930,7 +103057,13 @@ _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(watchShow
 _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(store),
     _marked6 =
 /*#__PURE__*/
-_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(watchStore);
+_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(watchStore),
+    _marked7 =
+/*#__PURE__*/
+_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(storeTask),
+    _marked8 =
+/*#__PURE__*/
+_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(watchTaskStore);
 
 
 
@@ -103113,6 +103246,69 @@ function watchStore() {
     }
   }, _marked6);
 }
+/**
+ *  project`s tasks
+ */
+
+function storeTask(action) {
+  var token, project, task;
+  return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function storeTask$(_context7) {
+    while (1) {
+      switch (_context7.prev = _context7.next) {
+        case 0:
+          _context7.prev = 0;
+          token = localStorage.getItem('token');
+          _context7.next = 4;
+          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["select"])(_helpers_functions__WEBPACK_IMPORTED_MODULE_3__["getProject"]);
+
+        case 4:
+          project = _context7.sent;
+
+          if (!(token != null)) {
+            _context7.next = 11;
+            break;
+          }
+
+          _context7.next = 8;
+          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["call"])(_helpers_functions__WEBPACK_IMPORTED_MODULE_3__["api"], "/api/projects/".concat(project.id, "/tasks"), action.payload.values, 'POST', JSON.parse(token));
+
+        case 8:
+          task = _context7.sent;
+          _context7.next = 11;
+          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["put"])(Object(_actions__WEBPACK_IMPORTED_MODULE_2__["updateProjectTasks"])(task.data.data));
+
+        case 11:
+          _context7.next = 16;
+          break;
+
+        case 13:
+          _context7.prev = 13;
+          _context7.t0 = _context7["catch"](0);
+          console.log(_context7.t0);
+
+        case 16:
+        case "end":
+          return _context7.stop();
+      }
+    }
+  }, _marked7, null, [[0, 13]]);
+}
+function watchTaskStore() {
+  return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function watchTaskStore$(_context8) {
+    while (1) {
+      switch (_context8.prev = _context8.next) {
+        case 0:
+          console.log('here we are');
+          _context8.next = 3;
+          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["takeLatest"])(_actions__WEBPACK_IMPORTED_MODULE_2__["TASK_STORE_FLAG"], storeTask);
+
+        case 3:
+        case "end":
+          return _context8.stop();
+      }
+    }
+  }, _marked8);
+}
 
 /***/ }),
 
@@ -103146,7 +103342,7 @@ function root() {
       switch (_context.prev = _context.next) {
         case 0:
           _context.next = 2;
-          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["all"])([Object(_modules_projects_sagas__WEBPACK_IMPORTED_MODULE_2__["watchIndex"])(), Object(_modules_projects_sagas__WEBPACK_IMPORTED_MODULE_2__["watchShow"])(), Object(_modules_projects_sagas__WEBPACK_IMPORTED_MODULE_2__["watchStore"])(), Object(_modules_authentication_sagas__WEBPACK_IMPORTED_MODULE_3__["watchRegistration"])(), Object(_modules_authentication_sagas__WEBPACK_IMPORTED_MODULE_3__["watchLogin"])(), Object(_modules_authentication_sagas__WEBPACK_IMPORTED_MODULE_3__["watchFetchUser"])()]);
+          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["all"])([Object(_modules_projects_sagas__WEBPACK_IMPORTED_MODULE_2__["watchIndex"])(), Object(_modules_projects_sagas__WEBPACK_IMPORTED_MODULE_2__["watchShow"])(), Object(_modules_projects_sagas__WEBPACK_IMPORTED_MODULE_2__["watchStore"])(), Object(_modules_authentication_sagas__WEBPACK_IMPORTED_MODULE_3__["watchRegistration"])(), Object(_modules_authentication_sagas__WEBPACK_IMPORTED_MODULE_3__["watchLogin"])(), Object(_modules_authentication_sagas__WEBPACK_IMPORTED_MODULE_3__["watchFetchUser"])(), Object(_modules_projects_sagas__WEBPACK_IMPORTED_MODULE_2__["watchTaskStore"])()]);
 
         case 2:
         case "end":
@@ -103214,10 +103410,10 @@ var _phrases__WEBPACK_IMPORTED_MODULE_0___namespace = /*#__PURE__*/__webpack_req
 /*!************************************************!*\
   !*** ./resources/lang/locales/ar/phrases.json ***!
   \************************************************/
-/*! exports provided: welcome, toggle_lang_btn, load_projects_btn, projects_title, submit_form_btn, description_input_placeholder, title_input_placeholder, min_error_msg, max_error_msg, required_field_error_msg, email_error_msg, name_input_placeholder, email_input_placeholder, password_input_placeholder, password_confirmation_input_placeholder, create_account_btn, login_btn, send_reset_password_link_btn, set_new_password_btn, logout, create_account, log_in, forget_password, email_label, password_label, password_confirmation_label, name_label, forget_password_feedback_msg, title_label, description_label, cancel_btn, projects, create_project, go_back_btn, tasks_label, general_notes_label, default */
+/*! exports provided: welcome, toggle_lang_btn, load_projects_btn, projects_title, submit_form_btn, description_input_placeholder, title_input_placeholder, min_error_msg, max_error_msg, required_field_error_msg, email_error_msg, name_input_placeholder, email_input_placeholder, password_input_placeholder, password_confirmation_input_placeholder, create_account_btn, login_btn, send_reset_password_link_btn, set_new_password_btn, logout, create_account, log_in, forget_password, email_label, password_label, password_confirmation_label, name_label, forget_password_feedback_msg, title_label, description_label, cancel_btn, projects, create_project, go_back_btn, tasks_label, general_notes_label, no_tasks_yet, task_body_input_placeholder, add_task_btn, default */
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"welcome\":\"مرحبًا\",\"toggle_lang_btn\":\"تغيير اللغه\",\"load_projects_btn\":\"تحميل\",\"projects_title\":\"مشروعاتك\",\"submit_form_btn\":\"اضافه\",\"description_input_placeholder\":\"وصف المشروع\",\"title_input_placeholder\":\"عنوان المشروع\",\"min_error_msg\":\"يجب ادخال 3 احرف على الاقل \",\"max_error_msg\":\"لقد تجاوزت الحد الاقصي من الاحرف المسموح بها\",\"required_field_error_msg\":\"يجب ملئ هذا الحقل\",\"email_error_msg\":\"هذا الايميل غير صالح \",\"name_input_placeholder\":\"الاسم\",\"email_input_placeholder\":\"البريد الاليكتروني\",\"password_input_placeholder\":\"كلمة المرور\",\"password_confirmation_input_placeholder\":\"اعد كتابة كلمة المرور\",\"create_account_btn\":\"تسجيل دخول\",\"login_btn\":\"تسجيل دخول\",\"send_reset_password_link_btn\":\"ارسل رابط اعادة تعيين كلمة السر\",\"set_new_password_btn\":\"تعيين كلمة سر جديده\",\"logout\":\"تسجيل خروج\",\"create_account\":\"انشاء حساب\",\"log_in\":\"تسجيل دخول\",\"forget_password\":\"نسيت كلمة المرور\",\"email_label\":\"البريد الاليكتروني\",\"password_label\":\"كلمة المرور\",\"password_confirmation_label\":\"تأكيد كلمة المرور\",\"name_label\":\"الاسم\",\"forget_password_feedback_msg\":\"تم ارسال رابط اعادة تعيين كلمة المرور\",\"title_label\":\"عنوان المشروع\",\"description_label\":\"وصف المشروع\",\"cancel_btn\":\"الغاء\",\"projects\":\"مشروعاتي\",\"create_project\":\"مشروع جديد\",\"go_back_btn\":\"رجوع\",\"tasks_label\":\"مهمات\",\"general_notes_label\":\"ملاحظات\"}");
+module.exports = JSON.parse("{\"welcome\":\"مرحبًا\",\"toggle_lang_btn\":\"تغيير اللغه\",\"load_projects_btn\":\"تحميل\",\"projects_title\":\"مشروعاتك\",\"submit_form_btn\":\"اضافه\",\"description_input_placeholder\":\"وصف المشروع\",\"title_input_placeholder\":\"عنوان المشروع\",\"min_error_msg\":\"يجب ادخال 3 احرف على الاقل \",\"max_error_msg\":\"لقد تجاوزت الحد الاقصي من الاحرف المسموح بها\",\"required_field_error_msg\":\"يجب ملئ هذا الحقل\",\"email_error_msg\":\"هذا الايميل غير صالح \",\"name_input_placeholder\":\"الاسم\",\"email_input_placeholder\":\"البريد الاليكتروني\",\"password_input_placeholder\":\"كلمة المرور\",\"password_confirmation_input_placeholder\":\"اعد كتابة كلمة المرور\",\"create_account_btn\":\"تسجيل دخول\",\"login_btn\":\"تسجيل دخول\",\"send_reset_password_link_btn\":\"ارسل رابط اعادة تعيين كلمة السر\",\"set_new_password_btn\":\"تعيين كلمة سر جديده\",\"logout\":\"تسجيل خروج\",\"create_account\":\"انشاء حساب\",\"log_in\":\"تسجيل دخول\",\"forget_password\":\"نسيت كلمة المرور\",\"email_label\":\"البريد الاليكتروني\",\"password_label\":\"كلمة المرور\",\"password_confirmation_label\":\"تأكيد كلمة المرور\",\"name_label\":\"الاسم\",\"forget_password_feedback_msg\":\"تم ارسال رابط اعادة تعيين كلمة المرور\",\"title_label\":\"عنوان المشروع\",\"description_label\":\"وصف المشروع\",\"cancel_btn\":\"الغاء\",\"projects\":\"مشروعاتي\",\"create_project\":\"مشروع جديد\",\"go_back_btn\":\"رجوع\",\"tasks_label\":\"مهمات\",\"general_notes_label\":\"ملاحظات\",\"no_tasks_yet\":\"لا توجد اي مهمات\",\"task_body_input_placeholder\":\"مهمه جديده\",\"add_task_btn\":\"اضافة مهمه\"}");
 
 /***/ }),
 
@@ -103243,10 +103439,10 @@ var _phrases__WEBPACK_IMPORTED_MODULE_0___namespace = /*#__PURE__*/__webpack_req
 /*!************************************************!*\
   !*** ./resources/lang/locales/en/phrases.json ***!
   \************************************************/
-/*! exports provided: welcome, toggle_lang_btn, load_projects_btn, submit_form_btn, description_input_placeholder, title_input_placeholder, min_error_msg, max_error_msg, required_field_error_msg, email_error_msg, name_input_placeholder, email_input_placeholder, password_input_placeholder, password_confirmation_input_placeholder, create_account_btn, login_btn, send_reset_password_link_btn, set_new_password_btn, logout, create_account, log_in, forget_password, email_label, password_label, password_confirmation_label, name_label, forget_password_feedback_msg, title_label, description_label, cancel_btn, projects, create_project, go_back_btn, tasks_label, general_notes_label, default */
+/*! exports provided: welcome, toggle_lang_btn, load_projects_btn, submit_form_btn, description_input_placeholder, title_input_placeholder, min_error_msg, max_error_msg, required_field_error_msg, email_error_msg, name_input_placeholder, email_input_placeholder, password_input_placeholder, password_confirmation_input_placeholder, create_account_btn, login_btn, send_reset_password_link_btn, set_new_password_btn, logout, create_account, log_in, forget_password, email_label, password_label, password_confirmation_label, name_label, forget_password_feedback_msg, title_label, description_label, cancel_btn, projects, create_project, go_back_btn, tasks_label, general_notes_label, no_tasks_yet, task_body_input_placeholder, add_task_btn, default */
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"welcome\":\"Welcome\",\"toggle_lang_btn\":\"Toggle Lang\",\"load_projects_btn\":\"Load Projects\",\"submit_form_btn\":\"Submit\",\"description_input_placeholder\":\"Description\",\"title_input_placeholder\":\"Title\",\"min_error_msg\":\"This field must contain 3 chars at least\",\"max_error_msg\":\"You have exceeded the max limited chars for this field\",\"required_field_error_msg\":\"This field is required\",\"email_error_msg\":\"Please add a valid email address\",\"name_input_placeholder\":\"Name\",\"email_input_placeholder\":\"Email address\",\"password_input_placeholder\":\"Password\",\"password_confirmation_input_placeholder\":\"Re-type password\",\"create_account_btn\":\"Create account\",\"login_btn\":\"Login\",\"send_reset_password_link_btn\":\"Send me a reset password link\",\"set_new_password_btn\":\"Set new password\",\"logout\":\"Log out\",\"create_account\":\"Create Account\",\"log_in\":\"Log In\",\"forget_password\":\"Forget Password\",\"email_label\":\"Email\",\"password_label\":\"Password\",\"password_confirmation_label\":\"Re-type password\",\"name_label\":\"Name\",\"forget_password_feedback_msg\":\"We have sent u a reset password link\",\"title_label\":\"Project Title\",\"description_label\":\"Project Description\",\"cancel_btn\":\"Cancel\",\"projects\":\"My Projects\",\"create_project\":\"Create Project\",\"go_back_btn\":\"Go Back\",\"tasks_label\":\"Tasks\",\"general_notes_label\":\"General Notes\"}");
+module.exports = JSON.parse("{\"welcome\":\"Welcome\",\"toggle_lang_btn\":\"Toggle Lang\",\"load_projects_btn\":\"Load Projects\",\"submit_form_btn\":\"Submit\",\"description_input_placeholder\":\"Description\",\"title_input_placeholder\":\"Title\",\"min_error_msg\":\"This field must contain 3 chars at least\",\"max_error_msg\":\"You have exceeded the max limited chars for this field\",\"required_field_error_msg\":\"This field is required\",\"email_error_msg\":\"Please add a valid email address\",\"name_input_placeholder\":\"Name\",\"email_input_placeholder\":\"Email address\",\"password_input_placeholder\":\"Password\",\"password_confirmation_input_placeholder\":\"Re-type password\",\"create_account_btn\":\"Create account\",\"login_btn\":\"Login\",\"send_reset_password_link_btn\":\"Send me a reset password link\",\"set_new_password_btn\":\"Set new password\",\"logout\":\"Log out\",\"create_account\":\"Create Account\",\"log_in\":\"Log In\",\"forget_password\":\"Forget Password\",\"email_label\":\"Email\",\"password_label\":\"Password\",\"password_confirmation_label\":\"Re-type password\",\"name_label\":\"Name\",\"forget_password_feedback_msg\":\"We have sent u a reset password link\",\"title_label\":\"Project Title\",\"description_label\":\"Project Description\",\"cancel_btn\":\"Cancel\",\"projects\":\"My Projects\",\"create_project\":\"Create Project\",\"go_back_btn\":\"Go Back\",\"tasks_label\":\"Tasks\",\"general_notes_label\":\"General Notes\",\"no_tasks_yet\":\"No Tasks Yet\",\"task_body_input_placeholder\":\"New Task\",\"add_task_btn\":\"Add Task\"}");
 
 /***/ }),
 

@@ -1,5 +1,5 @@
 import { all } from 'redux-saga/effects';
-import { watchIndex, watchShow, watchStore } from "./modules/projects/sagas"
+import { watchIndex, watchShow, watchStore, watchTaskStore } from "./modules/projects/sagas"
 import { watchRegistration, watchLogin, watchFetchUser } from './modules/authentication/sagas'
 
 export default function* root() {
@@ -9,7 +9,8 @@ export default function* root() {
         watchStore(),
         watchRegistration(),
         watchLogin(),
-        watchFetchUser()
+        watchFetchUser(),
+        watchTaskStore()
     ])
 
 }

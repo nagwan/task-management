@@ -1,5 +1,7 @@
 import axios from 'axios';
 
+export const getProject = (state) => state.projects.project
+
 
 export const toggleLang = (i18n) => {
     if (i18n.language === 'ar') {

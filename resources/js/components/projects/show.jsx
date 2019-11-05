@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { useTranslation } from "react-i18next";
+import Store from './tasks/store';
 
 
 const Show = connect(({ projects }) => ({ projects }))((props) => {
@@ -20,11 +21,14 @@ const Show = connect(({ projects }) => ({ projects }))((props) => {
                         {
                             data && data.length ? data.map(task =>
 
-                                <div className='card px-20' key={task.id}>
-                                    <span>{task.body}</span>
+                                <div className='card border-l-4 border-primary-900' key={task.id}>
+                                    <span className='px-20'>{task.body}</span>
                                 </div>
-                            ) : <div className='card'></div>
+
+                            ) : ''
                         }
+
+                        <Store/>
 
                     </div>
 
