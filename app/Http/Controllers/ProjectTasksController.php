@@ -21,6 +21,8 @@ class ProjectTasksController extends Controller
 
         $project->addTask(request('body'));
 
+        
+
         return response()->json(['data' => $project], 200);
     }
 }

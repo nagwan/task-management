@@ -40,6 +40,8 @@ export function* show(action) {
 
             const project = yield call(api, `/api/projects/${action.payload.id}`, null, 'get', JSON.parse(token))
 
+            console.log(project)
+
             yield put(projectShow(project.data.data))
 
             yield action.payload.history.push(`/projects/${project.data.data.id}`)

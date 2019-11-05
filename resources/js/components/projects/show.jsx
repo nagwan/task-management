@@ -6,6 +6,9 @@ import { useTranslation } from "react-i18next";
 
 const Show = connect(({ projects }) => ({ projects }))((props) => {
     const { t } = useTranslation();
+
+    const data = props.projects.project.tasks;
+
     return (
         <div className='w-full flex justify-between'>
             <div className='w-8/12'>
@@ -13,8 +16,16 @@ const Show = connect(({ projects }) => ({ projects }))((props) => {
 
                     {/* project`s tasks */}
                     <div className='w-8/12'>
-                        <p className='text-gray-500 text-lg mx-20 -mb-16'>{t('phrases:tasks_label')}</p>
-                        <div className='card'></div>
+                        <p className='text-gray-500 text-lg mx-24 -mb-16'>{t('phrases:tasks_label')}</p>
+                        {
+                            data && data.length ? data.map(task =>
+
+                                <div className='card px-20' key={task.id}>
+                                    <span>{task.body}</span>
+                                </div>
+                            ) : <div className='card'></div>
+                        }
+
                     </div>
 
                     {/* projects` card */}
@@ -29,7 +40,7 @@ const Show = connect(({ projects }) => ({ projects }))((props) => {
                 </div>
 
                 <div className='mt-80 w-8/12'>
-                    <p className='text-gray-500 text-lg mx-20 -mb-16'>{t('phrases:general_notes_label')}</p>
+                    <p className='text-gray-500 text-lg mx-24 -mb-16'>{t('phrases:general_notes_label')}</p>
                     <textarea className='card h-240 w-full px-12'></textarea>
                 </div>
             </div>

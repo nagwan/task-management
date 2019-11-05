@@ -31,7 +31,7 @@ class ProjectsController extends Controller
 
     public function show(Project $project)
     {
-       
+
         if (auth()->user()->isNot($project->owner)) {
             return response()->json([
                 'success' => false,
@@ -39,6 +39,8 @@ class ProjectsController extends Controller
             ], 403);
         }
 
-        return response()->json(['data' => $project]);
+        $data = Project::where('id', $project->id)->with('tasks')->first();
+
+        return response()->json(['data' => $data]);
     }
 }

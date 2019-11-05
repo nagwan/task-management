@@ -90223,7 +90223,7 @@ function warning(message) {
 /*!***************************************************************!*\
   !*** ./node_modules/react-router-dom/esm/react-router-dom.js ***!
   \***************************************************************/
-/*! exports provided: BrowserRouter, HashRouter, Link, NavLink, MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, __RouterContext, generatePath, matchPath, useHistory, useLocation, useParams, useRouteMatch, withRouter */
+/*! exports provided: MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, __RouterContext, generatePath, matchPath, useHistory, useLocation, useParams, useRouteMatch, withRouter, BrowserRouter, HashRouter, Link, NavLink */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -94204,7 +94204,7 @@ if (false) {} else {
 /*!***********************************************************************!*\
   !*** ./node_modules/redux-saga/dist/redux-saga-core-npm-proxy.esm.js ***!
   \***********************************************************************/
-/*! exports provided: default, CANCEL, SAGA_LOCATION, buffers, detach, END, channel, eventChannel, isEnd, multicastChannel, runSaga, stdChannel */
+/*! exports provided: CANCEL, SAGA_LOCATION, buffers, detach, END, channel, eventChannel, isEnd, multicastChannel, runSaga, stdChannel, default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -101998,6 +101998,7 @@ var Show = Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(function 
   var _useTranslation = Object(react_i18next__WEBPACK_IMPORTED_MODULE_3__["useTranslation"])(),
       t = _useTranslation.t;
 
+  var data = props.projects.project.tasks;
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "w-full flex justify-between"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -102007,8 +102008,13 @@ var Show = Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(function 
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "w-8/12"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-    className: "text-gray-500 text-lg mx-20 -mb-16"
-  }, t('phrases:tasks_label')), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "text-gray-500 text-lg mx-24 -mb-16"
+  }, t('phrases:tasks_label')), data && data.length ? data.map(function (task) {
+    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "card px-20",
+      key: task.id
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, task.body));
+  }) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "card"
   })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "w-4/12 h-240 card hover:shadow-lg"
@@ -102023,7 +102029,7 @@ var Show = Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(function 
   }, props.projects.project.description.substring(0, 100) + " ... ")))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "mt-80 w-8/12"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-    className: "text-gray-500 text-lg mx-20 -mb-16"
+    className: "text-gray-500 text-lg mx-24 -mb-16"
   }, t('phrases:general_notes_label')), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
     className: "card h-240 w-full px-12"
   }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -102994,7 +103000,7 @@ function show(action) {
           token = localStorage.getItem('token');
 
           if (!(token != null)) {
-            _context3.next = 12;
+            _context3.next = 13;
             break;
           }
 
@@ -103003,36 +103009,37 @@ function show(action) {
 
         case 5:
           project = _context3.sent;
-          _context3.next = 8;
+          console.log(project);
+          _context3.next = 9;
           return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["put"])(Object(_actions__WEBPACK_IMPORTED_MODULE_2__["projectShow"])(project.data.data));
 
-        case 8:
-          _context3.next = 10;
+        case 9:
+          _context3.next = 11;
           return action.payload.history.push("/projects/".concat(project.data.data.id));
 
-        case 10:
-          _context3.next = 14;
+        case 11:
+          _context3.next = 15;
           break;
 
-        case 12:
-          _context3.next = 14;
+        case 13:
+          _context3.next = 15;
           return action.payload.history.push("/login");
 
-        case 14:
-          _context3.next = 19;
+        case 15:
+          _context3.next = 20;
           break;
 
-        case 16:
-          _context3.prev = 16;
+        case 17:
+          _context3.prev = 17;
           _context3.t0 = _context3["catch"](0);
           console.log(_context3.t0);
 
-        case 19:
+        case 20:
         case "end":
           return _context3.stop();
       }
     }
-  }, _marked3, null, [[0, 16]]);
+  }, _marked3, null, [[0, 17]]);
 }
 function watchShow() {
   return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function watchShow$(_context4) {
