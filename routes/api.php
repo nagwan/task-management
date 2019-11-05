@@ -26,10 +26,10 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::post('/projects', 'ProjectsController@store');
 
     Route::get('/projects', 'ProjectsController@index');
-
+ 
     Route::post('/user', 'UsersController@fetch');
 
-    Route::get('/projects/{project}', 'ProjectsController@show');
+    Route::get('/projects/{project}', 'ProjectsController@show')->name('projects.show');
 
     Route::get('/home', 'HomeController@index')->name('home');
 

@@ -18,49 +18,45 @@ class ManageProjectsTest extends TestCase
 
         $attributes = factory('App\Project')->raw();
 
-        $this->post('/projects', $attributes)->assertRedirect('login');
+        $this->postJson('api/projects', $attributes)->assertStatus(401);
+
     }
 
-
     /** @test */
-
     public function guests_cannot_view_projects()
     {
 
-        //$attributes = factory('App\Project')->raw();
-
-        $this->get('/projects')->assertRedirect('login');
+        $this->getJson('api/projects')->assertStatus(401);
     }
 
     /** @test */
-
     public function guests_cannot_view_a_single_project()
     {
-
         $project = factory('App\Project')->create();
 
-        $this->get($project->path())->assertRedirect('login');
+        $this->getJson($project->path())->assertStatus(401);
     }
-
 
     /** @test */
 
     public function a_user_can_create_a_project()
     {
-        $this->withoutExceptionHandling();
+        //$this->withoutExceptionHandling();
 
-        $this->actingAs(factory('App\User')->create());
+        $user = factory('App\User')->create();
 
         $attributes = [
             'title' => $this->faker->sentence,
             'description' => $this->faker->paragraph
         ];
 
-        $this->post('/projects', $attributes);
+        $this->postJson('api/projects', $attributes , [
+            'authorization' => 'Bearer '. $user->api_token
+        ]);
 
         $this->assertDatabaseHas('projects', $attributes);
 
-        $this->get('/projects')->assertSee($attributes['title']);
+        $this->getJson('api/projects')->assertSee($attributes['title']);
     }
 
 
@@ -68,11 +64,13 @@ class ManageProjectsTest extends TestCase
 
     public function a_project_requires_a_title()
     {
-        $this->actingAs(factory('App\User')->create());
+        $user = factory('App\User')->create();
 
         $attributes = factory('App\Project')->raw(['title' => '']);
 
-        $this->post('/projects', $attributes)->assertSessionHasErrors('title');
+        $this->postJson('api/projects', $attributes, [
+            'authorization' => 'Bearer '. $user->api_token
+        ])->assertStatus(422);
     }
 
 
@@ -80,11 +78,13 @@ class ManageProjectsTest extends TestCase
 
     public function a_project_requires_a_description()
     {
-        $this->actingAs(factory('App\User')->create());
+        $user = factory('App\User')->create();
 
         $attributes = factory('App\Project')->raw(['description' => '']);
 
-        $this->post('/projects', $attributes)->assertSessionHasErrors('description');
+        $this->postJson('api/projects', $attributes, [
+            'authorization' => 'Bearer '. $user->api_token
+        ])->assertStatus(422);
     }
 
     /** @test */
@@ -93,11 +93,13 @@ class ManageProjectsTest extends TestCase
     {
         $this->withoutExceptionHandling();
 
-        $this->be(factory('App\User')->create());
+        $user = factory('App\User')->create();
 
-        $project = factory('App\Project')->create(['owner_id' => auth()->id()]);
+        $project = factory('App\Project')->create(['owner_id' => $user->id]);
 
-        $this->get($project->path())
+        $this->getJson($project->path(), [
+            'authorization' => 'Bearer '. $user->api_token
+        ])
             ->assertSee($project->title)
             ->assertSee($project->description);
     }
@@ -107,10 +109,13 @@ class ManageProjectsTest extends TestCase
     public function an_authenticated_user_cannot_see_the_projects_of_others()
     {
 
-        $this->be(factory('App\User')->create());
+        $user = factory('App\User')->create();
 
         $project = factory('App\Project')->create();
 
-        $this->get($project->path())->assertStatus(403);
+        $this->withoutExceptionHandling();
+        $this->getJson($project->path(), [
+            'authorization' => 'Bearer '. $user->api_token
+        ])->assertStatus(403);
     }
 }

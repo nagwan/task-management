@@ -14,17 +14,23 @@ class AuthTest extends TestCase
 
     public function a_user_can_create_an_account()
     {
-        $attributes = factory('App\User')->create();
+        $user = factory('App\User')->make(); 
 
-        $this->post('/register', $attributes);
+        $this->postJson('api/register', $user);
+
+        $this->assertDatabaseHas('users', $user);
     }
 
     /** @test */
 
     public function a_user_can_login()
     {
-        $attributes = factory('App\User')->create();
+        $user = factory('App\User')->create();
 
-        $this->post('/login', $attributes);
+        $this->postJson('api/login', $user, [
+            'authorization' => 'Bearer '. $user->api_token
+        ]);
+
+        $this->getJson('api/user')->assertStatus(200);
     }
 }

@@ -90223,7 +90223,7 @@ function warning(message) {
 /*!***************************************************************!*\
   !*** ./node_modules/react-router-dom/esm/react-router-dom.js ***!
   \***************************************************************/
-/*! exports provided: BrowserRouter, HashRouter, Link, NavLink, MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, __RouterContext, generatePath, matchPath, useHistory, useLocation, useParams, useRouteMatch, withRouter */
+/*! exports provided: MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, __RouterContext, generatePath, matchPath, useHistory, useLocation, useParams, useRouteMatch, withRouter, BrowserRouter, HashRouter, Link, NavLink */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -94204,7 +94204,7 @@ if (false) {} else {
 /*!***********************************************************************!*\
   !*** ./node_modules/redux-saga/dist/redux-saga-core-npm-proxy.esm.js ***!
   \***********************************************************************/
-/*! exports provided: default, CANCEL, SAGA_LOCATION, buffers, detach, END, channel, eventChannel, isEnd, multicastChannel, runSaga, stdChannel */
+/*! exports provided: CANCEL, SAGA_LOCATION, buffers, detach, END, channel, eventChannel, isEnd, multicastChannel, runSaga, stdChannel, default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -101326,6 +101326,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var formik__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! formik */ "./node_modules/formik/dist/formik.esm.js");
 /* harmony import */ var yup__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! yup */ "./node_modules/yup/lib/index.js");
 /* harmony import */ var yup__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(yup__WEBPACK_IMPORTED_MODULE_3__);
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 
 
@@ -101336,13 +101338,13 @@ var ForgetPassword = function ForgetPassword() {
       t = _useTranslation.t;
 
   var validationSchema = yup__WEBPACK_IMPORTED_MODULE_3__["object"]().shape({
-    password: yup__WEBPACK_IMPORTED_MODULE_3__["string"]().min(6, t('phrases:min_error_msg')).max(50, t('phrases:max_error_msg')).required(t('phrases:required_field_error_msg')),
-    password_confirmation: yup__WEBPACK_IMPORTED_MODULE_3__["string"]().min(6, t('phrases:min_error_msg')).max(50, t('phrases:max_error_msg')).required(t('phrases:required_field_error_msg'))
+    email: yup__WEBPACK_IMPORTED_MODULE_3__["string"]().email(t('phrases:email_error_msg')).required(t('phrases:required_field_error_msg'))
   });
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "FORGET PASSWORD COMPONENT"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_2__["Formik"], {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "w-4/12 m-auto"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_2__["Formik"], {
     initialValues: {
-      password: '',
-      password_confirmation: ''
+      email: ''
     },
     validationSchema: validationSchema,
     onSubmit: function onSubmit(values, _ref) {
@@ -101358,36 +101360,30 @@ var ForgetPassword = function ForgetPassword() {
         handleSubmit = _ref2.handleSubmit,
         isSubmitting = _ref2.isSubmitting;
     return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
+      className: "bg-white shadow-md rounded px-28 py-28"
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_2__["Form"], {
       onSubmit: handleSubmit
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "my-12 mx-12"
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_2__["Field"], {
-      className: touched.password && errors.password ? 'has-error form-control' : 'form-control',
-      placeholder: t('phrases:password_input_placeholder'),
-      type: "password",
-      name: "password"
-    }), touched.password && errors.password ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_2__["ErrorMessage"], {
-      name: "password",
+      className: "my-20 mx-12"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+      className: "px-4 block text-primary-700 text-sm font-bold mb-4",
+      htmlFor: "email"
+    }, t('phrases:email_label')), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_2__["Field"], {
+      className: 'shadow appearance-none border rounded w-full h-40 px-8 py-8 text-gray-700 leading-tight focus:outline-none focus:shadow-outline' + (touched.email && errors.email ? 'border-solid border-1 border-danger-500' : ''),
+      placeholder: t('phrases:email_input_placeholder'),
+      type: "email",
+      name: "email"
+    }), touched.email && errors.email ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_2__["ErrorMessage"], {
+      className: "px-8 py-8 text-danger-500 text-xs italic",
+      name: "email",
       component: "div"
     }) : null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "my-12 mx-12"
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_2__["Field"], {
-      className: touched.password_confirmation && errors.password_confirmation ? 'has-error form-control' : 'form-control',
-      placeholder: t('phrases:password_confirmation_input_placeholder'),
-      type: "password",
-      name: "password_confirmation"
-    }), touched.password_confirmation && errors.password_confirmation ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_2__["ErrorMessage"], {
-      name: "password_confirmation",
-      component: "div"
-    }) : null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "my-12 mx-12"
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-      className: "btn btn-primary",
+      className: "my-20 mx-12"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", _defineProperty({
+      className: 'w-full h-40 bg-primary-900 hover:bg-transparent text-white hover:text-primary-900 border border-transparent hover:border hover:border-primary-900 font-bold py-8 px-8 rounded rounded-8' + (isSubmitting || errors.email ? ' opacity-50 cursor-not-allowed' : ''),
       type: "submit",
-      disabled: isSubmitting
-    }, t('phrases:set_new_password_btn')))));
+      disabled: isSubmitting || errors.email
+    }, "type", "submit"), t('phrases:send_reset_password_link_btn')))));
   }));
 };
 
@@ -101422,6 +101418,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
 var Login = Object(react_redux__WEBPACK_IMPORTED_MODULE_3__["connect"])(null, function (dispatch) {
   return Object(redux__WEBPACK_IMPORTED_MODULE_6__["bindActionCreators"])({
     loginFlag: _store_modules_authentication_actions__WEBPACK_IMPORTED_MODULE_7__["loginFlag"]
@@ -101435,7 +101432,9 @@ var Login = Object(react_redux__WEBPACK_IMPORTED_MODULE_3__["connect"])(null, fu
     email: yup__WEBPACK_IMPORTED_MODULE_5__["string"]().email(t('phrases:email_error_msg')).required(t('phrases:required_field_error_msg')),
     password: yup__WEBPACK_IMPORTED_MODULE_5__["string"]().min(6, t('phrases:min_error_msg')).max(50, t('phrases:max_error_msg')).required(t('phrases:required_field_error_msg'))
   });
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "LOGIN COMPONENT"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_4__["Formik"], {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "w-4/12 m-auto"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_4__["Formik"], {
     initialValues: {
       email: '',
       password: ''
@@ -101457,36 +101456,47 @@ var Login = Object(react_redux__WEBPACK_IMPORTED_MODULE_3__["connect"])(null, fu
         handleSubmit = _ref2.handleSubmit,
         isSubmitting = _ref2.isSubmitting;
     return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
+      className: "bg-white shadow-md rounded px-28 py-28"
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_4__["Form"], {
       onSubmit: handleSubmit
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "my-12 mx-12"
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_4__["Field"], {
-      className: touched.email && errors.email ? 'has-error form-control' : 'form-control',
+      className: "my-20 mx-12"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+      className: "px-4 block text-primary-700 text-sm font-bold mb-4",
+      htmlFor: "email"
+    }, t('phrases:email_label')), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_4__["Field"], {
+      className: 'shadow appearance-none border rounded w-full h-40 px-8 py-8 text-gray-700 leading-tight focus:outline-none focus:shadow-outline' + (touched.email && errors.email ? 'border-solid border-1 border-danger-500' : ''),
       placeholder: t('phrases:email_input_placeholder'),
       type: "email",
       name: "email"
     }), touched.email && errors.email ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_4__["ErrorMessage"], {
+      className: "px-8 py-8 text-danger-500 text-xs italic",
       name: "email",
       component: "div"
     }) : null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "my-12 mx-12"
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_4__["Field"], {
-      className: touched.password && errors.password ? 'has-error form-control' : 'form-control',
+      className: "my-20 mx-12"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+      className: "px-4 block text-primary-700 text-sm font-bold mb-4",
+      htmlFor: "password"
+    }, t('phrases:password_label')), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_4__["Field"], {
+      className: 'shadow appearance-none border rounded w-full h-40 px-8 py-8 text-gray-700 leading-tight focus:outline-none focus:shadow-outline' + (touched.password && errors.password ? 'border-solid border-1 border-danger-500' : ''),
       placeholder: t('phrases:password_input_placeholder'),
       type: "password",
       name: "password"
     }), touched.password && errors.password ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_4__["ErrorMessage"], {
+      className: "px-8 py-8 text-danger-500 text-xs italic",
       name: "password",
       component: "div"
     }) : null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "my-12 mx-12"
+      className: "my-28 mx-12 flex items-center justify-between"
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-      className: "btn btn-primary",
+      className: 'bg-primary-900 hover:bg-transparent text-white hover:text-primary-900 border border-transparent hover:border hover:border-primary-900 font-bold py-8 px-8 rounded rounded-8' + (isSubmitting || errors.password || errors.email ? ' opacity-50 cursor-not-allowed' : ''),
       type: "submit",
-      disabled: isSubmitting
-    }, t('phrases:login_btn')))));
+      disabled: isSubmitting || errors.password || errors.email
+    }, t('phrases:login_btn')), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
+      to: "/forget-password",
+      className: "inline-block align-baseline font-bold text-sm text-primary-900 hover:underline"
+    }, t('phrases:forget_password')))));
   }));
 });
 /* harmony default export */ __webpack_exports__["default"] = (Login);
@@ -101512,6 +101522,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var yup__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(yup__WEBPACK_IMPORTED_MODULE_5__);
 /* harmony import */ var _store_modules_authentication_actions__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../store/modules/authentication/actions */ "./resources/js/store/modules/authentication/actions.js");
 /* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 
 
@@ -101535,7 +101547,9 @@ var Register = Object(react_redux__WEBPACK_IMPORTED_MODULE_3__["connect"])(null,
     password: yup__WEBPACK_IMPORTED_MODULE_5__["string"]().min(6, t('phrases:min_error_msg')).max(50, t('phrases:max_error_msg')).required(t('phrases:required_field_error_msg')),
     password_confirmation: yup__WEBPACK_IMPORTED_MODULE_5__["string"]().min(6, t('phrases:min_error_msg')).max(50, t('phrases:max_error_msg')).required(t('phrases:required_field_error_msg'))
   });
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "REGISTRATION COMPONENT"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_4__["Formik"], {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "w-4/12 m-auto"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_4__["Formik"], {
     initialValues: {
       name: '',
       email: '',
@@ -101560,57 +101574,73 @@ var Register = Object(react_redux__WEBPACK_IMPORTED_MODULE_3__["connect"])(null,
         handleSubmit = _ref2.handleSubmit,
         isSubmitting = _ref2.isSubmitting;
     return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
+      className: "bg-white shadow-md rounded px-28 py-28"
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_4__["Form"], {
       method: "post",
       onSubmit: handleSubmit
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "my-12 mx-12"
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_4__["Field"], {
-      className: touched.name && errors.name ? 'has-error' : '',
+      className: "my-20 mx-12"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+      className: "px-4 block text-primary-700 text-sm font-bold mb-4",
+      htmlFor: "name"
+    }, t('phrases:name_label')), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_4__["Field"], {
+      className: 'shadow appearance-none border rounded w-full h-40 px-8 py-8 text-gray-700 leading-tight focus:outline-none focus:shadow-outline' + (touched.name && errors.name ? 'border-solid border-1 border-danger-500' : ''),
       placeholder: t('phrases:name_input_placeholder'),
       type: "text",
       name: "name"
     }), touched.name && errors.name ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_4__["ErrorMessage"], {
+      className: "px-8 py-8 text-danger-500 text-xs italic",
       name: "name",
       component: "div"
     }) : null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "my-12 mx-12"
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_4__["Field"], {
-      className: touched.email && errors.email ? 'has-error form-control' : 'form-control',
+      className: "my-20 mx-12"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+      className: "px-4 block text-primary-700 text-sm font-bold mb-4",
+      htmlFor: "email"
+    }, t('phrases:email_label')), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_4__["Field"], {
+      className: 'shadow appearance-none border rounded w-full h-40 px-8 py-8 text-gray-700 leading-tight focus:outline-none focus:shadow-outline' + (touched.email && errors.email ? 'border-solid border-1 border-danger-500' : ''),
       placeholder: t('phrases:email_input_placeholder'),
       type: "email",
       name: "email"
     }), touched.email && errors.email ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_4__["ErrorMessage"], {
+      className: "px-8 py-8 text-danger-500 text-xs italic",
       name: "email",
       component: "div"
     }) : null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "my-12 mx-12"
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_4__["Field"], {
-      className: touched.password && errors.password ? 'has-error form-control' : 'form-control',
+      className: "my-20 mx-12"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+      className: "px-4 block text-primary-700 text-sm font-bold mb-4",
+      htmlFor: "password"
+    }, t('phrases:password_label')), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_4__["Field"], {
+      className: 'shadow appearance-none border rounded w-full h-40 px-8 py-8 text-gray-700 leading-tight focus:outline-none focus:shadow-outline' + (touched.password && errors.password ? 'border-solid border-1 border-danger-500' : ''),
       placeholder: t('phrases:password_input_placeholder'),
       type: "password",
       name: "password"
     }), touched.password && errors.password ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_4__["ErrorMessage"], {
+      className: "px-8 py-8 text-danger-500 text-xs italic",
       name: "password",
       component: "div"
     }) : null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "my-12 mx-12"
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_4__["Field"], {
-      className: touched.password_confirmation && errors.password_confirmation ? 'has-error form-control' : 'form-control',
+      className: "my-20 mx-12"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+      className: "px-4 block text-primary-700 text-sm font-bold mb-4",
+      htmlFor: "password_confirmation"
+    }, t('phrases:password_confirmation_label')), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_4__["Field"], {
+      className: 'shadow appearance-none border rounded w-full h-40 px-8 py-8 text-gray-700 leading-tight focus:outline-none focus:shadow-outline' + (touched.password_confirmation && errors.password_confirmation ? 'border-solid border-1 border-danger-500' : ''),
       placeholder: t('phrases:password_confirmation_input_placeholder'),
       type: "password",
       name: "password_confirmation"
     }), touched.password_confirmation && errors.password_confirmation ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_4__["ErrorMessage"], {
+      className: "px-8 py-8 text-danger-500 text-xs italic",
       name: "password_confirmation",
       component: "div"
     }) : null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "my-12 mx-12"
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-      className: "btn btn-primary",
+      className: "my-28 mx-12 flex justify-center"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", _defineProperty({
+      className: 'bg-primary-900 hover:bg-transparent text-white hover:text-primary-900 border border-transparent hover:border hover:border-primary-900 font-bold py-8 px-8 rounded rounded-8' + (isSubmitting || errors.name || errors.email || errors.password || errors.password_confirmation ? ' opacity-50 cursor-not-allowed' : ''),
       type: "submit",
-      disabled: isSubmitting
-    }, t('phrases:create_account_btn')))));
+      disabled: isSubmitting || errors.name || errors.password || errors.password_confirmation || errors.email
+    }, "type", "submit"), t('phrases:create_account_btn')))));
   }));
 });
 /* harmony default export */ __webpack_exports__["default"] = (Register);
@@ -101642,11 +101672,15 @@ var ResetPassword = function ResetPassword() {
       t = _useTranslation.t;
 
   var validationSchema = yup__WEBPACK_IMPORTED_MODULE_3__["object"]().shape({
-    email: yup__WEBPACK_IMPORTED_MODULE_3__["string"]().email(t('phrases:email_error_msg')).required(t('phrases:required_field_error_msg'))
+    password: yup__WEBPACK_IMPORTED_MODULE_3__["string"]().min(6, t('phrases:min_error_msg')).max(50, t('phrases:max_error_msg')).required(t('phrases:required_field_error_msg')),
+    password_confirmation: yup__WEBPACK_IMPORTED_MODULE_3__["string"]().min(6, t('phrases:min_error_msg')).max(50, t('phrases:max_error_msg')).required(t('phrases:required_field_error_msg'))
   });
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "RESET PASSWORD COMPONENT"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_2__["Formik"], {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "w-4/12 m-auto"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_2__["Formik"], {
     initialValues: {
-      email: ''
+      password: '',
+      password_confirmation: ''
     },
     validationSchema: validationSchema,
     onSubmit: function onSubmit(values, _ref) {
@@ -101662,26 +101696,44 @@ var ResetPassword = function ResetPassword() {
         handleSubmit = _ref2.handleSubmit,
         isSubmitting = _ref2.isSubmitting;
     return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
+      className: "bg-white shadow-md rounded px-28 py-28"
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_2__["Form"], {
       onSubmit: handleSubmit
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "my-12 mx-12"
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_2__["Field"], {
-      className: touched.email && errors.email ? 'has-error form-control' : 'form-control',
-      placeholder: t('phrases:email_input_placeholder'),
-      type: "email",
-      name: "email"
-    }), touched.email && errors.email ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_2__["ErrorMessage"], {
-      name: "email",
+      className: "my-20 mx-12"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+      className: "px-4 block text-primary-700 text-sm font-bold mb-4",
+      htmlFor: "password"
+    }, t('phrases:password_label')), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_2__["Field"], {
+      className: 'shadow appearance-none border rounded w-full h-40 px-8 py-8 text-gray-700 leading-tight focus:outline-none focus:shadow-outline' + (touched.password && errors.password ? 'border-solid border-1 border-danger-500' : ''),
+      placeholder: t('phrases:password_input_placeholder'),
+      type: "password",
+      name: "password"
+    }), touched.password && errors.password ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_2__["ErrorMessage"], {
+      className: "px-8 py-8 text-danger-500 text-xs italic",
+      name: "password",
       component: "div"
     }) : null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "my-12 mx-12"
+      className: "my-20 mx-12"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+      className: "px-4 block text-primary-700 text-sm font-bold mb-4",
+      htmlFor: "password_confirmation"
+    }, t('phrases:password_confirmation_label')), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_2__["Field"], {
+      className: 'shadow appearance-none border rounded w-full h-40 px-8 py-8 text-gray-700 leading-tight focus:outline-none focus:shadow-outline' + (touched.password_confirmation && errors.password_confirmation ? 'border-solid border-1 border-danger-500' : ''),
+      placeholder: t('phrases:password_confirmation_input_placeholder'),
+      type: "password",
+      name: "password_confirmation"
+    }), touched.password_confirmation && errors.password_confirmation ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_2__["ErrorMessage"], {
+      className: "px-8 py-8 text-danger-500 text-xs italic",
+      name: "password_confirmation",
+      component: "div"
+    }) : null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "my-28 mx-12 flex justify-center"
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-      className: "btn btn-primary",
+      className: 'bg-primary-900 hover:bg-transparent text-white hover:text-primary-900 border border-transparent hover:border hover:border-primary-900 font-bold py-8 px-8 rounded rounded-8' + (isSubmitting || errors.password || errors.password_confirmation ? ' opacity-50 cursor-not-allowed' : ''),
       type: "submit",
-      disabled: isSubmitting
-    }, t('phrases:send_reset_password_link_btn')))));
+      disabled: isSubmitting || errors.password || errors.password_confirmation
+    }, t('phrases:set_new_password_btn')))));
   }));
 };
 
@@ -101746,6 +101798,115 @@ var NotFound = function NotFound() {
 
 /***/ }),
 
+/***/ "./resources/js/components/pages/home.jsx":
+/*!************************************************!*\
+  !*** ./resources/js/components/pages/home.jsx ***!
+  \************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+
+var Home = function Home() {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "WELCOME HOME");
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Home);
+
+/***/ }),
+
+/***/ "./resources/js/components/partials/nav.jsx":
+/*!**************************************************!*\
+  !*** ./resources/js/components/partials/nav.jsx ***!
+  \**************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
+/* harmony import */ var react_i18next__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-i18next */ "./node_modules/react-i18next/dist/es/index.js");
+/* harmony import */ var _store_modules_authentication_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../store/modules/authentication/actions */ "./resources/js/store/modules/authentication/actions.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _helpers_functions__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../helpers/functions */ "./resources/js/helpers/functions.js");
+
+
+
+
+
+
+
+var Navbar = Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(function (_ref) {
+  var Authentication = _ref.Authentication;
+  return {
+    Authentication: Authentication
+  };
+}, function (dispatch) {
+  return Object(redux__WEBPACK_IMPORTED_MODULE_2__["bindActionCreators"])({
+    logOutFlag: _store_modules_authentication_actions__WEBPACK_IMPORTED_MODULE_4__["logOutFlag"]
+  }, dispatch);
+})(function (props) {
+  var _useTranslation = Object(react_i18next__WEBPACK_IMPORTED_MODULE_3__["useTranslation"])(),
+      t = _useTranslation.t,
+      i18n = _useTranslation.i18n;
+
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("nav", {
+    className: "bg-white shadow w-full mb-60"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "flex justify-between items-center py-8"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "logo text-white bg-primary-900 w-2/12 h-60 mx-20 text-center flex cursor-pointer justify-center items-center text-bold"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__["Link"], {
+    to: props.Authentication.is_auth ? '/' : '/projects'
+  }, "TASKY DO")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "border-info-900 border-solid w-3/12 h-60"
+  }, props.Authentication.user.id ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__["Link"], {
+    className: "",
+    to: "/me/".concat(props.Authentication.user.id)
+  }, props.Authentication.user.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: ""
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__["Link"], {
+    className: "block",
+    to: "/projects"
+  }, t('phrases:projects')), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__["Link"], {
+    className: "block",
+    to: "/new-project"
+  }, t('phrases:create_project')), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    onClick: function onClick() {
+      return Object(_helpers_functions__WEBPACK_IMPORTED_MODULE_6__["toggleLang"])(i18n);
+    },
+    className: "block font-bold text-sm text-primary-900 hover:underline"
+  }, t('phrases:toggle_lang_btn')), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__["Link"], {
+    className: "block",
+    to: ""
+  }, t('phrases:logout')))) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    className: "mx-20 bg-primary-900 hover:bg-transparent text-white hover:text-primary-900 border border-transparent hover:border hover:border-primary-900 font-bold py-12 px-12 rounded rounded-8"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__["Link"], {
+    to: "/registration",
+    className: ""
+  }, t('phrases:create_account'))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    className: "mx-20 bg-transparent hover:bg-primary-900 text-primary-900 font-semibold hover:text-white py-12 px-12 border border-primary-900 hover:border-transparent rounded radius-8"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__["Link"], {
+    to: "/login",
+    className: ""
+  }, t('phrases:log_in'))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    onClick: function onClick() {
+      return Object(_helpers_functions__WEBPACK_IMPORTED_MODULE_6__["toggleLang"])(i18n);
+    },
+    className: "inline-block align-baseline font-bold text-sm text-primary-900 hover:underline"
+  }, t('phrases:toggle_lang_btn'))))));
+});
+/* harmony default export */ __webpack_exports__["default"] = (Navbar);
+
+/***/ }),
+
 /***/ "./resources/js/components/projects/index.jsx":
 /*!****************************************************!*\
   !*** ./resources/js/components/projects/index.jsx ***!
@@ -101784,22 +101945,27 @@ var Index = Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(function
   var history = Object(react_router_dom__WEBPACK_IMPORTED_MODULE_4__["useHistory"])();
   var data = props.projects.projects;
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "container py-112 px-12"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, t('phrases:projects_title')), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
-    className: "list-disc"
+    className: "w-full flex flex-wrap justify-center"
   }, data.length ? data.map(function (project) {
-    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-      className: "cursor-pointer",
-      key: project.id
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       onClick: function onClick() {
         return props.projectShowFlag({
           id: project.id,
           history: history
         });
-      }
-    }, project.title));
-  }) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "No Projects Yet")));
+      },
+      className: "w-3/12 h-240 card hover:shadow-lg cursor-pointer",
+      key: project.id
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "w-full h-60 py-20 px-20 border-l-4 border-primary-900"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+      className: "text-primary-900 font-semibold font-harmattan"
+    }, project.title)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "w-full py-20 px-20"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+      className: "text-gray-700 font-medium font-tajawal-medium italic"
+    }, project.description.substring(0, 100) + " ... ")));
+  }) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "No Projects Yet"));
 });
 /* harmony default export */ __webpack_exports__["default"] = (Index);
 
@@ -101817,6 +101983,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var react_i18next__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-i18next */ "./node_modules/react-i18next/dist/es/index.js");
+
+
 
 
 var Show = Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(function (_ref) {
@@ -101825,7 +101995,42 @@ var Show = Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(function 
     projects: projects
   };
 })(function (props) {
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, props.projects.project.title), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, props.projects.project.description));
+  var _useTranslation = Object(react_i18next__WEBPACK_IMPORTED_MODULE_3__["useTranslation"])(),
+      t = _useTranslation.t;
+
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "w-full flex justify-between"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "w-8/12"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "w-full flex justify-between"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "w-8/12"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: "text-gray-500 text-lg mx-20 -mb-16"
+  }, t('phrases:tasks_label')), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "card"
+  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "w-4/12 h-240 card hover:shadow-lg"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "w-full h-60 py-20 px-20 border-l-4 border-primary-900"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: "text-primary-900 font-semibold font-harmattan"
+  }, props.projects.project.title)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "w-full py-20 px-20"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: "text-gray-700 font-medium font-tajawal-medium italic"
+  }, props.projects.project.description.substring(0, 100) + " ... ")))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "mt-80 w-8/12"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: "text-gray-500 text-lg mx-20 -mb-16"
+  }, t('phrases:general_notes_label')), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
+    className: "card h-240 w-full px-12"
+  }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "w-4/12"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
+    to: "/projects"
+  }, t('phrases:go_back_btn')));
 });
 /* harmony default export */ __webpack_exports__["default"] = (Show);
 
@@ -101850,6 +102055,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var formik__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! formik */ "./node_modules/formik/dist/formik.esm.js");
 /* harmony import */ var yup__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! yup */ "./node_modules/yup/lib/index.js");
 /* harmony import */ var yup__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(yup__WEBPACK_IMPORTED_MODULE_7__);
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
 
 
 
@@ -101869,10 +102077,12 @@ var Store = Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(null, fu
   var history = Object(react_router_dom__WEBPACK_IMPORTED_MODULE_4__["useHistory"])(); // Validation Schema
 
   var validationSchema = yup__WEBPACK_IMPORTED_MODULE_7__["object"]().shape({
-    title: yup__WEBPACK_IMPORTED_MODULE_7__["string"]().min(3, t('phrases:min_error_msg')).max(100, t('phrases:max_error_msg')).required(t('phrases:required_field_error_msg')),
-    description: yup__WEBPACK_IMPORTED_MODULE_7__["string"]().min(3, t('phrases:min_error_msg')).max(1000, t('phrases:max_error_msg')).required(t('phrases:required_field_error_msg'))
+    title: yup__WEBPACK_IMPORTED_MODULE_7__["string"]().min(3, t('phrases:min_error_msg')).max(50, t('phrases:max_error_msg')).required(t('phrases:required_field_error_msg')),
+    description: yup__WEBPACK_IMPORTED_MODULE_7__["string"]().min(5, t('phrases:min_error_msg')).max(250, t('phrases:max_error_msg')).required(t('phrases:required_field_error_msg'))
   });
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_6__["Formik"], {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "w-4/12 m-auto"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_6__["Formik"], {
     initialValues: {
       title: '',
       description: ''
@@ -101895,38 +102105,49 @@ var Store = Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(null, fu
         handleSubmit = _ref2.handleSubmit,
         isSubmitting = _ref2.isSubmitting;
     return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
+      className: "bg-white shadow-md rounded px-28 py-28"
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_6__["Form"], {
       onSubmit: handleSubmit
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "my-12 mx-12"
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_6__["Field"], {
-      className: touched.title && errors.title ? 'has-error' : '',
+      className: "my-20 mx-12"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+      className: "px-4 block text-primary-700 text-sm font-bold mb-4",
+      htmlFor: "title"
+    }, t('phrases:title_label')), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_6__["Field"], {
+      className: 'shadow appearance-none border rounded w-full h-40 px-8 py-8 text-gray-700 leading-tight focus:outline-none focus:shadow-outline' + (touched.title && errors.title ? 'border-solid border-1 border-danger-500' : ''),
       placeholder: t('phrases:title_input_placeholder'),
       type: "text",
       name: "title"
     }), touched.title && errors.title ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_6__["ErrorMessage"], {
+      className: "px-8 py-8 text-danger-500 text-xs italic",
       name: "title",
       component: "div"
     }) : null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "my-12 mx-12"
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_6__["Field"], {
-      className: touched.description && errors.description ? 'has-error form-control' : 'form-control',
+      className: "my-20 mx-12"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+      className: "px-4 block text-primary-700 text-sm font-bold mb-4",
+      htmlFor: "description"
+    }, t('phrases:description_label')), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_6__["Field"], {
+      className: 'shadow appearance-none border rounded w-full h-160 px-8 py-8 text-gray-700 leading-tight focus:outline-none focus:shadow-outline' + (touched.description && errors.description ? 'border-solid border-1 border-danger-500' : ''),
       placeholder: t('phrases:description_input_placeholder'),
       type: "text",
       component: "textarea",
       name: "description"
     }), touched.description && errors.description ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_6__["ErrorMessage"], {
+      className: "px-8 py-8 text-danger-500 text-xs italic",
       name: "description",
       component: "div"
     }) : null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "my-12 mx-12"
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-      className: "btn btn-primary",
+      className: "my-28 mx-12 flex justify-between items-center"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", _defineProperty({
+      className: 'bg-primary-900 hover:bg-transparent text-white hover:text-primary-900 border border-transparent hover:border hover:border-primary-900 font-bold py-8 px-8 rounded rounded-8' + (isSubmitting || errors.title || errors.description ? ' opacity-50 cursor-not-allowed' : ''),
       type: "submit",
-      disabled: isSubmitting
-    }, t('phrases:submit_form_btn')))));
-  });
+      disabled: isSubmitting || errors.title || errors.description
+    }, "type", "submit"), t('phrases:submit_form_btn')), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__["Link"], {
+      to: "/projects",
+      className: "inline-block align-baseline font-bold text-sm text-primary-900 hover:underline"
+    }, t('phrases:cancel_btn')))));
+  }));
 });
 /* harmony default export */ __webpack_exports__["default"] = (Store);
 
@@ -102006,8 +102227,10 @@ __webpack_require__.r(__webpack_exports__);
 var toggleLang = function toggleLang(i18n) {
   if (i18n.language === 'ar') {
     i18n.changeLanguage("en");
+    $("body").removeClass("ar");
   } else {
     i18n.changeLanguage("ar");
+    $("body").addClass("ar");
   }
 };
 var api = function api(url, data, method, token) {
@@ -102042,7 +102265,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _routes__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./routes */ "./resources/js/router/routes.js");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _components_pages_404__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../components/pages/404 */ "./resources/js/components/pages/404.jsx");
+/* harmony import */ var _components_partials_nav__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../components/partials/nav */ "./resources/js/components/partials/nav.jsx");
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+
 
 
 
@@ -102081,7 +102306,9 @@ var AuthRoutes = Object(react_redux__WEBPACK_IMPORTED_MODULE_3__["connect"])(fun
 });
 
 var ManiRouter = function ManiRouter() {
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["BrowserRouter"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Switch"], null, _routes__WEBPACK_IMPORTED_MODULE_2__["default"].map(function (route, index) {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["BrowserRouter"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_partials_nav__WEBPACK_IMPORTED_MODULE_5__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "container"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Switch"], null, _routes__WEBPACK_IMPORTED_MODULE_2__["default"].map(function (route, index) {
     return route["private"] ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(PrivateRoutes, _extends({
       key: index
     }, route)) : route.auth ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(AuthRoutes, _extends({
@@ -102094,7 +102321,7 @@ var ManiRouter = function ManiRouter() {
     });
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
     component: _components_pages_404__WEBPACK_IMPORTED_MODULE_4__["default"]
-  }))));
+  })))));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (ManiRouter);
@@ -102119,6 +102346,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_auth_forget_password__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../components/auth/forget-password */ "./resources/js/components/auth/forget-password.jsx");
 /* harmony import */ var _components_projects_update__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../components/projects/update */ "./resources/js/components/projects/update.jsx");
 /* harmony import */ var _components_user__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../components/user */ "./resources/js/components/user/index.jsx");
+/* harmony import */ var _components_pages_home__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../components/pages/home */ "./resources/js/components/pages/home.jsx");
+
 
 
 
@@ -102129,6 +102358,11 @@ __webpack_require__.r(__webpack_exports__);
 
 
 /* harmony default export */ __webpack_exports__["default"] = ([{
+  path: '/',
+  exact: true,
+  component: _components_pages_home__WEBPACK_IMPORTED_MODULE_9__["default"],
+  "private": false
+}, {
   path: '/projects',
   exact: true,
   component: _components_projects__WEBPACK_IMPORTED_MODULE_1__["default"],
@@ -102207,7 +102441,7 @@ sagaMiddleware.run(_root_saga__WEBPACK_IMPORTED_MODULE_2__["default"]);
 /*!**************************************************************!*\
   !*** ./resources/js/store/modules/authentication/actions.js ***!
   \**************************************************************/
-/*! exports provided: REGISTRATION_FLAG, IS_AUTHORIZED, AUTH_USER, LOGIN_FLAG, FETCH_USER_FLAG, registrationFlag, loginFlag, isAuthorized, fetchUserFlag, authUser */
+/*! exports provided: REGISTRATION_FLAG, IS_AUTHORIZED, AUTH_USER, LOGIN_FLAG, FETCH_USER_FLAG, LOG_OUT_FLAG, registrationFlag, loginFlag, isAuthorized, fetchUserFlag, authUser, logOutFlag */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -102217,16 +102451,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AUTH_USER", function() { return AUTH_USER; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LOGIN_FLAG", function() { return LOGIN_FLAG; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FETCH_USER_FLAG", function() { return FETCH_USER_FLAG; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LOG_OUT_FLAG", function() { return LOG_OUT_FLAG; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "registrationFlag", function() { return registrationFlag; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "loginFlag", function() { return loginFlag; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isAuthorized", function() { return isAuthorized; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchUserFlag", function() { return fetchUserFlag; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "authUser", function() { return authUser; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "logOutFlag", function() { return logOutFlag; });
 var REGISTRATION_FLAG = 'REGISTRATION_FLAG';
 var IS_AUTHORIZED = 'IS_AUTHORIZED';
 var AUTH_USER = 'AUTH_USER';
 var LOGIN_FLAG = 'LOGIN_FLAG';
 var FETCH_USER_FLAG = 'FETCH_USER_FLAG';
+var LOG_OUT_FLAG = 'LOG_OUT_FLAG';
 function registrationFlag(payload) {
   return {
     type: REGISTRATION_FLAG,
@@ -102254,6 +102491,12 @@ function fetchUserFlag(payload) {
 function authUser(payload) {
   return {
     type: AUTH_USER,
+    payload: payload
+  };
+}
+function logOutFlag(payload) {
+  return {
+    type: LOG_OUT_FLAG,
     payload: payload
   };
 }
@@ -102485,30 +102728,29 @@ function fetchUser(action) {
 
         case 3:
           response = _context5.sent;
-          console.log(response, 'fetch user response');
           localStorage.setItem('token', JSON.stringify(response.data.user.api_token));
-          _context5.next = 8;
+          _context5.next = 7;
           return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["put"])(Object(_actions__WEBPACK_IMPORTED_MODULE_2__["authUser"])(response.data.user));
 
-        case 8:
-          _context5.next = 10;
+        case 7:
+          _context5.next = 9;
           return action.payload.history.push("/me/".concat(response.data.user.id));
 
-        case 10:
-          _context5.next = 15;
+        case 9:
+          _context5.next = 14;
           break;
 
-        case 12:
-          _context5.prev = 12;
+        case 11:
+          _context5.prev = 11;
           _context5.t0 = _context5["catch"](0);
           console.log(_context5.t0);
 
-        case 15:
+        case 14:
         case "end":
           return _context5.stop();
       }
     }
-  }, _marked5, null, [[0, 12]]);
+  }, _marked5, null, [[0, 11]]);
 }
 function watchFetchUser() {
   return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function watchFetchUser$(_context6) {
@@ -102703,7 +102945,7 @@ function index(action) {
           }
 
           _context.next = 5;
-          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["call"])(_helpers_functions__WEBPACK_IMPORTED_MODULE_3__["api"], "api/projects", null, 'get', JSON.parse(token));
+          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["call"])(_helpers_functions__WEBPACK_IMPORTED_MODULE_3__["api"], "/api/projects", null, 'get', JSON.parse(token));
 
         case 5:
           projects = _context.sent;
@@ -102752,12 +102994,12 @@ function show(action) {
           token = localStorage.getItem('token');
 
           if (!(token != null)) {
-            _context3.next = 10;
+            _context3.next = 12;
             break;
           }
 
           _context3.next = 5;
-          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["call"])(_helpers_functions__WEBPACK_IMPORTED_MODULE_3__["api"], "api/projects/".concat(action.payload.id), null, 'get', JSON.parse(token));
+          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["call"])(_helpers_functions__WEBPACK_IMPORTED_MODULE_3__["api"], "/api/projects/".concat(action.payload.id), null, 'get', JSON.parse(token));
 
         case 5:
           project = _context3.sent;
@@ -102769,20 +103011,28 @@ function show(action) {
           return action.payload.history.push("/projects/".concat(project.data.data.id));
 
         case 10:
-          _context3.next = 15;
+          _context3.next = 14;
           break;
 
         case 12:
-          _context3.prev = 12;
+          _context3.next = 14;
+          return action.payload.history.push("/login");
+
+        case 14:
+          _context3.next = 19;
+          break;
+
+        case 16:
+          _context3.prev = 16;
           _context3.t0 = _context3["catch"](0);
           console.log(_context3.t0);
 
-        case 15:
+        case 19:
         case "end":
           return _context3.stop();
       }
     }
-  }, _marked3, null, [[0, 12]]);
+  }, _marked3, null, [[0, 16]]);
 }
 function watchShow() {
   return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function watchShow$(_context4) {
@@ -102815,7 +103065,7 @@ function store(action) {
           }
 
           _context5.next = 5;
-          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["call"])(_helpers_functions__WEBPACK_IMPORTED_MODULE_3__["api"], "api/projects", action.payload.values, 'POST', JSON.parse(token));
+          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["call"])(_helpers_functions__WEBPACK_IMPORTED_MODULE_3__["api"], "/api/projects", action.payload.values, 'POST', JSON.parse(token));
 
         case 5:
           project = _context5.sent;
@@ -102958,10 +103208,10 @@ var _phrases__WEBPACK_IMPORTED_MODULE_0___namespace = /*#__PURE__*/__webpack_req
 /*!************************************************!*\
   !*** ./resources/lang/locales/ar/phrases.json ***!
   \************************************************/
-/*! exports provided: welcome, toggle_lang_btn, load_projects_btn, projects_title, submit_form_btn, description_input_placeholder, title_input_placeholder, min_error_msg, max_error_msg, required_field_error_msg, email_error_msg, name_input_placeholder, email_input_placeholder, password_input_placeholder, password_confirmation_input_placeholder, create_account_btn, login_btn, send_reset_password_link_btn, set_new_password_btn, default */
+/*! exports provided: welcome, toggle_lang_btn, load_projects_btn, projects_title, submit_form_btn, description_input_placeholder, title_input_placeholder, min_error_msg, max_error_msg, required_field_error_msg, email_error_msg, name_input_placeholder, email_input_placeholder, password_input_placeholder, password_confirmation_input_placeholder, create_account_btn, login_btn, send_reset_password_link_btn, set_new_password_btn, logout, create_account, log_in, forget_password, email_label, password_label, password_confirmation_label, name_label, forget_password_feedback_msg, title_label, description_label, cancel_btn, projects, create_project, go_back_btn, tasks_label, general_notes_label, default */
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"welcome\":\"مرحبًا\",\"toggle_lang_btn\":\"تغيير اللغه\",\"load_projects_btn\":\"تحميل\",\"projects_title\":\"مشروعاتك\",\"submit_form_btn\":\"اضافه\",\"description_input_placeholder\":\"وصف المشروع\",\"title_input_placeholder\":\"عنوان المشروع\",\"min_error_msg\":\"يجب ادخال 3 احرف على الاقل \",\"max_error_msg\":\"لقد تجاوزت الحد الاقصي من الاحرف المسموح بها\",\"required_field_error_msg\":\"يجب ملئ هذا الحقل\",\"email_error_msg\":\"هذا الايميل غير صالح \",\"name_input_placeholder\":\"الاسم\",\"email_input_placeholder\":\"البريد الاليكتروني\",\"password_input_placeholder\":\"كلمة المرور\",\"password_confirmation_input_placeholder\":\"اعد كتابة كلمة المرور\",\"create_account_btn\":\"تسجيل دخول\",\"login_btn\":\"تسجيل دخول\",\"send_reset_password_link_btn\":\"ارسل رابط اعادة تعيين كلمة السر\",\"set_new_password_btn\":\"تعيين كلمة سر جديده\"}");
+module.exports = JSON.parse("{\"welcome\":\"مرحبًا\",\"toggle_lang_btn\":\"تغيير اللغه\",\"load_projects_btn\":\"تحميل\",\"projects_title\":\"مشروعاتك\",\"submit_form_btn\":\"اضافه\",\"description_input_placeholder\":\"وصف المشروع\",\"title_input_placeholder\":\"عنوان المشروع\",\"min_error_msg\":\"يجب ادخال 3 احرف على الاقل \",\"max_error_msg\":\"لقد تجاوزت الحد الاقصي من الاحرف المسموح بها\",\"required_field_error_msg\":\"يجب ملئ هذا الحقل\",\"email_error_msg\":\"هذا الايميل غير صالح \",\"name_input_placeholder\":\"الاسم\",\"email_input_placeholder\":\"البريد الاليكتروني\",\"password_input_placeholder\":\"كلمة المرور\",\"password_confirmation_input_placeholder\":\"اعد كتابة كلمة المرور\",\"create_account_btn\":\"تسجيل دخول\",\"login_btn\":\"تسجيل دخول\",\"send_reset_password_link_btn\":\"ارسل رابط اعادة تعيين كلمة السر\",\"set_new_password_btn\":\"تعيين كلمة سر جديده\",\"logout\":\"تسجيل خروج\",\"create_account\":\"انشاء حساب\",\"log_in\":\"تسجيل دخول\",\"forget_password\":\"نسيت كلمة المرور\",\"email_label\":\"البريد الاليكتروني\",\"password_label\":\"كلمة المرور\",\"password_confirmation_label\":\"تأكيد كلمة المرور\",\"name_label\":\"الاسم\",\"forget_password_feedback_msg\":\"تم ارسال رابط اعادة تعيين كلمة المرور\",\"title_label\":\"عنوان المشروع\",\"description_label\":\"وصف المشروع\",\"cancel_btn\":\"الغاء\",\"projects\":\"مشروعاتي\",\"create_project\":\"مشروع جديد\",\"go_back_btn\":\"رجوع\",\"tasks_label\":\"مهمات\",\"general_notes_label\":\"ملاحظات\"}");
 
 /***/ }),
 
@@ -102987,10 +103237,10 @@ var _phrases__WEBPACK_IMPORTED_MODULE_0___namespace = /*#__PURE__*/__webpack_req
 /*!************************************************!*\
   !*** ./resources/lang/locales/en/phrases.json ***!
   \************************************************/
-/*! exports provided: welcome, toggle_lang_btn, load_projects_btn, projects_title, submit_form_btn, description_input_placeholder, title_input_placeholder, min_error_msg, max_error_msg, required_field_error_msg, email_error_msg, name_input_placeholder, email_input_placeholder, password_input_placeholder, password_confirmation_input_placeholder, create_account_btn, login_btn, send_reset_password_link_btn, set_new_password_btn, default */
+/*! exports provided: welcome, toggle_lang_btn, load_projects_btn, submit_form_btn, description_input_placeholder, title_input_placeholder, min_error_msg, max_error_msg, required_field_error_msg, email_error_msg, name_input_placeholder, email_input_placeholder, password_input_placeholder, password_confirmation_input_placeholder, create_account_btn, login_btn, send_reset_password_link_btn, set_new_password_btn, logout, create_account, log_in, forget_password, email_label, password_label, password_confirmation_label, name_label, forget_password_feedback_msg, title_label, description_label, cancel_btn, projects, create_project, go_back_btn, tasks_label, general_notes_label, default */
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"welcome\":\"Welcome\",\"toggle_lang_btn\":\"Toggle Lang\",\"load_projects_btn\":\"Load Projects\",\"projects_title\":\"Herein your Projects\",\"submit_form_btn\":\"Submit\",\"description_input_placeholder\":\"Description\",\"title_input_placeholder\":\"Title\",\"min_error_msg\":\"This field must contain 3 chars at least\",\"max_error_msg\":\"You have exceeded the max limited chars for this field\",\"required_field_error_msg\":\"This field is required\",\"email_error_msg\":\"Please add a valid email address\",\"name_input_placeholder\":\"Name\",\"email_input_placeholder\":\"Email address\",\"password_input_placeholder\":\"Password\",\"password_confirmation_input_placeholder\":\"RE-type password\",\"create_account_btn\":\"Create account\",\"login_btn\":\"Login\",\"send_reset_password_link_btn\":\"Send me a reset password link\",\"set_new_password_btn\":\"Set new password\"}");
+module.exports = JSON.parse("{\"welcome\":\"Welcome\",\"toggle_lang_btn\":\"Toggle Lang\",\"load_projects_btn\":\"Load Projects\",\"submit_form_btn\":\"Submit\",\"description_input_placeholder\":\"Description\",\"title_input_placeholder\":\"Title\",\"min_error_msg\":\"This field must contain 3 chars at least\",\"max_error_msg\":\"You have exceeded the max limited chars for this field\",\"required_field_error_msg\":\"This field is required\",\"email_error_msg\":\"Please add a valid email address\",\"name_input_placeholder\":\"Name\",\"email_input_placeholder\":\"Email address\",\"password_input_placeholder\":\"Password\",\"password_confirmation_input_placeholder\":\"Re-type password\",\"create_account_btn\":\"Create account\",\"login_btn\":\"Login\",\"send_reset_password_link_btn\":\"Send me a reset password link\",\"set_new_password_btn\":\"Set new password\",\"logout\":\"Log out\",\"create_account\":\"Create Account\",\"log_in\":\"Log In\",\"forget_password\":\"Forget Password\",\"email_label\":\"Email\",\"password_label\":\"Password\",\"password_confirmation_label\":\"Re-type password\",\"name_label\":\"Name\",\"forget_password_feedback_msg\":\"We have sent u a reset password link\",\"title_label\":\"Project Title\",\"description_label\":\"Project Description\",\"cancel_btn\":\"Cancel\",\"projects\":\"My Projects\",\"create_project\":\"Create Project\",\"go_back_btn\":\"Go Back\",\"tasks_label\":\"Tasks\",\"general_notes_label\":\"General Notes\"}");
 
 /***/ }),
 

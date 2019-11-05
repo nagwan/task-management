@@ -63,8 +63,6 @@ export function* fetchUser(action) {
     try {
 
         const response = yield call(api, `api/user`, null, 'POST', action.payload.token)
-
-        console.log(response, 'fetch user response')
         
         localStorage.setItem('token', JSON.stringify(response.data.user.api_token))
 
