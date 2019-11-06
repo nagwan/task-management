@@ -102241,7 +102241,7 @@ var Task = Object(react_redux__WEBPACK_IMPORTED_MODULE_3__["connect"])(null, fun
       type: "checkbox",
       render: function render() {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
-          className: "checkbox-container mt-4 p-20"
+          className: "checkbox-container mt-8 p-20"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
           name: "completed",
           type: "checkbox",

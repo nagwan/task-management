@@ -25,7 +25,6 @@ export function* index(action) {
     }
 }
 
-
 export function* watchIndex() {
     yield takeLatest(PROJECTS_INDEX_FLAG, index)
 }
@@ -118,7 +117,6 @@ export function* storeTask(action) {
     }
 }
 
-
 export function* watchTaskStore() {
     yield takeLatest(TASK_STORE_FLAG, storeTask)
 }
@@ -127,7 +125,6 @@ export function* watchTaskStore() {
 /**
  * update task 
  */
-
 export function* updateTask(action) {
     try {
 

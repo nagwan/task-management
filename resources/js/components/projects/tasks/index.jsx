@@ -52,7 +52,7 @@ const Task = connect(null, dispatch => bindActionCreators({ updateTaskFlag }, di
                             <Field className='w-2/12' type="checkbox"
                                 render={() => {
                                     return (
-                                        <label className='checkbox-container mt-4 p-20'>
+                                        <label className='checkbox-container mt-8 p-20'>
                                             <input name="completed" type="checkbox" defaultChecked={props.task.completed} onChange={(e) => props.updateTaskFlag({ values: { body: props.task.body, completed: e.target.checked }, id: props.task.id })} />
                                             <span className="checkmark"></span>
                                         </label>
