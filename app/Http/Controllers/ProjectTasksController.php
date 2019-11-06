@@ -26,7 +26,7 @@ class ProjectTasksController extends Controller
 
         $project->addTask(request('body'));
 
-        $data = Project::where('id', $project->id)->with('tasks')->first();
+        $data = Task::where('project_id', $project->id)->get();;
 
         return response()->json(['data' => $data], 200);
     }
