@@ -90223,7 +90223,7 @@ function warning(message) {
 /*!***************************************************************!*\
   !*** ./node_modules/react-router-dom/esm/react-router-dom.js ***!
   \***************************************************************/
-/*! exports provided: BrowserRouter, HashRouter, Link, NavLink, MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, __RouterContext, generatePath, matchPath, useHistory, useLocation, useParams, useRouteMatch, withRouter */
+/*! exports provided: MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, __RouterContext, generatePath, matchPath, useHistory, useLocation, useParams, useRouteMatch, withRouter, BrowserRouter, HashRouter, Link, NavLink */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -94204,7 +94204,7 @@ if (false) {} else {
 /*!***********************************************************************!*\
   !*** ./node_modules/redux-saga/dist/redux-saga-core-npm-proxy.esm.js ***!
   \***********************************************************************/
-/*! exports provided: default, CANCEL, SAGA_LOCATION, buffers, detach, END, channel, eventChannel, isEnd, multicastChannel, runSaga, stdChannel */
+/*! exports provided: CANCEL, SAGA_LOCATION, buffers, detach, END, channel, eventChannel, isEnd, multicastChannel, runSaga, stdChannel, default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -101945,7 +101945,7 @@ var Index = Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(function
   var history = Object(react_router_dom__WEBPACK_IMPORTED_MODULE_4__["useHistory"])();
   var data = props.projects.projects;
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "w-full flex flex-wrap justify-center"
+    className: "w-full flex flex-wrap justify-around"
   }, data.length ? data.map(function (project) {
     return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       onClick: function onClick() {
@@ -101954,16 +101954,16 @@ var Index = Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(function
           history: history
         });
       },
-      className: "w-3/12 h-240 card hover:shadow-lg cursor-pointer",
+      className: "w-3/12 h-240 card py-20 hover:shadow-lg cursor-pointer",
       key: project.id
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "w-full h-60 py-20 px-20 border-l-4 border-primary-900"
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-      className: "text-primary-900 font-semibold font-harmattan"
-    }, project.title)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "text-primary-900 font-semibold "
+    }, project.title.substring(0, 25) + " ... ")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "w-full py-20 px-20"
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-      className: "text-gray-700 font-medium font-tajawal-medium italic"
+      className: "text-gray-700 font-medium  italic"
     }, project.description.substring(0, 100) + " ... ")));
   }) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "No Projects Yet"));
 });
@@ -102006,11 +102006,11 @@ var Show = Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(function 
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "w-full flex justify-between"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "w-8/12"
+    className: "w-10/12"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "w-full flex justify-between"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "w-8/12"
+    className: "w-7/12"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
     className: "text-gray-500 text-lg mx-24 -mb-16"
   }, t('phrases:tasks_label')), tasks && tasks.length ? tasks.map(function (task) {
@@ -102019,23 +102019,25 @@ var Show = Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(function 
       task: task
     });
   }) : '', react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_tasks_store__WEBPACK_IMPORTED_MODULE_4__["default"], null)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "w-4/12 h-240 card hover:shadow-lg"
+    className: "w-5/12"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "w-full h-60 py-20 px-20 border-l-4 border-primary-900"
+    className: "min-h-240 card py-20 hover:shadow-lg"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "w-full min-h-60 py-20 px-20 border-l-4 border-primary-900"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
     className: "text-primary-900 font-semibold"
   }, props.projects.project.title)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "w-full py-20 px-20"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
     className: "text-gray-700 font-medium italic"
-  }, props.projects.project.description.substring(0, 100) + " ... ")))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, props.projects.project.description))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "mt-80 w-8/12"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
     className: "text-gray-500 text-lg mx-24 -mb-16"
   }, t('phrases:general_notes_label')), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
-    className: "card h-240 w-full px-12"
+    className: "card h-240 py-20 w-full px-12"
   }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "w-4/12"
+    className: "w-2/12"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
     to: "/projects"
   }, t('phrases:go_back_btn')));
@@ -102179,8 +102181,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
 /* harmony import */ var react_i18next__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-i18next */ "./node_modules/react-i18next/dist/es/index.js");
 /* harmony import */ var _store_modules_projects_actions__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../store/modules/projects/actions */ "./resources/js/store/modules/projects/actions.js");
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 
 
 
@@ -102200,7 +102200,9 @@ var Task = Object(react_redux__WEBPACK_IMPORTED_MODULE_3__["connect"])(null, fun
     body: yup__WEBPACK_IMPORTED_MODULE_2__["string"]().min(3, t('phrases:min_error_msg')).max(50, t('phrases:max_error_msg')).required(t('phrases:required_field_error_msg'))
   });
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "card"
+    className: "card py-12"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: 'w-full px-12' + (props.task.completed ? ' border-l-4 border-gray-500' : ' border-l-4 border-primary-900')
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_1__["Formik"], {
     initialValues: {
       body: props.task.body,
@@ -102221,12 +102223,12 @@ var Task = Object(react_redux__WEBPACK_IMPORTED_MODULE_3__["connect"])(null, fun
     }
   }, function (_ref2) {
     var errors = _ref2.errors,
-        handleSubmit = _ref2.handleSubmit,
-        isSubmitting = _ref2.isSubmitting;
+        handleSubmit = _ref2.handleSubmit;
     return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_1__["Form"], {
+      className: "flex justify-between items-center h-40",
       onSubmit: handleSubmit
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_1__["Field"], {
-      className: 'shadow appearance-none border rounded w-full h-40 px-8 py-8 text-gray-700 leading-tight focus:outline-none focus:shadow-outline' + (errors.body ? 'border-solid border-1 border-danger-500' : ''),
+      className: 'w-10/12 h-full px-8 py-8 focus:outline-none focus:shadow-outline' + (errors.body ? ' border border-solid border-1 border-danger-500 font-normal text-danger-500' : '') + (props.task.completed ? ' line-through text-gray-500' : 'no-underline text-primary-900'),
       placeholder: t('phrases:task_body_input_placeholder'),
       type: "text",
       name: "body"
@@ -102235,17 +102237,30 @@ var Task = Object(react_redux__WEBPACK_IMPORTED_MODULE_3__["connect"])(null, fun
       name: "body",
       component: "div"
     }) : null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_1__["Field"], {
+      className: "w-2/12",
       type: "checkbox",
-      defaultChecked: props.task.completed,
-      name: "completed"
-    }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "my-28 mx-12 flex justify-between items-center"
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", _defineProperty({
-      className: 'bg-primary-900 hover:bg-transparent text-white hover:text-primary-900 border border-transparent hover:border hover:border-primary-900 font-bold py-8 px-8 rounded rounded-8' + (isSubmitting || errors.body ? ' opacity-50 cursor-not-allowed' : ''),
-      type: "submit",
-      disabled: isSubmitting || errors.body
-    }, "type", "submit"), t('phrases:update_task_btn'))));
-  }));
+      render: function render() {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+          className: "checkbox-container mt-4 p-20"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+          name: "completed",
+          type: "checkbox",
+          defaultChecked: props.task.completed,
+          onChange: function onChange(e) {
+            return props.updateTaskFlag({
+              values: {
+                body: props.task.body,
+                completed: e.target.checked
+              },
+              id: props.task.id
+            });
+          }
+        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+          className: "checkmark"
+        }));
+      }
+    }));
+  })));
 });
 /* harmony default export */ __webpack_exports__["default"] = (Task);
 
@@ -102269,8 +102284,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
 /* harmony import */ var react_i18next__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-i18next */ "./node_modules/react-i18next/dist/es/index.js");
 /* harmony import */ var _store_modules_projects_actions__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../store/modules/projects/actions */ "./resources/js/store/modules/projects/actions.js");
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 
 
 
@@ -102290,7 +102303,7 @@ var Store = Object(react_redux__WEBPACK_IMPORTED_MODULE_3__["connect"])(null, fu
     body: yup__WEBPACK_IMPORTED_MODULE_2__["string"]().min(3, t('phrases:min_error_msg')).max(50, t('phrases:max_error_msg')).required(t('phrases:required_field_error_msg'))
   });
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "card"
+    className: "card px-12 py-12"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_1__["Formik"], {
     initialValues: {
       body: ''
@@ -102308,12 +102321,11 @@ var Store = Object(react_redux__WEBPACK_IMPORTED_MODULE_3__["connect"])(null, fu
     }
   }, function (_ref2) {
     var errors = _ref2.errors,
-        handleSubmit = _ref2.handleSubmit,
-        isSubmitting = _ref2.isSubmitting;
+        handleSubmit = _ref2.handleSubmit;
     return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_1__["Form"], {
       onSubmit: handleSubmit
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_1__["Field"], {
-      className: 'shadow appearance-none border rounded w-full h-40 px-8 py-8 text-gray-700 leading-tight focus:outline-none focus:shadow-outline' + (errors.body ? 'border-solid border-1 border-danger-500' : ''),
+      className: 'shadow appearance-none border rounded w-full h-full px-8 py-8 text-gray-700 leading-tight focus:outline-none focus:shadow-outline' + (errors.body ? 'border-solid border-1 border-danger-500' : ''),
       placeholder: t('phrases:task_body_input_placeholder'),
       type: "text",
       name: "body"
@@ -102321,13 +102333,7 @@ var Store = Object(react_redux__WEBPACK_IMPORTED_MODULE_3__["connect"])(null, fu
       className: "px-8 py-8 text-danger-500 text-xs italic",
       name: "body",
       component: "div"
-    }) : null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "my-28 mx-12 flex justify-between items-center"
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", _defineProperty({
-      className: 'bg-primary-900 hover:bg-transparent text-white hover:text-primary-900 border border-transparent hover:border hover:border-primary-900 font-bold py-8 px-8 rounded rounded-8' + (isSubmitting || errors.body ? ' opacity-50 cursor-not-allowed' : ''),
-      type: "submit",
-      disabled: isSubmitting || errors.body
-    }, "type", "submit"), t('phrases:add_task_btn'))));
+    }) : null);
   }));
 });
 /* harmony default export */ __webpack_exports__["default"] = (Store);

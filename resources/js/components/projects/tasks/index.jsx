@@ -19,48 +19,53 @@ const Task = connect(null, dispatch => bindActionCreators({ updateTaskFlag }, di
             .required(t('phrases:required_field_error_msg')),
     })
 
-
     return (
-        <div className='card'>
-            <Formik initialValues={
-                {
-                    body: props.task.body,
-                    completed: props.task.completed
+        <div className='card py-12'>
+            <div className={'w-full px-12' + (props.task.completed ? ' border-l-4 border-gray-500' : ' border-l-4 border-primary-900')}>
+
+
+                <Formik initialValues={
+                    {
+                        body: props.task.body,
+                        completed: props.task.completed
+                    }
                 }
-            }
-                enableReinitialize
-                validationSchema={validationSchema}
-                onSubmit={(values, { setSubmitting, resetForm }) => {
-                    setSubmitting(true)
-                    props.updateTaskFlag({ values, id: props.task.id })
-                    resetForm()
-                    setSubmitting(false)
-                }
+                    enableReinitialize
+                    validationSchema={validationSchema}
+                    onSubmit={(values, { setSubmitting, resetForm }) => {
+                        setSubmitting(true)
+                        props.updateTaskFlag({ values, id: props.task.id })
+                        resetForm()
+                        setSubmitting(false)
+                    }
+                    }
 
-                }
+                >
+                    {({ errors, handleSubmit }) => (
+                        <Form className='flex justify-between items-center h-40' onSubmit={handleSubmit}>
 
-            >
-                {({ errors, handleSubmit, isSubmitting }) => (
-                    <Form onSubmit={handleSubmit}>
+                            <Field className={'w-10/12 h-full px-8 py-8 focus:outline-none focus:shadow-outline' + (errors.body ? ' border border-solid border-1 border-danger-500 font-normal text-danger-500' : '') + (props.task.completed ? ' line-through text-gray-500' : 'no-underline text-primary-900')}
+                                placeholder={t('phrases:task_body_input_placeholder')} type="text" name="body" />
 
-                        <Field className={'shadow appearance-none border rounded w-full h-40 px-8 py-8 text-gray-700 leading-tight focus:outline-none focus:shadow-outline' + (errors.body ? 'border-solid border-1 border-danger-500' : '')}
-                            placeholder={t('phrases:task_body_input_placeholder')} type="text" name="body" />
+                            {errors.body ? (<ErrorMessage className='px-8 py-8 text-danger-500 text-xs italic' name="body" component="div" />) : null}
 
-                        {errors.body ? (<ErrorMessage className='px-8 py-8 text-danger-500 text-xs italic' name="body" component="div" />) : null}
+                            <Field className='w-2/12' type="checkbox"
+                                render={() => {
+                                    return (
+                                        <label className='checkbox-container mt-4 p-20'>
+                                            <input name="completed" type="checkbox" defaultChecked={props.task.completed} onChange={(e) => props.updateTaskFlag({ values: { body: props.task.body, completed: e.target.checked }, id: props.task.id })} />
+                                            <span className="checkmark"></span>
+                                        </label>
+                                    );
+                                }}
+                            />
+                        </Form>
+                    )
+                    }
 
-                        <Field type="checkbox" defaultChecked={props.task.completed} name="completed" />
-
-                        <div className="my-28 mx-12 flex justify-between items-center">
-                            <button className={'bg-primary-900 hover:bg-transparent text-white hover:text-primary-900 border border-transparent hover:border hover:border-primary-900 font-bold py-8 px-8 rounded rounded-8' + (isSubmitting || errors.body ? ' opacity-50 cursor-not-allowed' : '')} type="submit" disabled={isSubmitting || errors.body} type="submit">
-                                {t('phrases:update_task_btn')}
-                            </button>
-                        </div>
-                    </Form>
-                )
-                }
-
-            </Formik >
-        </div>
+                </Formik >
+            </div>
+        </div >
 
     )
 })

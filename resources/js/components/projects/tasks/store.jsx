@@ -21,7 +21,7 @@ const Store = connect(null, dispatch => bindActionCreators({ taskStoreFlag }, di
 
 
     return (
-        <div className='card'>
+        <div className='card px-12 py-12'>
             <Formik initialValues={
                 {
                     body: '',
@@ -38,19 +38,11 @@ const Store = connect(null, dispatch => bindActionCreators({ taskStoreFlag }, di
                 }
 
             >
-                {({ errors, handleSubmit, isSubmitting }) => (
+                {({ errors, handleSubmit }) => (
                     <Form onSubmit={handleSubmit}>
-
-                        <Field className={'shadow appearance-none border rounded w-full h-40 px-8 py-8 text-gray-700 leading-tight focus:outline-none focus:shadow-outline' + (errors.body ? 'border-solid border-1 border-danger-500' : '')}
+                        <Field className={'shadow appearance-none border rounded w-full h-full px-8 py-8 text-gray-700 leading-tight focus:outline-none focus:shadow-outline' + (errors.body ? 'border-solid border-1 border-danger-500' : '')}
                             placeholder={t('phrases:task_body_input_placeholder')} type="text" name="body" />
-
                         {errors.body ? (<ErrorMessage className='px-8 py-8 text-danger-500 text-xs italic' name="body" component="div" />) : null}
-
-                        <div className="my-28 mx-12 flex justify-between items-center">
-                            <button className={'bg-primary-900 hover:bg-transparent text-white hover:text-primary-900 border border-transparent hover:border hover:border-primary-900 font-bold py-8 px-8 rounded rounded-8' + (isSubmitting || errors.body ? ' opacity-50 cursor-not-allowed' : '')} type="submit" disabled={isSubmitting || errors.body} type="submit">
-                                {t('phrases:add_task_btn')}
-                            </button>
-                        </div>
                     </Form>
                 )
                 }
