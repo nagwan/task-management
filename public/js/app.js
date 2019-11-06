@@ -101834,8 +101834,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
 /* harmony import */ var react_i18next__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-i18next */ "./node_modules/react-i18next/dist/es/index.js");
 /* harmony import */ var _store_modules_authentication_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../store/modules/authentication/actions */ "./resources/js/store/modules/authentication/actions.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
-/* harmony import */ var _helpers_functions__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../helpers/functions */ "./resources/js/helpers/functions.js");
+/* harmony import */ var _store_modules_projects_actions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../store/modules/projects/actions */ "./resources/js/store/modules/projects/actions.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _helpers_functions__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../helpers/functions */ "./resources/js/helpers/functions.js");
+
 
 
 
@@ -101850,7 +101852,8 @@ var Navbar = Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(functio
   };
 }, function (dispatch) {
   return Object(redux__WEBPACK_IMPORTED_MODULE_2__["bindActionCreators"])({
-    logOutFlag: _store_modules_authentication_actions__WEBPACK_IMPORTED_MODULE_4__["logOutFlag"]
+    logOutFlag: _store_modules_authentication_actions__WEBPACK_IMPORTED_MODULE_4__["logOutFlag"],
+    projectsIndexFlag: _store_modules_projects_actions__WEBPACK_IMPORTED_MODULE_5__["projectsIndexFlag"]
   }, dispatch);
 })(function (props) {
   var _useTranslation = Object(react_i18next__WEBPACK_IMPORTED_MODULE_3__["useTranslation"])(),
@@ -101863,42 +101866,43 @@ var Navbar = Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(functio
     className: "flex justify-between items-center py-8"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "logo text-white bg-primary-900 w-2/12 h-60 mx-20 text-center flex cursor-pointer justify-center items-center text-bold"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__["Link"], {
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_6__["Link"], {
     to: props.Authentication.is_auth ? '/' : '/projects'
   }, "TASKY DO")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "border-info-900 border-solid w-3/12 h-60"
-  }, props.Authentication.user.id ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__["Link"], {
+  }, props.Authentication.user.id ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_6__["Link"], {
     className: "",
     to: "/me/".concat(props.Authentication.user.id)
   }, props.Authentication.user.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: ""
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__["Link"], {
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_6__["Link"], {
+    onClick: props.projectsIndexFlag,
     className: "block",
     to: "/projects"
-  }, t('phrases:projects')), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__["Link"], {
+  }, t('phrases:projects')), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_6__["Link"], {
     className: "block",
     to: "/new-project"
   }, t('phrases:create_project')), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
     onClick: function onClick() {
-      return Object(_helpers_functions__WEBPACK_IMPORTED_MODULE_6__["toggleLang"])(i18n);
+      return Object(_helpers_functions__WEBPACK_IMPORTED_MODULE_7__["toggleLang"])(i18n);
     },
     className: "block font-bold text-sm text-primary-900 hover:underline"
-  }, t('phrases:toggle_lang_btn')), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__["Link"], {
+  }, t('phrases:toggle_lang_btn')), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_6__["Link"], {
     className: "block",
     to: ""
   }, t('phrases:logout')))) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
     className: "mx-20 bg-primary-900 hover:bg-transparent text-white hover:text-primary-900 border border-transparent hover:border hover:border-primary-900 font-bold py-12 px-12 rounded rounded-8"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__["Link"], {
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_6__["Link"], {
     to: "/registration",
     className: ""
   }, t('phrases:create_account'))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
     className: "mx-20 bg-transparent hover:bg-primary-900 text-primary-900 font-semibold hover:text-white py-12 px-12 border border-primary-900 hover:border-transparent rounded radius-8"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__["Link"], {
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_6__["Link"], {
     to: "/login",
     className: ""
   }, t('phrases:log_in'))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
     onClick: function onClick() {
-      return Object(_helpers_functions__WEBPACK_IMPORTED_MODULE_6__["toggleLang"])(i18n);
+      return Object(_helpers_functions__WEBPACK_IMPORTED_MODULE_7__["toggleLang"])(i18n);
     },
     className: "inline-block align-baseline font-bold text-sm text-primary-900 hover:underline"
   }, t('phrases:toggle_lang_btn'))))));
@@ -101959,11 +101963,11 @@ var Index = Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(function
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "w-full h-60 py-20 px-20 border-l-4 border-primary-900"
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-      className: "text-primary-900 font-semibold "
+      className: "text-primary-900 font-semibold"
     }, project.title.substring(0, 25) + " ... ")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "w-full py-20 px-20"
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-      className: "text-gray-700 font-medium  italic"
+      className: "text-gray-700 font-medium italic"
     }, project.description.substring(0, 100) + " ... ")));
   }) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "No Projects Yet"));
 });
@@ -102372,27 +102376,12 @@ var Update = function Update() {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
-/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
-/* harmony import */ var _store_modules_projects_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../store/modules/projects/actions */ "./resources/js/store/modules/projects/actions.js");
 
 
+var User = function User() {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "USER PROFILE"));
+};
 
-
-
-var User = Object(react_redux__WEBPACK_IMPORTED_MODULE_2__["connect"])(null, function (dispatch) {
-  return Object(redux__WEBPACK_IMPORTED_MODULE_3__["bindActionCreators"])({
-    projectsIndexFlag: _store_modules_projects_actions__WEBPACK_IMPORTED_MODULE_4__["projectsIndexFlag"]
-  }, dispatch);
-})(function (props) {
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "USER PROFILE"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-    to: "/new-project"
-  }, "New Project"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-    onClick: props.projectsIndexFlag,
-    to: "/projects"
-  }, "My Projects"));
-});
 /* harmony default export */ __webpack_exports__["default"] = (User);
 
 /***/ }),
@@ -102770,6 +102759,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! redux-saga/effects */ "./node_modules/redux-saga/dist/redux-saga-effects-npm-proxy.esm.js");
 /* harmony import */ var _actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./actions */ "./resources/js/store/modules/authentication/actions.js");
 /* harmony import */ var _helpers_functions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../helpers/functions */ "./resources/js/helpers/functions.js");
+/* harmony import */ var _projects_sagas__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../projects/sagas */ "./resources/js/store/modules/projects/sagas.js");
 
 
 var _marked =
@@ -102790,6 +102780,7 @@ _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(fetchUser
     _marked6 =
 /*#__PURE__*/
 _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(watchFetchUser);
+
 
 
 
@@ -102937,23 +102928,27 @@ function fetchUser(action) {
 
         case 7:
           _context5.next = 9;
-          return action.payload.history.push("/me/".concat(response.data.user.id));
+          return Object(_projects_sagas__WEBPACK_IMPORTED_MODULE_4__["index"])();
 
         case 9:
-          _context5.next = 14;
-          break;
+          _context5.next = 11;
+          return action.payload.history.push("/projects");
 
         case 11:
-          _context5.prev = 11;
+          _context5.next = 16;
+          break;
+
+        case 13:
+          _context5.prev = 13;
           _context5.t0 = _context5["catch"](0);
           console.log(_context5.t0);
 
-        case 14:
+        case 16:
         case "end":
           return _context5.stop();
       }
     }
-  }, _marked5, null, [[0, 11]]);
+  }, _marked5, null, [[0, 13]]);
 }
 function watchFetchUser() {
   return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function watchFetchUser$(_context6) {

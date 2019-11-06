@@ -23,7 +23,6 @@ const Task = connect(null, dispatch => bindActionCreators({ updateTaskFlag }, di
         <div className='card py-12'>
             <div className={'w-full px-12' + (props.task.completed ? ' border-l-4 border-gray-500' : ' border-l-4 border-primary-900')}>
 
-
                 <Formik initialValues={
                     {
                         body: props.task.body,

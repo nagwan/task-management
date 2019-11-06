@@ -17179,7 +17179,7 @@ video {
 
 .ar .border-l-4 {
   border-left: none !important;
-  border-right: 4px solid #403886 !important;
+  border-right-width: 4px !important;
 }
 
 .card {
@@ -17218,6 +17218,7 @@ video {
   height: 30px;
   width: 30px;
   background-color: #eee;
+  border-radius: 5px;
 }
 
 .checkbox-container:hover input ~ .checkmark {

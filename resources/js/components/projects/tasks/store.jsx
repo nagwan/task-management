@@ -16,7 +16,7 @@ const Store = connect(null, dispatch => bindActionCreators({ taskStoreFlag }, di
             .string()
             .min(3, t('phrases:min_error_msg'))
             .max(50, t('phrases:max_error_msg'))
-            .required(t('phrases:required_field_error_msg')),
+            .required(t('phrases:required_field_error_msg'))
     })
 
 
