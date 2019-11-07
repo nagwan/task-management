@@ -15,7 +15,7 @@ const Navbar = connect(({ Authentication }) => ({ Authentication }), dispatch =>
             <div className='flex justify-between items-center py-8'>
 
                 <div className='logo text-white bg-primary-900 w-2/12 h-60 mx-20 text-center flex cursor-pointer justify-center items-center text-bold'>
-                    <Link to={props.Authentication.is_auth ? '/' : '/projects'}>TASKY DO</Link>
+                    <Link to={props.Authentication.is_auth ? '/' : '/projects'}>Logo</Link>
                 </div>
 
                 <div className='border-info-900 border-solid w-3/12 h-60'>

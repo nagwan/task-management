@@ -101868,7 +101868,7 @@ var Navbar = Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(functio
     className: "logo text-white bg-primary-900 w-2/12 h-60 mx-20 text-center flex cursor-pointer justify-center items-center text-bold"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_6__["Link"], {
     to: props.Authentication.is_auth ? '/' : '/projects'
-  }, "TASKY DO")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, "Logo")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "border-info-900 border-solid w-3/12 h-60"
   }, props.Authentication.user.id ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_6__["Link"], {
     className: "",

@@ -47,7 +47,7 @@ const Store = connect(null, dispatch => bindActionCreators({ taskStoreFlag }, di
                 )
                 }
 
-            </Formik >
+            </Formik>
         </div>
 
     )
