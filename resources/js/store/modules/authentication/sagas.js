@@ -1,7 +1,7 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
 import { REGISTRATION_FLAG, isAuthorized, authUser, LOGIN_FLAG, fetchUserFlag, FETCH_USER_FLAG } from './actions'
 import { api } from '../../../helpers/functions'
-
+import { index } from '../projects/sagas'
 
 export function* register(action) {
 
@@ -20,7 +20,7 @@ export function* register(action) {
 
     } catch (error) {
 
-        console.log(error, 'catch error') 
+        console.log(error, 'catch error')
     }
 }
 
@@ -53,7 +53,7 @@ export function* login(action) {
 }
 
 export function* watchLogin() {
-    
+
     yield takeLatest(LOGIN_FLAG, login)
 }
 
@@ -63,12 +63,14 @@ export function* fetchUser(action) {
     try {
 
         const response = yield call(api, `api/user`, null, 'POST', action.payload.token)
-        
+
         localStorage.setItem('token', JSON.stringify(response.data.user.api_token))
 
         yield put(authUser(response.data.user))
 
-        yield action.payload.history.push(`/me/${response.data.user.id}`)
+        yield index();
+
+        yield action.payload.history.push(`/projects`)
 
     } catch (error) {
 

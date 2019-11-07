@@ -13,17 +13,17 @@ const Index = connect(({ projects }) => ({ projects }),
         let data = props.projects.projects
 
         return (
-            <div className='w-full flex flex-wrap justify-center'>
+            <div className='w-full flex flex-wrap justify-around'>
 
                 {
                     data.length ?
                         data.map(project =>
-                            <div onClick={() => props.projectShowFlag({ id: project.id, history: history })} className='w-3/12 h-240 card hover:shadow-lg cursor-pointer' key={project.id}>
+                            <div onClick={() => props.projectShowFlag({ id: project.id, history: history })} className='w-3/12 h-240 card py-20 hover:shadow-lg cursor-pointer' key={project.id}>
                                 <div className='w-full h-60 py-20 px-20 border-l-4 border-primary-900'>
-                                    <p className='text-primary-900 font-semibold font-harmattan'>{project.title}</p>
+                                    <p className='text-primary-900 font-semibold'>{project.title.substring(0, 25) + " ... "}</p>
                                 </div>
                                 <div className='w-full py-20 px-20'>
-                                    <p className='text-gray-700 font-medium font-tajawal-medium italic'>{project.description.substring(0, 100) + " ... "}</p>
+                                    <p className='text-gray-700 font-medium italic'>{project.description.substring(0, 100) + " ... "}</p>
                                 </div>
                             </div>
                         ) :

@@ -3,18 +3,19 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { useTranslation } from "react-i18next";
 import { logOutFlag } from '../../store/modules/authentication/actions'
+import { projectsIndexFlag} from "../../store/modules/projects/actions";
 import { Link } from 'react-router-dom';
 import { toggleLang } from "../../helpers/functions"
 
 
-const Navbar = connect(({ Authentication }) => ({ Authentication }), dispatch => bindActionCreators({ logOutFlag }, dispatch))((props) => {
+const Navbar = connect(({ Authentication }) => ({ Authentication }), dispatch => bindActionCreators({ logOutFlag, projectsIndexFlag }, dispatch))((props) => {
     const { t, i18n } = useTranslation();
     return (
         <nav className='bg-white shadow w-full mb-60'>
             <div className='flex justify-between items-center py-8'>
 
                 <div className='logo text-white bg-primary-900 w-2/12 h-60 mx-20 text-center flex cursor-pointer justify-center items-center text-bold'>
-                    <Link to={props.Authentication.is_auth ? '/' : '/projects'}>TASKY DO</Link>
+                    <Link to={props.Authentication.is_auth ? '/' : '/projects'}>Logo</Link>
                 </div>
 
                 <div className='border-info-900 border-solid w-3/12 h-60'>
@@ -26,7 +27,7 @@ const Navbar = connect(({ Authentication }) => ({ Authentication }), dispatch =>
                                 </Link>
 
                                 <div className="">
-                                    <Link className='block' to='/projects'>{t('phrases:projects')}</Link>
+                                    <Link onClick={props.projectsIndexFlag} className='block' to='/projects'>{t('phrases:projects')}</Link>
                                     <Link className='block' to='/new-project'>{t('phrases:create_project')}</Link>
                                     <button onClick={() => toggleLang(i18n)} className="block font-bold text-sm text-primary-900 hover:underline">{t('phrases:toggle_lang_btn')}</button>
                                     <Link className='block' to=''>{t('phrases:logout')}</Link>

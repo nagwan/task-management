@@ -34,5 +34,9 @@
     "create_project": "مشروع جديد",
     "go_back_btn": "رجوع",
     "tasks_label": "مهمات",
-    "general_notes_label": "ملاحظات"
+    "general_notes_label": "ملاحظات",
+    "no_tasks_yet": "لا توجد اي مهمات",
+    "task_body_input_placeholder": "مهمه جديده",
+    "add_task_btn": "اضافة مهمه",
+    "update_task_btn": "تعديل"
 }

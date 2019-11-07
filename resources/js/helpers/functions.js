@@ -1,6 +1,5 @@
 import axios from 'axios';
 
-
 export const toggleLang = (i18n) => {
     if (i18n.language === 'ar') {
         i18n.changeLanguage("en")
