@@ -29,7 +29,7 @@ Route::group(['middleware' => 'auth:api'], function () {
  
     Route::post('/user', 'UsersController@fetch');
 
-    Route::patch('/projects/{project}/tasks/{task}', 'ProjectTasksController@update');
+    Route::post('/projects/{project}/tasks/{task}', 'ProjectTasksController@update');
 
     Route::post('/projects/{project}/tasks', 'ProjectTasksController@store');
 

@@ -33,8 +33,8 @@ class ProjectTasksController extends Controller
 
     public function update(Project $project, Task $task)
     {
- 
-        if (auth()->user()->isNot($task->$project->owner)) {
+
+        if (auth()->user()->isNot($task->project->owner)) {
             return response()->json([
                 'success' => false,
                 'message' =>  'unauthorized'

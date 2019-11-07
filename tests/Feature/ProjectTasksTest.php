@@ -72,7 +72,7 @@ class ProjectTasksTest extends TestCase
 
         $task = $project->addTask('test task');
 
-        $this->patchJson($task->path(), ['body' => 'changed', 'completed' => true], [
+        $this->postJson($task->path(), ['body' => 'changed', 'completed' => true], [
             'authorization' => 'Bearer ' . $user->api_token
         ]);
 
