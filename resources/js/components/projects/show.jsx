@@ -42,11 +42,6 @@ const Show = connect(({ projects }) => ({ projects }))((props) => {
                         </div>
                     </div>
                 </div>
-
-                <div className='mt-80 w-8/12'>
-                    <p className='text-gray-500 text-lg mx-24 -mb-16'>{t('phrases:general_notes_label')}</p>
-                    <textarea className='card h-240 py-20 w-full px-12'></textarea>
-                </div>
             </div>
 
             {/* recent project`s updates */}

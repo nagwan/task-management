@@ -37,5 +37,6 @@
     "no_tasks_yet": "No Tasks Yet",
     "task_body_input_placeholder": "New Task",
     "add_task_btn": "Add Task",
-    "update_task_btn": "Update"
+    "update_task_btn": "Update",
+    "general_notes_placeholder": "Write the project`s rules"
 }

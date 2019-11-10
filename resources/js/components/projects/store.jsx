@@ -54,6 +54,7 @@ const Store = connect(null, dispatch => bindActionCreators({ projectStoreFlag },
                 {({ errors, touched, handleSubmit, isSubmitting }) => (
                     <div className="bg-white shadow-md rounded px-28 py-28">
                         <Form onSubmit={handleSubmit}>
+
                             <div className="my-20 mx-12">
                                 <label className="px-4 block text-primary-700 text-sm font-bold mb-4" htmlFor="title">
                                     {t('phrases:title_label')}
@@ -62,7 +63,6 @@ const Store = connect(null, dispatch => bindActionCreators({ projectStoreFlag },
                                     placeholder={t('phrases:title_input_placeholder')} type="text" name="title" />
 
                                 {touched.title && errors.title ? (<ErrorMessage className='px-8 py-8 text-danger-500 text-xs italic' name="title" component="div" />) : null}
-
                             </div>
 
                             <div className="my-20 mx-12">
@@ -72,7 +72,6 @@ const Store = connect(null, dispatch => bindActionCreators({ projectStoreFlag },
                                 <Field className={'shadow appearance-none border rounded w-full h-160 px-8 py-8 text-gray-700 leading-tight focus:outline-none focus:shadow-outline' + (touched.description && errors.description ? 'border-solid border-1 border-danger-500' : '')}
                                     placeholder={t('phrases:description_input_placeholder')} type="text" component="textarea" name="description" />
                                 {touched.description && errors.description ? (<ErrorMessage className='px-8 py-8 text-danger-500 text-xs italic' name="description" component="div" />) : null}
-
                             </div>
 
 

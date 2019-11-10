@@ -33,6 +33,8 @@ Route::group(['middleware' => 'auth:api'], function () {
 
     Route::post('/projects/{project}/tasks', 'ProjectTasksController@store');
 
+    Route::post('/projects/{project}', 'ProjectsController@update');
+
     Route::get('/projects/{project}', 'ProjectsController@show')->name('projects.show');
 
     Route::get('/home', 'HomeController@index')->name('home');

@@ -11,7 +11,7 @@ import { toggleLang } from "../../helpers/functions"
 const Navbar = connect(({ Authentication }) => ({ Authentication }), dispatch => bindActionCreators({ logOutFlag, projectsIndexFlag }, dispatch))((props) => {
     const { t, i18n } = useTranslation();
     return (
-        <nav className='bg-white shadow w-full mb-60'>
+        <nav className='bg-white shadow w-full'>
             <div className='flex justify-between items-center py-8'>
 
                 <div className='logo text-white bg-primary-900 w-2/12 h-60 mx-20 text-center flex cursor-pointer justify-center items-center text-bold'>
