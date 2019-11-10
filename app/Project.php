@@ -10,7 +10,6 @@ class Project extends Model
 
     public function path()
     {
-        //return "api/projects/{$this->id}";
     
         return  route('projects.show' , ['project' => $this->id]);
     }

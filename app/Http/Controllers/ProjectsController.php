@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Project;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class ProjectsController extends Controller
 {
@@ -17,6 +18,7 @@ class ProjectsController extends Controller
 
     public function store()
     {
+
         $project = request()->validate([
             'title' => 'required|min:3|max:50',
             'description' => 'required|min:5|max:250',
@@ -32,15 +34,48 @@ class ProjectsController extends Controller
     public function show(Project $project)
     {
 
-        if (auth()->user()->isNot($project->owner)) {
+        $access = Gate::inspect('manage', $project);
+
+        if ($access->allowed()) {
+
+            $data = Project::where('id', $project->id)->with('tasks')->first();
+
+            return response()->json(['data' => $data]);
+            
+        } else {
+
             return response()->json([
                 'success' => false,
                 'message' =>  'unauthorized'
             ], 403);
         }
+    }
 
-        $data = Project::where('id', $project->id)->with('tasks')->first();
+    public function update(Project $project)
+    {
+        $access = Gate::inspect('manage', $project);
 
-        return response()->json(['data' => $data]);
+        if ($access->allowed()) {
+
+            request()->validate([
+                'title' => 'required|min:3|max:50',
+                'description' => 'required|min:5|max:250',
+            ]);
+
+            $project->update([
+                'title' => request('title'),
+                'description' => request('description')
+            ]);
+
+            $data = Project::where('id', $project->id)->with('tasks')->first();
+
+            return response()->json(['data' => $data]);
+        } else {
+
+            return response()->json([
+                'success' => false,
+                'message' =>  'unauthorized'
+            ], 403);
+        }
     }
 }
