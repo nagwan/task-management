@@ -5,7 +5,6 @@ import Store from "../components/projects/store";
 import Login from "../components/auth/login";
 import ResetPassword from "../components/auth/reset-password";
 import ForgetPassword from "../components/auth/forget-password";
-import Update from "../components/projects/update";
 import User from "../components/user";
 import Home from "../components/pages/home";
 
@@ -35,7 +34,7 @@ export default [
     },
     {
         path: '/edit-project/:id',
-        component: Update,
+        component: Store,
         private: true
     },
     {

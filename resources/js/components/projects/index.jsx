@@ -24,12 +24,11 @@ const Index = connect(({ projects }) => ({ projects }),
                                 </div>
                                 <div className='w-full py-20 px-20'>
                                     <p className='text-gray-700 font-medium italic'>{project.description.substring(0, 100) + " ... "}</p>
-                                </div>
+                                </div> 
                             </div>
                         ) :
                         <p>No Projects Yet</p>
                 }
-
 
             </div>
 

@@ -50,8 +50,7 @@ const Register = connect(null, dispatch => bindActionCreators({ registrationFlag
                 validationSchema={validationSchema}
                 onSubmit={(values, { setSubmitting, resetForm }) => {
                     setSubmitting(true)
-                    props.registrationFlag({ data: values, history })
-                    //console.log(values)
+                    props.registrationFlag({ values, history })
                     setSubmitting(false)
                     // dispatch an action to reset the form
                 }
