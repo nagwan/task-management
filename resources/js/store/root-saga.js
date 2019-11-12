@@ -6,8 +6,7 @@ export default function* root() {
     yield all([
         watchIndex(),
         watchFetchProject(),
-        // watchShow(),
-        // watchStore(),
+        watchStore(),
         watchRegistration(),
         watchLogin(),
         watchFetchUser(),

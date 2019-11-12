@@ -27,8 +27,8 @@ const ProjectForm = (({project, submit}) => {
         <div className='w-4/12 m-auto'>
             <Formik initialValues={
                 {
-                    title: project.title ? project.title : '',
-                    description: project.description ? project.description : ''
+                    title: project && project.title ? project.title : '',
+                    description: project && project.description ? project.description : ''
                 }
             }
                 validationSchema={validationSchema}

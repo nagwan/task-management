@@ -1,7 +1,7 @@
 import Register from "../components/auth/register";
 import Index from "../components/projects/index/index";
 import Show from "../components/projects/show/index";
-//import Store from "../components/projects/store";
+import Store from "../components/projects/store/index";
 import Update from "../components/projects/update/index"
 import Login from "../components/auth/login";
 import ResetPassword from "../components/auth/reset-password";
@@ -27,11 +27,11 @@ export default [
         component: Show,
         private: true,
     },
-    // {
-    //     path: '/new-project',
-    //     component: Store,
-    //     private: true
-    // },
+    {
+        path: '/new-project',
+        component: Store,
+        private: true
+    },
     {
         path: '/edit-project/:id',
         component: Update,

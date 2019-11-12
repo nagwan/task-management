@@ -4,17 +4,23 @@ import { bindActionCreators } from 'redux';
 import { useTranslation } from "react-i18next";
 import { useHistory } from "react-router-dom";
 
-import { projectStoreFlag } from '../../store/modules/projects/actions'
+import { projectStoreFlag, projectUpdateFlag, projectFetchFlag } from '../../store/modules/projects/actions'
 import { ErrorMessage, Field, Form, Formik } from "formik"
 import * as Yup from "yup"
 
 import { Link } from 'react-router-dom';
+import { useParams} from "react-router";
 
 
-const Store = connect(null, dispatch => bindActionCreators({ projectStoreFlag }, dispatch))((props) => {
+const Store = connect(({ projects }) => ({ projects }), dispatch => bindActionCreators({ projectStoreFlag, projectUpdateFlag, projectFetchFlag }, dispatch))((props) => {
 
     const { t } = useTranslation();
+
     const history = useHistory();
+
+    let { id } = useParams();
+
+    id ? props.projectFetchFlag({id}): false
 
     // Validation Schema
 
@@ -36,14 +42,20 @@ const Store = connect(null, dispatch => bindActionCreators({ projectStoreFlag },
         <div className='w-4/12 m-auto'>
             <Formik initialValues={
                 {
-                    title: '',
-                    description: ''
+                    title: props.projects.project.title ? props.projects.project.title : '',
+                    description: props.projects.project.description ? props.projects.project.description : ''
                 }
             }
                 validationSchema={validationSchema}
                 onSubmit={(values, { setSubmitting, resetForm }) => {
                     setSubmitting(true)
-                    props.projectStoreFlag({ values, history })
+                    if (props.projects.project.id) {
+                        props.projectUpdateFlag({ values, id: props.projects.project.id, history })
+                    } else {
+                        props.projectStoreFlag({ values, history })
+
+                    }
+
                     resetForm()
                     setSubmitting(false)
                 }

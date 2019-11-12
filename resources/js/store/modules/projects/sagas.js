@@ -63,46 +63,7 @@ export function* watchFetchProject() {
     yield takeLatest(actions.ACTIVE_PROJECT_FETCH_FLAG, fetch)
 }
 
-
-// view a project
-
-// export function* show(action) {
-
-//     try {
-
-//         if (localStorage.getItem('user') != null) {
-
-//             let user = JSON.parse(localStorage.getItem('user'))
-
-//             let token = user.api_token
-
-//             const project = yield call(api, `/api/projects/${action.payload.id}`, null, 'get', token)
-
-//             yield put(projectShow(project.data.data))
-
-//             yield action.payload.history.push(`/projects/${project.data.data.id}`)
-
-//         } else {
-
-//             yield action.payload.history.push(`/login`)
-//         }
-
-
-//     } catch (error) {
-
-//         console.log(error)
-//     }
-// }
-
-// export function* watchShow() {
-
-//     yield takeLatest(PROJECT_SHOW_FLAG, show)
-// }
-
-
-
 // update project 
-
 export function* update(action) {
 
     try {
@@ -130,38 +91,38 @@ export function* update(action) {
 }
 
 export function* watchUpdate() {
-
     yield takeLatest(actions.PROJECT_UPDATE_FLAG, update)
 }
 
 
 // add new project 
-// export function* store(action) {
+export function* store(action) {
 
-//     try {
-//         if (localStorage.getItem('user') != null) {
+    try {
+        if (localStorage.getItem('user') != null) {
 
-//             let user = JSON.parse(localStorage.getItem('user'))
+            let user = JSON.parse(localStorage.getItem('user'))
 
-//             let token = user.api_token
+            const project = yield call(api, '/api/projects', action.payload.values, 'POST', user.api_token)
 
-//             const project = yield call(api, '/api/projects', action.payload.values, 'POST', token)
+            yield put(actions.projectStore(project.data.data))
 
-//             yield put(projectStore(project.data.data))
+            yield action.payload.history.push('/projects')
 
-//             yield action.payload.history.push('/projects')
-//         }
+        } else {
 
-//     } catch (error) {
+            yield action.payload.history.push(`/login`)
+        }
 
-//         console.log(error)
-//     }
-// }
+    } catch (error) {
 
-// export function* watchStore() {
+        console.log(error)
+    }
+}
 
-//     yield takeLatest(PROJECT_STORE_FLAG, store)
-// }
+export function* watchStore() {
+    yield takeLatest(actions.PROJECT_STORE_FLAG, store)
+}
 
 
 /**
