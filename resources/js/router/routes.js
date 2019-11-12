@@ -1,13 +1,13 @@
 import Register from "../components/auth/register";
 import Index from "../components/projects/index/index";
-import Show from "../components/projects/show";
-import Store from "../components/projects/store";
+import Show from "../components/projects/show/index";
+//import Store from "../components/projects/store";
+import Update from "../components/projects/update/index"
 import Login from "../components/auth/login";
 import ResetPassword from "../components/auth/reset-password";
 import ForgetPassword from "../components/auth/forget-password";
 import User from "../components/user";
 import Home from "../components/pages/home";
-import { projectFetchFlag } from "../store/modules/projects/actions";
 
 export default [
     {
@@ -27,14 +27,14 @@ export default [
         component: Show,
         private: true,
     },
-    {
-        path: '/new-project',
-        component: Store,
-        private: true
-    },
+    // {
+    //     path: '/new-project',
+    //     component: Store,
+    //     private: true
+    // },
     {
         path: '/edit-project/:id',
-        component: Store,
+        component: Update,
         private: true,
     },
     {
