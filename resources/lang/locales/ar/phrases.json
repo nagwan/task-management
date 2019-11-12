@@ -39,5 +39,6 @@
     "task_body_input_placeholder": "مهمه جديده",
     "add_task_btn": "اضافة مهمه",
     "update_task_btn": "تعديل",
-    "general_notes_placeholder": "قواعد العمل على هذا المشروع"
+    "general_notes_placeholder": "قواعد العمل على هذا المشروع",
+    "no_projects_yet": "لا توجد اي مشروعات"
 }

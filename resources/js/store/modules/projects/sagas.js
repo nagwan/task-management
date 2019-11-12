@@ -1,20 +1,18 @@
 import { call, put, takeLatest, select } from 'redux-saga/effects';
 import { PROJECTS_INDEX_FLAG, projectsIndex, projectShow, PROJECT_SHOW_FLAG, PROJECT_STORE_FLAG, projectStore, TASK_STORE_FLAG, updateProjectTasks, TASK_UPDATE_FLAG, PROJECT_UPDATE_FLAG, PROJECT_FETCH_FLAG } from './actions'
 import { api } from '../../../helpers/functions'
-import { getProject } from '../../../helpers/selectors'
+import { getProject, getAllProjects } from '../../../helpers/selectors'
 
 // fetch all projects
 export function* index(action) {
 
     try {
 
-        let user = localStorage.getItem('user')
+        if (localStorage.getItem('user') != null) {
 
-        if (user != null) {
+            let user = JSON.parse(localStorage.getItem('user'))
 
-            let user_obj = JSON.parse(user)
-            
-            let token = user_obj.api_token
+            let token = user.api_token
 
             const projects = yield call(api, `/api/projects`, null, 'get', token)
 
@@ -30,7 +28,14 @@ export function* index(action) {
 }
 
 export function* watchIndex() {
-    yield takeLatest(PROJECTS_INDEX_FLAG, index)
+
+    const projects = yield select(getAllProjects);
+
+    if (projects.length) {
+        return false
+    } else {
+        yield takeLatest(PROJECTS_INDEX_FLAG, index)
+    }
 }
 
 // view a project
@@ -38,11 +43,13 @@ export function* show(action) {
 
     try {
 
-        let token = localStorage.getItem('token')
+        if (localStorage.getItem('user') != null) {
 
-        if (token != null) {
+            let user = JSON.parse(localStorage.getItem('user'))
 
-            const project = yield call(api, `/api/projects/${action.payload.id}`, null, 'get', JSON.parse(token))
+            let token = user.api_token
+
+            const project = yield call(api, `/api/projects/${action.payload.id}`, null, 'get', token)
 
             yield put(projectShow(project.data.data))
 
@@ -70,11 +77,13 @@ export function* update(action) {
 
     try {
 
-        let token = localStorage.getItem('token')
+        if (localStorage.getItem('user') != null) {
 
-        if (token != null) {
+            let user = JSON.parse(localStorage.getItem('user'))
 
-            const project = yield call(api, `/api/projects/${action.payload.id}`, action.payload.values, 'post', JSON.parse(token))
+            let token = user.api_token
+
+            const project = yield call(api, `/api/projects/${action.payload.id}`, action.payload.values, 'POST', token)
 
             yield put(projectShow(project.data.data))
 
@@ -103,15 +112,19 @@ export function* watchUpdate() {
 export function* fetch(action) {
     try {
 
-        let token = localStorage.getItem('token')
+        if (localStorage.getItem('user') != null) {
 
-        if (token != null) {
+            let user = JSON.parse(localStorage.getItem('user'))
 
-            const project = yield call(api, `/api/projects/${action.payload.id}`, null, 'get', JSON.parse(token))
+            let token = user.api_token
+
+            const project = yield call(api, `/api/projects/${action.payload.id}`, null, 'get', token)
 
             yield put(projectShow(project.data.data))
 
-            yield action.payload.history.push(`/edit-project/${project.data.data.id}`)
+            if (action.payload.history) {
+                yield action.payload.history.push(`/edit-project/${project.data.data.id}`)
+            }
 
         } else {
 
@@ -126,7 +139,7 @@ export function* fetch(action) {
 
 }
 
-export function* watchFetch() {
+export function* watchFetchProject() {
     yield takeLatest(PROJECT_FETCH_FLAG, fetch)
 }
 
@@ -135,11 +148,13 @@ export function* watchFetch() {
 export function* store(action) {
 
     try {
-        let token = localStorage.getItem('token')
+        if (localStorage.getItem('user') != null) {
 
-        if (token != null) {
+            let user = JSON.parse(localStorage.getItem('user'))
 
-            const project = yield call(api, `/api/projects`, action.payload.values, 'POST', JSON.parse(token))
+            let token = user.api_token
+
+            const project = yield call(api, '/api/projects', action.payload.values, 'POST', token)
 
             yield put(projectStore(project.data.data))
 
