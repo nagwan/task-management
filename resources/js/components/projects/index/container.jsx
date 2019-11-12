@@ -2,13 +2,15 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import View from './view';
 import { bindActionCreators } from 'redux';
+import { withRouter } from 'react-router-dom'
 
 import { projectsIndexFlag } from '../../../store/modules/projects/actions'
 
 class Container extends Component {
 
     componentDidMount() {
-        this.props.projectsIndexFlag()
+        const { history } = this.props;
+        this.props.projectsIndexFlag({history})
     }
 
     render() {
@@ -18,5 +20,5 @@ class Container extends Component {
 
 }
 
-export default connect(({ projects }) => ({ projects }),
-    dispatch => bindActionCreators({ projectsIndexFlag }, dispatch))(Container)
+export default withRouter(connect(({ projects }) => ({ projects }),
+    dispatch => bindActionCreators({ projectsIndexFlag }, dispatch))(Container))

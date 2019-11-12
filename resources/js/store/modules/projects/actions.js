@@ -1,10 +1,11 @@
 export const PROJECTS_INDEX_FLAG = 'PROJECTS_INDEX_FLAG'
 export const PROJECTS_INDEX = 'PROJECTS_INDEX'
 export const PROJECT_SHOW_FLAG = 'PROJECT_SHOW_FLAG'
-export const PROJECT_SHOW = 'PROJECT_SHOW'
+export const ACTIVE_PROJECT = 'ACTIVE_PROJECT'
 export const PROJECT_STORE_FLAG = 'PROJECT_STORE_FLAG'
 export const PROJECT_STORE = 'PROJECT_STORE'
-
+export const PROJECT_UPDATE_FLAG = 'PROJECT_UPDATE_FLAG'
+export const ACTIVE_PROJECT_FETCH_FLAG = 'ACTIVE_PROJECT_FETCH_FLAG'
 
 
 export function projectsIndexFlag(payload) {
@@ -19,8 +20,8 @@ export function projectShowFlag(payload) {
     return { type: PROJECT_SHOW_FLAG, payload: payload }
 }
 
-export function projectShow(payload) {
-    return { type: PROJECT_SHOW, payload: payload }
+export function activeProject(payload) {
+    return { type: ACTIVE_PROJECT, payload: payload }
 }
 
 export function projectStoreFlag(payload) {
@@ -29,6 +30,14 @@ export function projectStoreFlag(payload) {
 
 export function projectStore(payload) {
     return { type: PROJECT_STORE, payload }
+}
+
+export function projectUpdateFlag(payload) {
+    return { type: PROJECT_UPDATE_FLAG, payload }
+}
+
+export function activeProjectFetchFlag(payload){
+    return {type: ACTIVE_PROJECT_FETCH_FLAG, payload}
 }
 
 
@@ -54,6 +63,6 @@ export function updateProjectTasks(payload) {
     return { type: UPDATE_PROJECT_TASKS, payload }
 }
 
-export function updateTaskFlag(payload){
-    return {type:TASK_UPDATE_FLAG, payload }
+export function updateTaskFlag(payload) {
+    return { type: TASK_UPDATE_FLAG, payload }
 }
