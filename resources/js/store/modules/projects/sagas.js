@@ -133,55 +133,56 @@ export function* watchStore() {
 /**
  *  add task
  */
-// export function* storeTask(action) {
+export function* storeTask(action) {
 
-//     try {
+    try {
 
-//         let token = localStorage.getItem('token')
+        const project = yield select(getProject);
 
-//         const project = yield select(getProject);
+        if (localStorage.getItem('user') != null) {
 
-//         if (token != null) {
+            let user = JSON.parse(localStorage.getItem('user'))
 
-//             const task = yield call(api, `/api/projects/${project.id}/tasks`, action.payload.values, 'POST', JSON.parse(token))
+            const task = yield call(api, `/api/projects/${project.id}/tasks`, action.payload.values, 'POST', user.api_token)
 
-//             yield put(updateProjectTasks(task.data.data))
-//         }
+            yield put(actions.updateProjectTasks(task.data.data))
+        }
 
-//     } catch (error) {
-//         console.log(error)
-//     }
-// }
+    } catch (error) {
+        console.log(error)
+    }
+}
 
-// export function* watchTaskStore() {
-//     yield takeLatest(TASK_STORE_FLAG, storeTask)
-// }
+export function* watchTaskStore() {
+    yield takeLatest(actions.TASK_STORE_FLAG, storeTask)
+}
 
 
 /**
  * update task
  */
-// export function* updateTask(action) {
-//     try {
+export function* updateTask(action) {
+    try {
 
-//         let token = localStorage.getItem('token')
+        const project = yield select(getProject);
 
-//         const project = yield select(getProject);
+        if (localStorage.getItem('user') != null) {
 
-//         if (token != null) {
+            let user = JSON.parse(localStorage.getItem('user'))
 
-//             const task = yield call(api, `/api/projects/${project.id}/tasks/${action.payload.id}`, action.payload.values, 'POST', JSON.parse(token))
 
-//             yield put(updateProjectTasks(task.data.data))
-//         }
+            const task = yield call(api, `/api/projects/${project.id}/tasks/${action.payload.id}`, action.payload.values, 'POST', user.api_token)
 
-//     } catch (error) {
-//         console.log(error)
-//     }
+            yield put(actions.updateProjectTasks(task.data.data))
+        }
 
-// }
+    } catch (error) {
+        console.log(error)
+    }
 
-// export function* watchTaskUpdate() {
-//     yield takeLatest(TASK_UPDATE_FLAG, updateTask)
-// }
+}
+
+export function* watchTaskUpdate() {
+    yield takeLatest(actions.TASK_UPDATE_FLAG, updateTask)
+}
 

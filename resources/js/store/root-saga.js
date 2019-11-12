@@ -10,8 +10,8 @@ export default function* root() {
         watchRegistration(),
         watchLogin(),
         watchFetchUser(),
-        // watchTaskStore(),
-        // watchTaskUpdate(),
+        watchTaskStore(),
+        watchTaskUpdate(),
         watchUpdate(),
 
     ])
