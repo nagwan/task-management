@@ -5,7 +5,7 @@ import Store from '../tasks/store';
 import Task from '../tasks';
 
 
-const View = (({ project }) => {
+const View = (({ project, deleteProject }) => {
 
     const { t } = useTranslation();
 
@@ -38,6 +38,9 @@ const View = (({ project }) => {
                             <div className='w-full py-20 px-20'>
                                 <p className='text-gray-700 font-medium italic'>{project.description}</p>
                             </div>
+                            <button onClick={() => deleteProject(project.id)}>
+                                <i className="fas fa-trash-alt"></i>
+                            </button>
                         </div>
                     </div>
                 </div>

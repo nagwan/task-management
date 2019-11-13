@@ -36,6 +36,8 @@ Route::group(['middleware' => 'auth:api'], function () {
 
     Route::post('/projects/{project}', 'ProjectsController@update');
 
+    Route::delete('/projects/{project}', 'ProjectsController@delete');
+
     Route::get('/projects/{project}', 'ProjectsController@show')->name('projects.show');
 
     Route::get('/home', 'HomeController@index')->name('home');

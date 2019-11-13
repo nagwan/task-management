@@ -102184,9 +102184,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
@@ -102204,10 +102204,14 @@ var Container =
 function (_Component) {
   _inherits(Container, _Component);
 
-  function Container() {
+  function Container(props) {
+    var _this;
+
     _classCallCheck(this, Container);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(Container).apply(this, arguments));
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(Container).call(this, props));
+    _this.deleteProject = _this.deleteProject.bind(_assertThisInitialized(_this));
+    return _this;
   }
 
   _createClass(Container, [{
@@ -102222,10 +102226,20 @@ function (_Component) {
       });
     }
   }, {
+    key: "deleteProject",
+    value: function deleteProject(data) {
+      var history = this.props.history;
+      this.props.deleteProjectFlag({
+        id: data,
+        history: history
+      });
+    }
+  }, {
     key: "render",
     value: function render() {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_view__WEBPACK_IMPORTED_MODULE_1__["default"], {
-        project: this.props.projects.project
+        project: this.props.projects.project,
+        deleteProject: this.deleteProject
       });
     }
   }]);
@@ -102240,7 +102254,8 @@ function (_Component) {
   };
 }, function (dispatch) {
   return Object(redux__WEBPACK_IMPORTED_MODULE_3__["bindActionCreators"])({
-    activeProjectFetchFlag: _store_modules_projects_actions__WEBPACK_IMPORTED_MODULE_5__["activeProjectFetchFlag"]
+    activeProjectFetchFlag: _store_modules_projects_actions__WEBPACK_IMPORTED_MODULE_5__["activeProjectFetchFlag"],
+    deleteProjectFlag: _store_modules_projects_actions__WEBPACK_IMPORTED_MODULE_5__["deleteProjectFlag"]
   }, dispatch);
 })(Container)));
 
@@ -102283,7 +102298,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var View = function View(_ref) {
-  var project = _ref.project;
+  var project = _ref.project,
+      deleteProject = _ref.deleteProject;
 
   var _useTranslation = Object(react_i18next__WEBPACK_IMPORTED_MODULE_1__["useTranslation"])(),
       t = _useTranslation.t;
@@ -102319,7 +102335,13 @@ var View = function View(_ref) {
     className: "w-full py-20 px-20"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
     className: "text-gray-700 font-medium italic"
-  }, project.description)))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, project.description)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    onClick: function onClick() {
+      return deleteProject(project.id);
+    }
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+    className: "fas fa-trash-alt"
+  })))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "w-2/12"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
     to: "/projects"
@@ -103405,7 +103427,7 @@ function watchFetchUser() {
 /*!********************************************************!*\
   !*** ./resources/js/store/modules/projects/actions.js ***!
   \********************************************************/
-/*! exports provided: PROJECTS_INDEX_FLAG, PROJECTS_INDEX, PROJECT_SHOW_FLAG, ACTIVE_PROJECT, PROJECT_STORE_FLAG, PROJECT_STORE, PROJECT_UPDATE_FLAG, ACTIVE_PROJECT_FETCH_FLAG, projectsIndexFlag, projectsIndex, projectShowFlag, activeProject, projectStoreFlag, projectStore, projectUpdateFlag, activeProjectFetchFlag, TASK_STORE_FLAG, TASK_STORE, UPDATE_PROJECT_TASKS, TASK_UPDATE_FLAG, taskStoreFlag, taskStore, updateProjectTasks, updateTaskFlag */
+/*! exports provided: PROJECTS_INDEX_FLAG, PROJECTS_INDEX, PROJECT_SHOW_FLAG, ACTIVE_PROJECT, PROJECT_STORE_FLAG, PROJECT_STORE, PROJECT_UPDATE_FLAG, ACTIVE_PROJECT_FETCH_FLAG, DELETE_PROJECT_FLAG, projectsIndexFlag, projectsIndex, projectShowFlag, activeProject, projectStoreFlag, projectStore, projectUpdateFlag, activeProjectFetchFlag, deleteProjectFlag, TASK_STORE_FLAG, TASK_STORE, UPDATE_PROJECT_TASKS, TASK_UPDATE_FLAG, taskStoreFlag, taskStore, updateProjectTasks, updateTaskFlag */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -103418,6 +103440,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PROJECT_STORE", function() { return PROJECT_STORE; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PROJECT_UPDATE_FLAG", function() { return PROJECT_UPDATE_FLAG; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ACTIVE_PROJECT_FETCH_FLAG", function() { return ACTIVE_PROJECT_FETCH_FLAG; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DELETE_PROJECT_FLAG", function() { return DELETE_PROJECT_FLAG; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "projectsIndexFlag", function() { return projectsIndexFlag; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "projectsIndex", function() { return projectsIndex; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "projectShowFlag", function() { return projectShowFlag; });
@@ -103426,6 +103449,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "projectStore", function() { return projectStore; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "projectUpdateFlag", function() { return projectUpdateFlag; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "activeProjectFetchFlag", function() { return activeProjectFetchFlag; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteProjectFlag", function() { return deleteProjectFlag; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TASK_STORE_FLAG", function() { return TASK_STORE_FLAG; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TASK_STORE", function() { return TASK_STORE; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UPDATE_PROJECT_TASKS", function() { return UPDATE_PROJECT_TASKS; });
@@ -103442,6 +103466,7 @@ var PROJECT_STORE_FLAG = 'PROJECT_STORE_FLAG';
 var PROJECT_STORE = 'PROJECT_STORE';
 var PROJECT_UPDATE_FLAG = 'PROJECT_UPDATE_FLAG';
 var ACTIVE_PROJECT_FETCH_FLAG = 'ACTIVE_PROJECT_FETCH_FLAG';
+var DELETE_PROJECT_FLAG = 'DELETE_PROJECT_FLAG';
 function projectsIndexFlag(payload) {
   return {
     type: PROJECTS_INDEX_FLAG
@@ -103486,6 +103511,12 @@ function projectUpdateFlag(payload) {
 function activeProjectFetchFlag(payload) {
   return {
     type: ACTIVE_PROJECT_FETCH_FLAG,
+    payload: payload
+  };
+}
+function deleteProjectFlag(payload) {
+  return {
+    type: DELETE_PROJECT_FLAG,
     payload: payload
   };
 }
@@ -103585,7 +103616,7 @@ function reducer() {
 /*!******************************************************!*\
   !*** ./resources/js/store/modules/projects/sagas.js ***!
   \******************************************************/
-/*! exports provided: index, watchIndex, fetch, watchFetchProject, update, watchUpdate, store, watchStore, storeTask, watchTaskStore, updateTask, watchTaskUpdate */
+/*! exports provided: index, watchIndex, fetch, watchFetchProject, update, watchUpdate, store, watchStore, deleteProject, watchDeleteProject, storeTask, watchTaskStore, updateTask, watchTaskUpdate */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -103598,6 +103629,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "watchUpdate", function() { return watchUpdate; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "store", function() { return store; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "watchStore", function() { return watchStore; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteProject", function() { return deleteProject; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "watchDeleteProject", function() { return watchDeleteProject; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "storeTask", function() { return storeTask; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "watchTaskStore", function() { return watchTaskStore; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateTask", function() { return updateTask; });
@@ -103636,14 +103669,20 @@ _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(store),
 _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(watchStore),
     _marked9 =
 /*#__PURE__*/
-_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(storeTask),
+_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(deleteProject),
     _marked10 =
 /*#__PURE__*/
-_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(watchTaskStore),
+_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(watchDeleteProject),
     _marked11 =
 /*#__PURE__*/
-_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(updateTask),
+_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(storeTask),
     _marked12 =
+/*#__PURE__*/
+_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(watchTaskStore),
+    _marked13 =
+/*#__PURE__*/
+_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(updateTask),
+    _marked14 =
 /*#__PURE__*/
 _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(watchTaskUpdate);
 
@@ -103923,63 +103962,67 @@ function watchStore() {
   }, _marked8);
 }
 /**
- *  project`s tasks
+ *
+ * delete project 
  */
 
-/**
- *  add task
- */
-
-function storeTask(action) {
-  var project, user, task;
-  return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function storeTask$(_context9) {
+function deleteProject(action) {
+  var user, project;
+  return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function deleteProject$(_context9) {
     while (1) {
       switch (_context9.prev = _context9.next) {
         case 0:
           _context9.prev = 0;
-          _context9.next = 3;
-          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["select"])(_helpers_selectors__WEBPACK_IMPORTED_MODULE_4__["getProject"]);
-
-        case 3:
-          project = _context9.sent;
 
           if (!(localStorage.getItem('user') != null)) {
-            _context9.next = 11;
+            _context9.next = 12;
             break;
           }
 
           user = JSON.parse(localStorage.getItem('user'));
+          _context9.next = 5;
+          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["call"])(_helpers_functions__WEBPACK_IMPORTED_MODULE_3__["api"], "/api/projects/".concat(action.payload.id), action.payload.id, 'delete', user.api_token);
+
+        case 5:
+          project = _context9.sent;
           _context9.next = 8;
-          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["call"])(_helpers_functions__WEBPACK_IMPORTED_MODULE_3__["api"], "/api/projects/".concat(project.id, "/tasks"), action.payload.values, 'POST', user.api_token);
+          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["put"])(_actions__WEBPACK_IMPORTED_MODULE_2__["projectsIndex"](project.data.data));
 
         case 8:
-          task = _context9.sent;
-          _context9.next = 11;
-          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["put"])(_actions__WEBPACK_IMPORTED_MODULE_2__["updateProjectTasks"](task.data.data));
+          _context9.next = 10;
+          return action.payload.history.push('/projects');
 
-        case 11:
-          _context9.next = 16;
+        case 10:
+          _context9.next = 14;
           break;
 
-        case 13:
-          _context9.prev = 13;
+        case 12:
+          _context9.next = 14;
+          return action.payload.history.push("/login");
+
+        case 14:
+          _context9.next = 19;
+          break;
+
+        case 16:
+          _context9.prev = 16;
           _context9.t0 = _context9["catch"](0);
           console.log(_context9.t0);
 
-        case 16:
+        case 19:
         case "end":
           return _context9.stop();
       }
     }
-  }, _marked9, null, [[0, 13]]);
+  }, _marked9, null, [[0, 16]]);
 }
-function watchTaskStore() {
-  return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function watchTaskStore$(_context10) {
+function watchDeleteProject() {
+  return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function watchDeleteProject$(_context10) {
     while (1) {
       switch (_context10.prev = _context10.next) {
         case 0:
           _context10.next = 2;
-          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["takeLatest"])(_actions__WEBPACK_IMPORTED_MODULE_2__["TASK_STORE_FLAG"], storeTask);
+          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["takeLatest"])(_actions__WEBPACK_IMPORTED_MODULE_2__["DELETE_PROJECT_FLAG"], deleteProject);
 
         case 2:
         case "end":
@@ -103989,12 +104032,16 @@ function watchTaskStore() {
   }, _marked10);
 }
 /**
- * update task
+ *  project`s tasks
  */
 
-function updateTask(action) {
+/**
+ *  add task
+ */
+
+function storeTask(action) {
   var project, user, task;
-  return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function updateTask$(_context11) {
+  return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function storeTask$(_context11) {
     while (1) {
       switch (_context11.prev = _context11.next) {
         case 0:
@@ -104012,7 +104059,7 @@ function updateTask(action) {
 
           user = JSON.parse(localStorage.getItem('user'));
           _context11.next = 8;
-          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["call"])(_helpers_functions__WEBPACK_IMPORTED_MODULE_3__["api"], "/api/projects/".concat(project.id, "/tasks/").concat(action.payload.id), action.payload.values, 'POST', user.api_token);
+          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["call"])(_helpers_functions__WEBPACK_IMPORTED_MODULE_3__["api"], "/api/projects/".concat(project.id, "/tasks"), action.payload.values, 'POST', user.api_token);
 
         case 8:
           task = _context11.sent;
@@ -104035,13 +104082,13 @@ function updateTask(action) {
     }
   }, _marked11, null, [[0, 13]]);
 }
-function watchTaskUpdate() {
-  return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function watchTaskUpdate$(_context12) {
+function watchTaskStore() {
+  return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function watchTaskStore$(_context12) {
     while (1) {
       switch (_context12.prev = _context12.next) {
         case 0:
           _context12.next = 2;
-          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["takeLatest"])(_actions__WEBPACK_IMPORTED_MODULE_2__["TASK_UPDATE_FLAG"], updateTask);
+          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["takeLatest"])(_actions__WEBPACK_IMPORTED_MODULE_2__["TASK_STORE_FLAG"], storeTask);
 
         case 2:
         case "end":
@@ -104049,6 +104096,68 @@ function watchTaskUpdate() {
       }
     }
   }, _marked12);
+}
+/**
+ * update task
+ */
+
+function updateTask(action) {
+  var project, user, task;
+  return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function updateTask$(_context13) {
+    while (1) {
+      switch (_context13.prev = _context13.next) {
+        case 0:
+          _context13.prev = 0;
+          _context13.next = 3;
+          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["select"])(_helpers_selectors__WEBPACK_IMPORTED_MODULE_4__["getProject"]);
+
+        case 3:
+          project = _context13.sent;
+
+          if (!(localStorage.getItem('user') != null)) {
+            _context13.next = 11;
+            break;
+          }
+
+          user = JSON.parse(localStorage.getItem('user'));
+          _context13.next = 8;
+          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["call"])(_helpers_functions__WEBPACK_IMPORTED_MODULE_3__["api"], "/api/projects/".concat(project.id, "/tasks/").concat(action.payload.id), action.payload.values, 'POST', user.api_token);
+
+        case 8:
+          task = _context13.sent;
+          _context13.next = 11;
+          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["put"])(_actions__WEBPACK_IMPORTED_MODULE_2__["updateProjectTasks"](task.data.data));
+
+        case 11:
+          _context13.next = 16;
+          break;
+
+        case 13:
+          _context13.prev = 13;
+          _context13.t0 = _context13["catch"](0);
+          console.log(_context13.t0);
+
+        case 16:
+        case "end":
+          return _context13.stop();
+      }
+    }
+  }, _marked13, null, [[0, 13]]);
+}
+function watchTaskUpdate() {
+  return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function watchTaskUpdate$(_context14) {
+    while (1) {
+      switch (_context14.prev = _context14.next) {
+        case 0:
+          _context14.next = 2;
+          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["takeLatest"])(_actions__WEBPACK_IMPORTED_MODULE_2__["TASK_UPDATE_FLAG"], updateTask);
+
+        case 2:
+        case "end":
+          return _context14.stop();
+      }
+    }
+  }, _marked14);
 }
 
 /***/ }),
@@ -104083,7 +104192,7 @@ function root() {
       switch (_context.prev = _context.next) {
         case 0:
           _context.next = 2;
-          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["all"])([Object(_modules_projects_sagas__WEBPACK_IMPORTED_MODULE_2__["watchIndex"])(), Object(_modules_projects_sagas__WEBPACK_IMPORTED_MODULE_2__["watchFetchProject"])(), Object(_modules_projects_sagas__WEBPACK_IMPORTED_MODULE_2__["watchStore"])(), Object(_modules_authentication_sagas__WEBPACK_IMPORTED_MODULE_3__["watchRegistration"])(), Object(_modules_authentication_sagas__WEBPACK_IMPORTED_MODULE_3__["watchLogin"])(), Object(_modules_authentication_sagas__WEBPACK_IMPORTED_MODULE_3__["watchFetchUser"])(), Object(_modules_projects_sagas__WEBPACK_IMPORTED_MODULE_2__["watchTaskStore"])(), Object(_modules_projects_sagas__WEBPACK_IMPORTED_MODULE_2__["watchTaskUpdate"])(), Object(_modules_projects_sagas__WEBPACK_IMPORTED_MODULE_2__["watchUpdate"])()]);
+          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["all"])([Object(_modules_projects_sagas__WEBPACK_IMPORTED_MODULE_2__["watchIndex"])(), Object(_modules_projects_sagas__WEBPACK_IMPORTED_MODULE_2__["watchFetchProject"])(), Object(_modules_projects_sagas__WEBPACK_IMPORTED_MODULE_2__["watchStore"])(), Object(_modules_authentication_sagas__WEBPACK_IMPORTED_MODULE_3__["watchRegistration"])(), Object(_modules_authentication_sagas__WEBPACK_IMPORTED_MODULE_3__["watchLogin"])(), Object(_modules_authentication_sagas__WEBPACK_IMPORTED_MODULE_3__["watchFetchUser"])(), Object(_modules_projects_sagas__WEBPACK_IMPORTED_MODULE_2__["watchTaskStore"])(), Object(_modules_projects_sagas__WEBPACK_IMPORTED_MODULE_2__["watchTaskUpdate"])(), Object(_modules_projects_sagas__WEBPACK_IMPORTED_MODULE_2__["watchUpdate"])(), Object(_modules_projects_sagas__WEBPACK_IMPORTED_MODULE_2__["watchDeleteProject"])()]);
 
         case 2:
         case "end":

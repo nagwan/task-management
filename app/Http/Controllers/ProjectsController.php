@@ -85,8 +85,6 @@ class ProjectsController extends Controller
 
         if ($access->allowed()) {
 
-            
-
             $project->delete();
 
             $data = Project::where('owner_id', auth()->user()->id)->with('tasks')->orderBy('created_at', 'desc')->get();

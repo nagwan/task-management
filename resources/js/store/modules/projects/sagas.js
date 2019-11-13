@@ -124,6 +124,39 @@ export function* watchStore() {
     yield takeLatest(actions.PROJECT_STORE_FLAG, store)
 }
 
+/**
+ *
+ * delete project 
+ */
+
+export function* deleteProject(action) {
+    try {
+        if (localStorage.getItem('user') != null) {
+
+            let user = JSON.parse(localStorage.getItem('user'))
+
+            const project = yield call(api, `/api/projects/${action.payload.id}`, action.payload.id, 'delete', user.api_token)
+
+            yield put(actions.projectsIndex(project.data.data))
+
+            yield action.payload.history.push('/projects')
+
+        } else {
+
+            yield action.payload.history.push(`/login`)
+        }
+
+    } catch (error) {
+
+        console.log(error)
+    }
+
+}
+
+export function* watchDeleteProject() {
+    yield takeLatest(actions.DELETE_PROJECT_FLAG, deleteProject)
+}
+
 
 /**
  *  project`s tasks
