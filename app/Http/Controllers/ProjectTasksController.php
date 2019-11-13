@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Activity;
 use App\Project;
 use App\Task;
 use Illuminate\Http\Request;
@@ -22,7 +23,7 @@ class ProjectTasksController extends Controller
         if ($access->allowed()) {
             $project->addTask(request('body'));
 
-            $data = Task::where('project_id', $project->id)->get();;
+            $data = Task::where('project_id', $project->id)->get();
 
             return response()->json(['data' => $data], 200);
         } else {
@@ -46,6 +47,7 @@ class ProjectTasksController extends Controller
                 'body' => request('body'),
                 'completed' => request('completed')
             ]);
+
 
             $data = Task::where('project_id', $project->id)->get();
 

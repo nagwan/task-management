@@ -6,7 +6,7 @@ export const toggleLang = (i18n) => {
         $("body").removeClass("ar");
 
     } else {
-        i18n.changeLanguage("ar")
+        i18n.changeLanguage("ar") 
         $("body").addClass("ar");
     }
 }

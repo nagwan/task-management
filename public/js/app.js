@@ -102899,8 +102899,7 @@ var PrivateRoutes = Object(react_redux__WEBPACK_IMPORTED_MODULE_3__["connect"])(
     Authentication: Authentication
   };
 })(function (route) {
-  return route.Authentication.is_auth ? //route.needs == 'project' ? (() => route.projectFetchFlag({ id }) ) : route.needs == 'user' ? (() =>route.fetchUserFlag({ id })) : ''
-  react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
+  return route.Authentication.is_auth ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
     path: route.path,
     exact: route.exact,
     component: route.component

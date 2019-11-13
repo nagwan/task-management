@@ -11,8 +11,6 @@ const PrivateRoutes = connect(({ Authentication}) => ({ Authentication }))((rout
 		return (
 
 			route.Authentication.is_auth ?
-				//route.needs == 'project' ? (() => route.projectFetchFlag({ id }) ) : route.needs == 'user' ? (() =>route.fetchUserFlag({ id })) : ''
-
 				<Route path={route.path} exact={route.exact} component={route.component} />
 				:
 				<Redirect push to='/login' />
