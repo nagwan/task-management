@@ -65,6 +65,25 @@ class ManageProjectsTest extends TestCase
 
     /** @test */
 
+    public function a_user_can_delete_a_project()
+    {
+        
+        $this->withoutExceptionHandling();
+
+        $user = factory('App\User')->create();
+
+        $project = factory('App\Project')->create(['owner_id' => $user->id]);
+
+        $this->deleteJson($project->path(), [], [
+            'authorization' => 'Bearer ' . $user->api_token
+        ]);
+
+        $this->assertDatabaseMissing('projects', $project->only('id'));
+
+    }
+
+    /** @test */
+
     public function a_user_can_update_project()
     {
         $this->withoutExceptionHandling();

@@ -78,4 +78,28 @@ class ProjectsController extends Controller
             ], 403);
         }
     }
+
+    public function delete(Project $project)
+    {
+        $access = Gate::inspect('manage', $project);
+
+        if ($access->allowed()) {
+
+            
+
+            $project->delete();
+
+            $data = Project::where('owner_id', auth()->user()->id)->with('tasks')->orderBy('created_at', 'desc')->get();
+
+            return response()->json(['data' => $data]);
+            
+        } else {
+
+            return response()->json([
+                'success' => false,
+                'message' =>  'unauthorized'
+            ], 403);
+        }
+        
+    }
 }

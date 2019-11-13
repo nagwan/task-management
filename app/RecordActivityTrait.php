@@ -30,7 +30,6 @@ trait RecordActivityTrait
     protected function activityOwner()
     {
        
-
         if(class_basename($this) === 'Project'){
             return $this->owner;
         }
