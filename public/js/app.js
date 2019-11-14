@@ -119896,7 +119896,7 @@ function (_Component) {
         user: this.props.Authentication.user
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         onClick: this.closeMenu,
-        className: "fixed top-0 right-0 bottom-0 left-0 h-full w-full bg-primary-900 opacity-50"
+        className: "cursor-auto fixed top-0 right-0 bottom-0 left-0 h-full w-full bg-primary-900 opacity-50"
       })) : '');
     }
   }]);

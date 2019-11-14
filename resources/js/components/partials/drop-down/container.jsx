@@ -52,7 +52,7 @@ class Container extends Component {
                 {this.state.is_opened ? (
                     <React.Fragment>
                         <View closeMenu={this.closeMenu} logOut={this.logOut} user={this.props.Authentication.user} />
-                        <button onClick={this.closeMenu} className='fixed top-0 right-0 bottom-0 left-0 h-full w-full bg-primary-900 opacity-50'></button>
+                        <button onClick={this.closeMenu} className='cursor-auto fixed top-0 right-0 bottom-0 left-0 h-full w-full bg-primary-900 opacity-50'></button>
                     </React.Fragment>
                 ) : ''}
             </div>
