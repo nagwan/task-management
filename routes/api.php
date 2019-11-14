@@ -20,6 +20,8 @@ Route::group(['middleware' => 'guest'], function(){
     Route::post('/register', 'AuthenticationController@register');
 
     Route::post('/login', 'AuthenticationController@login');
+
+    Route::post('/logout', 'AuthenticationController@logOut');
 });
 
 Route::group(['middleware' => 'auth:api'], function () {

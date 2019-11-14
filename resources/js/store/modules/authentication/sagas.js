@@ -1,5 +1,5 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
-import { REGISTRATION_FLAG, authUser, LOGIN_FLAG, FETCH_USER_FLAG, isAuthorized } from './actions'
+import { REGISTRATION_FLAG, authUser, LOGIN_FLAG, FETCH_USER_FLAG, isAuthorized, LOG_OUT_FLAG } from './actions'
 import { api, checkAuthUser } from '../../../helpers/functions'
 import { index } from '../projects/sagas'
 
@@ -84,5 +84,27 @@ export function* watchFetchUser() {
     } else {
         yield takeLatest(FETCH_USER_FLAG, fetchUser)
     }
+}
 
+export function* logout(action) {
+
+    try {
+        if (localStorage.getItem('user') != null) {
+            let user = JSON.parse(localStorage.getItem('user'))
+
+            const response = yield call(api, `api/logout`, null, 'POST', user.api_token)
+
+            localStorage.removeItem('user')
+            yield put(isAuthorized(false))
+            yield put(authUser({}))
+        }
+        
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+
+export function* watchLogOut() {
+    yield takeLatest(LOG_OUT_FLAG, logout)
 }

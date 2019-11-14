@@ -2,7 +2,10 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux';
 
 import View from './view'
+import { bindActionCreators } from 'redux';
+import { withRouter } from 'react-router-dom'
 
+import { logOutFlag } from '../../../store/modules/authentication/actions'
 
 class Container extends Component {
 
@@ -17,6 +20,7 @@ class Container extends Component {
 
         this.toggleMenu = this.toggleMenu.bind(this);
         this.closeMenu = this.closeMenu.bind(this);
+        this.logOut = this.logOut.bind(this);
     }
 
     toggleMenu() {
@@ -30,7 +34,13 @@ class Container extends Component {
         this.setState({
             is_opened: false
         });
+    }
 
+    logOut() {
+
+        const { history } = this.props;
+
+        this.props.logOutFlag({ history });
     }
 
     render() {
@@ -41,7 +51,7 @@ class Container extends Component {
                 </button>
                 {this.state.is_opened ? (
                     <React.Fragment>
-                        <View closeMenu={this.closeMenu} user={this.props.Authentication.user} />
+                        <View closeMenu={this.closeMenu} logOut={this.logOut} user={this.props.Authentication.user} />
                         <button onClick={this.closeMenu} className='fixed top-0 right-0 bottom-0 left-0 h-full w-full bg-primary-900 opacity-50'></button>
                     </React.Fragment>
                 ) : ''}
@@ -51,4 +61,5 @@ class Container extends Component {
 
 }
 
-export default connect(({ Authentication }) => ({ Authentication }))(Container)
+export default withRouter(connect(({ Authentication }) => ({ Authentication }),
+    dispatch => bindActionCreators({ logOutFlag }, dispatch))(Container))

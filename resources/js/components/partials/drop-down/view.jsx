@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { toggleLang } from "../../../helpers/functions"
 import { useTranslation } from "react-i18next";
 
-const View = (({ user, closeMenu }) => {
+const View = (({ user, closeMenu, logOut }) => {
 
     const { t, i18n } = useTranslation();
 
@@ -35,8 +35,8 @@ const View = (({ user, closeMenu }) => {
                 <i className="fas fa-language"></i>
             </div>
 
-            <div onClick={closeMenu} className='flex justify-between items-center py-8 px-12 hover:bg-primary-900 hover:text-white cursor-pointer'>
-                <Link to=''>{t('phrases:logout')}</Link>
+            <div onClick={() => {logOut(); closeMenu()}} className='flex justify-between items-center py-8 px-12 hover:bg-primary-900 hover:text-white cursor-pointer'>
+                <span>{t('phrases:logout')}</span>
                 <i className="fas fa-walking"></i>
             </div>
         </div>

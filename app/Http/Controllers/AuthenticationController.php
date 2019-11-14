@@ -74,4 +74,9 @@ class AuthenticationController extends Controller
 
         return response()->json($response, 201);
     }
+
+    public function logOut()
+    {
+       Auth::logout();
+    }
 }

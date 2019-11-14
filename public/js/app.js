@@ -119811,6 +119811,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _view__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./view */ "./resources/js/components/partials/drop-down/view.jsx");
+/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _store_modules_authentication_actions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../store/modules/authentication/actions */ "./resources/js/store/modules/authentication/actions.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -119833,6 +119836,9 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
+
+
+
 var Container =
 /*#__PURE__*/
 function (_Component) {
@@ -119850,6 +119856,7 @@ function (_Component) {
     _this.state = _this.initialState;
     _this.toggleMenu = _this.toggleMenu.bind(_assertThisInitialized(_this));
     _this.closeMenu = _this.closeMenu.bind(_assertThisInitialized(_this));
+    _this.logOut = _this.logOut.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -119868,6 +119875,14 @@ function (_Component) {
       });
     }
   }, {
+    key: "logOut",
+    value: function logOut() {
+      var history = this.props.history;
+      this.props.logOutFlag({
+        history: history
+      });
+    }
+  }, {
     key: "render",
     value: function render() {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -119877,6 +119892,7 @@ function (_Component) {
         className: "z-10"
       }, this.props.Authentication.user.name), this.state.is_opened ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_view__WEBPACK_IMPORTED_MODULE_2__["default"], {
         closeMenu: this.closeMenu,
+        logOut: this.logOut,
         user: this.props.Authentication.user
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         onClick: this.closeMenu,
@@ -119888,12 +119904,16 @@ function (_Component) {
   return Container;
 }(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(function (_ref) {
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_router_dom__WEBPACK_IMPORTED_MODULE_4__["withRouter"])(Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(function (_ref) {
   var Authentication = _ref.Authentication;
   return {
     Authentication: Authentication
   };
-})(Container));
+}, function (dispatch) {
+  return Object(redux__WEBPACK_IMPORTED_MODULE_3__["bindActionCreators"])({
+    logOutFlag: _store_modules_authentication_actions__WEBPACK_IMPORTED_MODULE_5__["logOutFlag"]
+  }, dispatch);
+})(Container)));
 
 /***/ }),
 
@@ -119933,7 +119953,8 @@ __webpack_require__.r(__webpack_exports__);
 
 var View = function View(_ref) {
   var user = _ref.user,
-      closeMenu = _ref.closeMenu;
+      closeMenu = _ref.closeMenu,
+      logOut = _ref.logOut;
 
   var _useTranslation = Object(react_i18next__WEBPACK_IMPORTED_MODULE_3__["useTranslation"])(),
       t = _useTranslation.t,
@@ -119976,11 +119997,12 @@ var View = function View(_ref) {
   }, t('phrases:toggle_lang_btn')), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
     className: "fas fa-language"
   })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    onClick: closeMenu,
+    onClick: function onClick() {
+      logOut();
+      closeMenu();
+    },
     className: "flex justify-between items-center py-8 px-12 hover:bg-primary-900 hover:text-white cursor-pointer"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-    to: ""
-  }, t('phrases:logout')), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, t('phrases:logout')), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
     className: "fas fa-walking"
   })));
 };
@@ -121334,7 +121356,7 @@ function reducer() {
 /*!************************************************************!*\
   !*** ./resources/js/store/modules/authentication/sagas.js ***!
   \************************************************************/
-/*! exports provided: register, watchRegistration, login, watchLogin, fetchUser, watchFetchUser */
+/*! exports provided: register, watchRegistration, login, watchLogin, fetchUser, watchFetchUser, logout, watchLogOut */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -121345,6 +121367,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "watchLogin", function() { return watchLogin; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchUser", function() { return fetchUser; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "watchFetchUser", function() { return watchFetchUser; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "logout", function() { return logout; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "watchLogOut", function() { return watchLogOut; });
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! redux-saga/effects */ "./node_modules/redux-saga/dist/redux-saga-effects-npm-proxy.esm.js");
@@ -121370,7 +121394,13 @@ _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(watchLogi
 _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(fetchUser),
     _marked6 =
 /*#__PURE__*/
-_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(watchFetchUser);
+_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(watchFetchUser),
+    _marked7 =
+/*#__PURE__*/
+_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(logout),
+    _marked8 =
+/*#__PURE__*/
+_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(watchLogOut);
 
 
 
@@ -121561,6 +121591,64 @@ function watchFetchUser() {
       }
     }
   }, _marked6);
+}
+function logout(action) {
+  var user, response;
+  return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function logout$(_context7) {
+    while (1) {
+      switch (_context7.prev = _context7.next) {
+        case 0:
+          _context7.prev = 0;
+
+          if (!(localStorage.getItem('user') != null)) {
+            _context7.next = 11;
+            break;
+          }
+
+          user = JSON.parse(localStorage.getItem('user'));
+          _context7.next = 5;
+          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["call"])(_helpers_functions__WEBPACK_IMPORTED_MODULE_3__["api"], "api/logout", null, 'POST', user.api_token);
+
+        case 5:
+          response = _context7.sent;
+          localStorage.removeItem('user');
+          _context7.next = 9;
+          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["put"])(Object(_actions__WEBPACK_IMPORTED_MODULE_2__["isAuthorized"])(false));
+
+        case 9:
+          _context7.next = 11;
+          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["put"])(Object(_actions__WEBPACK_IMPORTED_MODULE_2__["authUser"])({}));
+
+        case 11:
+          _context7.next = 16;
+          break;
+
+        case 13:
+          _context7.prev = 13;
+          _context7.t0 = _context7["catch"](0);
+          console.log(_context7.t0);
+
+        case 16:
+        case "end":
+          return _context7.stop();
+      }
+    }
+  }, _marked7, null, [[0, 13]]);
+}
+function watchLogOut() {
+  return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function watchLogOut$(_context8) {
+    while (1) {
+      switch (_context8.prev = _context8.next) {
+        case 0:
+          _context8.next = 2;
+          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["takeLatest"])(_actions__WEBPACK_IMPORTED_MODULE_2__["LOG_OUT_FLAG"], logout);
+
+        case 2:
+        case "end":
+          return _context8.stop();
+      }
+    }
+  }, _marked8);
 }
 
 /***/ }),
@@ -122353,7 +122441,7 @@ function root() {
       switch (_context.prev = _context.next) {
         case 0:
           _context.next = 2;
-          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["all"])([Object(_modules_projects_sagas__WEBPACK_IMPORTED_MODULE_2__["watchIndex"])(), Object(_modules_projects_sagas__WEBPACK_IMPORTED_MODULE_2__["watchFetchProject"])(), Object(_modules_projects_sagas__WEBPACK_IMPORTED_MODULE_2__["watchStore"])(), Object(_modules_authentication_sagas__WEBPACK_IMPORTED_MODULE_3__["watchRegistration"])(), Object(_modules_authentication_sagas__WEBPACK_IMPORTED_MODULE_3__["watchLogin"])(), Object(_modules_authentication_sagas__WEBPACK_IMPORTED_MODULE_3__["watchFetchUser"])(), Object(_modules_projects_sagas__WEBPACK_IMPORTED_MODULE_2__["watchTaskStore"])(), Object(_modules_projects_sagas__WEBPACK_IMPORTED_MODULE_2__["watchTaskUpdate"])(), Object(_modules_projects_sagas__WEBPACK_IMPORTED_MODULE_2__["watchUpdate"])(), Object(_modules_projects_sagas__WEBPACK_IMPORTED_MODULE_2__["watchDeleteProject"])()]);
+          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["all"])([Object(_modules_projects_sagas__WEBPACK_IMPORTED_MODULE_2__["watchIndex"])(), Object(_modules_projects_sagas__WEBPACK_IMPORTED_MODULE_2__["watchFetchProject"])(), Object(_modules_projects_sagas__WEBPACK_IMPORTED_MODULE_2__["watchStore"])(), Object(_modules_authentication_sagas__WEBPACK_IMPORTED_MODULE_3__["watchRegistration"])(), Object(_modules_authentication_sagas__WEBPACK_IMPORTED_MODULE_3__["watchLogin"])(), Object(_modules_authentication_sagas__WEBPACK_IMPORTED_MODULE_3__["watchFetchUser"])(), Object(_modules_projects_sagas__WEBPACK_IMPORTED_MODULE_2__["watchTaskStore"])(), Object(_modules_projects_sagas__WEBPACK_IMPORTED_MODULE_2__["watchTaskUpdate"])(), Object(_modules_projects_sagas__WEBPACK_IMPORTED_MODULE_2__["watchUpdate"])(), Object(_modules_projects_sagas__WEBPACK_IMPORTED_MODULE_2__["watchDeleteProject"])(), Object(_modules_authentication_sagas__WEBPACK_IMPORTED_MODULE_3__["watchLogOut"])()]);
 
         case 2:
         case "end":
