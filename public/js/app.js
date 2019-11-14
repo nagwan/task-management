@@ -119424,6 +119424,30 @@ var Home = function Home() {
 
 /***/ }),
 
+/***/ "./resources/js/components/partials/activity/activity-time.jsx":
+/*!*********************************************************************!*\
+  !*** ./resources/js/components/partials/activity/activity-time.jsx ***!
+  \*********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+
+var ActivityTime = function ActivityTime(_ref) {
+  var val = _ref.val;
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "font-harmattan font-sx italic text-gray-500 float-right"
+  }, window.moment(val, ["YYYY-MM-DDTHH:mm:ss"]).fromNow());
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (ActivityTime);
+
+/***/ }),
+
 /***/ "./resources/js/components/partials/activity/index.jsx":
 /*!*************************************************************!*\
   !*** ./resources/js/components/partials/activity/index.jsx ***!
@@ -119485,6 +119509,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_i18next__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-i18next */ "./node_modules/react-i18next/dist/es/index.js");
 /* harmony import */ var _user_name__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./user-name */ "./resources/js/components/partials/activity/user-name.jsx");
+/* harmony import */ var _activity_time__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./activity-time */ "./resources/js/components/partials/activity/activity-time.jsx");
+
 
 
 
@@ -119497,9 +119523,9 @@ var ProjectCreated = function ProjectCreated(_ref) {
 
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_user_name__WEBPACK_IMPORTED_MODULE_2__["default"], {
     name: activity.user.name
-  }), " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, t('phrases:project_created')), " \uD83D\uDE09 ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-    className: "font-harmattan font-sx italic text-gray-500"
-  }, window.moment(activity.created_at, ["YYYY-MM-DDTHH:mm:ss"]).fromNow()));
+  }), " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, t('phrases:project_created')), " \uD83D\uDE09 ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_activity_time__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    val: activity.created_at
+  }));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (ProjectCreated);
@@ -119519,6 +119545,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_i18next__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-i18next */ "./node_modules/react-i18next/dist/es/index.js");
 /* harmony import */ var _user_name__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./user-name */ "./resources/js/components/partials/activity/user-name.jsx");
+/* harmony import */ var _activity_time__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./activity-time */ "./resources/js/components/partials/activity/activity-time.jsx");
+
 
 
 
@@ -119531,9 +119559,9 @@ var ProjectUpdated = function ProjectUpdated(_ref) {
 
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_user_name__WEBPACK_IMPORTED_MODULE_2__["default"], {
     name: activity.user.name
-  }), " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, t('phrases:project_updated')), " \uD83D\uDE0C ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-    className: "font-harmattan font-sx italic text-gray-500"
-  }, window.moment(activity.created_at, ["YYYY-MM-DDTHH:mm:ss"]).fromNow()));
+  }), " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, t('phrases:project_updated')), " \uD83D\uDE0C", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_activity_time__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    val: activity.created_at
+  }));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (ProjectUpdated);
@@ -119553,6 +119581,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_i18next__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-i18next */ "./node_modules/react-i18next/dist/es/index.js");
 /* harmony import */ var _user_name__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./user-name */ "./resources/js/components/partials/activity/user-name.jsx");
+/* harmony import */ var _activity_time__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./activity-time */ "./resources/js/components/partials/activity/activity-time.jsx");
+
 
 
 
@@ -119567,9 +119597,9 @@ var TaskCompleted = function TaskCompleted(_ref) {
     name: activity.user.name
   }), " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, t('phrases:task_completed')), " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
     className: "line-through text-gray-500 italic"
-  }, activity.subject.body), " \uD83C\uDF89 ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-    className: "font-harmattan font-sx italic text-gray-500"
-  }, window.moment(activity.created_at, ["YYYY-MM-DDTHH:mm:ss"]).fromNow()));
+  }, activity.subject.body), " \uD83C\uDF89 ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_activity_time__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    val: activity.created_at
+  }));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (TaskCompleted);
@@ -119589,6 +119619,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_i18next__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-i18next */ "./node_modules/react-i18next/dist/es/index.js");
 /* harmony import */ var _user_name__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./user-name */ "./resources/js/components/partials/activity/user-name.jsx");
+/* harmony import */ var _activity_time__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./activity-time */ "./resources/js/components/partials/activity/activity-time.jsx");
+
 
 
 
@@ -119601,11 +119633,11 @@ var TaskCreated = function TaskCreated(_ref) {
 
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_user_name__WEBPACK_IMPORTED_MODULE_2__["default"], {
     name: activity.user.name
-  }), " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, t('phrases:task_created')), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+  }), " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, t('phrases:task_created')), " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
     className: "font-bold italic"
-  }, activity.subject.body), " \uD83C\uDFAF ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-    className: "font-harmattan font-sx italic text-gray-500"
-  }, window.moment(activity.created_at, ["YYYY-MM-DDTHH:mm:ss"]).fromNow()));
+  }, activity.subject.body), " \uD83C\uDFAF ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_activity_time__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    val: activity.created_at
+  }));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (TaskCreated);
@@ -119625,6 +119657,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_i18next__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-i18next */ "./node_modules/react-i18next/dist/es/index.js");
 /* harmony import */ var _user_name__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./user-name */ "./resources/js/components/partials/activity/user-name.jsx");
+/* harmony import */ var _activity_time__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./activity-time */ "./resources/js/components/partials/activity/activity-time.jsx");
+
 
 
 
@@ -119639,9 +119673,9 @@ var TaskIncomplete = function TaskIncomplete(_ref) {
     name: activity.user.name
   }), " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, t('phrases:task_incomplete')), " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
     className: "font-bold italic"
-  }, activity.subject.body), " \uD83E\uDD14 ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-    className: "font-harmattan font-sx italic text-gray-500"
-  }, window.moment(activity.created_at, ["YYYY-MM-DDTHH:mm:ss"]).fromNow()));
+  }, activity.subject.body), " \uD83E\uDD14 ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_activity_time__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    val: activity.created_at
+  }));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (TaskIncomplete);
@@ -119661,6 +119695,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_i18next__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-i18next */ "./node_modules/react-i18next/dist/es/index.js");
 /* harmony import */ var _user_name__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./user-name */ "./resources/js/components/partials/activity/user-name.jsx");
+/* harmony import */ var _activity_time__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./activity-time */ "./resources/js/components/partials/activity/activity-time.jsx");
+
 
 
 
@@ -119673,9 +119709,9 @@ var TaskUpdated = function TaskUpdated(_ref) {
 
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_user_name__WEBPACK_IMPORTED_MODULE_2__["default"], {
     name: activity.user.name
-  }), " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, t('phrases:task_updated')), " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, activity.subject.body), " \uD83D\uDCAA ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-    className: "font-harmattan font-sx italic text-gray-500"
-  }, window.moment(activity.created_at, ["YYYY-MM-DDTHH:mm:ss"]).fromNow()));
+  }), " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, t('phrases:task_updated')), " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, activity.subject.body), " \uD83D\uDCAA ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_activity_time__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    val: activity.created_at
+  }));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (TaskUpdated);

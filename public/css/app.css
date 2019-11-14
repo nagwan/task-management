@@ -17182,6 +17182,10 @@ video {
   border-right-width: 4px !important;
 }
 
+.ar .float-right {
+  float: left !important;
+}
+
 .card {
   margin-top: 1.25rem;
   margin-bottom: 1.25rem;
