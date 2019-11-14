@@ -119452,7 +119452,7 @@ __webpack_require__.r(__webpack_exports__);
 var Activity = function Activity(_ref) {
   var activity = _ref.activity;
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "py-4 px-4 text-sm"
+    className: "py-4 px-4 text-sm w-full"
   }, activity.type == 'project_created' ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_project_created__WEBPACK_IMPORTED_MODULE_1__["default"], {
     activity: activity
   }) : activity.type == 'task_created' ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_task_created__WEBPACK_IMPORTED_MODULE_4__["default"], {
@@ -119493,7 +119493,11 @@ var ProjectCreated = function ProjectCreated(_ref) {
   var _useTranslation = Object(react_i18next__WEBPACK_IMPORTED_MODULE_1__["useTranslation"])(),
       t = _useTranslation.t;
 
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, activity.user.name), " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, t('phrases:project_created')), " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, window.moment(activity.created_at, ["YYYY-MM-DDTHH:mm:ss"]).fromNow()));
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "italic"
+  }, activity.user.name), " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, t('phrases:project_created')), " \uD83D\uDE09 ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "font-harmattan font-sx italic text-gray-500"
+  }, window.moment(activity.created_at, ["YYYY-MM-DDTHH:mm:ss"]).fromNow()));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (ProjectCreated);
@@ -119521,7 +119525,11 @@ var ProjectUpdated = function ProjectUpdated(_ref) {
   var _useTranslation = Object(react_i18next__WEBPACK_IMPORTED_MODULE_1__["useTranslation"])(),
       t = _useTranslation.t;
 
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, activity.user.name), " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, t('phrases:project_updated')), " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, window.moment(activity.created_at, ["YYYY-MM-DDTHH:mm:ss"]).fromNow()));
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "italic"
+  }, activity.user.name), " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, t('phrases:project_updated')), " \uD83D\uDE0C ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "font-harmattan font-sx italic text-gray-500"
+  }, window.moment(activity.created_at, ["YYYY-MM-DDTHH:mm:ss"]).fromNow()));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (ProjectUpdated);
@@ -119549,7 +119557,13 @@ var TaskCompleted = function TaskCompleted(_ref) {
   var _useTranslation = Object(react_i18next__WEBPACK_IMPORTED_MODULE_1__["useTranslation"])(),
       t = _useTranslation.t;
 
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, activity.user.name), " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, t('phrases:task_completed')), " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, activity.subject.body));
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "italic"
+  }, activity.user.name), " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, t('phrases:task_completed')), " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "line-through text-gray-500 italic"
+  }, activity.subject.body), " \uD83C\uDF89 ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "font-harmattan font-sx italic text-gray-500"
+  }, window.moment(activity.created_at, ["YYYY-MM-DDTHH:mm:ss"]).fromNow()));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (TaskCompleted);
@@ -119577,7 +119591,13 @@ var TaskCreated = function TaskCreated(_ref) {
   var _useTranslation = Object(react_i18next__WEBPACK_IMPORTED_MODULE_1__["useTranslation"])(),
       t = _useTranslation.t;
 
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, activity.user.name), " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, t('phrases:task_created')), " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, activity.subject.body), " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, window.moment(activity.created_at, ["YYYY-MM-DDTHH:mm:ss"]).fromNow()));
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "italic"
+  }, activity.user.name), " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, t('phrases:task_created')), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "font-bold italic"
+  }, activity.subject.body), " \uD83C\uDFAF ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "font-harmattan font-sx italic text-gray-500"
+  }, window.moment(activity.created_at, ["YYYY-MM-DDTHH:mm:ss"]).fromNow()));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (TaskCreated);
@@ -119605,7 +119625,13 @@ var TaskIncomplete = function TaskIncomplete(_ref) {
   var _useTranslation = Object(react_i18next__WEBPACK_IMPORTED_MODULE_1__["useTranslation"])(),
       t = _useTranslation.t;
 
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, activity.user.name), " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, t('phrases:task_incomplete')), " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, activity.subject.body), " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, window.moment(activity.created_at, ["YYYY-MM-DDTHH:mm:ss"]).fromNow()));
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "italic"
+  }, activity.user.name), " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, t('phrases:task_incomplete')), " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "font-bold italic"
+  }, activity.subject.body), " \uD83E\uDD14 ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "font-harmattan font-sx italic text-gray-500"
+  }, window.moment(activity.created_at, ["YYYY-MM-DDTHH:mm:ss"]).fromNow()));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (TaskIncomplete);
@@ -119633,7 +119659,11 @@ var TaskUpdated = function TaskUpdated(_ref) {
   var _useTranslation = Object(react_i18next__WEBPACK_IMPORTED_MODULE_1__["useTranslation"])(),
       t = _useTranslation.t;
 
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, activity.user.name), " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, t('phrases:task_updated')), " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, activity.subject.body), " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, window.moment(activity.created_at, ["YYYY-MM-DDTHH:mm:ss"]).fromNow()));
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "italic"
+  }, activity.user.name), " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, t('phrases:task_updated')), " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, activity.subject.body), " \uD83D\uDCAA ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "font-harmattan font-sx italic text-gray-500"
+  }, window.moment(activity.created_at, ["YYYY-MM-DDTHH:mm:ss"]).fromNow()));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (TaskUpdated);

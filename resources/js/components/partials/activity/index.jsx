@@ -9,7 +9,7 @@ import TaskUpdated from './task-updated';
 const Activity = (({ activity }) => {
 
     return (
-        <div className='py-4 px-4 text-sm'>
+        <div className='py-4 px-4 text-sm w-full'>
             {
                 activity.type == 'project_created' ? <ProjectCreated activity={activity}/>
                     :
