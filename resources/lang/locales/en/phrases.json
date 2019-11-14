@@ -39,5 +39,11 @@
     "add_task_btn": "Add Task",
     "update_task_btn": "Update",
     "general_notes_placeholder": "Write the project`s rules",
-    "no_projects_yet": "No Projects Yet"
+    "no_projects_yet": "No Projects Yet",
+    "project_created": "created the project",
+    "task_created": "created",
+    "task_completed": "completed",
+    "task_incomplete": "incomplete",
+    "project_updated": "updated the project",
+    "task_updated": "updated"
 }

@@ -40,5 +40,11 @@
     "add_task_btn": "اضافة مهمه",
     "update_task_btn": "تعديل",
     "general_notes_placeholder": "قواعد العمل على هذا المشروع",
-    "no_projects_yet": "لا توجد اي مشروعات"
+    "no_projects_yet": "لا توجد اي مشروعات",
+    "project_created": "لقد قمت بأنشاء هذا المشروع",
+    "task_created": "قمت باضافة ",
+    "task_completed": "لقد اتممت",
+    "task_incomplete": "عينت المهمه كغير مكتمله",
+    "project_updated": "قمت بتحديث المشروع",
+    "task_updated": "قمت بتحديث المهمه"
 }

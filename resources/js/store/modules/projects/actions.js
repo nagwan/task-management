@@ -3,7 +3,7 @@ export const PROJECTS_INDEX = 'PROJECTS_INDEX'
 export const PROJECT_SHOW_FLAG = 'PROJECT_SHOW_FLAG'
 export const ACTIVE_PROJECT = 'ACTIVE_PROJECT'
 export const PROJECT_STORE_FLAG = 'PROJECT_STORE_FLAG'
-export const PROJECT_STORE = 'PROJECT_STORE'
+//export const PROJECT_STORE = 'PROJECT_STORE'
 export const PROJECT_UPDATE_FLAG = 'PROJECT_UPDATE_FLAG'
 export const ACTIVE_PROJECT_FETCH_FLAG = 'ACTIVE_PROJECT_FETCH_FLAG'
 export const DELETE_PROJECT_FLAG = 'DELETE_PROJECT_FLAG'
@@ -29,9 +29,9 @@ export function projectStoreFlag(payload) {
     return { type: PROJECT_STORE_FLAG, payload }
 }
 
-export function projectStore(payload) {
-    return { type: PROJECT_STORE, payload }
-}
+// export function projectStore(payload) {
+//     return { type: PROJECT_STORE, payload }
+// }
 
 export function projectUpdateFlag(payload) {
     return { type: PROJECT_UPDATE_FLAG, payload }

@@ -14,8 +14,6 @@ export function* index(action) {
 
             const projects = yield call(api, `/api/projects`, null, 'get', user.api_token)
 
-            //console.log(projects)
-
             yield put(actions.projectsIndex(projects.data.data))
         } else {
             yield action.history.push('/login')
@@ -76,7 +74,7 @@ export function* update(action) {
 
             const project = yield call(api, `/api/projects/${action.payload.id}`, action.payload.values, 'POST', user.api_token)
 
-            yield put(actions.activeProject(project.data.data))
+            yield put(actions.activeProject(project.data.data)) // how this updates the project in the original array ?!!
 
             yield action.payload.history.push(`/projects/${project.data.data.id}`)
 
@@ -183,9 +181,9 @@ export function* storeTask(action) {
 
             let user = JSON.parse(localStorage.getItem('user'))
 
-            const task = yield call(api, `/api/projects/${project.id}/tasks`, action.payload.values, 'POST', user.api_token)
+            const project_response = yield call(api, `/api/projects/${project.id}/tasks`, action.payload.values, 'POST', user.api_token)
 
-            yield put(actions.updateProjectTasks(task.data.data))
+            yield put(actions.activeProject(project_response.data.data))
         }
 
     } catch (error) {
@@ -210,10 +208,9 @@ export function* updateTask(action) {
 
             let user = JSON.parse(localStorage.getItem('user'))
 
+            const project_response = yield call(api, `/api/projects/${project.id}/tasks/${action.payload.id}`, action.payload.values, 'POST', user.api_token)
 
-            const task = yield call(api, `/api/projects/${project.id}/tasks/${action.payload.id}`, action.payload.values, 'POST', user.api_token)
-
-            yield put(actions.updateProjectTasks(task.data.data))
+            yield put(actions.activeProject(project_response.data.data))
         }
 
     } catch (error) {

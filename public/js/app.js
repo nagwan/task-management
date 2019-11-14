@@ -102308,7 +102308,7 @@ var View = function View(_ref) {
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "w-full flex justify-between"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "w-10/12"
+    className: "w-9/12"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "w-full flex justify-between"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -102341,9 +102341,15 @@ var View = function View(_ref) {
     }
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
     className: "fas fa-trash-alt"
-  })))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "w-2/12"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
+  })))))), project.activity ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "w-3/12"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "card py-20 px-20"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, project.activity.map(function (activity) {
+    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+      key: activity.id
+    }, activity.type == 'project_created' ? t('phrases:project_created') : activity.type == 'task_created' ? t('phrases:task_created') : activity.type == 'task_completed' ? t('phrases:task_completed') : activity.type == 'task_incomplete' ? t('phrases:task_incomplete') : activity.type == 'project_updated' ? t('phrases:project_updated') : activity.type == 'task_updated' ? t('phrases:task_updated') : '');
+  })))) : '', react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
     to: "/projects"
   }, t('phrases:go_back_btn')));
 };
@@ -103427,7 +103433,7 @@ function watchFetchUser() {
 /*!********************************************************!*\
   !*** ./resources/js/store/modules/projects/actions.js ***!
   \********************************************************/
-/*! exports provided: PROJECTS_INDEX_FLAG, PROJECTS_INDEX, PROJECT_SHOW_FLAG, ACTIVE_PROJECT, PROJECT_STORE_FLAG, PROJECT_STORE, PROJECT_UPDATE_FLAG, ACTIVE_PROJECT_FETCH_FLAG, DELETE_PROJECT_FLAG, projectsIndexFlag, projectsIndex, projectShowFlag, activeProject, projectStoreFlag, projectStore, projectUpdateFlag, activeProjectFetchFlag, deleteProjectFlag, TASK_STORE_FLAG, TASK_STORE, UPDATE_PROJECT_TASKS, TASK_UPDATE_FLAG, taskStoreFlag, taskStore, updateProjectTasks, updateTaskFlag */
+/*! exports provided: PROJECTS_INDEX_FLAG, PROJECTS_INDEX, PROJECT_SHOW_FLAG, ACTIVE_PROJECT, PROJECT_STORE_FLAG, PROJECT_UPDATE_FLAG, ACTIVE_PROJECT_FETCH_FLAG, DELETE_PROJECT_FLAG, projectsIndexFlag, projectsIndex, projectShowFlag, activeProject, projectStoreFlag, projectUpdateFlag, activeProjectFetchFlag, deleteProjectFlag, TASK_STORE_FLAG, TASK_STORE, UPDATE_PROJECT_TASKS, TASK_UPDATE_FLAG, taskStoreFlag, taskStore, updateProjectTasks, updateTaskFlag */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -103437,7 +103443,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PROJECT_SHOW_FLAG", function() { return PROJECT_SHOW_FLAG; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ACTIVE_PROJECT", function() { return ACTIVE_PROJECT; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PROJECT_STORE_FLAG", function() { return PROJECT_STORE_FLAG; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PROJECT_STORE", function() { return PROJECT_STORE; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PROJECT_UPDATE_FLAG", function() { return PROJECT_UPDATE_FLAG; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ACTIVE_PROJECT_FETCH_FLAG", function() { return ACTIVE_PROJECT_FETCH_FLAG; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DELETE_PROJECT_FLAG", function() { return DELETE_PROJECT_FLAG; });
@@ -103446,7 +103451,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "projectShowFlag", function() { return projectShowFlag; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "activeProject", function() { return activeProject; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "projectStoreFlag", function() { return projectStoreFlag; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "projectStore", function() { return projectStore; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "projectUpdateFlag", function() { return projectUpdateFlag; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "activeProjectFetchFlag", function() { return activeProjectFetchFlag; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteProjectFlag", function() { return deleteProjectFlag; });
@@ -103462,8 +103466,8 @@ var PROJECTS_INDEX_FLAG = 'PROJECTS_INDEX_FLAG';
 var PROJECTS_INDEX = 'PROJECTS_INDEX';
 var PROJECT_SHOW_FLAG = 'PROJECT_SHOW_FLAG';
 var ACTIVE_PROJECT = 'ACTIVE_PROJECT';
-var PROJECT_STORE_FLAG = 'PROJECT_STORE_FLAG';
-var PROJECT_STORE = 'PROJECT_STORE';
+var PROJECT_STORE_FLAG = 'PROJECT_STORE_FLAG'; //export const PROJECT_STORE = 'PROJECT_STORE'
+
 var PROJECT_UPDATE_FLAG = 'PROJECT_UPDATE_FLAG';
 var ACTIVE_PROJECT_FETCH_FLAG = 'ACTIVE_PROJECT_FETCH_FLAG';
 var DELETE_PROJECT_FLAG = 'DELETE_PROJECT_FLAG';
@@ -103495,13 +103499,10 @@ function projectStoreFlag(payload) {
     type: PROJECT_STORE_FLAG,
     payload: payload
   };
-}
-function projectStore(payload) {
-  return {
-    type: PROJECT_STORE,
-    payload: payload
-  };
-}
+} // export function projectStore(payload) {
+//     return { type: PROJECT_STORE, payload }
+// }
+
 function projectUpdateFlag(payload) {
   return {
     type: PROJECT_UPDATE_FLAG,
@@ -103592,13 +103593,8 @@ function reducer() {
         project: action.payload
       });
 
-    case _actions__WEBPACK_IMPORTED_MODULE_0__["PROJECT_STORE"]:
-      return _objectSpread({}, state, {
-        projects: action.payload
-      });
-    // to be edited to just add the new project after the back-end fix
-
     case _actions__WEBPACK_IMPORTED_MODULE_0__["UPDATE_PROJECT_TASKS"]:
+      // not used anymore 
       return _objectSpread({}, state, {
         project: Object.assign({}, state.project, {
           tasks: action.payload
@@ -104058,7 +104054,7 @@ function watchDeleteProject() {
  */
 
 function storeTask(action) {
-  var project, user, task;
+  var project, user, project_response;
   return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function storeTask$(_context11) {
     while (1) {
       switch (_context11.prev = _context11.next) {
@@ -104080,9 +104076,9 @@ function storeTask(action) {
           return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["call"])(_helpers_functions__WEBPACK_IMPORTED_MODULE_3__["api"], "/api/projects/".concat(project.id, "/tasks"), action.payload.values, 'POST', user.api_token);
 
         case 8:
-          task = _context11.sent;
+          project_response = _context11.sent;
           _context11.next = 11;
-          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["put"])(_actions__WEBPACK_IMPORTED_MODULE_2__["updateProjectTasks"](task.data.data));
+          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["put"])(_actions__WEBPACK_IMPORTED_MODULE_2__["activeProject"](project_response.data.data));
 
         case 11:
           _context11.next = 16;
@@ -104120,7 +104116,7 @@ function watchTaskStore() {
  */
 
 function updateTask(action) {
-  var project, user, task;
+  var project, user, project_response;
   return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function updateTask$(_context13) {
     while (1) {
       switch (_context13.prev = _context13.next) {
@@ -104142,9 +104138,9 @@ function updateTask(action) {
           return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["call"])(_helpers_functions__WEBPACK_IMPORTED_MODULE_3__["api"], "/api/projects/".concat(project.id, "/tasks/").concat(action.payload.id), action.payload.values, 'POST', user.api_token);
 
         case 8:
-          task = _context13.sent;
+          project_response = _context13.sent;
           _context13.next = 11;
-          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["put"])(_actions__WEBPACK_IMPORTED_MODULE_2__["updateProjectTasks"](task.data.data));
+          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["put"])(_actions__WEBPACK_IMPORTED_MODULE_2__["activeProject"](project_response.data.data));
 
         case 11:
           _context13.next = 16;
@@ -104278,10 +104274,10 @@ var _phrases__WEBPACK_IMPORTED_MODULE_0___namespace = /*#__PURE__*/__webpack_req
 /*!************************************************!*\
   !*** ./resources/lang/locales/ar/phrases.json ***!
   \************************************************/
-/*! exports provided: welcome, toggle_lang_btn, load_projects_btn, projects_title, submit_form_btn, description_input_placeholder, title_input_placeholder, min_error_msg, max_error_msg, required_field_error_msg, email_error_msg, name_input_placeholder, email_input_placeholder, password_input_placeholder, password_confirmation_input_placeholder, create_account_btn, login_btn, send_reset_password_link_btn, set_new_password_btn, logout, create_account, log_in, forget_password, email_label, password_label, password_confirmation_label, name_label, forget_password_feedback_msg, title_label, description_label, cancel_btn, projects, create_project, go_back_btn, tasks_label, general_notes_label, no_tasks_yet, task_body_input_placeholder, add_task_btn, update_task_btn, general_notes_placeholder, no_projects_yet, default */
+/*! exports provided: welcome, toggle_lang_btn, load_projects_btn, projects_title, submit_form_btn, description_input_placeholder, title_input_placeholder, min_error_msg, max_error_msg, required_field_error_msg, email_error_msg, name_input_placeholder, email_input_placeholder, password_input_placeholder, password_confirmation_input_placeholder, create_account_btn, login_btn, send_reset_password_link_btn, set_new_password_btn, logout, create_account, log_in, forget_password, email_label, password_label, password_confirmation_label, name_label, forget_password_feedback_msg, title_label, description_label, cancel_btn, projects, create_project, go_back_btn, tasks_label, general_notes_label, no_tasks_yet, task_body_input_placeholder, add_task_btn, update_task_btn, general_notes_placeholder, no_projects_yet, project_created, task_created, task_completed, task_incomplete, project_updated, task_updated, default */
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"welcome\":\"مرحبًا\",\"toggle_lang_btn\":\"تغيير اللغه\",\"load_projects_btn\":\"تحميل\",\"projects_title\":\"مشروعاتك\",\"submit_form_btn\":\"اضافه\",\"description_input_placeholder\":\"وصف المشروع\",\"title_input_placeholder\":\"عنوان المشروع\",\"min_error_msg\":\"يجب ادخال 3 احرف على الاقل \",\"max_error_msg\":\"لقد تجاوزت الحد الاقصي من الاحرف المسموح بها\",\"required_field_error_msg\":\"يجب ملئ هذا الحقل\",\"email_error_msg\":\"هذا الايميل غير صالح \",\"name_input_placeholder\":\"الاسم\",\"email_input_placeholder\":\"البريد الاليكتروني\",\"password_input_placeholder\":\"كلمة المرور\",\"password_confirmation_input_placeholder\":\"اعد كتابة كلمة المرور\",\"create_account_btn\":\"تسجيل دخول\",\"login_btn\":\"تسجيل دخول\",\"send_reset_password_link_btn\":\"ارسل رابط اعادة تعيين كلمة السر\",\"set_new_password_btn\":\"تعيين كلمة سر جديده\",\"logout\":\"تسجيل خروج\",\"create_account\":\"انشاء حساب\",\"log_in\":\"تسجيل دخول\",\"forget_password\":\"نسيت كلمة المرور\",\"email_label\":\"البريد الاليكتروني\",\"password_label\":\"كلمة المرور\",\"password_confirmation_label\":\"تأكيد كلمة المرور\",\"name_label\":\"الاسم\",\"forget_password_feedback_msg\":\"تم ارسال رابط اعادة تعيين كلمة المرور\",\"title_label\":\"عنوان المشروع\",\"description_label\":\"وصف المشروع\",\"cancel_btn\":\"الغاء\",\"projects\":\"مشروعاتي\",\"create_project\":\"مشروع جديد\",\"go_back_btn\":\"رجوع\",\"tasks_label\":\"مهمات\",\"general_notes_label\":\"ملاحظات\",\"no_tasks_yet\":\"لا توجد اي مهمات\",\"task_body_input_placeholder\":\"مهمه جديده\",\"add_task_btn\":\"اضافة مهمه\",\"update_task_btn\":\"تعديل\",\"general_notes_placeholder\":\"قواعد العمل على هذا المشروع\",\"no_projects_yet\":\"لا توجد اي مشروعات\"}");
+module.exports = JSON.parse("{\"welcome\":\"مرحبًا\",\"toggle_lang_btn\":\"تغيير اللغه\",\"load_projects_btn\":\"تحميل\",\"projects_title\":\"مشروعاتك\",\"submit_form_btn\":\"اضافه\",\"description_input_placeholder\":\"وصف المشروع\",\"title_input_placeholder\":\"عنوان المشروع\",\"min_error_msg\":\"يجب ادخال 3 احرف على الاقل \",\"max_error_msg\":\"لقد تجاوزت الحد الاقصي من الاحرف المسموح بها\",\"required_field_error_msg\":\"يجب ملئ هذا الحقل\",\"email_error_msg\":\"هذا الايميل غير صالح \",\"name_input_placeholder\":\"الاسم\",\"email_input_placeholder\":\"البريد الاليكتروني\",\"password_input_placeholder\":\"كلمة المرور\",\"password_confirmation_input_placeholder\":\"اعد كتابة كلمة المرور\",\"create_account_btn\":\"تسجيل دخول\",\"login_btn\":\"تسجيل دخول\",\"send_reset_password_link_btn\":\"ارسل رابط اعادة تعيين كلمة السر\",\"set_new_password_btn\":\"تعيين كلمة سر جديده\",\"logout\":\"تسجيل خروج\",\"create_account\":\"انشاء حساب\",\"log_in\":\"تسجيل دخول\",\"forget_password\":\"نسيت كلمة المرور\",\"email_label\":\"البريد الاليكتروني\",\"password_label\":\"كلمة المرور\",\"password_confirmation_label\":\"تأكيد كلمة المرور\",\"name_label\":\"الاسم\",\"forget_password_feedback_msg\":\"تم ارسال رابط اعادة تعيين كلمة المرور\",\"title_label\":\"عنوان المشروع\",\"description_label\":\"وصف المشروع\",\"cancel_btn\":\"الغاء\",\"projects\":\"مشروعاتي\",\"create_project\":\"مشروع جديد\",\"go_back_btn\":\"رجوع\",\"tasks_label\":\"مهمات\",\"general_notes_label\":\"ملاحظات\",\"no_tasks_yet\":\"لا توجد اي مهمات\",\"task_body_input_placeholder\":\"مهمه جديده\",\"add_task_btn\":\"اضافة مهمه\",\"update_task_btn\":\"تعديل\",\"general_notes_placeholder\":\"قواعد العمل على هذا المشروع\",\"no_projects_yet\":\"لا توجد اي مشروعات\",\"project_created\":\"لقد قمت بأنشاء هذا المشروع\",\"task_created\":\"قمت باضافة \",\"task_completed\":\"لقد اتممت\",\"task_incomplete\":\"عينت المهمه كغير مكتمله\",\"project_updated\":\"قمت بتحديث المشروع\",\"task_updated\":\"قمت بتحديث المهمه\"}");
 
 /***/ }),
 
@@ -104307,10 +104303,10 @@ var _phrases__WEBPACK_IMPORTED_MODULE_0___namespace = /*#__PURE__*/__webpack_req
 /*!************************************************!*\
   !*** ./resources/lang/locales/en/phrases.json ***!
   \************************************************/
-/*! exports provided: welcome, toggle_lang_btn, load_projects_btn, submit_form_btn, description_input_placeholder, title_input_placeholder, min_error_msg, max_error_msg, required_field_error_msg, email_error_msg, name_input_placeholder, email_input_placeholder, password_input_placeholder, password_confirmation_input_placeholder, create_account_btn, login_btn, send_reset_password_link_btn, set_new_password_btn, logout, create_account, log_in, forget_password, email_label, password_label, password_confirmation_label, name_label, forget_password_feedback_msg, title_label, description_label, cancel_btn, projects, create_project, go_back_btn, tasks_label, general_notes_label, no_tasks_yet, task_body_input_placeholder, add_task_btn, update_task_btn, general_notes_placeholder, no_projects_yet, default */
+/*! exports provided: welcome, toggle_lang_btn, load_projects_btn, submit_form_btn, description_input_placeholder, title_input_placeholder, min_error_msg, max_error_msg, required_field_error_msg, email_error_msg, name_input_placeholder, email_input_placeholder, password_input_placeholder, password_confirmation_input_placeholder, create_account_btn, login_btn, send_reset_password_link_btn, set_new_password_btn, logout, create_account, log_in, forget_password, email_label, password_label, password_confirmation_label, name_label, forget_password_feedback_msg, title_label, description_label, cancel_btn, projects, create_project, go_back_btn, tasks_label, general_notes_label, no_tasks_yet, task_body_input_placeholder, add_task_btn, update_task_btn, general_notes_placeholder, no_projects_yet, project_created, task_created, task_completed, task_incomplete, project_updated, task_updated, default */
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"welcome\":\"Welcome\",\"toggle_lang_btn\":\"Toggle Lang\",\"load_projects_btn\":\"Load Projects\",\"submit_form_btn\":\"Submit\",\"description_input_placeholder\":\"Description\",\"title_input_placeholder\":\"Title\",\"min_error_msg\":\"This field must contain 3 chars at least\",\"max_error_msg\":\"You have exceeded the max limited chars for this field\",\"required_field_error_msg\":\"This field is required\",\"email_error_msg\":\"Please add a valid email address\",\"name_input_placeholder\":\"Name\",\"email_input_placeholder\":\"Email address\",\"password_input_placeholder\":\"Password\",\"password_confirmation_input_placeholder\":\"Re-type password\",\"create_account_btn\":\"Create account\",\"login_btn\":\"Login\",\"send_reset_password_link_btn\":\"Send me a reset password link\",\"set_new_password_btn\":\"Set new password\",\"logout\":\"Log out\",\"create_account\":\"Create Account\",\"log_in\":\"Log In\",\"forget_password\":\"Forget Password\",\"email_label\":\"Email\",\"password_label\":\"Password\",\"password_confirmation_label\":\"Re-type password\",\"name_label\":\"Name\",\"forget_password_feedback_msg\":\"We have sent u a reset password link\",\"title_label\":\"Project Title\",\"description_label\":\"Project Description\",\"cancel_btn\":\"Cancel\",\"projects\":\"My Projects\",\"create_project\":\"Create Project\",\"go_back_btn\":\"Go Back\",\"tasks_label\":\"Tasks\",\"general_notes_label\":\"General Notes\",\"no_tasks_yet\":\"No Tasks Yet\",\"task_body_input_placeholder\":\"New Task\",\"add_task_btn\":\"Add Task\",\"update_task_btn\":\"Update\",\"general_notes_placeholder\":\"Write the project`s rules\",\"no_projects_yet\":\"No Projects Yet\"}");
+module.exports = JSON.parse("{\"welcome\":\"Welcome\",\"toggle_lang_btn\":\"Toggle Lang\",\"load_projects_btn\":\"Load Projects\",\"submit_form_btn\":\"Submit\",\"description_input_placeholder\":\"Description\",\"title_input_placeholder\":\"Title\",\"min_error_msg\":\"This field must contain 3 chars at least\",\"max_error_msg\":\"You have exceeded the max limited chars for this field\",\"required_field_error_msg\":\"This field is required\",\"email_error_msg\":\"Please add a valid email address\",\"name_input_placeholder\":\"Name\",\"email_input_placeholder\":\"Email address\",\"password_input_placeholder\":\"Password\",\"password_confirmation_input_placeholder\":\"Re-type password\",\"create_account_btn\":\"Create account\",\"login_btn\":\"Login\",\"send_reset_password_link_btn\":\"Send me a reset password link\",\"set_new_password_btn\":\"Set new password\",\"logout\":\"Log out\",\"create_account\":\"Create Account\",\"log_in\":\"Log In\",\"forget_password\":\"Forget Password\",\"email_label\":\"Email\",\"password_label\":\"Password\",\"password_confirmation_label\":\"Re-type password\",\"name_label\":\"Name\",\"forget_password_feedback_msg\":\"We have sent u a reset password link\",\"title_label\":\"Project Title\",\"description_label\":\"Project Description\",\"cancel_btn\":\"Cancel\",\"projects\":\"My Projects\",\"create_project\":\"Create Project\",\"go_back_btn\":\"Go Back\",\"tasks_label\":\"Tasks\",\"general_notes_label\":\"General Notes\",\"no_tasks_yet\":\"No Tasks Yet\",\"task_body_input_placeholder\":\"New Task\",\"add_task_btn\":\"Add Task\",\"update_task_btn\":\"Update\",\"general_notes_placeholder\":\"Write the project`s rules\",\"no_projects_yet\":\"No Projects Yet\",\"project_created\":\"created the project\",\"task_created\":\"created\",\"task_completed\":\"completed\",\"task_incomplete\":\"incomplete\",\"project_updated\":\"updated the project\",\"task_updated\":\"updated\"}");
 
 /***/ }),
 

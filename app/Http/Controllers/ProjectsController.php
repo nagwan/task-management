@@ -38,7 +38,7 @@ class ProjectsController extends Controller
 
         if ($access->allowed()) {
 
-            $data = Project::where('id', $project->id)->with('tasks')->first();
+            $data = Project::where('id', $project->id)->with('tasks', 'activity')->first();
 
             return response()->json(['data' => $data]);
             
@@ -67,7 +67,7 @@ class ProjectsController extends Controller
                 'description' => request('description')
             ]);
 
-            $data = Project::where('id', $project->id)->with('tasks')->first();
+            $data = Project::where('id', $project->id)->with('tasks', 'activity')->first();
 
             return response()->json(['data' => $data]);
         } else {

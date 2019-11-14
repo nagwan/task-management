@@ -15,7 +15,7 @@ class TaskObserver
      */
     public function created(Task $task)
     {
-        $task->recordActivity('created_task');
+        $task->recordActivity('task_created');
     }
 
     /**
@@ -26,15 +26,15 @@ class TaskObserver
      */
     public function updated(Task $task)
     {
-        $type = '';
+        $type = 'task_updated';
 
         if ($task->completed) {
 
-            $type = 'complete_task';
+            $type = 'task_completed';
 
         } else {
 
-            $type = 'incomplete_task';
+            $type = 'task_incomplete';
         }
 
         $task->recordActivity($type);
