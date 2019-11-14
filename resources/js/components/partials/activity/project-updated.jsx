@@ -10,8 +10,16 @@ const ProjectUpdated = (({ activity }) => {
 
     return (
         <React.Fragment>
-            <UserName name={activity.user.name}/> <span>{t('phrases:project_updated')}</span> 😌 
-            <ActivityTime val={activity.created_at}/>
+            <UserName name={activity.user.name} /> 
+            {
+                Object.keys(activity.changes.after).length == 2 ?
+                    <React.Fragment>
+                        <span> {t('phrases:project_updated')}</span> {Object.keys(activity.changes.after)[0]} from <span className='line-through text-gray-500 italic'>{Object.values(activity.changes.before)[0]}</span> to <span className='font-bold italic'>{Object.values(activity.changes.after)[0]}</span>
+                    </React.Fragment>
+                    : <span> {t('phrases:project_updated')}</span>
+            }
+            😃
+            <ActivityTime val={activity.created_at} />
         </React.Fragment>
     )
 })

@@ -119559,7 +119559,11 @@ var ProjectUpdated = function ProjectUpdated(_ref) {
 
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_user_name__WEBPACK_IMPORTED_MODULE_2__["default"], {
     name: activity.user.name
-  }), " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, t('phrases:project_updated')), " \uD83D\uDE0C", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_activity_time__WEBPACK_IMPORTED_MODULE_3__["default"], {
+  }), Object.keys(activity.changes.after).length == 2 ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, " ", t('phrases:project_updated')), " ", Object.keys(activity.changes.after)[0], " from ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "line-through text-gray-500 italic"
+  }, Object.values(activity.changes.before)[0]), " to ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "font-bold italic"
+  }, Object.values(activity.changes.after)[0])) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, " ", t('phrases:project_updated')), "\uD83D\uDE03", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_activity_time__WEBPACK_IMPORTED_MODULE_3__["default"], {
     val: activity.created_at
   }));
 };
@@ -121721,7 +121725,7 @@ function fetch(action) {
           _context3.prev = 0;
 
           if (!(localStorage.getItem('user') != null)) {
-            _context3.next = 11;
+            _context3.next = 10;
             break;
           }
 
@@ -121731,33 +121735,32 @@ function fetch(action) {
 
         case 5:
           project = _context3.sent;
-          console.log(project);
-          _context3.next = 9;
+          _context3.next = 8;
           return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["put"])(_actions__WEBPACK_IMPORTED_MODULE_2__["activeProject"](project.data.data));
 
-        case 9:
-          _context3.next = 13;
+        case 8:
+          _context3.next = 12;
           break;
 
-        case 11:
-          _context3.next = 13;
+        case 10:
+          _context3.next = 12;
           return action.history.push('/login');
 
-        case 13:
-          _context3.next = 18;
+        case 12:
+          _context3.next = 17;
           break;
 
-        case 15:
-          _context3.prev = 15;
+        case 14:
+          _context3.prev = 14;
           _context3.t0 = _context3["catch"](0);
           console.log(_context3.t0);
 
-        case 18:
+        case 17:
         case "end":
           return _context3.stop();
       }
     }
-  }, _marked3, null, [[0, 15]]);
+  }, _marked3, null, [[0, 14]]);
 }
 function watchFetchProject() {
   return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function watchFetchProject$(_context4) {
