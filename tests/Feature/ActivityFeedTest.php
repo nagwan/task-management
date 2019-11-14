@@ -146,8 +146,4 @@ class ActivityFeedTest extends TestCase
 
         $this->assertCount(3, $project->activity);
     }
-
-
-
-     
 }

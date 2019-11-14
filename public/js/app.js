@@ -101818,10 +101818,58 @@ var Home = function Home() {
 
 /***/ }),
 
-/***/ "./resources/js/components/partials/activity-feed.jsx":
-/*!************************************************************!*\
-  !*** ./resources/js/components/partials/activity-feed.jsx ***!
-  \************************************************************/
+/***/ "./resources/js/components/partials/activity/index.jsx":
+/*!*************************************************************!*\
+  !*** ./resources/js/components/partials/activity/index.jsx ***!
+  \*************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _project_created__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./project-created */ "./resources/js/components/partials/activity/project-created.jsx");
+/* harmony import */ var _project_updated__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./project-updated */ "./resources/js/components/partials/activity/project-updated.jsx");
+/* harmony import */ var _task_completed__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./task-completed */ "./resources/js/components/partials/activity/task-completed.jsx");
+/* harmony import */ var _task_created__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./task-created */ "./resources/js/components/partials/activity/task-created.jsx");
+/* harmony import */ var _task_incomplete__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./task-incomplete */ "./resources/js/components/partials/activity/task-incomplete.jsx");
+/* harmony import */ var _task_updated__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./task-updated */ "./resources/js/components/partials/activity/task-updated.jsx");
+
+
+
+
+
+
+
+
+var Activity = function Activity(_ref) {
+  var activity = _ref.activity;
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "py-4 px-4 text-sm"
+  }, activity.type == 'project_created' ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_project_created__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    activity: activity
+  }) : activity.type == 'task_created' ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_task_created__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    activity: activity
+  }) : activity.type == 'task_completed' ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_task_completed__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    activity: activity
+  }) : activity.type == 'task_incomplete' ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_task_incomplete__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    activity: activity
+  }) : activity.type == 'project_updated' ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_project_updated__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    activity: activity
+  }) : activity.type == 'task_updated' ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_task_updated__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    activity: activity
+  }) : '');
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Activity);
+
+/***/ }),
+
+/***/ "./resources/js/components/partials/activity/project-created.jsx":
+/*!***********************************************************************!*\
+  !*** ./resources/js/components/partials/activity/project-created.jsx ***!
+  \***********************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -101833,18 +101881,156 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var Activity = function Activity(_ref) {
+var ProjectCreated = function ProjectCreated(_ref) {
   var activity = _ref.activity;
 
   var _useTranslation = Object(react_i18next__WEBPACK_IMPORTED_MODULE_1__["useTranslation"])(),
       t = _useTranslation.t;
 
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "py-4 px-4 text-sm"
-  }, activity.type == 'project_created' ? activity.user.name + ' ' + t('phrases:project_created') : activity.type == 'task_created' ? activity.user.name + ' ' + t('phrases:task_created') + ' ' + activity.subject.body : activity.type == 'task_completed' ? activity.user.name + ' ' + t('phrases:task_completed') + ' ' + activity.subject.body : activity.type == 'task_incomplete' ? activity.user.name + ' ' + t('phrases:task_incomplete') + ' ' + activity.subject.body : activity.type == 'project_updated' ? activity.user.name + ' ' + t('phrases:project_updated') : activity.type == 'task_updated' ? activity.user.name + ' ' + t('phrases:task_updated') + ' ' + activity.subject.body : '');
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, activity.user.name), " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, t('phrases:project_created')));
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (Activity);
+/* harmony default export */ __webpack_exports__["default"] = (ProjectCreated);
+
+/***/ }),
+
+/***/ "./resources/js/components/partials/activity/project-updated.jsx":
+/*!***********************************************************************!*\
+  !*** ./resources/js/components/partials/activity/project-updated.jsx ***!
+  \***********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_i18next__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-i18next */ "./node_modules/react-i18next/dist/es/index.js");
+
+
+
+var ProjectUpdated = function ProjectUpdated(_ref) {
+  var activity = _ref.activity;
+
+  var _useTranslation = Object(react_i18next__WEBPACK_IMPORTED_MODULE_1__["useTranslation"])(),
+      t = _useTranslation.t;
+
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, activity.user.name), " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, t('phrases:project_updated')));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (ProjectUpdated);
+
+/***/ }),
+
+/***/ "./resources/js/components/partials/activity/task-completed.jsx":
+/*!**********************************************************************!*\
+  !*** ./resources/js/components/partials/activity/task-completed.jsx ***!
+  \**********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_i18next__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-i18next */ "./node_modules/react-i18next/dist/es/index.js");
+
+
+
+var TaskCompleted = function TaskCompleted(_ref) {
+  var activity = _ref.activity;
+
+  var _useTranslation = Object(react_i18next__WEBPACK_IMPORTED_MODULE_1__["useTranslation"])(),
+      t = _useTranslation.t;
+
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, activity.user.name), " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, t('phrases:task_completed')), " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, activity.subject.body));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (TaskCompleted);
+
+/***/ }),
+
+/***/ "./resources/js/components/partials/activity/task-created.jsx":
+/*!********************************************************************!*\
+  !*** ./resources/js/components/partials/activity/task-created.jsx ***!
+  \********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_i18next__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-i18next */ "./node_modules/react-i18next/dist/es/index.js");
+
+
+
+var TaskCreated = function TaskCreated(_ref) {
+  var activity = _ref.activity;
+
+  var _useTranslation = Object(react_i18next__WEBPACK_IMPORTED_MODULE_1__["useTranslation"])(),
+      t = _useTranslation.t;
+
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, activity.user.name), " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, t('phrases:task_created')), " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, activity.subject.body));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (TaskCreated);
+
+/***/ }),
+
+/***/ "./resources/js/components/partials/activity/task-incomplete.jsx":
+/*!***********************************************************************!*\
+  !*** ./resources/js/components/partials/activity/task-incomplete.jsx ***!
+  \***********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_i18next__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-i18next */ "./node_modules/react-i18next/dist/es/index.js");
+
+
+
+var TaskIncomplete = function TaskIncomplete(_ref) {
+  var activity = _ref.activity;
+
+  var _useTranslation = Object(react_i18next__WEBPACK_IMPORTED_MODULE_1__["useTranslation"])(),
+      t = _useTranslation.t;
+
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, activity.user.name), " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, t('phrases:task_incomplete')), " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, activity.subject.body));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (TaskIncomplete);
+
+/***/ }),
+
+/***/ "./resources/js/components/partials/activity/task-updated.jsx":
+/*!********************************************************************!*\
+  !*** ./resources/js/components/partials/activity/task-updated.jsx ***!
+  \********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_i18next__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-i18next */ "./node_modules/react-i18next/dist/es/index.js");
+
+
+
+var TaskUpdated = function TaskUpdated(_ref) {
+  var activity = _ref.activity;
+
+  var _useTranslation = Object(react_i18next__WEBPACK_IMPORTED_MODULE_1__["useTranslation"])(),
+      t = _useTranslation.t;
+
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, activity.user.name), " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, t('phrases:task_updated')), " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, activity.subject.body));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (TaskUpdated);
 
 /***/ }),
 
@@ -102321,7 +102507,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var _tasks_store__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../tasks/store */ "./resources/js/components/projects/tasks/store.jsx");
 /* harmony import */ var _tasks__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../tasks */ "./resources/js/components/projects/tasks/index.jsx");
-/* harmony import */ var _partials_activity_feed__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../partials/activity-feed */ "./resources/js/components/partials/activity-feed.jsx");
+/* harmony import */ var _partials_activity__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../partials/activity */ "./resources/js/components/partials/activity/index.jsx");
 
 
 
@@ -102378,7 +102564,7 @@ var View = function View(_ref) {
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "card py-20 px-20"
   }, project.activity.map(function (activity) {
-    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_partials_activity_feed__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_partials_activity__WEBPACK_IMPORTED_MODULE_5__["default"], {
       activity: activity,
       key: activity.id
     });

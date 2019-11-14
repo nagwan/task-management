@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import { Link } from 'react-router-dom';
 import Store from '../tasks/store';
 import Task from '../tasks';
-import Activity from '../../partials/activity-feed';
+import Activity from '../../partials/activity';
 
 
 const View = (({ project, deleteProject }) => {
