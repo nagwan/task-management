@@ -52,6 +52,8 @@ export function* fetch(action) {
 
             const project = yield call(api, `/api/projects/${action.payload.id}`, null, 'get', user.api_token)
 
+            console.log(project);
+
             yield put(actions.activeProject(project.data.data))
 
         } else {

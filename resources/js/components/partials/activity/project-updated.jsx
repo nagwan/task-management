@@ -8,7 +8,7 @@ const ProjectUpdated = (({ activity }) => {
 
     return (
         <React.Fragment>
-            <span>{activity.user.name}</span> <span>{t('phrases:project_updated')}</span>
+            <span>{activity.user.name}</span> <span>{t('phrases:project_updated')}</span> <span>{window.moment(activity.created_at, ["YYYY-MM-DDTHH:mm:ss"]).fromNow()}</span>
         </React.Fragment>
     )
 })
