@@ -119750,6 +119750,245 @@ var UserName = function UserName(_ref) {
 
 /***/ }),
 
+/***/ "./resources/js/components/partials/auth-actions.jsx":
+/*!***********************************************************!*\
+  !*** ./resources/js/components/partials/auth-actions.jsx ***!
+  \***********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _helpers_functions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../helpers/functions */ "./resources/js/helpers/functions.js");
+/* harmony import */ var react_i18next__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-i18next */ "./node_modules/react-i18next/dist/es/index.js");
+
+
+
+
+
+var AuthActions = function AuthActions() {
+  var _useTranslation = Object(react_i18next__WEBPACK_IMPORTED_MODULE_3__["useTranslation"])(),
+      t = _useTranslation.t,
+      i18n = _useTranslation.i18n;
+
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "flex justify-center"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    className: "mx-20 bg-primary-900 hover:bg-transparent text-white hover:text-primary-900 border border-transparent hover:border hover:border-primary-900 font-bold py-12 px-12 rounded rounded-8"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+    to: "/registration",
+    className: ""
+  }, t('phrases:create_account'))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    className: "mx-20 bg-transparent hover:bg-primary-900 text-primary-900 font-semibold hover:text-white py-12 px-12 border border-primary-900 hover:border-transparent rounded radius-8"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+    to: "/login",
+    className: ""
+  }, t('phrases:log_in'))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    onClick: function onClick() {
+      return Object(_helpers_functions__WEBPACK_IMPORTED_MODULE_2__["toggleLang"])(i18n);
+    },
+    className: "inline-block align-baseline font-bold text-sm text-primary-900 hover:underline"
+  }, t('phrases:toggle_lang_btn')));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (AuthActions);
+
+/***/ }),
+
+/***/ "./resources/js/components/partials/drop-down/container.jsx":
+/*!******************************************************************!*\
+  !*** ./resources/js/components/partials/drop-down/container.jsx ***!
+  \******************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _view__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./view */ "./resources/js/components/partials/drop-down/view.jsx");
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+
+
+var Container =
+/*#__PURE__*/
+function (_Component) {
+  _inherits(Container, _Component);
+
+  function Container(props) {
+    var _this;
+
+    _classCallCheck(this, Container);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(Container).call(this, props));
+    _this.initialState = {
+      is_opened: false
+    };
+    _this.state = _this.initialState;
+    _this.toggleMenu = _this.toggleMenu.bind(_assertThisInitialized(_this));
+    _this.closeMenu = _this.closeMenu.bind(_assertThisInitialized(_this));
+    return _this;
+  }
+
+  _createClass(Container, [{
+    key: "toggleMenu",
+    value: function toggleMenu() {
+      this.setState({
+        is_opened: !this.state.is_opened
+      });
+    }
+  }, {
+    key: "closeMenu",
+    value: function closeMenu() {
+      this.setState({
+        is_opened: false
+      });
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "flex justify-center relative w-2/12"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        onClick: this.toggleMenu,
+        className: "z-10"
+      }, this.props.Authentication.user.name), this.state.is_opened ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_view__WEBPACK_IMPORTED_MODULE_2__["default"], {
+        closeMenu: this.closeMenu,
+        user: this.props.Authentication.user
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        onClick: this.closeMenu,
+        className: "fixed top-0 right-0 bottom-0 left-0 h-full w-full bg-primary-900 opacity-50"
+      })) : '');
+    }
+  }]);
+
+  return Container;
+}(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(function (_ref) {
+  var Authentication = _ref.Authentication;
+  return {
+    Authentication: Authentication
+  };
+})(Container));
+
+/***/ }),
+
+/***/ "./resources/js/components/partials/drop-down/index.jsx":
+/*!**************************************************************!*\
+  !*** ./resources/js/components/partials/drop-down/index.jsx ***!
+  \**************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _container__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./container */ "./resources/js/components/partials/drop-down/container.jsx");
+
+/* harmony default export */ __webpack_exports__["default"] = (_container__WEBPACK_IMPORTED_MODULE_0__["default"]);
+
+/***/ }),
+
+/***/ "./resources/js/components/partials/drop-down/view.jsx":
+/*!*************************************************************!*\
+  !*** ./resources/js/components/partials/drop-down/view.jsx ***!
+  \*************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _helpers_functions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../helpers/functions */ "./resources/js/helpers/functions.js");
+/* harmony import */ var react_i18next__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-i18next */ "./node_modules/react-i18next/dist/es/index.js");
+
+
+
+
+
+var View = function View(_ref) {
+  var user = _ref.user,
+      closeMenu = _ref.closeMenu;
+
+  var _useTranslation = Object(react_i18next__WEBPACK_IMPORTED_MODULE_3__["useTranslation"])(),
+      t = _useTranslation.t,
+      i18n = _useTranslation.i18n;
+
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "bg-white z-10 mt-40 shadow-md rounded py-12 w-2/12 absolute right-0 w-full"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+    onClick: closeMenu,
+    to: "/me/".concat(user.id),
+    className: "flex justify-between align-center py-8 px-12 hover:bg-primary-900 hover:text-white cursor-pointer"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, t('phrases:profile')), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+    className: "fas fa-user"
+  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+    onClick: closeMenu,
+    to: "/projects",
+    className: "flex justify-between items-center py-8 px-12 hover:bg-primary-900 hover:text-white cursor-pointer"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, t('phrases:projects')), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+    className: "fas fa-layer-group"
+  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+    onClick: closeMenu,
+    to: "/new-project",
+    className: "flex justify-between items-center py-8 px-12 hover:bg-primary-900 hover:text-white cursor-pointer"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, t('phrases:create_project')), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+    className: "far fa-plus-square"
+  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    onClick: (function () {
+      return Object(_helpers_functions__WEBPACK_IMPORTED_MODULE_2__["toggleLang"])(i18n);
+    }, closeMenu),
+    className: "flex justify-between items-center py-8 px-12 hover:bg-primary-900 hover:text-white cursor-pointer"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, t('phrases:setting')), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+    className: "fas fa-users-cog"
+  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    onClick: closeMenu,
+    className: "flex justify-between items-center py-8 px-12 hover:bg-primary-900 hover:text-white cursor-pointer"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    onClick: function onClick() {
+      return Object(_helpers_functions__WEBPACK_IMPORTED_MODULE_2__["toggleLang"])(i18n);
+    }
+  }, t('phrases:toggle_lang_btn')), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+    className: "fas fa-language"
+  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    onClick: closeMenu,
+    className: "flex justify-between items-center py-8 px-12 hover:bg-primary-900 hover:text-white cursor-pointer"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+    to: ""
+  }, t('phrases:logout')), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+    className: "fas fa-walking"
+  })));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (View);
+
+/***/ }),
+
 /***/ "./resources/js/components/partials/nav.jsx":
 /*!**************************************************!*\
   !*** ./resources/js/components/partials/nav.jsx ***!
@@ -119763,10 +120002,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
-/* harmony import */ var react_i18next__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-i18next */ "./node_modules/react-i18next/dist/es/index.js");
-/* harmony import */ var _store_modules_authentication_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../store/modules/authentication/actions */ "./resources/js/store/modules/authentication/actions.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
-/* harmony import */ var _helpers_functions__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../helpers/functions */ "./resources/js/helpers/functions.js");
+/* harmony import */ var _store_modules_authentication_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../store/modules/authentication/actions */ "./resources/js/store/modules/authentication/actions.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _auth_actions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./auth-actions */ "./resources/js/components/partials/auth-actions.jsx");
+/* harmony import */ var _drop_down_index__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./drop-down/index */ "./resources/js/components/partials/drop-down/index.jsx");
 
 
 
@@ -119781,58 +120020,18 @@ var Navbar = Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(functio
   };
 }, function (dispatch) {
   return Object(redux__WEBPACK_IMPORTED_MODULE_2__["bindActionCreators"])({
-    logOutFlag: _store_modules_authentication_actions__WEBPACK_IMPORTED_MODULE_4__["logOutFlag"]
+    logOutFlag: _store_modules_authentication_actions__WEBPACK_IMPORTED_MODULE_3__["logOutFlag"]
   }, dispatch);
 })(function (props) {
-  var _useTranslation = Object(react_i18next__WEBPACK_IMPORTED_MODULE_3__["useTranslation"])(),
-      t = _useTranslation.t,
-      i18n = _useTranslation.i18n;
-
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("nav", {
-    className: "bg-white shadow w-full"
+    className: "bg-primary-50 shadow w-full"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "flex justify-between items-center py-8"
+    className: "flex justify-between items-center py-8 px-20"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "logo text-white bg-primary-900 w-2/12 h-60 mx-20 text-center flex cursor-pointer justify-center items-center text-bold"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__["Link"], {
-    to: props.Authentication.is_auth ? '/' : '/projects'
-  }, "Logo")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "border-info-900 border-solid w-3/12 h-60"
-  }, props.Authentication.user.id ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__["Link"], {
-    className: "",
-    to: "/me/".concat(props.Authentication.user.id)
-  }, props.Authentication.user.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: ""
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__["Link"], {
-    className: "block",
-    to: "/projects"
-  }, t('phrases:projects')), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__["Link"], {
-    className: "block",
-    to: "/new-project"
-  }, t('phrases:create_project')), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-    onClick: function onClick() {
-      return Object(_helpers_functions__WEBPACK_IMPORTED_MODULE_6__["toggleLang"])(i18n);
-    },
-    className: "block font-bold text-sm text-primary-900 hover:underline"
-  }, t('phrases:toggle_lang_btn')), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__["Link"], {
-    className: "block",
-    to: ""
-  }, t('phrases:logout')))) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-    className: "mx-20 bg-primary-900 hover:bg-transparent text-white hover:text-primary-900 border border-transparent hover:border hover:border-primary-900 font-bold py-12 px-12 rounded rounded-8"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__["Link"], {
-    to: "/registration",
-    className: ""
-  }, t('phrases:create_account'))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-    className: "mx-20 bg-transparent hover:bg-primary-900 text-primary-900 font-semibold hover:text-white py-12 px-12 border border-primary-900 hover:border-transparent rounded radius-8"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__["Link"], {
-    to: "/login",
-    className: ""
-  }, t('phrases:log_in'))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-    onClick: function onClick() {
-      return Object(_helpers_functions__WEBPACK_IMPORTED_MODULE_6__["toggleLang"])(i18n);
-    },
-    className: "inline-block align-baseline font-bold text-sm text-primary-900 hover:underline"
-  }, t('phrases:toggle_lang_btn'))))));
+    className: "logo text-white bg-primary-900 w-2/12 h-60 text-center flex cursor-pointer justify-center items-center text-bold"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__["Link"], {
+    to: "/"
+  }, "Logo")), props.Authentication.user.id ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_drop_down_index__WEBPACK_IMPORTED_MODULE_6__["default"], null) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_auth_actions__WEBPACK_IMPORTED_MODULE_5__["default"], null)));
 });
 /* harmony default export */ __webpack_exports__["default"] = (Navbar);
 
@@ -122222,10 +122421,10 @@ var _phrases__WEBPACK_IMPORTED_MODULE_0___namespace = /*#__PURE__*/__webpack_req
 /*!************************************************!*\
   !*** ./resources/lang/locales/ar/phrases.json ***!
   \************************************************/
-/*! exports provided: welcome, toggle_lang_btn, load_projects_btn, projects_title, submit_form_btn, description_input_placeholder, title_input_placeholder, min_error_msg, max_error_msg, required_field_error_msg, email_error_msg, name_input_placeholder, email_input_placeholder, password_input_placeholder, password_confirmation_input_placeholder, create_account_btn, login_btn, send_reset_password_link_btn, set_new_password_btn, logout, create_account, log_in, forget_password, email_label, password_label, password_confirmation_label, name_label, forget_password_feedback_msg, title_label, description_label, cancel_btn, projects, create_project, go_back_btn, tasks_label, general_notes_label, no_tasks_yet, task_body_input_placeholder, add_task_btn, update_task_btn, general_notes_placeholder, no_projects_yet, project_created, task_created, task_completed, task_incomplete, project_updated, task_updated, default */
+/*! exports provided: welcome, toggle_lang_btn, load_projects_btn, projects_title, submit_form_btn, description_input_placeholder, title_input_placeholder, min_error_msg, max_error_msg, required_field_error_msg, email_error_msg, name_input_placeholder, email_input_placeholder, password_input_placeholder, password_confirmation_input_placeholder, create_account_btn, login_btn, send_reset_password_link_btn, set_new_password_btn, logout, create_account, log_in, forget_password, email_label, password_label, password_confirmation_label, name_label, forget_password_feedback_msg, title_label, description_label, cancel_btn, projects, create_project, go_back_btn, tasks_label, general_notes_label, no_tasks_yet, task_body_input_placeholder, add_task_btn, update_task_btn, general_notes_placeholder, no_projects_yet, project_created, task_created, task_completed, task_incomplete, project_updated, task_updated, profile, setting, default */
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"welcome\":\"مرحبًا\",\"toggle_lang_btn\":\"تغيير اللغه\",\"load_projects_btn\":\"تحميل\",\"projects_title\":\"مشروعاتك\",\"submit_form_btn\":\"اضافه\",\"description_input_placeholder\":\"وصف المشروع\",\"title_input_placeholder\":\"عنوان المشروع\",\"min_error_msg\":\"يجب ادخال 3 احرف على الاقل \",\"max_error_msg\":\"لقد تجاوزت الحد الاقصي من الاحرف المسموح بها\",\"required_field_error_msg\":\"يجب ملئ هذا الحقل\",\"email_error_msg\":\"هذا الايميل غير صالح \",\"name_input_placeholder\":\"الاسم\",\"email_input_placeholder\":\"البريد الاليكتروني\",\"password_input_placeholder\":\"كلمة المرور\",\"password_confirmation_input_placeholder\":\"اعد كتابة كلمة المرور\",\"create_account_btn\":\"تسجيل دخول\",\"login_btn\":\"تسجيل دخول\",\"send_reset_password_link_btn\":\"ارسل رابط اعادة تعيين كلمة السر\",\"set_new_password_btn\":\"تعيين كلمة سر جديده\",\"logout\":\"تسجيل خروج\",\"create_account\":\"انشاء حساب\",\"log_in\":\"تسجيل دخول\",\"forget_password\":\"نسيت كلمة المرور\",\"email_label\":\"البريد الاليكتروني\",\"password_label\":\"كلمة المرور\",\"password_confirmation_label\":\"تأكيد كلمة المرور\",\"name_label\":\"الاسم\",\"forget_password_feedback_msg\":\"تم ارسال رابط اعادة تعيين كلمة المرور\",\"title_label\":\"عنوان المشروع\",\"description_label\":\"وصف المشروع\",\"cancel_btn\":\"الغاء\",\"projects\":\"مشروعاتي\",\"create_project\":\"مشروع جديد\",\"go_back_btn\":\"رجوع\",\"tasks_label\":\"مهمات\",\"general_notes_label\":\"ملاحظات\",\"no_tasks_yet\":\"لا توجد اي مهمات\",\"task_body_input_placeholder\":\"مهمه جديده\",\"add_task_btn\":\"اضافة مهمه\",\"update_task_btn\":\"تعديل\",\"general_notes_placeholder\":\"قواعد العمل على هذا المشروع\",\"no_projects_yet\":\"لا توجد اي مشروعات\",\"project_created\":\"لقد قمت بأنشاء هذا المشروع\",\"task_created\":\"قمت باضافة \",\"task_completed\":\"لقد اتممت\",\"task_incomplete\":\"عينت المهمه كغير مكتمله\",\"project_updated\":\"قمت بتحديث المشروع\",\"task_updated\":\"قمت بتحديث المهمه\"}");
+module.exports = JSON.parse("{\"welcome\":\"مرحبًا\",\"toggle_lang_btn\":\"تغيير اللغه\",\"load_projects_btn\":\"تحميل\",\"projects_title\":\"مشروعاتك\",\"submit_form_btn\":\"اضافه\",\"description_input_placeholder\":\"وصف المشروع\",\"title_input_placeholder\":\"عنوان المشروع\",\"min_error_msg\":\"يجب ادخال 3 احرف على الاقل \",\"max_error_msg\":\"لقد تجاوزت الحد الاقصي من الاحرف المسموح بها\",\"required_field_error_msg\":\"يجب ملئ هذا الحقل\",\"email_error_msg\":\"هذا الايميل غير صالح \",\"name_input_placeholder\":\"الاسم\",\"email_input_placeholder\":\"البريد الاليكتروني\",\"password_input_placeholder\":\"كلمة المرور\",\"password_confirmation_input_placeholder\":\"اعد كتابة كلمة المرور\",\"create_account_btn\":\"تسجيل دخول\",\"login_btn\":\"تسجيل دخول\",\"send_reset_password_link_btn\":\"ارسل رابط اعادة تعيين كلمة السر\",\"set_new_password_btn\":\"تعيين كلمة سر جديده\",\"logout\":\"تسجيل خروج\",\"create_account\":\"انشاء حساب\",\"log_in\":\"تسجيل دخول\",\"forget_password\":\"نسيت كلمة المرور\",\"email_label\":\"البريد الاليكتروني\",\"password_label\":\"كلمة المرور\",\"password_confirmation_label\":\"تأكيد كلمة المرور\",\"name_label\":\"الاسم\",\"forget_password_feedback_msg\":\"تم ارسال رابط اعادة تعيين كلمة المرور\",\"title_label\":\"عنوان المشروع\",\"description_label\":\"وصف المشروع\",\"cancel_btn\":\"الغاء\",\"projects\":\"مشروعاتي\",\"create_project\":\"مشروع جديد\",\"go_back_btn\":\"رجوع\",\"tasks_label\":\"مهمات\",\"general_notes_label\":\"ملاحظات\",\"no_tasks_yet\":\"لا توجد اي مهمات\",\"task_body_input_placeholder\":\"مهمه جديده\",\"add_task_btn\":\"اضافة مهمه\",\"update_task_btn\":\"تعديل\",\"general_notes_placeholder\":\"قواعد العمل على هذا المشروع\",\"no_projects_yet\":\"لا توجد اي مشروعات\",\"project_created\":\"لقد قمت بأنشاء هذا المشروع\",\"task_created\":\"قمت باضافة \",\"task_completed\":\"لقد اتممت\",\"task_incomplete\":\"عينت المهمه كغير مكتمله\",\"project_updated\":\"قمت بتحديث المشروع\",\"task_updated\":\"قمت بتحديث المهمه\",\"profile\":\"الملف الشخصي\",\"setting\":\"اعدادات الحساب\"}");
 
 /***/ }),
 
@@ -122251,10 +122450,10 @@ var _phrases__WEBPACK_IMPORTED_MODULE_0___namespace = /*#__PURE__*/__webpack_req
 /*!************************************************!*\
   !*** ./resources/lang/locales/en/phrases.json ***!
   \************************************************/
-/*! exports provided: welcome, toggle_lang_btn, load_projects_btn, submit_form_btn, description_input_placeholder, title_input_placeholder, min_error_msg, max_error_msg, required_field_error_msg, email_error_msg, name_input_placeholder, email_input_placeholder, password_input_placeholder, password_confirmation_input_placeholder, create_account_btn, login_btn, send_reset_password_link_btn, set_new_password_btn, logout, create_account, log_in, forget_password, email_label, password_label, password_confirmation_label, name_label, forget_password_feedback_msg, title_label, description_label, cancel_btn, projects, create_project, go_back_btn, tasks_label, general_notes_label, no_tasks_yet, task_body_input_placeholder, add_task_btn, update_task_btn, general_notes_placeholder, no_projects_yet, project_created, task_created, task_completed, task_incomplete, project_updated, task_updated, default */
+/*! exports provided: welcome, toggle_lang_btn, load_projects_btn, submit_form_btn, description_input_placeholder, title_input_placeholder, min_error_msg, max_error_msg, required_field_error_msg, email_error_msg, name_input_placeholder, email_input_placeholder, password_input_placeholder, password_confirmation_input_placeholder, create_account_btn, login_btn, send_reset_password_link_btn, set_new_password_btn, logout, create_account, log_in, forget_password, email_label, password_label, password_confirmation_label, name_label, forget_password_feedback_msg, title_label, description_label, cancel_btn, projects, create_project, go_back_btn, tasks_label, general_notes_label, no_tasks_yet, task_body_input_placeholder, add_task_btn, update_task_btn, general_notes_placeholder, no_projects_yet, project_created, task_created, task_completed, task_incomplete, project_updated, task_updated, profile, setting, default */
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"welcome\":\"Welcome\",\"toggle_lang_btn\":\"Toggle Lang\",\"load_projects_btn\":\"Load Projects\",\"submit_form_btn\":\"Submit\",\"description_input_placeholder\":\"Description\",\"title_input_placeholder\":\"Title\",\"min_error_msg\":\"This field must contain 3 chars at least\",\"max_error_msg\":\"You have exceeded the max limited chars for this field\",\"required_field_error_msg\":\"This field is required\",\"email_error_msg\":\"Please add a valid email address\",\"name_input_placeholder\":\"Name\",\"email_input_placeholder\":\"Email address\",\"password_input_placeholder\":\"Password\",\"password_confirmation_input_placeholder\":\"Re-type password\",\"create_account_btn\":\"Create account\",\"login_btn\":\"Login\",\"send_reset_password_link_btn\":\"Send me a reset password link\",\"set_new_password_btn\":\"Set new password\",\"logout\":\"Log out\",\"create_account\":\"Create Account\",\"log_in\":\"Log In\",\"forget_password\":\"Forget Password\",\"email_label\":\"Email\",\"password_label\":\"Password\",\"password_confirmation_label\":\"Re-type password\",\"name_label\":\"Name\",\"forget_password_feedback_msg\":\"We have sent u a reset password link\",\"title_label\":\"Project Title\",\"description_label\":\"Project Description\",\"cancel_btn\":\"Cancel\",\"projects\":\"My Projects\",\"create_project\":\"Create Project\",\"go_back_btn\":\"Go Back\",\"tasks_label\":\"Tasks\",\"general_notes_label\":\"General Notes\",\"no_tasks_yet\":\"No Tasks Yet\",\"task_body_input_placeholder\":\"New Task\",\"add_task_btn\":\"Add Task\",\"update_task_btn\":\"Update\",\"general_notes_placeholder\":\"Write the project`s rules\",\"no_projects_yet\":\"No Projects Yet\",\"project_created\":\"created the project\",\"task_created\":\"created\",\"task_completed\":\"completed\",\"task_incomplete\":\"incomplete\",\"project_updated\":\"updated the project\",\"task_updated\":\"updated\"}");
+module.exports = JSON.parse("{\"welcome\":\"Welcome\",\"toggle_lang_btn\":\"Toggle Lang\",\"load_projects_btn\":\"Load Projects\",\"submit_form_btn\":\"Submit\",\"description_input_placeholder\":\"Description\",\"title_input_placeholder\":\"Title\",\"min_error_msg\":\"This field must contain 3 chars at least\",\"max_error_msg\":\"You have exceeded the max limited chars for this field\",\"required_field_error_msg\":\"This field is required\",\"email_error_msg\":\"Please add a valid email address\",\"name_input_placeholder\":\"Name\",\"email_input_placeholder\":\"Email address\",\"password_input_placeholder\":\"Password\",\"password_confirmation_input_placeholder\":\"Re-type password\",\"create_account_btn\":\"Create account\",\"login_btn\":\"Login\",\"send_reset_password_link_btn\":\"Send me a reset password link\",\"set_new_password_btn\":\"Set new password\",\"logout\":\"Log out\",\"create_account\":\"Create Account\",\"log_in\":\"Log In\",\"forget_password\":\"Forget Password\",\"email_label\":\"Email\",\"password_label\":\"Password\",\"password_confirmation_label\":\"Re-type password\",\"name_label\":\"Name\",\"forget_password_feedback_msg\":\"We have sent u a reset password link\",\"title_label\":\"Project Title\",\"description_label\":\"Project Description\",\"cancel_btn\":\"Cancel\",\"projects\":\"My Projects\",\"create_project\":\"Create Project\",\"go_back_btn\":\"Go Back\",\"tasks_label\":\"Tasks\",\"general_notes_label\":\"General Notes\",\"no_tasks_yet\":\"No Tasks Yet\",\"task_body_input_placeholder\":\"New Task\",\"add_task_btn\":\"Add Task\",\"update_task_btn\":\"Update\",\"general_notes_placeholder\":\"Write the project`s rules\",\"no_projects_yet\":\"No Projects Yet\",\"project_created\":\"created the project\",\"task_created\":\"created\",\"task_completed\":\"completed\",\"task_incomplete\":\"incomplete\",\"project_updated\":\"updated the project\",\"task_updated\":\"updated\",\"profile\":\"Profile\",\"setting\":\"Account Settings\"}");
 
 /***/ }),
 

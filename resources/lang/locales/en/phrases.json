@@ -45,5 +45,7 @@
     "task_completed": "completed",
     "task_incomplete": "incomplete",
     "project_updated": "updated the project",
-    "task_updated": "updated"
+    "task_updated": "updated",
+    "profile": "Profile",
+    "setting": "Account Settings"
 }

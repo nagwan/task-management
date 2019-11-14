@@ -46,5 +46,7 @@
     "task_completed": "لقد اتممت",
     "task_incomplete": "عينت المهمه كغير مكتمله",
     "project_updated": "قمت بتحديث المشروع",
-    "task_updated": "قمت بتحديث المهمه"
+    "task_updated": "قمت بتحديث المهمه",
+    "profile": "الملف الشخصي",
+    "setting": "اعدادات الحساب"
 }
