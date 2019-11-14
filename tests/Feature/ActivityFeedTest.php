@@ -96,13 +96,13 @@ class ActivityFeedTest extends TestCase
 
         $task = $project->addTask('test task');
 
-        $this->postJson($task->path(), ['body' => 'changed', 'completed' => false], [
+        $this->postJson($task->path(), ['body' => 'test task', 'completed' => true], [
             'authorization' => 'Bearer ' . $user->api_token
         ]);
 
         $this->assertCount(3, $project->activity);
 
-        //$this->assertEquals('task_completed', $project->activity->last()->type);
+        $this->assertEquals('task_completed', $project->activity->last()->type);
     }
 
     /** @test */
@@ -114,17 +114,17 @@ class ActivityFeedTest extends TestCase
 
         $task = $project->addTask('test task');
 
-        $this->postJson($task->path(), ['body' => 'changed', 'completed' => true], [
+        $this->postJson($task->path(), ['body' => 'test task', 'completed' => true], [
             'authorization' => 'Bearer ' . $user->api_token
         ]);
 
-        $this->postJson($task->path(), ['body' => 'changed', 'completed' => false], [
+        $this->postJson($task->path(), ['body' => 'test task', 'completed' => false], [
             'authorization' => 'Bearer ' . $user->api_token
         ]);
 
         $this->assertCount(4, $project->activity);
 
-        //$this->assertEquals('task_incomplete', $project->activity->last()->type);
+        $this->assertEquals('task_incomplete', $project->activity->last()->type);
     }
 
     /** @test */

@@ -28,12 +28,13 @@ class TaskObserver
     {
         $type = '';
 
-        if ($task->completed) {
-            $type = 'task_completed';
-        } else if ($task->body) {
+        if ($task->isDirty('completed')) {
+
+            $task->completed == false ? $type = 'task_incomplete' : $type = 'task_completed';
+            
+        } else if ($task->isDirty('body')) {
+
             $type = 'task_updated';
-        } else {
-            $type = 'task_incomplete';
         }
 
         $task->recordActivity($type);
