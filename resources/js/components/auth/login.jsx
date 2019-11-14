@@ -41,7 +41,7 @@ const Login = connect(null, dispatch => bindActionCreators({ loginFlag }, dispat
                 validationSchema={validationSchema}
                 onSubmit={(values, { setSubmitting, resetForm }) => {
                     setSubmitting(true)
-                    props.loginFlag({ data: values, history })
+                    props.loginFlag({ values, history })
                     setSubmitting(false)
                 }
 

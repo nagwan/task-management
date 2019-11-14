@@ -1,14 +1,13 @@
 import Register from "../components/auth/register";
-import Index from "../components/projects";
-import Show from "../components/projects/show";
-import Store from "../components/projects/store";
+import Index from "../components/projects/index/index";
+import Show from "../components/projects/show/index";
+import Store from "../components/projects/store/index";
+import Update from "../components/projects/update/index"
 import Login from "../components/auth/login";
 import ResetPassword from "../components/auth/reset-password";
 import ForgetPassword from "../components/auth/forget-password";
-import Update from "../components/projects/update";
 import User from "../components/user";
 import Home from "../components/pages/home";
-
 
 export default [
     {
@@ -26,7 +25,7 @@ export default [
     {
         path: '/projects/:id',
         component: Show,
-        private: true
+        private: true,
     },
     {
         path: '/new-project',
@@ -36,12 +35,12 @@ export default [
     {
         path: '/edit-project/:id',
         component: Update,
-        private: true
+        private: true,
     },
     {
         path: '/me/:id',
         component: User,
-        private: true
+        private: true,
     },
     {
         path: '/registration',

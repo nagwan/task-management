@@ -25,7 +25,7 @@ class AuthenticationController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request['password']),
-            'api_token' => Str::random(80),
+            //'api_token' => Str::random(80),
         ]);
 
         if ($user->save()) {
@@ -35,13 +35,13 @@ class AuthenticationController extends Controller
                     'name' => $user->name,
                     'id' => $user->id,
                     'email' => $user->email,
-                    'api_token' => $user->api_token
+                    'api_token' => Str::random(80)
                 ]
             ];
         } else
-            $response = ['success' => false, 'data' => 'Couldnt register user'];
+            $response = ['success' => false, 'data' => 'could not register user'];
 
-        return response()->json($response, 201);
+        return response()->json($response);
     }
 
     public function login(Request $request)

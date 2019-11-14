@@ -6,12 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Project extends Model
 {
+    use RecordActivityTrait;
+    
     protected $guarded = [];
 
     public function path()
     {
-        //return "api/projects/{$this->id}";
-    
         return  route('projects.show' , ['project' => $this->id]);
     }
 
@@ -29,4 +29,10 @@ class Project extends Model
     {
         return $this->tasks()->create(compact('body'));
     }
+
+    public function activity()
+    {
+        return $this->hasMany(Activity::class)->latest();
+    }
+
 }

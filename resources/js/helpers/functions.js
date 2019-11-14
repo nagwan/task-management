@@ -6,20 +6,20 @@ export const toggleLang = (i18n) => {
         $("body").removeClass("ar");
 
     } else {
-        i18n.changeLanguage("ar")
+        i18n.changeLanguage("ar") 
         $("body").addClass("ar");
     }
 }
 
 
 export const api = (url, data, method, token) => {
-    
+
     const request = axios({
         method,
         url,
         data,
         headers: {
-            'Authorization': token ? 'Bearer '+token :'', 
+            'Authorization': token ? 'Bearer ' + token : '',
             'Accept': 'application/json',
             'Content-Type': 'application/json',
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -27,5 +27,12 @@ export const api = (url, data, method, token) => {
     })
 
     return request
+}
+
+export const checkAuthUser = () => {
+    let user = localStorage.getItem('user');
+    if (user != null) return true
+    return false
+
 }
 

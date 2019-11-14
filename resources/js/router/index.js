@@ -5,14 +5,17 @@ import { connect } from 'react-redux';
 import NotFound from '../components/pages/404';
 import Navbar from '../components/partials/nav'
 
-const PrivateRoutes = connect(({ Authentication }) => ({ Authentication }))((route) => {
-	return (
 
-		route.Authentication.is_auth ? <Route path={route.path} exact={route.exact} component={route.component} /> :
+const PrivateRoutes = connect(({ Authentication}) => ({ Authentication }))((route) => {
 
-			<Redirect push to='/login' />
-	)
-})
+		return (
+
+			route.Authentication.is_auth ?
+				<Route path={route.path} exact={route.exact} component={route.component} />
+				:
+				<Redirect push to='/login' />
+		)
+	})
 
 const AuthRoutes = connect(({ Authentication }) => ({ Authentication }))((route) => {
 
@@ -31,7 +34,7 @@ const ManiRouter = (() => {
 		<div>
 			<BrowserRouter>
 				<Navbar />
-				<div className='container'>
+				<div className='container mb-60 mt-60'>
 					<Switch>
 						{
 							Routes.map((route, index) => (

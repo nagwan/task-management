@@ -1,22 +1,22 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
-import { REGISTRATION_FLAG, isAuthorized, authUser, LOGIN_FLAG, fetchUserFlag, FETCH_USER_FLAG } from './actions'
-import { api } from '../../../helpers/functions'
+import { REGISTRATION_FLAG, authUser, LOGIN_FLAG, FETCH_USER_FLAG, isAuthorized } from './actions'
+import { api, checkAuthUser } from '../../../helpers/functions'
 import { index } from '../projects/sagas'
+
 
 export function* register(action) {
 
     try {
 
-        const response = yield call(api, `api/register`, action.payload.data, 'POST')
+        const response = yield call(api, `api/register`, action.payload.values, 'POST')
 
-        if (response.data.success) {
+        localStorage.setItem('user', JSON.stringify(response.data.data))
 
-            yield action.payload.history.push(`/login`)
+        yield put(isAuthorized(true))
 
-        } else {
+        yield put(authUser(response.data.data))
 
-            console.log(response, 'response error')
-        }
+        yield action.payload.history.push(`/projects`)
 
     } catch (error) {
 
@@ -33,18 +33,17 @@ export function* login(action) {
 
     try {
 
-        const response = yield call(api, `api/login`, action.payload.data, 'POST')
+        const response = yield call(api, `api/login`, action.payload.values, 'POST')
 
-        if (response.data.success) {
+        localStorage.setItem('user', JSON.stringify(response.data.data))
 
-            yield put(isAuthorized(true))
+        yield put(isAuthorized(true))
 
-            yield put(fetchUserFlag({ history: action.payload.history, token: response.data.data.api_token }))
+        yield put(authUser(response.data.data))
 
-        } else {
+        yield index();
 
-            console.log(response.error)
-        }
+        yield action.payload.history.push(`/projects`)
 
     } catch (error) {
 
@@ -64,11 +63,11 @@ export function* fetchUser(action) {
 
         const response = yield call(api, `api/user`, null, 'POST', action.payload.token)
 
-        localStorage.setItem('token', JSON.stringify(response.data.user.api_token))
+        localStorage.setItem('user', JSON.stringify(response.data.user))
+
+        yield put(isAuthorized(true))
 
         yield put(authUser(response.data.user))
-
-        yield index();
 
         yield action.payload.history.push(`/projects`)
 
@@ -76,9 +75,14 @@ export function* fetchUser(action) {
 
         console.log(error)
     }
-
 }
 
 export function* watchFetchUser() {
-    yield takeLatest(FETCH_USER_FLAG, fetchUser)
+    if (checkAuthUser()) {
+        yield put(isAuthorized(true))
+        yield put(authUser(JSON.parse(localStorage.getItem('user'))))
+    } else {
+        yield takeLatest(FETCH_USER_FLAG, fetchUser)
+    }
+
 }

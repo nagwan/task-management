@@ -1,28 +1,13 @@
-import React from "react";
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
+import React from 'react'
 import { useTranslation } from "react-i18next";
-import { useHistory } from "react-router-dom";
-
-import { projectStoreFlag, projectUpdateFlag, projectFetchFlag } from '../../store/modules/projects/actions'
 import { ErrorMessage, Field, Form, Formik } from "formik"
 import * as Yup from "yup"
-
 import { Link } from 'react-router-dom';
-import { useParams} from "react-router";
 
 
-const Store = connect(({ projects }) => ({ projects }), dispatch => bindActionCreators({ projectStoreFlag, projectUpdateFlag, projectFetchFlag }, dispatch))((props) => {
-
+const ProjectForm = (({project, submit}) => {
+    
     const { t } = useTranslation();
-
-    const history = useHistory();
-
-    let { id } = useParams();
-
-    id ? props.projectFetchFlag({id}): false
-
-    // Validation Schema
 
     const validationSchema = Yup.object().shape({
         title: Yup
@@ -42,21 +27,19 @@ const Store = connect(({ projects }) => ({ projects }), dispatch => bindActionCr
         <div className='w-4/12 m-auto'>
             <Formik initialValues={
                 {
-                    title: props.projects.project.title ? props.projects.project.title : '',
-                    description: props.projects.project.description ? props.projects.project.description : ''
+                    title: project && project.title ? project.title : '',
+                    description: project && project.description ? project.description : ''
                 }
             }
                 validationSchema={validationSchema}
                 onSubmit={(values, { setSubmitting, resetForm }) => {
+
                     setSubmitting(true)
-                    if (props.projects.project.id) {
-                        props.projectUpdateFlag({ values, id: props.projects.project.id, history })
-                    } else {
-                        props.projectStoreFlag({ values, history })
 
-                    }
-
+                    submit(values)
+                
                     resetForm()
+
                     setSubmitting(false)
                 }
 
@@ -106,6 +89,7 @@ const Store = connect(({ projects }) => ({ projects }), dispatch => bindActionCr
         </div>
 
     )
+
 })
 
-export default Store
+export default ProjectForm;

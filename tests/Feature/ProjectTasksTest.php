@@ -6,7 +6,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
-class ProjectTasksTest extends TestCase
+class ProjectTasksTest extends TestCase 
 {
     use RefreshDatabase;
 
@@ -72,7 +72,7 @@ class ProjectTasksTest extends TestCase
 
         $task = $project->addTask('test task');
 
-        $this->patchJson($task->path(), ['body' => 'changed', 'completed' => true], [
+        $this->postJson($task->path(), ['body' => 'changed', 'completed' => true], [
             'authorization' => 'Bearer ' . $user->api_token
         ]);
 
@@ -89,7 +89,7 @@ class ProjectTasksTest extends TestCase
 
         $task = $project->addTask('test task');
 
-        $this->patchJson($task->path(), ['body' => 'changed', 'completed' => true], [
+        $this->postJson($task->path(), ['body' => 'changed', 'completed' => true], [
             'authorization' => 'Bearer ' . $user->api_token
         ])->assertStatus(403);
 
