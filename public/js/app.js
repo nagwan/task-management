@@ -119709,7 +119709,11 @@ var TaskUpdated = function TaskUpdated(_ref) {
 
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_user_name__WEBPACK_IMPORTED_MODULE_2__["default"], {
     name: activity.user.name
-  }), " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, t('phrases:task_updated')), " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, activity.subject.body), " \uD83D\uDCAA ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_activity_time__WEBPACK_IMPORTED_MODULE_3__["default"], {
+  }), " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, t('phrases:task_updated')), " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "line-through text-gray-500 italic"
+  }, activity.changes.before.body), " to ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "font-bold italic"
+  }, activity.changes.after.body), "  \uD83D\uDCAA ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_activity_time__WEBPACK_IMPORTED_MODULE_3__["default"], {
     val: activity.created_at
   }));
 };

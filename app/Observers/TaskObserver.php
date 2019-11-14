@@ -26,14 +26,13 @@ class TaskObserver
      */
     public function updated(Task $task)
     {
-        $type = 'task_updated';
+        $type = '';
 
         if ($task->completed) {
-
             $type = 'task_completed';
-
+        } else if ($task->body) {
+            $type = 'task_updated';
         } else {
-
             $type = 'task_incomplete';
         }
 
@@ -48,7 +47,7 @@ class TaskObserver
      */
     public function deleted(Task $task)
     {
-        $task->recordActivity('deleting_task');
+        $task->recordActivity('task_deleted');
     }
 
     /**
@@ -72,6 +71,4 @@ class TaskObserver
     {
         //
     }
-
-    
 }
