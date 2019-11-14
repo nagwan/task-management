@@ -30,7 +30,13 @@ class Container extends Component {
     }
 
     render() {
-        return <View project={this.props.projects.project} deleteProject={this.deleteProject} />
+        return (
+            <React.Fragment>
+                {
+                    !_.isEmpty(this.props.projects.project) ? <View project={this.props.projects.project} deleteProject={this.deleteProject} /> : null
+                }
+            </React.Fragment>
+        )
     }
 }
 

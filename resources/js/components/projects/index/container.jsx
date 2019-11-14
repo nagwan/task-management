@@ -10,12 +10,20 @@ class Container extends Component {
 
     componentDidMount() {
         const { history } = this.props;
-        this.props.projectsIndexFlag({history})
+        this.props.projectsIndexFlag({ history })
     }
 
     render() {
 
-        return <View data={this.props.projects.projects} />
+        return (
+            <React.Fragment>
+                {
+                    !_.isEmpty(this.props.projects.projects) ? <View data={this.props.projects.projects} /> : null
+                }
+            </React.Fragment>
+        )
+
+
     }
 
 }

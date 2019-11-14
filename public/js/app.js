@@ -120007,9 +120007,9 @@ function (_Component) {
   }, {
     key: "render",
     value: function render() {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_view__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, !_.isEmpty(this.props.projects.projects) ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_view__WEBPACK_IMPORTED_MODULE_2__["default"], {
         data: this.props.projects.projects
-      });
+      }) : null);
     }
   }]);
 
@@ -120169,10 +120169,10 @@ function (_Component) {
   }, {
     key: "render",
     value: function render() {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_view__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, !_.isEmpty(this.props.projects.project) ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_view__WEBPACK_IMPORTED_MODULE_1__["default"], {
         project: this.props.projects.project,
         deleteProject: this.deleteProject
-      });
+      }) : null);
     }
   }]);
 
@@ -121644,7 +121644,7 @@ function index(action) {
           _context.prev = 0;
 
           if (!(localStorage.getItem('user') != null)) {
-            _context.next = 11;
+            _context.next = 10;
             break;
           }
 
@@ -121654,33 +121654,32 @@ function index(action) {
 
         case 5:
           projects = _context.sent;
-          console.log(projects);
-          _context.next = 9;
+          _context.next = 8;
           return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["put"])(_actions__WEBPACK_IMPORTED_MODULE_2__["projectsIndex"](projects.data.data));
 
-        case 9:
-          _context.next = 13;
+        case 8:
+          _context.next = 12;
           break;
 
-        case 11:
-          _context.next = 13;
+        case 10:
+          _context.next = 12;
           return action.history.push('/login');
 
-        case 13:
-          _context.next = 18;
+        case 12:
+          _context.next = 17;
           break;
 
-        case 15:
-          _context.prev = 15;
+        case 14:
+          _context.prev = 14;
           _context.t0 = _context["catch"](0);
           console.log(_context.t0);
 
-        case 18:
+        case 17:
         case "end":
           return _context.stop();
       }
     }
-  }, _marked, null, [[0, 15]]);
+  }, _marked, null, [[0, 14]]);
 }
 function watchIndex() {
   var projects;
