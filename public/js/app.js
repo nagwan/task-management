@@ -103643,6 +103643,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _helpers_selectors__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../helpers/selectors */ "./resources/js/helpers/selectors.js");
 
 
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
+
+function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
+
 var _marked =
 /*#__PURE__*/
 _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(index),
@@ -103897,7 +103905,7 @@ function watchUpdate() {
 } // add new project 
 
 function store(action) {
-  var user, project;
+  var user, project, projects;
   return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function store$(_context7) {
     while (1) {
       switch (_context7.prev = _context7.next) {
@@ -103905,7 +103913,7 @@ function store(action) {
           _context7.prev = 0;
 
           if (!(localStorage.getItem('user') != null)) {
-            _context7.next = 12;
+            _context7.next = 18;
             break;
           }
 
@@ -103916,35 +103924,45 @@ function store(action) {
         case 5:
           project = _context7.sent;
           _context7.next = 8;
-          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["put"])(_actions__WEBPACK_IMPORTED_MODULE_2__["projectStore"](project.data.data));
+          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["select"])(_helpers_selectors__WEBPACK_IMPORTED_MODULE_4__["getAllProjects"]);
 
         case 8:
-          _context7.next = 10;
-          return action.payload.history.push('/projects');
-
-        case 10:
-          _context7.next = 14;
-          break;
+          projects = _context7.sent;
+          projects = [].concat(_toConsumableArray(projects), [project.data.data]);
+          _context7.next = 12;
+          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["put"])(_actions__WEBPACK_IMPORTED_MODULE_2__["projectsIndex"](projects));
 
         case 12:
           _context7.next = 14;
-          return action.payload.history.push("/login");
+          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["put"])(_actions__WEBPACK_IMPORTED_MODULE_2__["activeProject"](project.data.data));
 
         case 14:
-          _context7.next = 19;
-          break;
+          _context7.next = 16;
+          return action.payload.history.push("/projects/".concat(project.data.data.id));
 
         case 16:
-          _context7.prev = 16;
+          _context7.next = 20;
+          break;
+
+        case 18:
+          _context7.next = 20;
+          return action.payload.history.push("/login");
+
+        case 20:
+          _context7.next = 25;
+          break;
+
+        case 22:
+          _context7.prev = 22;
           _context7.t0 = _context7["catch"](0);
           console.log(_context7.t0);
 
-        case 19:
+        case 25:
         case "end":
           return _context7.stop();
       }
     }
-  }, _marked7, null, [[0, 16]]);
+  }, _marked7, null, [[0, 22]]);
 }
 function watchStore() {
   return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function watchStore$(_context8) {

@@ -14,6 +14,8 @@ export function* index(action) {
 
             const projects = yield call(api, `/api/projects`, null, 'get', user.api_token)
 
+            //console.log(projects)
+
             yield put(actions.projectsIndex(projects.data.data))
         } else {
             yield action.history.push('/login')
@@ -105,9 +107,15 @@ export function* store(action) {
 
             const project = yield call(api, '/api/projects', action.payload.values, 'POST', user.api_token)
 
-            yield put(actions.projectStore(project.data.data))
+            let projects = yield select(getAllProjects);
 
-            yield action.payload.history.push('/projects')
+            projects = [...projects, project.data.data]
+
+            yield put(actions.projectsIndex(projects))
+
+            yield put(actions.activeProject(project.data.data))
+
+            yield action.payload.history.push(`/projects/${project.data.data.id}`)
 
         } else {
 
@@ -147,7 +155,6 @@ export function* deleteProject(action) {
         }
 
     } catch (error) {
-
         console.log(error)
     }
 
