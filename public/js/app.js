@@ -90223,7 +90223,7 @@ function warning(message) {
 /*!***************************************************************!*\
   !*** ./node_modules/react-router-dom/esm/react-router-dom.js ***!
   \***************************************************************/
-/*! exports provided: BrowserRouter, HashRouter, Link, NavLink, MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, __RouterContext, generatePath, matchPath, useHistory, useLocation, useParams, useRouteMatch, withRouter */
+/*! exports provided: MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, __RouterContext, generatePath, matchPath, useHistory, useLocation, useParams, useRouteMatch, withRouter, BrowserRouter, HashRouter, Link, NavLink */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -94204,7 +94204,7 @@ if (false) {} else {
 /*!***********************************************************************!*\
   !*** ./node_modules/redux-saga/dist/redux-saga-core-npm-proxy.esm.js ***!
   \***********************************************************************/
-/*! exports provided: default, CANCEL, SAGA_LOCATION, buffers, detach, END, channel, eventChannel, isEnd, multicastChannel, runSaga, stdChannel */
+/*! exports provided: CANCEL, SAGA_LOCATION, buffers, detach, END, channel, eventChannel, isEnd, multicastChannel, runSaga, stdChannel, default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -101818,6 +101818,36 @@ var Home = function Home() {
 
 /***/ }),
 
+/***/ "./resources/js/components/partials/activity-feed.jsx":
+/*!************************************************************!*\
+  !*** ./resources/js/components/partials/activity-feed.jsx ***!
+  \************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_i18next__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-i18next */ "./node_modules/react-i18next/dist/es/index.js");
+
+
+
+var Activity = function Activity(_ref) {
+  var activity = _ref.activity;
+
+  var _useTranslation = Object(react_i18next__WEBPACK_IMPORTED_MODULE_1__["useTranslation"])(),
+      t = _useTranslation.t;
+
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "py-4 px-4 text-sm"
+  }, activity.type == 'project_created' ? activity.user.name + ' ' + t('phrases:project_created') : activity.type == 'task_created' ? activity.user.name + ' ' + t('phrases:task_created') + ' ' + activity.subject.body : activity.type == 'task_completed' ? activity.user.name + ' ' + t('phrases:task_completed') + ' ' + activity.subject.body : activity.type == 'task_incomplete' ? activity.user.name + ' ' + t('phrases:task_incomplete') + ' ' + activity.subject.body : activity.type == 'project_updated' ? activity.user.name + ' ' + t('phrases:project_updated') : activity.type == 'task_updated' ? activity.user.name + ' ' + t('phrases:task_updated') + ' ' + activity.subject.body : '');
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Activity);
+
+/***/ }),
+
 /***/ "./resources/js/components/partials/nav.jsx":
 /*!**************************************************!*\
   !*** ./resources/js/components/partials/nav.jsx ***!
@@ -102291,6 +102321,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var _tasks_store__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../tasks/store */ "./resources/js/components/projects/tasks/store.jsx");
 /* harmony import */ var _tasks__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../tasks */ "./resources/js/components/projects/tasks/index.jsx");
+/* harmony import */ var _partials_activity_feed__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../partials/activity-feed */ "./resources/js/components/partials/activity-feed.jsx");
+
 
 
 
@@ -102345,11 +102377,12 @@ var View = function View(_ref) {
     className: "w-3/12"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "card py-20 px-20"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, project.activity.map(function (activity) {
-    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+  }, project.activity.map(function (activity) {
+    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_partials_activity_feed__WEBPACK_IMPORTED_MODULE_5__["default"], {
+      activity: activity,
       key: activity.id
-    }, activity.type == 'project_created' ? t('phrases:project_created') : activity.type == 'task_created' ? t('phrases:task_created') : activity.type == 'task_completed' ? t('phrases:task_completed') : activity.type == 'task_incomplete' ? t('phrases:task_incomplete') : activity.type == 'project_updated' ? t('phrases:project_updated') : activity.type == 'task_updated' ? t('phrases:task_updated') : '');
-  })))) : '', react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
+    });
+  }))) : '', react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
     to: "/projects"
   }, t('phrases:go_back_btn')));
 };
@@ -103693,7 +103726,10 @@ _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(watchTask
 
 
 
- // fetch all projects
+
+/**
+ * fetch all projects
+ */
 
 function index(action) {
   var user, projects;
@@ -103704,7 +103740,7 @@ function index(action) {
           _context.prev = 0;
 
           if (!(localStorage.getItem('user') != null)) {
-            _context.next = 10;
+            _context.next = 11;
             break;
           }
 
@@ -103714,32 +103750,33 @@ function index(action) {
 
         case 5:
           projects = _context.sent;
-          _context.next = 8;
+          console.log(projects);
+          _context.next = 9;
           return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["put"])(_actions__WEBPACK_IMPORTED_MODULE_2__["projectsIndex"](projects.data.data));
 
-        case 8:
-          _context.next = 12;
+        case 9:
+          _context.next = 13;
           break;
 
-        case 10:
-          _context.next = 12;
+        case 11:
+          _context.next = 13;
           return action.history.push('/login');
 
-        case 12:
-          _context.next = 17;
+        case 13:
+          _context.next = 18;
           break;
 
-        case 14:
-          _context.prev = 14;
+        case 15:
+          _context.prev = 15;
           _context.t0 = _context["catch"](0);
           console.log(_context.t0);
 
-        case 17:
+        case 18:
         case "end":
           return _context.stop();
       }
     }
-  }, _marked, null, [[0, 14]]);
+  }, _marked, null, [[0, 15]]);
 }
 function watchIndex() {
   var projects;
@@ -103770,7 +103807,10 @@ function watchIndex() {
       }
     }
   }, _marked2);
-} // active project fetch 
+}
+/**
+ * fetch project
+ */
 
 function fetch(action) {
   var user, project;
@@ -103832,7 +103872,10 @@ function watchFetchProject() {
       }
     }
   }, _marked4);
-} // update project 
+}
+/**
+ * update project
+ */
 
 function update(action) {
   var user, project;
@@ -103898,7 +103941,10 @@ function watchUpdate() {
       }
     }
   }, _marked6);
-} // add new project 
+}
+/**
+ * store project
+ */
 
 function store(action) {
   var user, project, projects;
@@ -103976,7 +104022,6 @@ function watchStore() {
   }, _marked8);
 }
 /**
- *
  * delete project 
  */
 

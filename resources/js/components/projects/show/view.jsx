@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 import { Link } from 'react-router-dom';
 import Store from '../tasks/store';
 import Task from '../tasks';
+import Activity from '../../partials/activity-feed';
 
 
 const View = (({ project, deleteProject }) => {
@@ -51,29 +52,11 @@ const View = (({ project, deleteProject }) => {
                 project.activity ?
                     <div className='w-3/12'>
                         <div className='card py-20 px-20'>
-                            <ul>
-                                {
-                                    project.activity.map(activity =>
-                                        <li key={activity.id}>
-                                            {
-                                                activity.type == 'project_created' ? t('phrases:project_created')
-                                                    :
-                                                    activity.type == 'task_created' ? t('phrases:task_created')
-                                                        :
-                                                        activity.type == 'task_completed' ? t('phrases:task_completed')
-                                                            :
-                                                            activity.type == 'task_incomplete' ? t('phrases:task_incomplete')
-                                                                :
-                                                                activity.type == 'project_updated' ? t('phrases:project_updated')
-                                                                    :
-                                                                    activity.type == 'task_updated' ? t('phrases:task_updated')
-                                                                        :
-                                                                        ''
-                                            }
-                                        </li>
-                                    )
-                                }
-                            </ul>
+                            {
+                                project.activity.map(activity =>
+                                    <Activity activity={activity} key={activity.id} />
+                                )
+                            }
 
                         </div>
                     </div>
@@ -82,7 +65,7 @@ const View = (({ project, deleteProject }) => {
 
 
             <Link to='/projects'>{t('phrases:go_back_btn')}</Link>
-        </div>
+        </div >
     )
 })
 

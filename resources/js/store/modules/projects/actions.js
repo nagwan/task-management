@@ -45,8 +45,6 @@ export function deleteProjectFlag(payload) {
     return { type: DELETE_PROJECT_FLAG, payload }
 }
 
-
-
 /**
  * project`s tasks  
  */

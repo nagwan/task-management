@@ -23,9 +23,7 @@ class ProjectTasksController extends Controller
         if ($access->allowed()) {
             $project->addTask(request('body'));
 
-           // $data = Task::where('project_id', $project->id)->get();
-
-            $data = Project::where('id', $project->id)->with('tasks', 'activity')->first();
+            $data = Project::where('id', $project->id)->with('tasks', 'activity', 'activity.subject', 'activity.user')->first();
 
             return response()->json(['data' => $data], 200);
         } else {
@@ -51,9 +49,7 @@ class ProjectTasksController extends Controller
             ]);
 
 
-            //$data = Task::where('project_id', $project->id)->get();
-
-            $data = Project::where('id', $project->id)->with('tasks', 'activity')->first();
+            $data = Project::where('id', $project->id)->with('tasks', 'activity', 'activity.subject', 'activity.user')->first();
 
             return response()->json(['data' => $data], 200);
         } else {

@@ -3,7 +3,9 @@ import * as actions from './actions'
 import { api } from '../../../helpers/functions'
 import { getProject, getAllProjects } from '../../../helpers/selectors'
 
-// fetch all projects
+/**
+ * fetch all projects
+ */
 export function* index(action) {
 
     try {
@@ -13,6 +15,8 @@ export function* index(action) {
             let user = JSON.parse(localStorage.getItem('user'))
 
             const projects = yield call(api, `/api/projects`, null, 'get', user.api_token)
+
+            console.log(projects)
 
             yield put(actions.projectsIndex(projects.data.data))
         } else {
@@ -36,8 +40,9 @@ export function* watchIndex() {
     }
 }
 
-// active project fetch 
-
+/**
+ * fetch project
+ */ 
 export function* fetch(action) {
     try {
 
@@ -63,7 +68,9 @@ export function* watchFetchProject() {
     yield takeLatest(actions.ACTIVE_PROJECT_FETCH_FLAG, fetch)
 }
 
-// update project 
+/**
+ * update project
+ */ 
 export function* update(action) {
 
     try {
@@ -94,8 +101,9 @@ export function* watchUpdate() {
     yield takeLatest(actions.PROJECT_UPDATE_FLAG, update)
 }
 
-
-// add new project 
+/**
+ * store project
+ */ 
 export function* store(action) {
 
     try {
@@ -131,10 +139,8 @@ export function* watchStore() {
 }
 
 /**
- *
  * delete project 
  */
-
 export function* deleteProject(action) {
     try {
         if (localStorage.getItem('user') != null) {

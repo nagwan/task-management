@@ -11,7 +11,7 @@ class ProjectsController extends Controller
     public function index()
     {
 
-        $projects = Project::where('owner_id', auth()->user()->id)->with('tasks', 'activity')->orderBy('created_at', 'desc')->get();
+        $projects = Project::where('owner_id', auth()->user()->id)->with('tasks', 'activity', 'activity.subject', 'activity.user')->orderBy('updated_at', 'desc')->get();
 
         return response()->json(['data' =>  $projects], 200);
     }
@@ -26,7 +26,7 @@ class ProjectsController extends Controller
 
         $data = auth()->user()->projects()->create($project);
 
-        $project = Project::where('id',$data->id)->with('activity')->first();
+        $project = Project::where('id',$data->id)->with('activity', 'activity.subject', 'activity.user')->first();
 
         return response()->json(['data' => $project], 200);
     }
@@ -38,7 +38,7 @@ class ProjectsController extends Controller
 
         if ($access->allowed()) {
 
-            $data = Project::where('id', $project->id)->with('tasks', 'activity')->first();
+            $data = Project::where('id', $project->id)->with('tasks', 'activity', 'activity.subject', 'activity.user')->first();
 
             return response()->json(['data' => $data]);
             
@@ -67,7 +67,7 @@ class ProjectsController extends Controller
                 'description' => request('description')
             ]);
 
-            $data = Project::where('id', $project->id)->with('tasks', 'activity')->first();
+            $data = Project::where('id', $project->id)->with('tasks', 'activity', 'activity.subject', 'activity.user')->first();
 
             return response()->json(['data' => $data]);
         } else {
@@ -87,7 +87,7 @@ class ProjectsController extends Controller
 
             $project->delete();
 
-            $data = Project::where('owner_id', auth()->user()->id)->with('tasks')->orderBy('created_at', 'desc')->get();
+            $data = Project::where('id', $project->id)->with('tasks', 'activity', 'activity.subject', 'activity.user')->first();
 
             return response()->json(['data' => $data]);
             
