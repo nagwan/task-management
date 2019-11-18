@@ -21,8 +21,8 @@ Route::group(['middleware' => 'guest'], function(){
 
     Route::post('/login', 'AuthenticationController@login');
 
-    Route::post('/logout', 'AuthenticationController@logOut'); 
 });
+
 
 Route::group(['middleware' => 'auth:api'], function () {
 
@@ -45,4 +45,8 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::get('/projects/{project}', 'ProjectsController@show')->name('projects.show');
 
     Route::get('/home', 'HomeController@index')->name('home');
+
+    Route::post('/logout', 'AuthenticationController@logOut'); 
+
 });
+

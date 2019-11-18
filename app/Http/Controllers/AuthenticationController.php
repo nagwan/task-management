@@ -25,7 +25,7 @@ class AuthenticationController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request['password']),
-            //'api_token' => Str::random(80),
+            'api_token' => Str::random(80),
         ]);
 
         if ($user->save()) {
@@ -77,6 +77,6 @@ class AuthenticationController extends Controller
 
     public function logOut()
     {
-       Auth::logout();
+       return auth()->user()->api_token = null;
     }
 }

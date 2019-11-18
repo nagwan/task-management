@@ -92,7 +92,7 @@ export function* logout(action) {
         if (localStorage.getItem('user') != null) {
             let user = JSON.parse(localStorage.getItem('user'))
 
-            const response = yield call(api, `api/logout`, null, 'POST', user.api_token)
+            yield call(api, `api/logout`, null, 'POST', user.api_token)
 
             localStorage.removeItem('user')
             yield put(isAuthorized(false))

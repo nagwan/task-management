@@ -107828,7 +107828,7 @@ function warning(message) {
 /*!***************************************************************!*\
   !*** ./node_modules/react-router-dom/esm/react-router-dom.js ***!
   \***************************************************************/
-/*! exports provided: MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, __RouterContext, generatePath, matchPath, useHistory, useLocation, useParams, useRouteMatch, withRouter, BrowserRouter, HashRouter, Link, NavLink */
+/*! exports provided: BrowserRouter, HashRouter, Link, NavLink, MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, __RouterContext, generatePath, matchPath, useHistory, useLocation, useParams, useRouteMatch, withRouter */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -111809,7 +111809,7 @@ if (false) {} else {
 /*!***********************************************************************!*\
   !*** ./node_modules/redux-saga/dist/redux-saga-core-npm-proxy.esm.js ***!
   \***********************************************************************/
-/*! exports provided: CANCEL, SAGA_LOCATION, buffers, detach, END, channel, eventChannel, isEnd, multicastChannel, runSaga, stdChannel, default */
+/*! exports provided: default, CANCEL, SAGA_LOCATION, buffers, detach, END, channel, eventChannel, isEnd, multicastChannel, runSaga, stdChannel */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -121593,7 +121593,7 @@ function watchFetchUser() {
   }, _marked6);
 }
 function logout(action) {
-  var user, response;
+  var user;
   return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function logout$(_context7) {
     while (1) {
       switch (_context7.prev = _context7.next) {
@@ -121601,7 +121601,7 @@ function logout(action) {
           _context7.prev = 0;
 
           if (!(localStorage.getItem('user') != null)) {
-            _context7.next = 11;
+            _context7.next = 10;
             break;
           }
 
@@ -121610,30 +121610,29 @@ function logout(action) {
           return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["call"])(_helpers_functions__WEBPACK_IMPORTED_MODULE_3__["api"], "api/logout", null, 'POST', user.api_token);
 
         case 5:
-          response = _context7.sent;
           localStorage.removeItem('user');
-          _context7.next = 9;
+          _context7.next = 8;
           return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["put"])(Object(_actions__WEBPACK_IMPORTED_MODULE_2__["isAuthorized"])(false));
 
-        case 9:
-          _context7.next = 11;
+        case 8:
+          _context7.next = 10;
           return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["put"])(Object(_actions__WEBPACK_IMPORTED_MODULE_2__["authUser"])({}));
 
-        case 11:
-          _context7.next = 16;
+        case 10:
+          _context7.next = 15;
           break;
 
-        case 13:
-          _context7.prev = 13;
+        case 12:
+          _context7.prev = 12;
           _context7.t0 = _context7["catch"](0);
           console.log(_context7.t0);
 
-        case 16:
+        case 15:
         case "end":
           return _context7.stop();
       }
     }
-  }, _marked7, null, [[0, 13]]);
+  }, _marked7, null, [[0, 12]]);
 }
 function watchLogOut() {
   return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function watchLogOut$(_context8) {
