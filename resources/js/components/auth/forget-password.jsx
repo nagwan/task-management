@@ -29,7 +29,7 @@ const ForgetPassword = (() => {
                     console.log(values)
                     setSubmitting(false)
 
-                }
+                } 
 
                 }
 

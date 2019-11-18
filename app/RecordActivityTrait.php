@@ -2,6 +2,8 @@
 
 namespace App;
 
+use App\Http\Middleware\Authenticate;
+
 trait RecordActivityTrait
 {
     public $oldAttributes = [];
@@ -9,7 +11,7 @@ trait RecordActivityTrait
 
     public static function bootRecordActivityTrait()
     {
-        static::updating(function($model){
+        static::updating(function ($model) {
             $model->oldAttributes = $model->getOriginal();
         });
     }
@@ -29,8 +31,9 @@ trait RecordActivityTrait
 
     protected function activityOwner()
     {
-       
-        if(class_basename($this) === 'Project'){
+        if (auth()->user()) {
+            return auth()->user();
+        } else if (class_basename($this) === 'Project') {
             return $this->owner;
         }
 

@@ -11,7 +11,14 @@ class ProjectsController extends Controller
     public function index()
     {
 
-        $projects = Project::where('owner_id', auth()->user()->id)->with('tasks', 'activity', 'activity.subject', 'activity.user')->orderBy('updated_at', 'desc')->get();
+        $projects = Project::where('owner_id', auth()->user()->id)
+            ->orWhereHas('members', function($query){
+                $query->where('user_id', auth()->user()->id);
+            })
+            ->with('tasks', 'activity', 'activity.subject', 'activity.user', 'members')
+            ->orderBy('updated_at', 'desc')
+            ->get();
+
 
         return response()->json(['data' =>  $projects], 200);
     }
@@ -26,7 +33,7 @@ class ProjectsController extends Controller
 
         $data = auth()->user()->projects()->create($project);
 
-        $project = Project::where('id',$data->id)->with('activity', 'activity.subject', 'activity.user')->first();
+        $project = Project::where('id', $data->id)->with('activity', 'activity.subject', 'activity.user')->first();
 
         return response()->json(['data' => $project], 200);
     }
@@ -38,10 +45,9 @@ class ProjectsController extends Controller
 
         if ($access->allowed()) {
 
-            $data = Project::where('id', $project->id)->with('tasks', 'activity', 'activity.subject', 'activity.user')->first();
+            $data = Project::where('id', $project->id)->with('tasks', 'activity', 'activity.subject', 'activity.user', 'members')->first();
 
             return response()->json(['data' => $data]);
-            
         } else {
 
             return response()->json([
@@ -67,7 +73,7 @@ class ProjectsController extends Controller
                 'description' => request('description')
             ]);
 
-            $data = Project::where('id', $project->id)->with('tasks', 'activity', 'activity.subject', 'activity.user')->first();
+            $data = Project::where('id', $project->id)->with('tasks', 'activity', 'activity.subject', 'activity.user', 'members')->first();
 
             return response()->json(['data' => $data]);
         } else {
@@ -87,10 +93,9 @@ class ProjectsController extends Controller
 
             $project->delete();
 
-            $data = Project::where('id', $project->id)->with('tasks', 'activity', 'activity.subject', 'activity.user')->first();
+            $data = Project::where('id', $project->id)->with('tasks', 'activity', 'activity.subject', 'activity.user', 'members')->first();
 
             return response()->json(['data' => $data]);
-            
         } else {
 
             return response()->json([
@@ -98,6 +103,5 @@ class ProjectsController extends Controller
                 'message' =>  'unauthorized'
             ], 403);
         }
-        
     }
 }

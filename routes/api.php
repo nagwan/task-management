@@ -21,7 +21,7 @@ Route::group(['middleware' => 'guest'], function(){
 
     Route::post('/login', 'AuthenticationController@login');
 
-    Route::post('/logout', 'AuthenticationController@logOut');
+    Route::post('/logout', 'AuthenticationController@logOut'); 
 });
 
 Route::group(['middleware' => 'auth:api'], function () {
@@ -36,6 +36,8 @@ Route::group(['middleware' => 'auth:api'], function () {
 
     Route::post('/projects/{project}/tasks', 'ProjectTasksController@store');
 
+    Route::post('/projects/{project}/invitations', 'ProjectInvitationsController@store');
+
     Route::post('/projects/{project}', 'ProjectsController@update');
 
     Route::delete('/projects/{project}', 'ProjectsController@delete');
@@ -43,5 +45,4 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::get('/projects/{project}', 'ProjectsController@show')->name('projects.show');
 
     Route::get('/home', 'HomeController@index')->name('home');
-
 });

@@ -120289,7 +120289,7 @@ var View = function View(_ref) {
       t = _useTranslation.t;
 
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "w-full flex flex-wrap justify-around"
+    className: "w-full flex flex-wrap"
   }, data.length ? data.map(function (project) {
     return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
       to: "/projects/".concat(project.id),

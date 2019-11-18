@@ -8,7 +8,7 @@ const View = (({ data }) => {
     const { t } = useTranslation();
 
     return (
-        <div className='w-full flex flex-wrap justify-around'>
+        <div className='w-full flex flex-wrap'>
 
             {
                 data.length ?

@@ -4,6 +4,7 @@ namespace App\Observers;
 
 use App\Activity;
 use App\Task;
+use App\User;
 
 class TaskObserver
 {
@@ -15,7 +16,7 @@ class TaskObserver
      */
     public function created(Task $task)
     {
-        $task->recordActivity('task_created');
+        $task->recordActivity('task_created'); 
     }
 
     /**

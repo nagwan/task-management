@@ -67,7 +67,7 @@ class ManageProjectsTest extends TestCase
 
     public function a_user_can_delete_a_project()
     {
-        
+
         $this->withoutExceptionHandling();
 
         $user = factory('App\User')->create();
@@ -79,7 +79,6 @@ class ManageProjectsTest extends TestCase
         ]);
 
         $this->assertDatabaseMissing('projects', $project->only('id'));
-
     }
 
     /** @test */
@@ -179,5 +178,20 @@ class ManageProjectsTest extends TestCase
         $this->getJson($project->path(), [
             'authorization' => 'Bearer ' . $user->api_token
         ])->assertStatus(403);
+    }
+
+    /** @test */
+
+    public function a_user_can_see_projects_he_invited_to_in_the_dashboard()
+    { 
+        $member = factory('App\User')->create();
+
+        $project = factory('App\Project')->create();
+
+        $project->invites($member);
+
+        $this->getJson(action('ProjectsController@index'), [
+            'authorization' => 'Bearer ' . $member->api_token
+        ])->assertSee($project->title);
     }
 }
