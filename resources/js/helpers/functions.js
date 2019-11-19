@@ -3,12 +3,14 @@ import axios from 'axios';
 export const toggleLang = (i18n) => {
     if (i18n.language === 'ar') {
         i18n.changeLanguage("en")
+        localStorage.setItem('i18nextLng', 'en')
         window.moment.locale('en-US')
         $("body").removeClass("ar");
 
     } else {
         i18n.changeLanguage("ar") 
         window.moment.locale('ar')
+        localStorage.setItem('i18nextLng', 'ar')
         $("body").addClass("ar");
     }
 }

@@ -6,7 +6,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
-class ProjectTasksTest extends TestCase 
+class ProjectTasksTest extends TestCase
 {
     use RefreshDatabase;
 
@@ -94,7 +94,49 @@ class ProjectTasksTest extends TestCase
         ])->assertStatus(403);
 
         $this->assertDatabaseMissing('tasks', ['body' => 'changed', 'completed' => true]);
-
     }
 
+    /** @test */
+
+    public function only_the_owner_of_a_project_may_delete_tasks()
+    {
+
+        $this->withoutExceptionHandling();
+
+        $owner = factory('App\User')->create();
+
+        $project = factory('App\Project')->create(['owner_id' => $owner->id]);
+
+        $task = $project->addTask('test task');
+
+        $this->deleteJson($task->path(), [], [
+            'authorization' => 'Bearer ' . $owner->api_token
+        ])->assertStatus(200);
+
+        $this->assertDatabaseMissing('tasks', $task->only('id'));
+    }
+
+    /** @test */
+
+    public function members_can_delete_tasks()
+    {
+        $this->withoutExceptionHandling();
+
+        $owner = factory('App\User')->create();
+
+        $member = factory('App\User')->create();
+
+        $project = factory('App\Project')->create(['owner_id' => $owner->id]);
+
+        $project->invites($member);
+
+        $task = $project->addTask('test task');
+
+        $this->deleteJson($task->path(), [], [
+            'authorization' => 'Bearer ' . $member->api_token
+        ])->assertStatus(200);
+        
+        $this->assertDatabaseMissing('tasks', $task->only('id'));
+
+    }
 }

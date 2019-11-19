@@ -1,5 +1,5 @@
 import { all } from 'redux-saga/effects';
-import { watchIndex, watchShow, watchStore, watchTaskStore, watchTaskUpdate, watchUpdate, watchFetchProject, watchDeleteProject, watchInviteUsers } from "./modules/projects/sagas"
+import { watchIndex, watchShow, watchStore, watchTaskStore, watchTaskUpdate, watchUpdate, watchFetchProject, watchDeleteProject, watchInviteUsers, watchTaskDelete } from "./modules/projects/sagas"
 import { watchRegistration, watchLogin, watchFetchUser, watchLogOut } from './modules/authentication/sagas'
 
 export default function* root() {
@@ -15,7 +15,8 @@ export default function* root() {
         watchUpdate(),
         watchDeleteProject(),
         watchLogOut(),
-        watchInviteUsers()
+        watchInviteUsers(),
+        watchTaskDelete()
     ])
 
 }

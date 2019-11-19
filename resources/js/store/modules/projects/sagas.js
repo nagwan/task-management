@@ -256,3 +256,32 @@ export function* watchTaskUpdate() {
     yield takeLatest(actions.TASK_UPDATE_FLAG, updateTask)
 }
 
+/**
+ * delete task
+ */
+
+export function* deleteTask(action) {
+
+    try {
+
+        const project = yield select(getProject);
+
+        if (localStorage.getItem('user') != null) {
+
+            let user = JSON.parse(localStorage.getItem('user'))
+
+            const project_response = yield call(api, `/api/projects/${project.id}/tasks/${action.payload.id}`, null, 'delete', user.api_token)
+
+            yield put(actions.activeProject(project_response.data.data))
+        }
+
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+export function* watchTaskDelete() {
+    yield takeLatest(actions.TASK_DELETE_FLAG, deleteTask)
+}
+
+

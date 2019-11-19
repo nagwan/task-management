@@ -46,7 +46,7 @@ export function deleteProjectFlag(payload) {
     return { type: DELETE_PROJECT_FLAG, payload }
 }
 
-export function inviteUsersFlag(payload){
+export function inviteUsersFlag(payload) {
     return { type: INVITE_USERS_FLAG, payload }
 }
 
@@ -58,6 +58,7 @@ export const TASK_STORE_FLAG = 'TASK_STORE_FLAG'
 export const TASK_STORE = 'TASK_STORE'
 export const UPDATE_PROJECT_TASKS = 'UPDATE_PROJECT_TASKS'
 export const TASK_UPDATE_FLAG = 'TASK_UPDATE_FLAG'
+export const TASK_DELETE_FLAG = 'TASK_DELETE_FLAG'
 
 export function taskStoreFlag(payload) {
     return { type: TASK_STORE_FLAG, payload }
@@ -73,4 +74,8 @@ export function updateProjectTasks(payload) {
 
 export function updateTaskFlag(payload) {
     return { type: TASK_UPDATE_FLAG, payload }
+}
+
+export function deleteTaskFlag(payload) {
+    return { type: TASK_DELETE_FLAG, payload }
 }

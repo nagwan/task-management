@@ -11,39 +11,35 @@ class ProjectInvitationsController extends Controller
 {
     public function store(Project $project)
     {
+        request()->validate(
+            [
+                'email' => 'required|exists:users,email',
+            ],
+        );
+
         $access = Gate::inspect('manage', $project);
+
+        $user = User::whereEmail(request('email'))->first();
 
         if ($access->allowed()) {
 
-            if ($project->owner->isNot(auth()->user())) {
+            if ($project->members->contains($user)) {
                 return response()->json([
                     'success' => false,
-                    'message' => 'unauthorized'
-                ], 403);
+                    'message' => 'already member'
+                ], 422);
+            } else if ($project->owner->email == (request('email'))) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'u cannot invite yourself to your own project'
+                ], 422);
             }
 
-            request()->validate(
-                [
-                    'email' => 'required|exists:users,email',
-                ],
-            );
+            $project->invites($user);
 
-            $user = User::whereEmail(request('email'))->first();
+            $data = Project::where('id', $project->id)->with('tasks', 'owner', 'owner.profile', 'activity', 'activity.subject', 'activity.user', 'members', 'members.profile')->first();
 
-            if ($user) {
-
-                $project->invites($user);
-
-                $data = Project::where('id', $project->id)->with('tasks', 'owner', 'owner.profile', 'activity', 'activity.subject', 'activity.user', 'members')->first();
-
-                return response()->json(['data' => $data]);
-            }
-
-            return response()->json([
-                'success' => false,
-                'message' => 'Unprocessable Entity'
-            ], 422);
-            
+            return response()->json(['data' => $data]);
         } else {
 
             return response()->json([

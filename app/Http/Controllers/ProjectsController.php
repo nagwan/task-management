@@ -34,7 +34,7 @@ class ProjectsController extends Controller
 
         $data = auth()->user()->projects()->create($project);
 
-        $project = Project::where('id', $data->id)->with('activity', 'activity.subject', 'activity.user')->first();
+        $project = Project::where('id', $data->id)->with('tasks', 'owner', 'owner.profile', 'activity', 'activity.subject', 'activity.user', 'members', 'members.profile')->first();
 
         return response()->json(['data' => $project], 200);
     }
@@ -42,7 +42,7 @@ class ProjectsController extends Controller
     public function show(Project $project) 
     {
 
-        $access = Gate::inspect('manage', $project);
+        $access = Gate::inspect('hasAccess', $project);
 
         if ($access->allowed()) {
 
@@ -60,7 +60,7 @@ class ProjectsController extends Controller
 
     public function update(Project $project)
     {
-        $access = Gate::inspect('manage', $project);
+        $access = Gate::inspect('hasAccess', $project);
 
         if ($access->allowed()) {
 
@@ -86,7 +86,7 @@ class ProjectsController extends Controller
         }
     }
 
-    public function delete(Project $project)
+    public function delete(Project $project) 
     {
         $access = Gate::inspect('manage', $project);
 

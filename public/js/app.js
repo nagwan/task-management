@@ -120055,10 +120055,10 @@ var Navbar = Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(functio
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "flex justify-between items-center py-8 px-20"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "logo text-white bg-primary-900 w-2/12 h-60 text-center flex cursor-pointer justify-center items-center text-bold"
+    className: "logo w-2/12 h-60 cursor-pointer"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__["Link"], {
     to: "/"
-  }, "Logo")), props.Authentication.user.id ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_drop_down_index__WEBPACK_IMPORTED_MODULE_6__["default"], null) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_auth_actions__WEBPACK_IMPORTED_MODULE_5__["default"], null)));
+  })), props.Authentication.user.id ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_drop_down_index__WEBPACK_IMPORTED_MODULE_6__["default"], null) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_auth_actions__WEBPACK_IMPORTED_MODULE_5__["default"], null)));
 });
 /* harmony default export */ __webpack_exports__["default"] = (Navbar);
 
@@ -120569,9 +120569,10 @@ function (_Component) {
     value: function componentDidMount() {
       var _this2 = this;
 
+      this.fetchProject();
       this.interval = setInterval(function () {
         _this2.fetchProject();
-      }, 3000);
+      }, 5000);
     }
   }, {
     key: "fetchProject",
@@ -120682,13 +120683,15 @@ var View = function View(_ref) {
     className: "w-full"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "w-full flex justify-between items-center p-24 "
-  }, user.id == project.owner_id && project.members.length ? project.members.length ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, project.members.map(function (member) {
+  }, user.id == project.owner_id && project.members.length ? project.members.length ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "flex"
+  }, project.members.map(function (member) {
     return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
       title: member.name,
       alt: member.name,
       key: member.id,
       src: member.profile.avatar,
-      className: "rounded-full border-primary-900 border-rounded border-4",
+      className: "rounded-full border-primary-900 border-rounded border-4 mr-4",
       width: "50px",
       height: "50px"
     });
@@ -120912,7 +120915,8 @@ __webpack_require__.r(__webpack_exports__);
 
 var Task = Object(react_redux__WEBPACK_IMPORTED_MODULE_3__["connect"])(null, function (dispatch) {
   return Object(redux__WEBPACK_IMPORTED_MODULE_4__["bindActionCreators"])({
-    updateTaskFlag: _store_modules_projects_actions__WEBPACK_IMPORTED_MODULE_6__["updateTaskFlag"]
+    updateTaskFlag: _store_modules_projects_actions__WEBPACK_IMPORTED_MODULE_6__["updateTaskFlag"],
+    deleteTaskFlag: _store_modules_projects_actions__WEBPACK_IMPORTED_MODULE_6__["deleteTaskFlag"]
   }, dispatch);
 })(function (props) {
   var _useTranslation = Object(react_i18next__WEBPACK_IMPORTED_MODULE_5__["useTranslation"])(),
@@ -120958,7 +120962,19 @@ var Task = Object(react_redux__WEBPACK_IMPORTED_MODULE_3__["connect"])(null, fun
       className: "px-8 py-8 text-danger-500 text-xs italic",
       name: "body",
       component: "div"
-    }) : null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_1__["Field"], {
+    }) : null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "flex"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      type: "button",
+      className: "mx-8 focus:outline-none",
+      onClick: function onClick() {
+        return props.deleteTaskFlag({
+          id: props.task.id
+        });
+      }
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+      className: "fas fa-trash-alt text-xl text-gray-300  hover:text-danger-700"
+    })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_1__["Field"], {
       className: "w-2/12",
       type: "checkbox",
       render: function render() {
@@ -120981,7 +120997,7 @@ var Task = Object(react_redux__WEBPACK_IMPORTED_MODULE_3__["connect"])(null, fun
           className: "checkmark"
         }));
       }
-    }));
+    })));
   })));
 });
 /* harmony default export */ __webpack_exports__["default"] = (Task);
@@ -121255,11 +121271,13 @@ __webpack_require__.r(__webpack_exports__);
 var toggleLang = function toggleLang(i18n) {
   if (i18n.language === 'ar') {
     i18n.changeLanguage("en");
+    localStorage.setItem('i18nextLng', 'en');
     window.moment.locale('en-US');
     $("body").removeClass("ar");
   } else {
     i18n.changeLanguage("ar");
     window.moment.locale('ar');
+    localStorage.setItem('i18nextLng', 'ar');
     $("body").addClass("ar");
   }
 };
@@ -121906,7 +121924,7 @@ function watchLogOut() {
 /*!********************************************************!*\
   !*** ./resources/js/store/modules/projects/actions.js ***!
   \********************************************************/
-/*! exports provided: PROJECTS_INDEX_FLAG, PROJECTS_INDEX, PROJECT_SHOW_FLAG, ACTIVE_PROJECT, PROJECT_STORE_FLAG, PROJECT_UPDATE_FLAG, ACTIVE_PROJECT_FETCH_FLAG, DELETE_PROJECT_FLAG, INVITE_USERS_FLAG, projectsIndexFlag, projectsIndex, projectShowFlag, activeProject, projectStoreFlag, projectUpdateFlag, activeProjectFetchFlag, deleteProjectFlag, inviteUsersFlag, TASK_STORE_FLAG, TASK_STORE, UPDATE_PROJECT_TASKS, TASK_UPDATE_FLAG, taskStoreFlag, taskStore, updateProjectTasks, updateTaskFlag */
+/*! exports provided: PROJECTS_INDEX_FLAG, PROJECTS_INDEX, PROJECT_SHOW_FLAG, ACTIVE_PROJECT, PROJECT_STORE_FLAG, PROJECT_UPDATE_FLAG, ACTIVE_PROJECT_FETCH_FLAG, DELETE_PROJECT_FLAG, INVITE_USERS_FLAG, projectsIndexFlag, projectsIndex, projectShowFlag, activeProject, projectStoreFlag, projectUpdateFlag, activeProjectFetchFlag, deleteProjectFlag, inviteUsersFlag, TASK_STORE_FLAG, TASK_STORE, UPDATE_PROJECT_TASKS, TASK_UPDATE_FLAG, TASK_DELETE_FLAG, taskStoreFlag, taskStore, updateProjectTasks, updateTaskFlag, deleteTaskFlag */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -121933,10 +121951,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TASK_STORE", function() { return TASK_STORE; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UPDATE_PROJECT_TASKS", function() { return UPDATE_PROJECT_TASKS; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TASK_UPDATE_FLAG", function() { return TASK_UPDATE_FLAG; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TASK_DELETE_FLAG", function() { return TASK_DELETE_FLAG; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "taskStoreFlag", function() { return taskStoreFlag; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "taskStore", function() { return taskStore; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateProjectTasks", function() { return updateProjectTasks; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateTaskFlag", function() { return updateTaskFlag; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteTaskFlag", function() { return deleteTaskFlag; });
 var PROJECTS_INDEX_FLAG = 'PROJECTS_INDEX_FLAG';
 var PROJECTS_INDEX = 'PROJECTS_INDEX';
 var PROJECT_SHOW_FLAG = 'PROJECT_SHOW_FLAG';
@@ -122011,6 +122031,7 @@ var TASK_STORE_FLAG = 'TASK_STORE_FLAG';
 var TASK_STORE = 'TASK_STORE';
 var UPDATE_PROJECT_TASKS = 'UPDATE_PROJECT_TASKS';
 var TASK_UPDATE_FLAG = 'TASK_UPDATE_FLAG';
+var TASK_DELETE_FLAG = 'TASK_DELETE_FLAG';
 function taskStoreFlag(payload) {
   return {
     type: TASK_STORE_FLAG,
@@ -122032,6 +122053,12 @@ function updateProjectTasks(payload) {
 function updateTaskFlag(payload) {
   return {
     type: TASK_UPDATE_FLAG,
+    payload: payload
+  };
+}
+function deleteTaskFlag(payload) {
+  return {
+    type: TASK_DELETE_FLAG,
     payload: payload
   };
 }
@@ -122094,7 +122121,7 @@ function reducer() {
 /*!******************************************************!*\
   !*** ./resources/js/store/modules/projects/sagas.js ***!
   \******************************************************/
-/*! exports provided: index, watchIndex, fetch, watchFetchProject, update, watchUpdate, store, watchStore, deleteProject, watchDeleteProject, inviteUsers, watchInviteUsers, storeTask, watchTaskStore, updateTask, watchTaskUpdate */
+/*! exports provided: index, watchIndex, fetch, watchFetchProject, update, watchUpdate, store, watchStore, deleteProject, watchDeleteProject, inviteUsers, watchInviteUsers, storeTask, watchTaskStore, updateTask, watchTaskUpdate, deleteTask, watchTaskDelete */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -122115,6 +122142,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "watchTaskStore", function() { return watchTaskStore; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateTask", function() { return updateTask; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "watchTaskUpdate", function() { return watchTaskUpdate; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteTask", function() { return deleteTask; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "watchTaskDelete", function() { return watchTaskDelete; });
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! redux-saga/effects */ "./node_modules/redux-saga/dist/redux-saga-effects-npm-proxy.esm.js");
@@ -122178,7 +122207,13 @@ _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(watchTask
 _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(updateTask),
     _marked16 =
 /*#__PURE__*/
-_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(watchTaskUpdate);
+_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(watchTaskUpdate),
+    _marked17 =
+/*#__PURE__*/
+_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(deleteTask),
+    _marked18 =
+/*#__PURE__*/
+_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(watchTaskDelete);
 
 
 
@@ -122735,6 +122770,68 @@ function watchTaskUpdate() {
     }
   }, _marked16);
 }
+/**
+ * delete task
+ */
+
+function deleteTask(action) {
+  var project, user, project_response;
+  return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function deleteTask$(_context17) {
+    while (1) {
+      switch (_context17.prev = _context17.next) {
+        case 0:
+          _context17.prev = 0;
+          _context17.next = 3;
+          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["select"])(_helpers_selectors__WEBPACK_IMPORTED_MODULE_4__["getProject"]);
+
+        case 3:
+          project = _context17.sent;
+
+          if (!(localStorage.getItem('user') != null)) {
+            _context17.next = 11;
+            break;
+          }
+
+          user = JSON.parse(localStorage.getItem('user'));
+          _context17.next = 8;
+          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["call"])(_helpers_functions__WEBPACK_IMPORTED_MODULE_3__["api"], "/api/projects/".concat(project.id, "/tasks/").concat(action.payload.id), null, 'delete', user.api_token);
+
+        case 8:
+          project_response = _context17.sent;
+          _context17.next = 11;
+          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["put"])(_actions__WEBPACK_IMPORTED_MODULE_2__["activeProject"](project_response.data.data));
+
+        case 11:
+          _context17.next = 16;
+          break;
+
+        case 13:
+          _context17.prev = 13;
+          _context17.t0 = _context17["catch"](0);
+          console.log(_context17.t0);
+
+        case 16:
+        case "end":
+          return _context17.stop();
+      }
+    }
+  }, _marked17, null, [[0, 13]]);
+}
+function watchTaskDelete() {
+  return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function watchTaskDelete$(_context18) {
+    while (1) {
+      switch (_context18.prev = _context18.next) {
+        case 0:
+          _context18.next = 2;
+          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["takeLatest"])(_actions__WEBPACK_IMPORTED_MODULE_2__["TASK_DELETE_FLAG"], deleteTask);
+
+        case 2:
+        case "end":
+          return _context18.stop();
+      }
+    }
+  }, _marked18);
+}
 
 /***/ }),
 
@@ -122768,7 +122865,7 @@ function root() {
       switch (_context.prev = _context.next) {
         case 0:
           _context.next = 2;
-          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["all"])([Object(_modules_projects_sagas__WEBPACK_IMPORTED_MODULE_2__["watchIndex"])(), Object(_modules_projects_sagas__WEBPACK_IMPORTED_MODULE_2__["watchFetchProject"])(), Object(_modules_projects_sagas__WEBPACK_IMPORTED_MODULE_2__["watchStore"])(), Object(_modules_authentication_sagas__WEBPACK_IMPORTED_MODULE_3__["watchRegistration"])(), Object(_modules_authentication_sagas__WEBPACK_IMPORTED_MODULE_3__["watchLogin"])(), Object(_modules_authentication_sagas__WEBPACK_IMPORTED_MODULE_3__["watchFetchUser"])(), Object(_modules_projects_sagas__WEBPACK_IMPORTED_MODULE_2__["watchTaskStore"])(), Object(_modules_projects_sagas__WEBPACK_IMPORTED_MODULE_2__["watchTaskUpdate"])(), Object(_modules_projects_sagas__WEBPACK_IMPORTED_MODULE_2__["watchUpdate"])(), Object(_modules_projects_sagas__WEBPACK_IMPORTED_MODULE_2__["watchDeleteProject"])(), Object(_modules_authentication_sagas__WEBPACK_IMPORTED_MODULE_3__["watchLogOut"])(), Object(_modules_projects_sagas__WEBPACK_IMPORTED_MODULE_2__["watchInviteUsers"])()]);
+          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["all"])([Object(_modules_projects_sagas__WEBPACK_IMPORTED_MODULE_2__["watchIndex"])(), Object(_modules_projects_sagas__WEBPACK_IMPORTED_MODULE_2__["watchFetchProject"])(), Object(_modules_projects_sagas__WEBPACK_IMPORTED_MODULE_2__["watchStore"])(), Object(_modules_authentication_sagas__WEBPACK_IMPORTED_MODULE_3__["watchRegistration"])(), Object(_modules_authentication_sagas__WEBPACK_IMPORTED_MODULE_3__["watchLogin"])(), Object(_modules_authentication_sagas__WEBPACK_IMPORTED_MODULE_3__["watchFetchUser"])(), Object(_modules_projects_sagas__WEBPACK_IMPORTED_MODULE_2__["watchTaskStore"])(), Object(_modules_projects_sagas__WEBPACK_IMPORTED_MODULE_2__["watchTaskUpdate"])(), Object(_modules_projects_sagas__WEBPACK_IMPORTED_MODULE_2__["watchUpdate"])(), Object(_modules_projects_sagas__WEBPACK_IMPORTED_MODULE_2__["watchDeleteProject"])(), Object(_modules_authentication_sagas__WEBPACK_IMPORTED_MODULE_3__["watchLogOut"])(), Object(_modules_projects_sagas__WEBPACK_IMPORTED_MODULE_2__["watchInviteUsers"])(), Object(_modules_projects_sagas__WEBPACK_IMPORTED_MODULE_2__["watchTaskDelete"])()]);
 
         case 2:
         case "end":

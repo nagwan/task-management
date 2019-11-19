@@ -17173,6 +17173,11 @@ video {
   z-index: auto;
 }
 
+.logo {
+  background-image: url("http://www.mediafire.com/view/uj3ckc6hnfd6v23/image.png/file") center center no-repeat;
+  background-size: cover;
+}
+
 .ar {
   direction: rtl;
 }

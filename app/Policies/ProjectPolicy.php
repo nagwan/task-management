@@ -14,6 +14,13 @@ class ProjectPolicy
 
     public function manage(User $user, Project $project)
     {
+        return $user->is($project->owner)
+            ? Response::allow()
+            : Response::deny();
+    }
+
+    public function hasAccess(User $user, Project $project)
+    {
         return $user->is($project->owner) || $project->members->contains($user)
             ? Response::allow()
             : Response::deny();

@@ -19,21 +19,18 @@ const View = (({ user, project, deleteProject }) => {
                 {
                     user.id == project.owner_id && project.members.length ?
 
-
                         project.members.length ?
-                            <React.Fragment>
+                            <div className='flex'>
                                 {
                                     project.members.map(member =>
-                                        <img title={member.name} alt={member.name} key={member.id} src={member.profile.avatar} className='rounded-full border-primary-900 border-rounded border-4' width='50px' height='50px' />
+                                        <img title={member.name} alt={member.name} key={member.id} src={member.profile.avatar} className='rounded-full border-primary-900 border-rounded border-4 mr-4' width='50px' height='50px' />
                                     )
                                 }
-                            </React.Fragment>
+                            </div>
                             : ''
-
                         : <img title={project.owner.name} alt={project.owner.name} src={project.owner.profile.avatar} className='rounded-full border-primary-900 border-rounded border-4' width='50px' height='50px' />
+
                 }
-
-
 
                 <Link to='/projects'>
                     <i className="fas fa-layer-group mx-8"></i>
@@ -43,8 +40,6 @@ const View = (({ user, project, deleteProject }) => {
                 </Link>
 
             </div>
-
-
 
             <div className='w-full flex justify-between '>
                 <div className='w-9/12'>
@@ -83,13 +78,10 @@ const View = (({ user, project, deleteProject }) => {
                                             : ''
                                     }
 
-
                                 </div>
                             </div>
 
                             {/* invite users card */}
-
-                            {/* show this if the user is the owner of the project */}
 
                             {
                                 user.id == project.owner_id ? <InviteUsers /> : ''

@@ -4,10 +4,10 @@ import * as Yup from "yup"
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { useTranslation } from "react-i18next";
-import { updateTaskFlag } from '../../../store/modules/projects/actions'
+import { updateTaskFlag, deleteTaskFlag } from '../../../store/modules/projects/actions'
 
 
-const Task = connect(null, dispatch => bindActionCreators({ updateTaskFlag }, dispatch))((props) => {
+const Task = connect(null, dispatch => bindActionCreators({ updateTaskFlag, deleteTaskFlag }, dispatch))((props) => {
 
     const { t } = useTranslation();
 
@@ -48,16 +48,24 @@ const Task = connect(null, dispatch => bindActionCreators({ updateTaskFlag }, di
 
                             {errors.body ? (<ErrorMessage className='px-8 py-8 text-danger-500 text-xs italic' name="body" component="div" />) : null}
 
-                            <Field className='w-2/12' type="checkbox"
-                                render={() => {
-                                    return (
-                                        <label className='checkbox-container mt-8 p-20'>
-                                            <input name="completed" type="checkbox" defaultChecked={props.task.completed} onChange={(e) => props.updateTaskFlag({ values: { body: props.task.body, completed: e.target.checked }, id: props.task.id })} />
-                                            <span className="checkmark"></span>
-                                        </label>
-                                    );
-                                }}
-                            />
+                            <div className='flex'>
+                                
+                                <button type='button' className='mx-8 focus:outline-none' onClick={() => props.deleteTaskFlag({ id: props.task.id })}>
+                                    <i className="fas fa-trash-alt text-xl text-gray-300  hover:text-danger-700"></i>
+                                </button>
+
+                                <Field className='w-2/12' type="checkbox"
+                                    render={() => {
+                                        return (
+                                            <label className='checkbox-container mt-8 p-20'>
+                                                <input name="completed" type="checkbox" defaultChecked={props.task.completed} onChange={(e) => props.updateTaskFlag({ values: { body: props.task.body, completed: e.target.checked }, id: props.task.id })} />
+                                                <span className="checkmark"></span>
+                                            </label>
+                                        );
+                                    }}
+                                />
+                            </div>
+
                         </Form>
                     )
                     }

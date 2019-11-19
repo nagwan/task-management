@@ -18,9 +18,11 @@ class Container extends Component {
 
 
     componentDidMount() {
+        this.fetchProject()
+
         this.interval = setInterval(() => { 
             this.fetchProject()
-        }, 3000)
+        }, 5000)
     }
 
     fetchProject() {

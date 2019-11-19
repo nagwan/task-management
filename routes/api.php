@@ -34,6 +34,8 @@ Route::group(['middleware' => 'auth:api'], function () {
 
     Route::post('/projects/{project}/tasks/{task}', 'ProjectTasksController@update');
 
+    Route::delete('/projects/{project}/tasks/{task}', 'ProjectTasksController@delete');
+
     Route::post('/projects/{project}/tasks', 'ProjectTasksController@store');
 
     Route::post('/projects/{project}/invitations', 'ProjectInvitationsController@store');
