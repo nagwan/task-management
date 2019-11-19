@@ -21,25 +21,27 @@ class AuthenticationController extends Controller
             'password_confirmation' => 'required|same:password'
         ]);
 
-        $user = User::create([
+        User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request['password']),
-            'api_token' => Str::random(80),
         ]);
 
-        if ($user->save()) {
-            $response = [
-                'success' => true,
-                'data' => [
-                    'name' => $user->name,
-                    'id' => $user->id,
-                    'email' => $user->email,
-                    'api_token' => Str::random(80)
-                ]
-            ];
-        } else
-            $response = ['success' => false, 'data' => 'could not register user'];
+        $user_data = User::where('email', $request->email)->get()->first();
+
+        $user_data->api_token = Str::random(80);
+
+        $user_data->save();
+
+        $response = [
+            'success' => true,
+            'data' => [
+                'id' => $user_data->id,
+                'api_token' => $user_data->api_token,
+                'name' => $user_data->name,
+                'email' => $user_data->email
+            ]
+        ];
 
         return response()->json($response);
     }
@@ -75,8 +77,9 @@ class AuthenticationController extends Controller
         return response()->json($response, 201);
     }
 
-    public function logOut()
+    public function logOut(Request $request)
     {
-       return auth()->user()->api_token = null;
+        return auth()->user()->api_token = null;
+
     }
 }
