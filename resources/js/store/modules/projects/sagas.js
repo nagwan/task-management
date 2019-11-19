@@ -168,6 +168,34 @@ export function* watchDeleteProject() {
 }
 
 
+export function* inviteUsers(action){
+
+    try {
+        if (localStorage.getItem('user') != null) {
+
+            let user = JSON.parse(localStorage.getItem('user'))
+
+            const project = yield call(api, `/api/projects/${action.payload.id}/invitations`, action.payload.data, 'POST', user.api_token)
+
+            yield put(actions.activeProject(project.data.data))
+
+        } else {
+
+            yield action.payload.history.push(`/login`)
+        }
+
+    } catch (error) {
+        console.log(error)
+    }
+
+}
+
+
+export function* watchInviteUsers(){
+    yield takeLatest(actions.INVITE_USERS_FLAG, inviteUsers)
+}
+
+
 /**
  *  project`s tasks
  */

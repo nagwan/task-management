@@ -34,7 +34,7 @@ class ProjectInvitationsController extends Controller
 
                 $project->invites($user);
 
-                $data = Project::where('id', $project->id)->with('tasks', 'activity', 'activity.subject', 'activity.user', 'members')->first();
+                $data = Project::where('id', $project->id)->with('tasks', 'owner', 'owner.profile', 'activity', 'activity.subject', 'activity.user', 'members')->first();
 
                 return response()->json(['data' => $data]);
             }

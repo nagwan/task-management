@@ -7,6 +7,7 @@ export const PROJECT_STORE_FLAG = 'PROJECT_STORE_FLAG'
 export const PROJECT_UPDATE_FLAG = 'PROJECT_UPDATE_FLAG'
 export const ACTIVE_PROJECT_FETCH_FLAG = 'ACTIVE_PROJECT_FETCH_FLAG'
 export const DELETE_PROJECT_FLAG = 'DELETE_PROJECT_FLAG'
+export const INVITE_USERS_FLAG = 'INVITE_USERS_FLAG'
 
 
 export function projectsIndexFlag(payload) {
@@ -43,6 +44,10 @@ export function activeProjectFetchFlag(payload) {
 
 export function deleteProjectFlag(payload) {
     return { type: DELETE_PROJECT_FLAG, payload }
+}
+
+export function inviteUsersFlag(payload){
+    return { type: INVITE_USERS_FLAG, payload }
 }
 
 /**

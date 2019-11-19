@@ -107828,7 +107828,7 @@ function warning(message) {
 /*!***************************************************************!*\
   !*** ./node_modules/react-router-dom/esm/react-router-dom.js ***!
   \***************************************************************/
-/*! exports provided: BrowserRouter, HashRouter, Link, NavLink, MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, __RouterContext, generatePath, matchPath, useHistory, useLocation, useParams, useRouteMatch, withRouter */
+/*! exports provided: MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, __RouterContext, generatePath, matchPath, useHistory, useLocation, useParams, useRouteMatch, withRouter, BrowserRouter, HashRouter, Link, NavLink */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -111809,7 +111809,7 @@ if (false) {} else {
 /*!***********************************************************************!*\
   !*** ./node_modules/redux-saga/dist/redux-saga-core-npm-proxy.esm.js ***!
   \***********************************************************************/
-/*! exports provided: default, CANCEL, SAGA_LOCATION, buffers, detach, END, channel, eventChannel, isEnd, multicastChannel, runSaga, stdChannel */
+/*! exports provided: CANCEL, SAGA_LOCATION, buffers, detach, END, channel, eventChannel, isEnd, multicastChannel, runSaga, stdChannel, default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -119889,8 +119889,13 @@ function (_Component) {
         className: "flex justify-center relative w-2/12"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         onClick: this.toggleMenu,
-        className: "z-10"
-      }, this.props.Authentication.user.name), this.state.is_opened ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_view__WEBPACK_IMPORTED_MODULE_2__["default"], {
+        className: "z-10 flex items-center justify-between focus:outline-none"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        src: this.props.Authentication.user.profile.avatar,
+        className: "rounded-full mr-12 ml-12 border-primary-900 border-rounded border-4",
+        width: "50px",
+        height: "50px"
+      }), " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, this.props.Authentication.user.name)), this.state.is_opened ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_view__WEBPACK_IMPORTED_MODULE_2__["default"], {
         closeMenu: this.closeMenu,
         logOut: this.logOut,
         user: this.props.Authentication.user
@@ -120155,7 +120160,7 @@ var ProjectForm = function ProjectForm(_ref) {
       type: "submit",
       disabled: isSubmitting || errors.title || errors.description
     }, "type", "submit"), t('phrases:submit_form_btn')), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__["Link"], {
-      to: "/projects",
+      to: project ? "/projects/".concat(project.id) : '/projects',
       className: "inline-block align-baseline font-bold text-sm text-primary-900 hover:underline"
     }, t('phrases:cancel_btn')))));
   }));
@@ -120311,6 +120316,197 @@ var View = function View(_ref) {
 
 /***/ }),
 
+/***/ "./resources/js/components/projects/invite-users/container.jsx":
+/*!*********************************************************************!*\
+  !*** ./resources/js/components/projects/invite-users/container.jsx ***!
+  \*********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _view__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./view */ "./resources/js/components/projects/invite-users/view.jsx");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _store_modules_projects_actions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../store/modules/projects/actions */ "./resources/js/store/modules/projects/actions.js");
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+
+
+
+
+
+var Container =
+/*#__PURE__*/
+function (_Component) {
+  _inherits(Container, _Component);
+
+  function Container(props) {
+    var _this;
+
+    _classCallCheck(this, Container);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(Container).call(this, props));
+    _this.inviteUser = _this.inviteUser.bind(_assertThisInitialized(_this));
+    return _this;
+  }
+
+  _createClass(Container, [{
+    key: "inviteUser",
+    value: function inviteUser(data) {
+      var match = this.props.match;
+      this.props.inviteUsersFlag({
+        id: match.params.id,
+        data: data
+      });
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_view__WEBPACK_IMPORTED_MODULE_1__["default"], {
+        inviteUser: this.inviteUser
+      }));
+    }
+  }]);
+
+  return Container;
+}(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_router_dom__WEBPACK_IMPORTED_MODULE_4__["withRouter"])(Object(react_redux__WEBPACK_IMPORTED_MODULE_2__["connect"])(function (_ref) {
+  var projects = _ref.projects;
+  return {
+    projects: projects
+  };
+}, function (dispatch) {
+  return Object(redux__WEBPACK_IMPORTED_MODULE_3__["bindActionCreators"])({
+    inviteUsersFlag: _store_modules_projects_actions__WEBPACK_IMPORTED_MODULE_5__["inviteUsersFlag"]
+  }, dispatch);
+})(Container)));
+
+/***/ }),
+
+/***/ "./resources/js/components/projects/invite-users/index.jsx":
+/*!*****************************************************************!*\
+  !*** ./resources/js/components/projects/invite-users/index.jsx ***!
+  \*****************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _container__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./container */ "./resources/js/components/projects/invite-users/container.jsx");
+
+/* harmony default export */ __webpack_exports__["default"] = (_container__WEBPACK_IMPORTED_MODULE_0__["default"]);
+
+/***/ }),
+
+/***/ "./resources/js/components/projects/invite-users/view.jsx":
+/*!****************************************************************!*\
+  !*** ./resources/js/components/projects/invite-users/view.jsx ***!
+  \****************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_i18next__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-i18next */ "./node_modules/react-i18next/dist/es/index.js");
+/* harmony import */ var formik__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! formik */ "./node_modules/formik/dist/formik.esm.js");
+/* harmony import */ var yup__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! yup */ "./node_modules/yup/lib/index.js");
+/* harmony import */ var yup__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(yup__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+
+
+
+
+var View = function View(_ref) {
+  var inviteUser = _ref.inviteUser;
+
+  var _useTranslation = Object(react_i18next__WEBPACK_IMPORTED_MODULE_1__["useTranslation"])(),
+      t = _useTranslation.t;
+
+  var validationSchema = yup__WEBPACK_IMPORTED_MODULE_3__["object"]().shape({
+    email: yup__WEBPACK_IMPORTED_MODULE_3__["string"]().email(t('phrases:email_error_msg')).required(t('phrases:required_field_error_msg'))
+  });
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "w-full"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_2__["Formik"], {
+    initialValues: {
+      email: ''
+    },
+    validationSchema: validationSchema,
+    onSubmit: function onSubmit(values, _ref2) {
+      var setSubmitting = _ref2.setSubmitting,
+          resetForm = _ref2.resetForm;
+      setSubmitting(true);
+      inviteUser(values);
+      resetForm();
+      setSubmitting(false);
+    }
+  }, function (_ref3) {
+    var errors = _ref3.errors,
+        touched = _ref3.touched,
+        handleSubmit = _ref3.handleSubmit,
+        isSubmitting = _ref3.isSubmitting;
+    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "min-h-240 card py-20 hover:shadow-lg"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "w-full min-h-60 py-20 px-20 flex align-center justify-center"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+      className: "text-primary-900 font-semibold"
+    }, t('phrases:invite_others'))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_2__["Form"], {
+      onSubmit: handleSubmit
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "my-20 mx-12"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_2__["Field"], {
+      className: 'shadow appearance-none border rounded w-full h-40 px-8 py-8 text-gray-700 leading-tight focus:outline-none focus:shadow-outline' + (touched.title && errors.title ? 'border-solid border-1 border-danger-500' : ''),
+      placeholder: t('phrases:email_input_placeholder'),
+      type: "email",
+      name: "email"
+    }), touched.email && errors.email ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_2__["ErrorMessage"], {
+      className: "px-8 py-8 text-danger-500 text-xs italic",
+      name: "email",
+      component: "div"
+    }) : null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "mt-12 flex justify-center items-center"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", _defineProperty({
+      className: 'bg-primary-900 hover:bg-transparent text-white hover:text-primary-900 border border-transparent hover:border hover:border-primary-900 font-bold py-8 px-8 rounded rounded-8' + (isSubmitting || errors.email ? ' opacity-50 cursor-not-allowed' : ''),
+      type: "submit",
+      disabled: isSubmitting || errors.email
+    }, "type", "submit"), t('phrases:submit_form_btn')))));
+  }));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (View);
+
+/***/ }),
+
 /***/ "./resources/js/components/projects/show/container.jsx":
 /*!*************************************************************!*\
   !*** ./resources/js/components/projects/show/container.jsx ***!
@@ -120364,19 +120560,35 @@ function (_Component) {
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(Container).call(this, props));
     _this.deleteProject = _this.deleteProject.bind(_assertThisInitialized(_this));
+    _this.fetchProject = _this.fetchProject.bind(_assertThisInitialized(_this));
     return _this;
   }
 
   _createClass(Container, [{
     key: "componentDidMount",
     value: function componentDidMount() {
+      var _this2 = this;
+
+      this.interval = setInterval(function () {
+        _this2.fetchProject();
+      }, 3000);
+    }
+  }, {
+    key: "fetchProject",
+    value: function fetchProject() {
       var _this$props = this.props,
           history = _this$props.history,
           match = _this$props.match;
       this.props.activeProjectFetchFlag({
         id: match.params.id,
-        history: history
+        history: history,
+        location: location
       });
+    }
+  }, {
+    key: "componentWillUnmount",
+    value: function componentWillUnmount() {
+      clearInterval(this.interval);
     }
   }, {
     key: "deleteProject",
@@ -120391,6 +120603,7 @@ function (_Component) {
     key: "render",
     value: function render() {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, !_.isEmpty(this.props.projects.project) ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_view__WEBPACK_IMPORTED_MODULE_1__["default"], {
+        user: this.props.Authentication.user,
         project: this.props.projects.project,
         deleteProject: this.deleteProject
       }) : null);
@@ -120401,9 +120614,11 @@ function (_Component) {
 }(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
 
 /* harmony default export */ __webpack_exports__["default"] = (Object(react_router_dom__WEBPACK_IMPORTED_MODULE_4__["withRouter"])(Object(react_redux__WEBPACK_IMPORTED_MODULE_2__["connect"])(function (_ref) {
-  var projects = _ref.projects;
+  var projects = _ref.projects,
+      Authentication = _ref.Authentication;
   return {
-    projects: projects
+    projects: projects,
+    Authentication: Authentication
   };
 }, function (dispatch) {
   return Object(redux__WEBPACK_IMPORTED_MODULE_3__["bindActionCreators"])({
@@ -120445,6 +120660,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _tasks_store__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../tasks/store */ "./resources/js/components/projects/tasks/store.jsx");
 /* harmony import */ var _tasks__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../tasks */ "./resources/js/components/projects/tasks/index.jsx");
 /* harmony import */ var _partials_activity__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../partials/activity */ "./resources/js/components/partials/activity/index.jsx");
+/* harmony import */ var _invite_users__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../invite-users */ "./resources/js/components/projects/invite-users/index.jsx");
+
 
 
 
@@ -120453,7 +120670,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var View = function View(_ref) {
-  var project = _ref.project,
+  var user = _ref.user,
+      project = _ref.project,
       deleteProject = _ref.deleteProject;
 
   var _useTranslation = Object(react_i18next__WEBPACK_IMPORTED_MODULE_1__["useTranslation"])(),
@@ -120461,7 +120679,32 @@ var View = function View(_ref) {
 
   var tasks = project.tasks;
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "w-full flex justify-between"
+    className: "w-full"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "w-full flex justify-between items-center p-24 "
+  }, user.id == project.owner_id && project.members.length ? project.members.length ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, project.members.map(function (member) {
+    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+      title: member.name,
+      alt: member.name,
+      key: member.id,
+      src: member.profile.avatar,
+      className: "rounded-full border-primary-900 border-rounded border-4",
+      width: "50px",
+      height: "50px"
+    });
+  })) : '' : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+    title: project.owner.name,
+    alt: project.owner.name,
+    src: project.owner.profile.avatar,
+    className: "rounded-full border-primary-900 border-rounded border-4",
+    width: "50px",
+    height: "50px"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
+    to: "/projects"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+    className: "fas fa-layer-group mx-8"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, t('phrases:go_back_btn')))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "w-full flex justify-between "
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "w-9/12"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -120478,6 +120721,8 @@ var View = function View(_ref) {
   }) : '', react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_tasks_store__WEBPACK_IMPORTED_MODULE_3__["default"], null)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "w-5/12"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "w-full"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "min-h-240 card py-20 hover:shadow-lg"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "w-full min-h-60 py-20 px-20 border-l-4 border-primary-900 flex align-center justify-between"
@@ -120485,18 +120730,20 @@ var View = function View(_ref) {
     className: "text-primary-900 font-semibold"
   }, project.title), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
     to: "/edit-project/".concat(project.id),
-    className: "fas fa-edit"
+    className: "fas fa-edit text-primary-900 hover:text-primary-500"
   })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "w-full py-20 px-20"
+    className: "w-full flex flex-1 py-20 px-20"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
     className: "text-gray-700 font-medium italic"
-  }, project.description)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+  }, project.description)), user.id == project.owner_id ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "w-full pt-20 px-20 flex justify-end"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
     onClick: function onClick() {
       return deleteProject(project.id);
     }
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-    className: "fas fa-trash-alt"
-  })))))), project.activity ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "fas fa-trash-alt text-primary-900 hover:text-danger-500"
+  }))) : '')), user.id == project.owner_id ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_invite_users__WEBPACK_IMPORTED_MODULE_6__["default"], null) : ''))), project.activity ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "w-3/12"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "card py-20 px-20"
@@ -120505,9 +120752,7 @@ var View = function View(_ref) {
       activity: activity,
       key: activity.id
     });
-  }))) : '', react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
-    to: "/projects"
-  }, t('phrases:go_back_btn')));
+  }))) : ''));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (View);
@@ -120977,12 +121222,17 @@ var View = function View(_ref) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 
 
-var User = function User() {
+var User = Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(function (_ref) {
+  var Authentication = _ref.Authentication;
+  return {
+    Authentication: Authentication
+  };
+})(function (props) {
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "USER PROFILE"));
-};
-
+});
 /* harmony default export */ __webpack_exports__["default"] = (User);
 
 /***/ }),
@@ -121656,7 +121906,7 @@ function watchLogOut() {
 /*!********************************************************!*\
   !*** ./resources/js/store/modules/projects/actions.js ***!
   \********************************************************/
-/*! exports provided: PROJECTS_INDEX_FLAG, PROJECTS_INDEX, PROJECT_SHOW_FLAG, ACTIVE_PROJECT, PROJECT_STORE_FLAG, PROJECT_UPDATE_FLAG, ACTIVE_PROJECT_FETCH_FLAG, DELETE_PROJECT_FLAG, projectsIndexFlag, projectsIndex, projectShowFlag, activeProject, projectStoreFlag, projectUpdateFlag, activeProjectFetchFlag, deleteProjectFlag, TASK_STORE_FLAG, TASK_STORE, UPDATE_PROJECT_TASKS, TASK_UPDATE_FLAG, taskStoreFlag, taskStore, updateProjectTasks, updateTaskFlag */
+/*! exports provided: PROJECTS_INDEX_FLAG, PROJECTS_INDEX, PROJECT_SHOW_FLAG, ACTIVE_PROJECT, PROJECT_STORE_FLAG, PROJECT_UPDATE_FLAG, ACTIVE_PROJECT_FETCH_FLAG, DELETE_PROJECT_FLAG, INVITE_USERS_FLAG, projectsIndexFlag, projectsIndex, projectShowFlag, activeProject, projectStoreFlag, projectUpdateFlag, activeProjectFetchFlag, deleteProjectFlag, inviteUsersFlag, TASK_STORE_FLAG, TASK_STORE, UPDATE_PROJECT_TASKS, TASK_UPDATE_FLAG, taskStoreFlag, taskStore, updateProjectTasks, updateTaskFlag */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -121669,6 +121919,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PROJECT_UPDATE_FLAG", function() { return PROJECT_UPDATE_FLAG; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ACTIVE_PROJECT_FETCH_FLAG", function() { return ACTIVE_PROJECT_FETCH_FLAG; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DELETE_PROJECT_FLAG", function() { return DELETE_PROJECT_FLAG; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "INVITE_USERS_FLAG", function() { return INVITE_USERS_FLAG; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "projectsIndexFlag", function() { return projectsIndexFlag; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "projectsIndex", function() { return projectsIndex; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "projectShowFlag", function() { return projectShowFlag; });
@@ -121677,6 +121928,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "projectUpdateFlag", function() { return projectUpdateFlag; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "activeProjectFetchFlag", function() { return activeProjectFetchFlag; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteProjectFlag", function() { return deleteProjectFlag; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "inviteUsersFlag", function() { return inviteUsersFlag; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TASK_STORE_FLAG", function() { return TASK_STORE_FLAG; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TASK_STORE", function() { return TASK_STORE; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UPDATE_PROJECT_TASKS", function() { return UPDATE_PROJECT_TASKS; });
@@ -121694,6 +121946,7 @@ var PROJECT_STORE_FLAG = 'PROJECT_STORE_FLAG'; //export const PROJECT_STORE = 'P
 var PROJECT_UPDATE_FLAG = 'PROJECT_UPDATE_FLAG';
 var ACTIVE_PROJECT_FETCH_FLAG = 'ACTIVE_PROJECT_FETCH_FLAG';
 var DELETE_PROJECT_FLAG = 'DELETE_PROJECT_FLAG';
+var INVITE_USERS_FLAG = 'INVITE_USERS_FLAG';
 function projectsIndexFlag(payload) {
   return {
     type: PROJECTS_INDEX_FLAG
@@ -121741,6 +121994,12 @@ function activeProjectFetchFlag(payload) {
 function deleteProjectFlag(payload) {
   return {
     type: DELETE_PROJECT_FLAG,
+    payload: payload
+  };
+}
+function inviteUsersFlag(payload) {
+  return {
+    type: INVITE_USERS_FLAG,
     payload: payload
   };
 }
@@ -121835,7 +122094,7 @@ function reducer() {
 /*!******************************************************!*\
   !*** ./resources/js/store/modules/projects/sagas.js ***!
   \******************************************************/
-/*! exports provided: index, watchIndex, fetch, watchFetchProject, update, watchUpdate, store, watchStore, deleteProject, watchDeleteProject, storeTask, watchTaskStore, updateTask, watchTaskUpdate */
+/*! exports provided: index, watchIndex, fetch, watchFetchProject, update, watchUpdate, store, watchStore, deleteProject, watchDeleteProject, inviteUsers, watchInviteUsers, storeTask, watchTaskStore, updateTask, watchTaskUpdate */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -121850,6 +122109,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "watchStore", function() { return watchStore; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteProject", function() { return deleteProject; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "watchDeleteProject", function() { return watchDeleteProject; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "inviteUsers", function() { return inviteUsers; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "watchInviteUsers", function() { return watchInviteUsers; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "storeTask", function() { return storeTask; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "watchTaskStore", function() { return watchTaskStore; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateTask", function() { return updateTask; });
@@ -121902,14 +122163,20 @@ _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(deletePro
 _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(watchDeleteProject),
     _marked11 =
 /*#__PURE__*/
-_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(storeTask),
+_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(inviteUsers),
     _marked12 =
 /*#__PURE__*/
-_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(watchTaskStore),
+_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(watchInviteUsers),
     _marked13 =
 /*#__PURE__*/
-_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(updateTask),
+_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(storeTask),
     _marked14 =
+/*#__PURE__*/
+_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(watchTaskStore),
+    _marked15 =
+/*#__PURE__*/
+_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(updateTask),
+    _marked16 =
 /*#__PURE__*/
 _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(watchTaskUpdate);
 
@@ -122279,6 +122546,67 @@ function watchDeleteProject() {
     }
   }, _marked10);
 }
+function inviteUsers(action) {
+  var user, project;
+  return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function inviteUsers$(_context11) {
+    while (1) {
+      switch (_context11.prev = _context11.next) {
+        case 0:
+          _context11.prev = 0;
+
+          if (!(localStorage.getItem('user') != null)) {
+            _context11.next = 10;
+            break;
+          }
+
+          user = JSON.parse(localStorage.getItem('user'));
+          _context11.next = 5;
+          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["call"])(_helpers_functions__WEBPACK_IMPORTED_MODULE_3__["api"], "/api/projects/".concat(action.payload.id, "/invitations"), action.payload.data, 'POST', user.api_token);
+
+        case 5:
+          project = _context11.sent;
+          _context11.next = 8;
+          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["put"])(_actions__WEBPACK_IMPORTED_MODULE_2__["activeProject"](project.data.data));
+
+        case 8:
+          _context11.next = 12;
+          break;
+
+        case 10:
+          _context11.next = 12;
+          return action.payload.history.push("/login");
+
+        case 12:
+          _context11.next = 17;
+          break;
+
+        case 14:
+          _context11.prev = 14;
+          _context11.t0 = _context11["catch"](0);
+          console.log(_context11.t0);
+
+        case 17:
+        case "end":
+          return _context11.stop();
+      }
+    }
+  }, _marked11, null, [[0, 14]]);
+}
+function watchInviteUsers() {
+  return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function watchInviteUsers$(_context12) {
+    while (1) {
+      switch (_context12.prev = _context12.next) {
+        case 0:
+          _context12.next = 2;
+          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["takeLatest"])(_actions__WEBPACK_IMPORTED_MODULE_2__["INVITE_USERS_FLAG"], inviteUsers);
+
+        case 2:
+        case "end":
+          return _context12.stop();
+      }
+    }
+  }, _marked12);
+}
 /**
  *  project`s tasks
  */
@@ -122289,69 +122617,7 @@ function watchDeleteProject() {
 
 function storeTask(action) {
   var project, user, project_response;
-  return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function storeTask$(_context11) {
-    while (1) {
-      switch (_context11.prev = _context11.next) {
-        case 0:
-          _context11.prev = 0;
-          _context11.next = 3;
-          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["select"])(_helpers_selectors__WEBPACK_IMPORTED_MODULE_4__["getProject"]);
-
-        case 3:
-          project = _context11.sent;
-
-          if (!(localStorage.getItem('user') != null)) {
-            _context11.next = 11;
-            break;
-          }
-
-          user = JSON.parse(localStorage.getItem('user'));
-          _context11.next = 8;
-          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["call"])(_helpers_functions__WEBPACK_IMPORTED_MODULE_3__["api"], "/api/projects/".concat(project.id, "/tasks"), action.payload.values, 'POST', user.api_token);
-
-        case 8:
-          project_response = _context11.sent;
-          _context11.next = 11;
-          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["put"])(_actions__WEBPACK_IMPORTED_MODULE_2__["activeProject"](project_response.data.data));
-
-        case 11:
-          _context11.next = 16;
-          break;
-
-        case 13:
-          _context11.prev = 13;
-          _context11.t0 = _context11["catch"](0);
-          console.log(_context11.t0);
-
-        case 16:
-        case "end":
-          return _context11.stop();
-      }
-    }
-  }, _marked11, null, [[0, 13]]);
-}
-function watchTaskStore() {
-  return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function watchTaskStore$(_context12) {
-    while (1) {
-      switch (_context12.prev = _context12.next) {
-        case 0:
-          _context12.next = 2;
-          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["takeLatest"])(_actions__WEBPACK_IMPORTED_MODULE_2__["TASK_STORE_FLAG"], storeTask);
-
-        case 2:
-        case "end":
-          return _context12.stop();
-      }
-    }
-  }, _marked12);
-}
-/**
- * update task
- */
-
-function updateTask(action) {
-  var project, user, project_response;
-  return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function updateTask$(_context13) {
+  return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function storeTask$(_context13) {
     while (1) {
       switch (_context13.prev = _context13.next) {
         case 0:
@@ -122369,7 +122635,7 @@ function updateTask(action) {
 
           user = JSON.parse(localStorage.getItem('user'));
           _context13.next = 8;
-          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["call"])(_helpers_functions__WEBPACK_IMPORTED_MODULE_3__["api"], "/api/projects/".concat(project.id, "/tasks/").concat(action.payload.id), action.payload.values, 'POST', user.api_token);
+          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["call"])(_helpers_functions__WEBPACK_IMPORTED_MODULE_3__["api"], "/api/projects/".concat(project.id, "/tasks"), action.payload.values, 'POST', user.api_token);
 
         case 8:
           project_response = _context13.sent;
@@ -122392,13 +122658,13 @@ function updateTask(action) {
     }
   }, _marked13, null, [[0, 13]]);
 }
-function watchTaskUpdate() {
-  return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function watchTaskUpdate$(_context14) {
+function watchTaskStore() {
+  return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function watchTaskStore$(_context14) {
     while (1) {
       switch (_context14.prev = _context14.next) {
         case 0:
           _context14.next = 2;
-          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["takeLatest"])(_actions__WEBPACK_IMPORTED_MODULE_2__["TASK_UPDATE_FLAG"], updateTask);
+          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["takeLatest"])(_actions__WEBPACK_IMPORTED_MODULE_2__["TASK_STORE_FLAG"], storeTask);
 
         case 2:
         case "end":
@@ -122406,6 +122672,68 @@ function watchTaskUpdate() {
       }
     }
   }, _marked14);
+}
+/**
+ * update task
+ */
+
+function updateTask(action) {
+  var project, user, project_response;
+  return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function updateTask$(_context15) {
+    while (1) {
+      switch (_context15.prev = _context15.next) {
+        case 0:
+          _context15.prev = 0;
+          _context15.next = 3;
+          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["select"])(_helpers_selectors__WEBPACK_IMPORTED_MODULE_4__["getProject"]);
+
+        case 3:
+          project = _context15.sent;
+
+          if (!(localStorage.getItem('user') != null)) {
+            _context15.next = 11;
+            break;
+          }
+
+          user = JSON.parse(localStorage.getItem('user'));
+          _context15.next = 8;
+          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["call"])(_helpers_functions__WEBPACK_IMPORTED_MODULE_3__["api"], "/api/projects/".concat(project.id, "/tasks/").concat(action.payload.id), action.payload.values, 'POST', user.api_token);
+
+        case 8:
+          project_response = _context15.sent;
+          _context15.next = 11;
+          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["put"])(_actions__WEBPACK_IMPORTED_MODULE_2__["activeProject"](project_response.data.data));
+
+        case 11:
+          _context15.next = 16;
+          break;
+
+        case 13:
+          _context15.prev = 13;
+          _context15.t0 = _context15["catch"](0);
+          console.log(_context15.t0);
+
+        case 16:
+        case "end":
+          return _context15.stop();
+      }
+    }
+  }, _marked15, null, [[0, 13]]);
+}
+function watchTaskUpdate() {
+  return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function watchTaskUpdate$(_context16) {
+    while (1) {
+      switch (_context16.prev = _context16.next) {
+        case 0:
+          _context16.next = 2;
+          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["takeLatest"])(_actions__WEBPACK_IMPORTED_MODULE_2__["TASK_UPDATE_FLAG"], updateTask);
+
+        case 2:
+        case "end":
+          return _context16.stop();
+      }
+    }
+  }, _marked16);
 }
 
 /***/ }),
@@ -122440,7 +122768,7 @@ function root() {
       switch (_context.prev = _context.next) {
         case 0:
           _context.next = 2;
-          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["all"])([Object(_modules_projects_sagas__WEBPACK_IMPORTED_MODULE_2__["watchIndex"])(), Object(_modules_projects_sagas__WEBPACK_IMPORTED_MODULE_2__["watchFetchProject"])(), Object(_modules_projects_sagas__WEBPACK_IMPORTED_MODULE_2__["watchStore"])(), Object(_modules_authentication_sagas__WEBPACK_IMPORTED_MODULE_3__["watchRegistration"])(), Object(_modules_authentication_sagas__WEBPACK_IMPORTED_MODULE_3__["watchLogin"])(), Object(_modules_authentication_sagas__WEBPACK_IMPORTED_MODULE_3__["watchFetchUser"])(), Object(_modules_projects_sagas__WEBPACK_IMPORTED_MODULE_2__["watchTaskStore"])(), Object(_modules_projects_sagas__WEBPACK_IMPORTED_MODULE_2__["watchTaskUpdate"])(), Object(_modules_projects_sagas__WEBPACK_IMPORTED_MODULE_2__["watchUpdate"])(), Object(_modules_projects_sagas__WEBPACK_IMPORTED_MODULE_2__["watchDeleteProject"])(), Object(_modules_authentication_sagas__WEBPACK_IMPORTED_MODULE_3__["watchLogOut"])()]);
+          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["all"])([Object(_modules_projects_sagas__WEBPACK_IMPORTED_MODULE_2__["watchIndex"])(), Object(_modules_projects_sagas__WEBPACK_IMPORTED_MODULE_2__["watchFetchProject"])(), Object(_modules_projects_sagas__WEBPACK_IMPORTED_MODULE_2__["watchStore"])(), Object(_modules_authentication_sagas__WEBPACK_IMPORTED_MODULE_3__["watchRegistration"])(), Object(_modules_authentication_sagas__WEBPACK_IMPORTED_MODULE_3__["watchLogin"])(), Object(_modules_authentication_sagas__WEBPACK_IMPORTED_MODULE_3__["watchFetchUser"])(), Object(_modules_projects_sagas__WEBPACK_IMPORTED_MODULE_2__["watchTaskStore"])(), Object(_modules_projects_sagas__WEBPACK_IMPORTED_MODULE_2__["watchTaskUpdate"])(), Object(_modules_projects_sagas__WEBPACK_IMPORTED_MODULE_2__["watchUpdate"])(), Object(_modules_projects_sagas__WEBPACK_IMPORTED_MODULE_2__["watchDeleteProject"])(), Object(_modules_authentication_sagas__WEBPACK_IMPORTED_MODULE_3__["watchLogOut"])(), Object(_modules_projects_sagas__WEBPACK_IMPORTED_MODULE_2__["watchInviteUsers"])()]);
 
         case 2:
         case "end":
@@ -122508,10 +122836,10 @@ var _phrases__WEBPACK_IMPORTED_MODULE_0___namespace = /*#__PURE__*/__webpack_req
 /*!************************************************!*\
   !*** ./resources/lang/locales/ar/phrases.json ***!
   \************************************************/
-/*! exports provided: welcome, toggle_lang_btn, load_projects_btn, projects_title, submit_form_btn, description_input_placeholder, title_input_placeholder, min_error_msg, max_error_msg, required_field_error_msg, email_error_msg, name_input_placeholder, email_input_placeholder, password_input_placeholder, password_confirmation_input_placeholder, create_account_btn, login_btn, send_reset_password_link_btn, set_new_password_btn, logout, create_account, log_in, forget_password, email_label, password_label, password_confirmation_label, name_label, forget_password_feedback_msg, title_label, description_label, cancel_btn, projects, create_project, go_back_btn, tasks_label, general_notes_label, no_tasks_yet, task_body_input_placeholder, add_task_btn, update_task_btn, general_notes_placeholder, no_projects_yet, project_created, task_created, task_completed, task_incomplete, project_updated, task_updated, profile, setting, default */
+/*! exports provided: welcome, toggle_lang_btn, load_projects_btn, projects_title, submit_form_btn, description_input_placeholder, title_input_placeholder, min_error_msg, max_error_msg, required_field_error_msg, email_error_msg, name_input_placeholder, email_input_placeholder, password_input_placeholder, password_confirmation_input_placeholder, create_account_btn, login_btn, send_reset_password_link_btn, set_new_password_btn, logout, create_account, log_in, forget_password, email_label, password_label, password_confirmation_label, name_label, forget_password_feedback_msg, title_label, description_label, cancel_btn, projects, create_project, go_back_btn, tasks_label, general_notes_label, no_tasks_yet, task_body_input_placeholder, add_task_btn, update_task_btn, general_notes_placeholder, no_projects_yet, project_created, task_created, task_completed, task_incomplete, project_updated, task_updated, profile, setting, invite_others, default */
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"welcome\":\"مرحبًا\",\"toggle_lang_btn\":\"تغيير اللغه\",\"load_projects_btn\":\"تحميل\",\"projects_title\":\"مشروعاتك\",\"submit_form_btn\":\"اضافه\",\"description_input_placeholder\":\"وصف المشروع\",\"title_input_placeholder\":\"عنوان المشروع\",\"min_error_msg\":\"يجب ادخال 3 احرف على الاقل \",\"max_error_msg\":\"لقد تجاوزت الحد الاقصي من الاحرف المسموح بها\",\"required_field_error_msg\":\"يجب ملئ هذا الحقل\",\"email_error_msg\":\"هذا الايميل غير صالح \",\"name_input_placeholder\":\"الاسم\",\"email_input_placeholder\":\"البريد الاليكتروني\",\"password_input_placeholder\":\"كلمة المرور\",\"password_confirmation_input_placeholder\":\"اعد كتابة كلمة المرور\",\"create_account_btn\":\"تسجيل دخول\",\"login_btn\":\"تسجيل دخول\",\"send_reset_password_link_btn\":\"ارسل رابط اعادة تعيين كلمة السر\",\"set_new_password_btn\":\"تعيين كلمة سر جديده\",\"logout\":\"تسجيل خروج\",\"create_account\":\"انشاء حساب\",\"log_in\":\"تسجيل دخول\",\"forget_password\":\"نسيت كلمة المرور\",\"email_label\":\"البريد الاليكتروني\",\"password_label\":\"كلمة المرور\",\"password_confirmation_label\":\"تأكيد كلمة المرور\",\"name_label\":\"الاسم\",\"forget_password_feedback_msg\":\"تم ارسال رابط اعادة تعيين كلمة المرور\",\"title_label\":\"عنوان المشروع\",\"description_label\":\"وصف المشروع\",\"cancel_btn\":\"الغاء\",\"projects\":\"مشروعاتي\",\"create_project\":\"مشروع جديد\",\"go_back_btn\":\"رجوع\",\"tasks_label\":\"مهمات\",\"general_notes_label\":\"ملاحظات\",\"no_tasks_yet\":\"لا توجد اي مهمات\",\"task_body_input_placeholder\":\"مهمه جديده\",\"add_task_btn\":\"اضافة مهمه\",\"update_task_btn\":\"تعديل\",\"general_notes_placeholder\":\"قواعد العمل على هذا المشروع\",\"no_projects_yet\":\"لا توجد اي مشروعات\",\"project_created\":\"لقد قمت بأنشاء هذا المشروع\",\"task_created\":\"قمت باضافة \",\"task_completed\":\"لقد اتممت\",\"task_incomplete\":\"عينت المهمه كغير مكتمله\",\"project_updated\":\"قمت بتحديث المشروع\",\"task_updated\":\"قمت بتحديث المهمه\",\"profile\":\"الملف الشخصي\",\"setting\":\"اعدادات الحساب\"}");
+module.exports = JSON.parse("{\"welcome\":\"مرحبًا\",\"toggle_lang_btn\":\"تغيير اللغه\",\"load_projects_btn\":\"تحميل\",\"projects_title\":\"مشروعاتك\",\"submit_form_btn\":\"اضافه\",\"description_input_placeholder\":\"وصف المشروع\",\"title_input_placeholder\":\"عنوان المشروع\",\"min_error_msg\":\"يجب ادخال 3 احرف على الاقل \",\"max_error_msg\":\"لقد تجاوزت الحد الاقصي من الاحرف المسموح بها\",\"required_field_error_msg\":\"يجب ملئ هذا الحقل\",\"email_error_msg\":\"هذا الايميل غير صالح \",\"name_input_placeholder\":\"الاسم\",\"email_input_placeholder\":\"البريد الاليكتروني\",\"password_input_placeholder\":\"كلمة المرور\",\"password_confirmation_input_placeholder\":\"اعد كتابة كلمة المرور\",\"create_account_btn\":\"تسجيل دخول\",\"login_btn\":\"تسجيل دخول\",\"send_reset_password_link_btn\":\"ارسل رابط اعادة تعيين كلمة السر\",\"set_new_password_btn\":\"تعيين كلمة سر جديده\",\"logout\":\"تسجيل خروج\",\"create_account\":\"انشاء حساب\",\"log_in\":\"تسجيل دخول\",\"forget_password\":\"نسيت كلمة المرور\",\"email_label\":\"البريد الاليكتروني\",\"password_label\":\"كلمة المرور\",\"password_confirmation_label\":\"تأكيد كلمة المرور\",\"name_label\":\"الاسم\",\"forget_password_feedback_msg\":\"تم ارسال رابط اعادة تعيين كلمة المرور\",\"title_label\":\"عنوان المشروع\",\"description_label\":\"وصف المشروع\",\"cancel_btn\":\"الغاء\",\"projects\":\"مشروعاتي\",\"create_project\":\"مشروع جديد\",\"go_back_btn\":\"رجوع\",\"tasks_label\":\"مهمات\",\"general_notes_label\":\"ملاحظات\",\"no_tasks_yet\":\"لا توجد اي مهمات\",\"task_body_input_placeholder\":\"مهمه جديده\",\"add_task_btn\":\"اضافة مهمه\",\"update_task_btn\":\"تعديل\",\"general_notes_placeholder\":\"قواعد العمل على هذا المشروع\",\"no_projects_yet\":\"لا توجد اي مشروعات\",\"project_created\":\"لقد قمت بأنشاء هذا المشروع\",\"task_created\":\"قمت باضافة \",\"task_completed\":\"لقد اتممت\",\"task_incomplete\":\"عينت المهمه كغير مكتمله\",\"project_updated\":\"قمت بتحديث المشروع\",\"task_updated\":\"قمت بتحديث المهمه\",\"profile\":\"الملف الشخصي\",\"setting\":\"اعدادات الحساب\",\"invite_others\":\"قم بدعوه اعضاء فريقيك للعمل معًا\"}");
 
 /***/ }),
 
@@ -122537,10 +122865,10 @@ var _phrases__WEBPACK_IMPORTED_MODULE_0___namespace = /*#__PURE__*/__webpack_req
 /*!************************************************!*\
   !*** ./resources/lang/locales/en/phrases.json ***!
   \************************************************/
-/*! exports provided: welcome, toggle_lang_btn, load_projects_btn, submit_form_btn, description_input_placeholder, title_input_placeholder, min_error_msg, max_error_msg, required_field_error_msg, email_error_msg, name_input_placeholder, email_input_placeholder, password_input_placeholder, password_confirmation_input_placeholder, create_account_btn, login_btn, send_reset_password_link_btn, set_new_password_btn, logout, create_account, log_in, forget_password, email_label, password_label, password_confirmation_label, name_label, forget_password_feedback_msg, title_label, description_label, cancel_btn, projects, create_project, go_back_btn, tasks_label, general_notes_label, no_tasks_yet, task_body_input_placeholder, add_task_btn, update_task_btn, general_notes_placeholder, no_projects_yet, project_created, task_created, task_completed, task_incomplete, project_updated, task_updated, profile, setting, default */
+/*! exports provided: welcome, toggle_lang_btn, load_projects_btn, submit_form_btn, description_input_placeholder, title_input_placeholder, min_error_msg, max_error_msg, required_field_error_msg, email_error_msg, name_input_placeholder, email_input_placeholder, password_input_placeholder, password_confirmation_input_placeholder, create_account_btn, login_btn, send_reset_password_link_btn, set_new_password_btn, logout, create_account, log_in, forget_password, email_label, password_label, password_confirmation_label, name_label, forget_password_feedback_msg, title_label, description_label, cancel_btn, projects, create_project, go_back_btn, tasks_label, general_notes_label, no_tasks_yet, task_body_input_placeholder, add_task_btn, update_task_btn, general_notes_placeholder, no_projects_yet, project_created, task_created, task_completed, task_incomplete, project_updated, task_updated, profile, setting, invite_others, default */
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"welcome\":\"Welcome\",\"toggle_lang_btn\":\"Toggle Lang\",\"load_projects_btn\":\"Load Projects\",\"submit_form_btn\":\"Submit\",\"description_input_placeholder\":\"Description\",\"title_input_placeholder\":\"Title\",\"min_error_msg\":\"This field must contain 3 chars at least\",\"max_error_msg\":\"You have exceeded the max limited chars for this field\",\"required_field_error_msg\":\"This field is required\",\"email_error_msg\":\"Please add a valid email address\",\"name_input_placeholder\":\"Name\",\"email_input_placeholder\":\"Email address\",\"password_input_placeholder\":\"Password\",\"password_confirmation_input_placeholder\":\"Re-type password\",\"create_account_btn\":\"Create account\",\"login_btn\":\"Login\",\"send_reset_password_link_btn\":\"Send me a reset password link\",\"set_new_password_btn\":\"Set new password\",\"logout\":\"Log out\",\"create_account\":\"Create Account\",\"log_in\":\"Log In\",\"forget_password\":\"Forget Password\",\"email_label\":\"Email\",\"password_label\":\"Password\",\"password_confirmation_label\":\"Re-type password\",\"name_label\":\"Name\",\"forget_password_feedback_msg\":\"We have sent u a reset password link\",\"title_label\":\"Project Title\",\"description_label\":\"Project Description\",\"cancel_btn\":\"Cancel\",\"projects\":\"My Projects\",\"create_project\":\"Create Project\",\"go_back_btn\":\"Go Back\",\"tasks_label\":\"Tasks\",\"general_notes_label\":\"General Notes\",\"no_tasks_yet\":\"No Tasks Yet\",\"task_body_input_placeholder\":\"New Task\",\"add_task_btn\":\"Add Task\",\"update_task_btn\":\"Update\",\"general_notes_placeholder\":\"Write the project`s rules\",\"no_projects_yet\":\"No Projects Yet\",\"project_created\":\"created the project\",\"task_created\":\"created\",\"task_completed\":\"completed\",\"task_incomplete\":\"incomplete\",\"project_updated\":\"updated the project\",\"task_updated\":\"updated\",\"profile\":\"Profile\",\"setting\":\"Account Settings\"}");
+module.exports = JSON.parse("{\"welcome\":\"Welcome\",\"toggle_lang_btn\":\"Toggle Lang\",\"load_projects_btn\":\"Load Projects\",\"submit_form_btn\":\"Submit\",\"description_input_placeholder\":\"Description\",\"title_input_placeholder\":\"Title\",\"min_error_msg\":\"This field must contain 3 chars at least\",\"max_error_msg\":\"You have exceeded the max limited chars for this field\",\"required_field_error_msg\":\"This field is required\",\"email_error_msg\":\"Please add a valid email address\",\"name_input_placeholder\":\"Name\",\"email_input_placeholder\":\"Email address\",\"password_input_placeholder\":\"Password\",\"password_confirmation_input_placeholder\":\"Re-type password\",\"create_account_btn\":\"Create account\",\"login_btn\":\"Login\",\"send_reset_password_link_btn\":\"Send me a reset password link\",\"set_new_password_btn\":\"Set new password\",\"logout\":\"Log out\",\"create_account\":\"Create Account\",\"log_in\":\"Log In\",\"forget_password\":\"Forget Password\",\"email_label\":\"Email\",\"password_label\":\"Password\",\"password_confirmation_label\":\"Re-type password\",\"name_label\":\"Name\",\"forget_password_feedback_msg\":\"We have sent u a reset password link\",\"title_label\":\"Project Title\",\"description_label\":\"Project Description\",\"cancel_btn\":\"Cancel\",\"projects\":\"My Projects\",\"create_project\":\"Create Project\",\"go_back_btn\":\"Go Back\",\"tasks_label\":\"Tasks\",\"general_notes_label\":\"General Notes\",\"no_tasks_yet\":\"No Tasks Yet\",\"task_body_input_placeholder\":\"New Task\",\"add_task_btn\":\"Add Task\",\"update_task_btn\":\"Update\",\"general_notes_placeholder\":\"Write the project`s rules\",\"no_projects_yet\":\"No Projects Yet\",\"project_created\":\"created the project\",\"task_created\":\"created\",\"task_completed\":\"completed\",\"task_incomplete\":\"incomplete\",\"project_updated\":\"updated the project\",\"task_updated\":\"updated\",\"profile\":\"Profile\",\"setting\":\"Account Settings\",\"invite_others\":\"Invite Others and work Together\"}");
 
 /***/ }),
 

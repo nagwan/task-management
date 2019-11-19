@@ -16,7 +16,7 @@ class ProjectsController extends Controller
             ->orWhereHas('members', function($query){
                 $query->where('user_id', auth()->user()->id);
             })
-            ->with('tasks', 'activity', 'activity.subject', 'activity.user', 'members')
+            ->with('tasks', 'activity', 'activity.subject', 'activity.user', 'members', 'members.profile')
             ->orderBy('updated_at', 'desc')
             ->get();
 
@@ -39,14 +39,14 @@ class ProjectsController extends Controller
         return response()->json(['data' => $project], 200);
     }
 
-    public function show(Project $project)
+    public function show(Project $project) 
     {
 
         $access = Gate::inspect('manage', $project);
 
         if ($access->allowed()) {
 
-            $data = Project::where('id', $project->id)->with('tasks', 'activity', 'activity.subject', 'activity.user', 'members')->first();
+            $data = Project::where('id', $project->id)->with('tasks', 'owner', 'owner.profile', 'activity', 'activity.subject', 'activity.user', 'members', 'members.profile')->first();
 
             return response()->json(['data' => $data]);
         } else {
@@ -74,7 +74,7 @@ class ProjectsController extends Controller
                 'description' => request('description')
             ]);
 
-            $data = Project::where('id', $project->id)->with('tasks', 'activity', 'activity.subject', 'activity.user', 'members')->first();
+            $data = Project::where('id', $project->id)->with('tasks', 'activity', 'owner', 'owner.profile', 'activity.subject', 'activity.user', 'members', 'members.profile')->first();
 
             return response()->json(['data' => $data]);
         } else {
@@ -94,7 +94,7 @@ class ProjectsController extends Controller
 
             $project->delete();
 
-            $data = Project::where('id', $project->id)->with('tasks', 'activity', 'activity.subject', 'activity.user', 'members')->first();
+            $data = Project::where('id', $project->id)->with('tasks', 'activity', 'activity.subject', 'activity.user', 'members', 'members.profile')->first();
 
             return response()->json(['data' => $data]);
         } else {

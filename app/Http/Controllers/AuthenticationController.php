@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Profile;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -21,13 +22,17 @@ class AuthenticationController extends Controller
             'password_confirmation' => 'required|same:password'
         ]);
 
-        User::create([
+        $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request['password']),
         ]);
 
-        $user_data = User::where('email', $request->email)->get()->first();
+        Profile::create([
+            'user_id' => $user->id
+        ]);
+
+        $user_data = User::where('email', $request->email)->with('profile')->get()->first();
 
         $user_data->api_token = Str::random(80);
 
@@ -39,7 +44,8 @@ class AuthenticationController extends Controller
                 'id' => $user_data->id,
                 'api_token' => $user_data->api_token,
                 'name' => $user_data->name,
-                'email' => $user_data->email
+                'email' => $user_data->email,
+                'profile' => $user->profile
             ]
         ];
 
@@ -54,7 +60,7 @@ class AuthenticationController extends Controller
             'password' => 'required|min:6',
         ]);
 
-        $user = User::where('email', $request->email)->get()->first();
+        $user = User::where('email', $request->email)->with('profile')->get()->first();
 
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
 
@@ -68,8 +74,9 @@ class AuthenticationController extends Controller
                     'id' => $user->id,
                     'api_token' => $user->api_token,
                     'name' => $user->name,
-                    'email' => $user->email
-                ]
+                    'email' => $user->email,
+                    'profile' => $user->profile
+                ] 
             ];
         } else
             $response = ['success' => false, 'data' => 'Record doest`t exists'];
@@ -80,6 +87,5 @@ class AuthenticationController extends Controller
     public function logOut(Request $request)
     {
         return auth()->user()->api_token = null;
-
     }
 }

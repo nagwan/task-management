@@ -11,12 +11,23 @@ class UserTest extends TestCase
 {
    use RefreshDatabase;
 
-    /** @test */
-   
-       public function has_projects()
-       {
-            $user = factory('App\User')->create();
+   /** @test */
 
-            $this->assertInstanceOf(Collection::class, $user->projects);
-       }
+   public function has_projects()
+   {
+      $user = factory('App\User')->create();
+
+      $this->assertInstanceOf(Collection::class, $user->projects);
+   }
+
+   /** @test */
+
+   public function has_a_profile()
+   {
+      $user = factory('App\User')->create();
+
+      factory('App\Profile')->create(['user_id' => $user->id]);
+
+      $this->assertInstanceOf('App\Profile', $user->fresh()->profile);
+   }
 }

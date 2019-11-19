@@ -46,8 +46,8 @@ class Container extends Component {
     render() {
         return (
             <div className='flex justify-center relative w-2/12'>
-                <button onClick={this.toggleMenu} className="z-10">
-                    {this.props.Authentication.user.name}
+                <button onClick={this.toggleMenu} className="z-10 flex items-center justify-between focus:outline-none">
+                    <img src={this.props.Authentication.user.profile.avatar} className='rounded-full mr-12 ml-12 border-primary-900 border-rounded border-4' width='50px' height='50px'/> <span>{this.props.Authentication.user.name}</span>
                 </button>
                 {this.state.is_opened ? (
                     <React.Fragment>

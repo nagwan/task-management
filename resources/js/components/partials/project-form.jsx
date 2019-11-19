@@ -75,7 +75,7 @@ const ProjectForm = (({project, submit}) => {
                                     {t('phrases:submit_form_btn')}
                                 </button>
 
-                                <Link to='/projects' className='inline-block align-baseline font-bold text-sm text-primary-900 hover:underline'>
+                                <Link to={project ? `/projects/${project.id}` : '/projects'} className='inline-block align-baseline font-bold text-sm text-primary-900 hover:underline'>
                                     {t('phrases:cancel_btn')}
                                 </Link>
                             </div>
