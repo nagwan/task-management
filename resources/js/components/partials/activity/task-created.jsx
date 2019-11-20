@@ -10,7 +10,7 @@ const TaskCreated = (({ activity }) => {
 
     return (
         <React.Fragment>
-            <UserName name={activity.user.name}/> <span>{t('phrases:task_created')}</span> <span className='font-bold italic'>{activity.changes.after.body}</span> 🎯 <ActivityTime val={activity.created_at}/>
+            <UserName name={activity.user ?  activity.user.name : '👻'}/> <span>{t('phrases:task_created')}</span> <span className='font-bold italic'>{activity.changes.after.body}</span> 🎯 <ActivityTime val={activity.created_at}/>
         </React.Fragment>
 
     )

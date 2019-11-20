@@ -10,7 +10,7 @@ const TaskDeleted = (({ activity }) => {
 
     return (
         <React.Fragment>
-            <UserName name={activity.user.name}/> <span>{t('phrases:task_deleted')}</span> <span className='text-danger-700 italic'>{activity.changes.before.body}</span> 🥴 <ActivityTime val={activity.created_at}/>
+            <UserName name={activity.user ?  activity.user.name : '👻'}/> <span>{t('phrases:task_deleted')}</span> <span className='text-danger-700 italic'>{activity.changes.before.body}</span> 🥴 <ActivityTime val={activity.created_at}/>
         </React.Fragment>
 
     )

@@ -10,7 +10,7 @@ const ProjectUpdated = (({ activity }) => {
 
     return (
         <React.Fragment>
-            <UserName name={activity.user.name} /> 
+            <UserName name={activity.user ?  activity.user.name : '👻'} /> 
             {
                 Object.keys(activity.changes.after).length == 2 ?
                     <React.Fragment>
