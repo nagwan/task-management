@@ -1,14 +1,10 @@
 import React from 'react'
 import { ErrorMessage, Field, Form, Formik } from "formik"
 import * as Yup from "yup"
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 import { useTranslation } from "react-i18next";
-import { taskStoreFlag } from '../../../store/modules/projects/actions'
 
 
-const Store = connect(null, dispatch => bindActionCreators({ taskStoreFlag }, dispatch))((props) => {
-
+const View = (({ storeTask }) => {
     const { t } = useTranslation();
 
     const validationSchema = Yup.object().shape({
@@ -21,6 +17,7 @@ const Store = connect(null, dispatch => bindActionCreators({ taskStoreFlag }, di
 
 
     return (
+
         <div className='card px-12 py-12'>
             <Formik initialValues={
                 {
@@ -30,7 +27,7 @@ const Store = connect(null, dispatch => bindActionCreators({ taskStoreFlag }, di
                 validationSchema={validationSchema}
                 onSubmit={(values, { setSubmitting, resetForm }) => {
                     setSubmitting(true)
-                    props.taskStoreFlag({ values })
+                    storeTask({ values })
                     resetForm()
                     setSubmitting(false)
                 }
@@ -53,4 +50,4 @@ const Store = connect(null, dispatch => bindActionCreators({ taskStoreFlag }, di
     )
 })
 
-export default Store
+export default View

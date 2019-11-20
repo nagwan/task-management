@@ -1,7 +1,7 @@
 import React from 'react'
 import { useTranslation } from "react-i18next";
 import { Link } from 'react-router-dom';
-import Store from '../tasks/store';
+import Store from '../tasks/store/index';
 import Task from '../tasks/index';
 import Activity from '../../partials/activity';
 import InviteUsers from '../invite-users'
