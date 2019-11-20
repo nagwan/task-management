@@ -6,7 +6,7 @@ import Task from '../tasks/index';
 import Activity from '../../partials/activity';
 import InviteUsers from '../invite-users'
 
-const View = (({ user, project, deleteProject, deleteMember }) => {
+const View = (({ user, project, deleteProject, removeMember }) => {
 
     const { t } = useTranslation();
 
@@ -23,7 +23,7 @@ const View = (({ user, project, deleteProject, deleteMember }) => {
                             <div className='flex'>
                                 {
                                     project.members.map(member =>
-                                        <img onClick={()=> deleteMember({id:member.id})} title={member.name} alt={member.name} key={member.id} src={member.profile.avatar} className='cursor-pointer rounded-full border-primary-900 border-rounded border-4 mr-4' width='50px' height='50px' />
+                                        <img onClick={()=> removeMember({id:member.id})} title={member.name} alt={member.name} key={member.id} src={member.profile.avatar} className='cursor-pointer rounded-full border-primary-900 border-rounded border-4 mr-4' width='50px' height='50px' />
                                     )
                                 }
                             </div>

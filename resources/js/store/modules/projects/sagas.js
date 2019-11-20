@@ -200,9 +200,11 @@ export function* removeMember(action){
     try {
         if (localStorage.getItem('user') != null) {
 
+            const active_project = yield select(getProject);
+
             let user = JSON.parse(localStorage.getItem('user'))
 
-            const project = yield call(api, `/api/projects/${action.payload.id}/invitations/${action.payload.id}`, action.payload.id, 'delete', user.api_token)
+            const project = yield call(api, `/api/projects/${active_project.id}/invitations/${action.payload.id}`, action.payload.id, 'delete', user.api_token)
 
             yield put(actions.activeProject(project.data.data))
 
