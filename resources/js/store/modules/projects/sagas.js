@@ -195,6 +195,33 @@ export function* watchInviteUsers(){
     yield takeLatest(actions.INVITE_USERS_FLAG, inviteUsers)
 }
 
+export function* removeMember(action){
+
+    try {
+        if (localStorage.getItem('user') != null) {
+
+            let user = JSON.parse(localStorage.getItem('user'))
+
+            const project = yield call(api, `/api/projects/${action.payload.id}/invitations/${action.payload.id}`, action.payload.id, 'delete', user.api_token)
+
+            yield put(actions.activeProject(project.data.data))
+
+        } else {
+
+            yield action.payload.history.push(`/login`)
+        }
+        
+    } catch (error) {
+        console.log(error)
+    }
+
+}
+
+
+export function* watchRemoveMember(){
+    yield takeLatest(actions.REMOVE_MEMBER_FLAG, removeMember)
+}
+
 
 /**
  *  project`s tasks

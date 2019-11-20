@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { withRouter } from 'react-router-dom'
 
-import { activeProjectFetchFlag, deleteProjectFlag } from '../../../store/modules/projects/actions'
+import { activeProjectFetchFlag, deleteProjectFlag, removeMemberFlag } from '../../../store/modules/projects/actions'
 
 
 class Container extends Component {
@@ -14,6 +14,7 @@ class Container extends Component {
 
         this.deleteProject = this.deleteProject.bind(this);
         this.fetchProject = this.fetchProject.bind(this);
+        this.removeMember = this.removeMember.bind(this);
     }
 
 
@@ -44,11 +45,15 @@ class Container extends Component {
         this.props.deleteProjectFlag({ id: data, history })
     }
 
+    removeMember(data){
+        this.props.removeMemberFlag(data)
+    }
+
     render() {
         return (
             <React.Fragment>
                 {
-                    !_.isEmpty(this.props.projects.project) ? <View user={this.props.Authentication.user} project={this.props.projects.project} deleteProject={this.deleteProject} /> : null
+                    !_.isEmpty(this.props.projects.project) ? <View removeMember={this.removeMember} user={this.props.Authentication.user} project={this.props.projects.project} deleteProject={this.deleteProject} /> : null
                 }
             </React.Fragment>
         )
@@ -56,4 +61,4 @@ class Container extends Component {
 }
 
 export default withRouter(connect(({ projects, Authentication }) => ({ projects, Authentication }),
-    dispatch => bindActionCreators({ activeProjectFetchFlag, deleteProjectFlag }, dispatch))(Container))
+    dispatch => bindActionCreators({ activeProjectFetchFlag, deleteProjectFlag, removeMemberFlag }, dispatch))(Container))
