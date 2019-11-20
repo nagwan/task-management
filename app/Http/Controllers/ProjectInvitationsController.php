@@ -48,4 +48,21 @@ class ProjectInvitationsController extends Controller
             ], 403);
         }
     }
+
+    public function delete(Project $project, User $user)
+    {
+        $access = Gate::inspect('manage', $project);
+
+        if ($access->allowed()) {
+            $project->members()->delete($user);
+
+            $data = Project::where('id', $project->id)->with('tasks', 'owner', 'owner.profile', 'activity', 'activity.subject', 'activity.user', 'members', 'members.profile')->first();
+
+            return response()->json(['data' => $data]);
+        }
+        return response()->json([
+            'success' => false,
+            'error' =>  'unauthorized'
+        ], 403);
+    }
 }

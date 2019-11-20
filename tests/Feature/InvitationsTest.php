@@ -53,7 +53,7 @@ class InvitationsTest extends TestCase
     /** @test */
 
     public function members_of_a_project_cannot_invite_others()
-    { 
+    {
 
         $owner = factory('App\User')->create();
 
@@ -70,7 +70,6 @@ class InvitationsTest extends TestCase
         ], [
             'authorization' => 'Bearer ' . $member->api_token
         ])->assertStatus(403);
-
     }
 
 
@@ -122,4 +121,51 @@ class InvitationsTest extends TestCase
 
         $this->assertDatabaseHas('tasks', $task);
     }
+
+
+    /** @test */
+
+    public function the_owner_of_a_project_can_remove_member()
+    {
+        $this->withoutExceptionHandling();
+        
+        $owner = factory('App\User')->create();
+
+        $member = factory('App\User')->create();
+
+        $project = factory('App\Project')->create(['owner_id' => $owner->id]);
+
+        $project->invites($member);
+
+        $this->deleteJson($project->path() .'/invitations/' . $member->id, ['id' => $member->id], [
+            'authorization' => 'Bearer ' . $owner->api_token
+        ]);
+
+        $this->assertFalse($project->members->contains($member));
+    }
+
+        /** @test */
+
+        public function only_the_owner_of_a_project_can_remove_member()
+        {
+            $this->withoutExceptionHandling();
+            
+            $owner = factory('App\User')->create();
+    
+            $member = factory('App\User')->create();
+
+            $member_2 = factory('App\User')->create();
+    
+            $project = factory('App\Project')->create(['owner_id' => $owner->id]);
+    
+            $project->invites($member);
+            $project->invites($member_2);
+    
+            $this->deleteJson($project->path() .'/invitations/' . $member_2->id, ['id' => $member_2->id], [
+                'authorization' => 'Bearer ' . $member->api_token
+            ])->assertStatus(403);
+
+            $this->assertTrue($project->members->contains($member && $member_2));
+    
+        }
 }
