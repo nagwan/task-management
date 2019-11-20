@@ -14,6 +14,10 @@ trait RecordActivityTrait
         static::updating(function ($model) {
             $model->oldAttributes = $model->getOriginal();
         });
+
+        static::deleting(function ($model) {
+            $model->oldAttributes = $model->getOriginal();
+        });
     }
 
     public function recordActivity($type)
@@ -27,6 +31,29 @@ trait RecordActivityTrait
                 'after' => array_diff($this->getAttributes(), $this->oldAttributes)
             ] : null
         ]);
+    }
+
+    public function recordTaskActivities($type, $task)
+    {
+        return $this->activity()->create([
+            'project_id' => class_basename($this) === 'Project' ? $this->id : $this->project_id,
+            'user_id' => $this->activityOwner()->id,
+            'type' => $type,
+            'changes' => $type == 'task_created' ? [
+                'before' => null,
+                'after' => $task
+
+            ] : $this->wasChanged() ? [
+                'before' => array_diff($this->oldAttributes, $this->getAttributes()),
+                'after' => array_diff($this->getAttributes(), $this->oldAttributes)
+                
+            ]  : [
+                'before' => $task,
+                'after' => null
+            ] 
+            
+        ]);
+        
     }
 
     protected function activityOwner()

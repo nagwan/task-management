@@ -16,7 +16,7 @@ class ProjectsController extends Controller
             ->orWhereHas('members', function($query){
                 $query->where('user_id', auth()->user()->id);
             })
-            ->with('tasks', 'activity', 'activity.subject', 'activity.user', 'members', 'members.profile')
+            ->with('tasks', 'activity', 'owner', 'owner.profile', 'activity.subject', 'activity.user', 'members', 'members.profile')
             ->orderBy('updated_at', 'desc')
             ->get();
 
@@ -94,7 +94,7 @@ class ProjectsController extends Controller
 
             $project->delete();
 
-            $data = Project::where('id', $project->id)->with('tasks', 'activity', 'activity.subject', 'activity.user', 'members', 'members.profile')->first();
+            $data = Project::where('id', $project->id)->with('tasks', 'activity', 'owner', 'owner.profile', 'activity.subject', 'activity.user', 'members', 'members.profile')->first();
 
             return response()->json(['data' => $data]);
         } else {

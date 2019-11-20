@@ -48,5 +48,6 @@
     "task_updated": "updated",
     "profile": "Profile",
     "setting": "Account Settings",
-    "invite_others": "Invite Others and work Together"
+    "invite_others": "Invite Others and work Together",
+    "task_deleted" : "Deleted"
 }

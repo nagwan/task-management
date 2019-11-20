@@ -5,6 +5,7 @@ import TaskCompleted from './task-completed';
 import TaskCreated from './task-created';
 import TaskIncomplete from './task-incomplete';
 import TaskUpdated from './task-updated';
+import TaskDeleted from './task-deleted';
 
 const Activity = (({ activity }) => {
 
@@ -23,7 +24,8 @@ const Activity = (({ activity }) => {
                                     :
                                     activity.type == 'task_updated' ? <TaskUpdated activity={activity}/>
                                         :
-                                        ''
+                                        activity.type == 'task_deleted' ? <TaskDeleted activity={activity}/>
+                                        : ''
             }
         </div>
 

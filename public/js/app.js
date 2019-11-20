@@ -119465,6 +119465,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _task_created__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./task-created */ "./resources/js/components/partials/activity/task-created.jsx");
 /* harmony import */ var _task_incomplete__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./task-incomplete */ "./resources/js/components/partials/activity/task-incomplete.jsx");
 /* harmony import */ var _task_updated__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./task-updated */ "./resources/js/components/partials/activity/task-updated.jsx");
+/* harmony import */ var _task_deleted__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./task-deleted */ "./resources/js/components/partials/activity/task-deleted.jsx");
+
 
 
 
@@ -119488,6 +119490,8 @@ var Activity = function Activity(_ref) {
   }) : activity.type == 'project_updated' ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_project_updated__WEBPACK_IMPORTED_MODULE_2__["default"], {
     activity: activity
   }) : activity.type == 'task_updated' ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_task_updated__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    activity: activity
+  }) : activity.type == 'task_deleted' ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_task_deleted__WEBPACK_IMPORTED_MODULE_7__["default"], {
     activity: activity
   }) : '');
 };
@@ -119639,12 +119643,50 @@ var TaskCreated = function TaskCreated(_ref) {
     name: activity.user.name
   }), " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, t('phrases:task_created')), " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
     className: "font-bold italic"
-  }, activity.subject.body), " \uD83C\uDFAF ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_activity_time__WEBPACK_IMPORTED_MODULE_3__["default"], {
+  }, activity.changes.after.body), " \uD83C\uDFAF ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_activity_time__WEBPACK_IMPORTED_MODULE_3__["default"], {
     val: activity.created_at
   }));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (TaskCreated);
+
+/***/ }),
+
+/***/ "./resources/js/components/partials/activity/task-deleted.jsx":
+/*!********************************************************************!*\
+  !*** ./resources/js/components/partials/activity/task-deleted.jsx ***!
+  \********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_i18next__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-i18next */ "./node_modules/react-i18next/dist/es/index.js");
+/* harmony import */ var _user_name__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./user-name */ "./resources/js/components/partials/activity/user-name.jsx");
+/* harmony import */ var _activity_time__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./activity-time */ "./resources/js/components/partials/activity/activity-time.jsx");
+
+
+
+
+
+var TaskDeleted = function TaskDeleted(_ref) {
+  var activity = _ref.activity;
+
+  var _useTranslation = Object(react_i18next__WEBPACK_IMPORTED_MODULE_1__["useTranslation"])(),
+      t = _useTranslation.t;
+
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_user_name__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    name: activity.user.name
+  }), " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, t('phrases:task_deleted')), " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "text-danger-700 italic"
+  }, activity.changes.before.body), " \uD83E\uDD74 ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_activity_time__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    val: activity.created_at
+  }));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (TaskDeleted);
 
 /***/ }),
 
@@ -122933,10 +122975,10 @@ var _phrases__WEBPACK_IMPORTED_MODULE_0___namespace = /*#__PURE__*/__webpack_req
 /*!************************************************!*\
   !*** ./resources/lang/locales/ar/phrases.json ***!
   \************************************************/
-/*! exports provided: welcome, toggle_lang_btn, load_projects_btn, projects_title, submit_form_btn, description_input_placeholder, title_input_placeholder, min_error_msg, max_error_msg, required_field_error_msg, email_error_msg, name_input_placeholder, email_input_placeholder, password_input_placeholder, password_confirmation_input_placeholder, create_account_btn, login_btn, send_reset_password_link_btn, set_new_password_btn, logout, create_account, log_in, forget_password, email_label, password_label, password_confirmation_label, name_label, forget_password_feedback_msg, title_label, description_label, cancel_btn, projects, create_project, go_back_btn, tasks_label, general_notes_label, no_tasks_yet, task_body_input_placeholder, add_task_btn, update_task_btn, general_notes_placeholder, no_projects_yet, project_created, task_created, task_completed, task_incomplete, project_updated, task_updated, profile, setting, invite_others, default */
+/*! exports provided: welcome, toggle_lang_btn, load_projects_btn, projects_title, submit_form_btn, description_input_placeholder, title_input_placeholder, min_error_msg, max_error_msg, required_field_error_msg, email_error_msg, name_input_placeholder, email_input_placeholder, password_input_placeholder, password_confirmation_input_placeholder, create_account_btn, login_btn, send_reset_password_link_btn, set_new_password_btn, logout, create_account, log_in, forget_password, email_label, password_label, password_confirmation_label, name_label, forget_password_feedback_msg, title_label, description_label, cancel_btn, projects, create_project, go_back_btn, tasks_label, general_notes_label, no_tasks_yet, task_body_input_placeholder, add_task_btn, update_task_btn, general_notes_placeholder, no_projects_yet, project_created, task_created, task_completed, task_incomplete, project_updated, task_updated, profile, setting, invite_others, task_deleted, default */
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"welcome\":\"مرحبًا\",\"toggle_lang_btn\":\"تغيير اللغه\",\"load_projects_btn\":\"تحميل\",\"projects_title\":\"مشروعاتك\",\"submit_form_btn\":\"اضافه\",\"description_input_placeholder\":\"وصف المشروع\",\"title_input_placeholder\":\"عنوان المشروع\",\"min_error_msg\":\"يجب ادخال 3 احرف على الاقل \",\"max_error_msg\":\"لقد تجاوزت الحد الاقصي من الاحرف المسموح بها\",\"required_field_error_msg\":\"يجب ملئ هذا الحقل\",\"email_error_msg\":\"هذا الايميل غير صالح \",\"name_input_placeholder\":\"الاسم\",\"email_input_placeholder\":\"البريد الاليكتروني\",\"password_input_placeholder\":\"كلمة المرور\",\"password_confirmation_input_placeholder\":\"اعد كتابة كلمة المرور\",\"create_account_btn\":\"تسجيل دخول\",\"login_btn\":\"تسجيل دخول\",\"send_reset_password_link_btn\":\"ارسل رابط اعادة تعيين كلمة السر\",\"set_new_password_btn\":\"تعيين كلمة سر جديده\",\"logout\":\"تسجيل خروج\",\"create_account\":\"انشاء حساب\",\"log_in\":\"تسجيل دخول\",\"forget_password\":\"نسيت كلمة المرور\",\"email_label\":\"البريد الاليكتروني\",\"password_label\":\"كلمة المرور\",\"password_confirmation_label\":\"تأكيد كلمة المرور\",\"name_label\":\"الاسم\",\"forget_password_feedback_msg\":\"تم ارسال رابط اعادة تعيين كلمة المرور\",\"title_label\":\"عنوان المشروع\",\"description_label\":\"وصف المشروع\",\"cancel_btn\":\"الغاء\",\"projects\":\"مشروعاتي\",\"create_project\":\"مشروع جديد\",\"go_back_btn\":\"رجوع\",\"tasks_label\":\"مهمات\",\"general_notes_label\":\"ملاحظات\",\"no_tasks_yet\":\"لا توجد اي مهمات\",\"task_body_input_placeholder\":\"مهمه جديده\",\"add_task_btn\":\"اضافة مهمه\",\"update_task_btn\":\"تعديل\",\"general_notes_placeholder\":\"قواعد العمل على هذا المشروع\",\"no_projects_yet\":\"لا توجد اي مشروعات\",\"project_created\":\"لقد قمت بأنشاء هذا المشروع\",\"task_created\":\"قمت باضافة \",\"task_completed\":\"لقد اتممت\",\"task_incomplete\":\"عينت المهمه كغير مكتمله\",\"project_updated\":\"قمت بتحديث المشروع\",\"task_updated\":\"قمت بتحديث المهمه\",\"profile\":\"الملف الشخصي\",\"setting\":\"اعدادات الحساب\",\"invite_others\":\"قم بدعوه اعضاء فريقيك للعمل معًا\"}");
+module.exports = JSON.parse("{\"welcome\":\"مرحبًا\",\"toggle_lang_btn\":\"تغيير اللغه\",\"load_projects_btn\":\"تحميل\",\"projects_title\":\"مشروعاتك\",\"submit_form_btn\":\"اضافه\",\"description_input_placeholder\":\"وصف المشروع\",\"title_input_placeholder\":\"عنوان المشروع\",\"min_error_msg\":\"يجب ادخال 3 احرف على الاقل \",\"max_error_msg\":\"لقد تجاوزت الحد الاقصي من الاحرف المسموح بها\",\"required_field_error_msg\":\"يجب ملئ هذا الحقل\",\"email_error_msg\":\"هذا الايميل غير صالح \",\"name_input_placeholder\":\"الاسم\",\"email_input_placeholder\":\"البريد الاليكتروني\",\"password_input_placeholder\":\"كلمة المرور\",\"password_confirmation_input_placeholder\":\"اعد كتابة كلمة المرور\",\"create_account_btn\":\"تسجيل دخول\",\"login_btn\":\"تسجيل دخول\",\"send_reset_password_link_btn\":\"ارسل رابط اعادة تعيين كلمة السر\",\"set_new_password_btn\":\"تعيين كلمة سر جديده\",\"logout\":\"تسجيل خروج\",\"create_account\":\"انشاء حساب\",\"log_in\":\"تسجيل دخول\",\"forget_password\":\"نسيت كلمة المرور\",\"email_label\":\"البريد الاليكتروني\",\"password_label\":\"كلمة المرور\",\"password_confirmation_label\":\"تأكيد كلمة المرور\",\"name_label\":\"الاسم\",\"forget_password_feedback_msg\":\"تم ارسال رابط اعادة تعيين كلمة المرور\",\"title_label\":\"عنوان المشروع\",\"description_label\":\"وصف المشروع\",\"cancel_btn\":\"الغاء\",\"projects\":\"مشروعاتي\",\"create_project\":\"مشروع جديد\",\"go_back_btn\":\"رجوع\",\"tasks_label\":\"مهمات\",\"general_notes_label\":\"ملاحظات\",\"no_tasks_yet\":\"لا توجد اي مهمات\",\"task_body_input_placeholder\":\"مهمه جديده\",\"add_task_btn\":\"اضافة مهمه\",\"update_task_btn\":\"تعديل\",\"general_notes_placeholder\":\"قواعد العمل على هذا المشروع\",\"no_projects_yet\":\"لا توجد اي مشروعات\",\"project_created\":\"لقد قمت بأنشاء هذا المشروع\",\"task_created\":\"قمت باضافة \",\"task_completed\":\"لقد اتممت\",\"task_incomplete\":\"عينت المهمه كغير مكتمله\",\"project_updated\":\"قمت بتحديث المشروع\",\"task_updated\":\"قمت بتحديث المهمه\",\"profile\":\"الملف الشخصي\",\"setting\":\"اعدادات الحساب\",\"invite_others\":\"قم بدعوه اعضاء فريقيك للعمل معًا\",\"task_deleted\":\"قام بحذف\"}");
 
 /***/ }),
 
@@ -122962,10 +123004,10 @@ var _phrases__WEBPACK_IMPORTED_MODULE_0___namespace = /*#__PURE__*/__webpack_req
 /*!************************************************!*\
   !*** ./resources/lang/locales/en/phrases.json ***!
   \************************************************/
-/*! exports provided: welcome, toggle_lang_btn, load_projects_btn, submit_form_btn, description_input_placeholder, title_input_placeholder, min_error_msg, max_error_msg, required_field_error_msg, email_error_msg, name_input_placeholder, email_input_placeholder, password_input_placeholder, password_confirmation_input_placeholder, create_account_btn, login_btn, send_reset_password_link_btn, set_new_password_btn, logout, create_account, log_in, forget_password, email_label, password_label, password_confirmation_label, name_label, forget_password_feedback_msg, title_label, description_label, cancel_btn, projects, create_project, go_back_btn, tasks_label, general_notes_label, no_tasks_yet, task_body_input_placeholder, add_task_btn, update_task_btn, general_notes_placeholder, no_projects_yet, project_created, task_created, task_completed, task_incomplete, project_updated, task_updated, profile, setting, invite_others, default */
+/*! exports provided: welcome, toggle_lang_btn, load_projects_btn, submit_form_btn, description_input_placeholder, title_input_placeholder, min_error_msg, max_error_msg, required_field_error_msg, email_error_msg, name_input_placeholder, email_input_placeholder, password_input_placeholder, password_confirmation_input_placeholder, create_account_btn, login_btn, send_reset_password_link_btn, set_new_password_btn, logout, create_account, log_in, forget_password, email_label, password_label, password_confirmation_label, name_label, forget_password_feedback_msg, title_label, description_label, cancel_btn, projects, create_project, go_back_btn, tasks_label, general_notes_label, no_tasks_yet, task_body_input_placeholder, add_task_btn, update_task_btn, general_notes_placeholder, no_projects_yet, project_created, task_created, task_completed, task_incomplete, project_updated, task_updated, profile, setting, invite_others, task_deleted, default */
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"welcome\":\"Welcome\",\"toggle_lang_btn\":\"Toggle Lang\",\"load_projects_btn\":\"Load Projects\",\"submit_form_btn\":\"Submit\",\"description_input_placeholder\":\"Description\",\"title_input_placeholder\":\"Title\",\"min_error_msg\":\"This field must contain 3 chars at least\",\"max_error_msg\":\"You have exceeded the max limited chars for this field\",\"required_field_error_msg\":\"This field is required\",\"email_error_msg\":\"Please add a valid email address\",\"name_input_placeholder\":\"Name\",\"email_input_placeholder\":\"Email address\",\"password_input_placeholder\":\"Password\",\"password_confirmation_input_placeholder\":\"Re-type password\",\"create_account_btn\":\"Create account\",\"login_btn\":\"Login\",\"send_reset_password_link_btn\":\"Send me a reset password link\",\"set_new_password_btn\":\"Set new password\",\"logout\":\"Log out\",\"create_account\":\"Create Account\",\"log_in\":\"Log In\",\"forget_password\":\"Forget Password\",\"email_label\":\"Email\",\"password_label\":\"Password\",\"password_confirmation_label\":\"Re-type password\",\"name_label\":\"Name\",\"forget_password_feedback_msg\":\"We have sent u a reset password link\",\"title_label\":\"Project Title\",\"description_label\":\"Project Description\",\"cancel_btn\":\"Cancel\",\"projects\":\"My Projects\",\"create_project\":\"Create Project\",\"go_back_btn\":\"Go Back\",\"tasks_label\":\"Tasks\",\"general_notes_label\":\"General Notes\",\"no_tasks_yet\":\"No Tasks Yet\",\"task_body_input_placeholder\":\"New Task\",\"add_task_btn\":\"Add Task\",\"update_task_btn\":\"Update\",\"general_notes_placeholder\":\"Write the project`s rules\",\"no_projects_yet\":\"No Projects Yet\",\"project_created\":\"created the project\",\"task_created\":\"created\",\"task_completed\":\"completed\",\"task_incomplete\":\"incomplete\",\"project_updated\":\"updated the project\",\"task_updated\":\"updated\",\"profile\":\"Profile\",\"setting\":\"Account Settings\",\"invite_others\":\"Invite Others and work Together\"}");
+module.exports = JSON.parse("{\"welcome\":\"Welcome\",\"toggle_lang_btn\":\"Toggle Lang\",\"load_projects_btn\":\"Load Projects\",\"submit_form_btn\":\"Submit\",\"description_input_placeholder\":\"Description\",\"title_input_placeholder\":\"Title\",\"min_error_msg\":\"This field must contain 3 chars at least\",\"max_error_msg\":\"You have exceeded the max limited chars for this field\",\"required_field_error_msg\":\"This field is required\",\"email_error_msg\":\"Please add a valid email address\",\"name_input_placeholder\":\"Name\",\"email_input_placeholder\":\"Email address\",\"password_input_placeholder\":\"Password\",\"password_confirmation_input_placeholder\":\"Re-type password\",\"create_account_btn\":\"Create account\",\"login_btn\":\"Login\",\"send_reset_password_link_btn\":\"Send me a reset password link\",\"set_new_password_btn\":\"Set new password\",\"logout\":\"Log out\",\"create_account\":\"Create Account\",\"log_in\":\"Log In\",\"forget_password\":\"Forget Password\",\"email_label\":\"Email\",\"password_label\":\"Password\",\"password_confirmation_label\":\"Re-type password\",\"name_label\":\"Name\",\"forget_password_feedback_msg\":\"We have sent u a reset password link\",\"title_label\":\"Project Title\",\"description_label\":\"Project Description\",\"cancel_btn\":\"Cancel\",\"projects\":\"My Projects\",\"create_project\":\"Create Project\",\"go_back_btn\":\"Go Back\",\"tasks_label\":\"Tasks\",\"general_notes_label\":\"General Notes\",\"no_tasks_yet\":\"No Tasks Yet\",\"task_body_input_placeholder\":\"New Task\",\"add_task_btn\":\"Add Task\",\"update_task_btn\":\"Update\",\"general_notes_placeholder\":\"Write the project`s rules\",\"no_projects_yet\":\"No Projects Yet\",\"project_created\":\"created the project\",\"task_created\":\"created\",\"task_completed\":\"completed\",\"task_incomplete\":\"incomplete\",\"project_updated\":\"updated the project\",\"task_updated\":\"updated\",\"profile\":\"Profile\",\"setting\":\"Account Settings\",\"invite_others\":\"Invite Others and work Together\",\"task_deleted\":\"Deleted\"}");
 
 /***/ }),
 

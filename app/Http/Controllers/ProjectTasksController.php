@@ -68,7 +68,7 @@ class ProjectTasksController extends Controller
 
             $task->delete();
 
-            $data = Project::where('id', $project->id)->with('tasks', 'activity', 'activity.subject', 'activity.user', 'members', 'members.profile')->first();
+            $data = Project::where('id', $project->id)->with('tasks', 'owner', 'owner.profile', 'activity', 'activity.subject', 'activity.user', 'members', 'members.profile')->first();
 
             return response()->json(['data' => $data], 200);
         }

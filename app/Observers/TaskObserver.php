@@ -16,7 +16,7 @@ class TaskObserver
      */
     public function created(Task $task)
     {
-        $task->recordActivity('task_created'); 
+        $task->recordTaskActivities('task_created', $task); 
     }
 
     /**
@@ -38,7 +38,7 @@ class TaskObserver
             $type = 'task_updated';
         }
 
-        $task->recordActivity($type);
+        $task->recordTaskActivities($type, $task);
     }
 
     /**
@@ -47,9 +47,9 @@ class TaskObserver
      * @param  \App\Task  $task
      * @return void
      */
-    public function deleted(Task $task)
+    public function deleting(Task $task)
     {
-        $task->recordActivity('task_deleted');
+        $task->recordTaskActivities('task_deleted', $task);
     }
 
     /**
