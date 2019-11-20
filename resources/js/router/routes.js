@@ -3,7 +3,7 @@ import Index from "../components/projects/index/index";
 import Show from "../components/projects/show/index";
 import Store from "../components/projects/store/index";
 import Update from "../components/projects/update/index"
-import Login from "../components/auth/login";
+import Login from "../components/auth/login/index";
 import ResetPassword from "../components/auth/reset-password";
 import ForgetPassword from "../components/auth/forget-password";
 import User from "../components/user";
