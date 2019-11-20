@@ -1,14 +1,10 @@
 import React from 'react'
 import { ErrorMessage, Field, Form, Formik } from "formik"
 import * as Yup from "yup"
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 import { useTranslation } from "react-i18next";
-import { updateTaskFlag, deleteTaskFlag } from '../../../store/modules/projects/actions'
 
 
-const Task = connect(null, dispatch => bindActionCreators({ updateTaskFlag, deleteTaskFlag }, dispatch))((props) => {
-
+const View = (({ task, updateTask, deleteTask }) => {
     const { t } = useTranslation();
 
     const validationSchema = Yup.object().shape({
@@ -20,20 +16,21 @@ const Task = connect(null, dispatch => bindActionCreators({ updateTaskFlag, dele
     })
 
     return (
+
         <div className='card py-12'>
-            <div className={'w-full px-12' + (props.task.completed ? ' border-l-4 border-gray-500' : ' border-l-4 border-primary-900')}>
+            <div className={'w-full px-12' + (task.completed ? ' border-l-4 border-gray-500' : ' border-l-4 border-primary-900')}>
 
                 <Formik initialValues={
                     {
-                        body: props.task.body,
-                        completed: props.task.completed
+                        body: task.body,
+                        completed: task.completed
                     }
                 }
                     enableReinitialize
                     validationSchema={validationSchema}
                     onSubmit={(values, { setSubmitting, resetForm }) => {
                         setSubmitting(true)
-                        props.updateTaskFlag({ values, id: props.task.id })
+                        updateTask({ values, id: task.id })
                         resetForm()
                         setSubmitting(false)
                     }
@@ -43,14 +40,14 @@ const Task = connect(null, dispatch => bindActionCreators({ updateTaskFlag, dele
                     {({ errors, handleSubmit }) => (
                         <Form className='flex justify-between items-center h-40' onSubmit={handleSubmit}>
 
-                            <Field className={'w-10/12 h-full px-8 py-8 focus:outline-none focus:shadow-outline' + (errors.body ? ' border border-solid border-1 border-danger-500 font-normal text-danger-500' : '') + (props.task.completed ? ' line-through text-gray-500' : 'no-underline text-primary-900')}
+                            <Field className={'w-10/12 h-full px-8 py-8 focus:outline-none focus:shadow-outline' + (errors.body ? ' border border-solid border-1 border-danger-500 font-normal text-danger-500' : '') + (task.completed ? ' line-through text-gray-500' : 'no-underline text-primary-900')}
                                 placeholder={t('phrases:task_body_input_placeholder')} type="text" name="body" />
 
                             {errors.body ? (<ErrorMessage className='px-8 py-8 text-danger-500 text-xs italic' name="body" component="div" />) : null}
 
                             <div className='flex'>
-                                
-                                <button type='button' className='mx-8 focus:outline-none' onClick={() => props.deleteTaskFlag({ id: props.task.id })}>
+
+                                <button type='button' className='mx-8 focus:outline-none' onClick={() => deleteTask({ id: task.id })}>
                                     <i className="fas fa-trash-alt text-xl text-gray-300  hover:text-danger-700"></i>
                                 </button>
 
@@ -58,7 +55,7 @@ const Task = connect(null, dispatch => bindActionCreators({ updateTaskFlag, dele
                                     render={() => {
                                         return (
                                             <label className='checkbox-container mt-8 p-20'>
-                                                <input name="completed" type="checkbox" defaultChecked={props.task.completed} onChange={(e) => props.updateTaskFlag({ values: { body: props.task.body, completed: e.target.checked }, id: props.task.id })} />
+                                                <input name="completed" type="checkbox" defaultChecked={task.completed} onChange={(e) => updateTask({ values: { body: task.body, completed: e.target.checked }, id: task.id })} />
                                                 <span className="checkmark"></span>
                                             </label>
                                         );
@@ -77,4 +74,4 @@ const Task = connect(null, dispatch => bindActionCreators({ updateTaskFlag, dele
     )
 })
 
-export default Task
+export default View

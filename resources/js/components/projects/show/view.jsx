@@ -2,7 +2,7 @@ import React from 'react'
 import { useTranslation } from "react-i18next";
 import { Link } from 'react-router-dom';
 import Store from '../tasks/store';
-import Task from '../tasks';
+import Task from '../tasks/index';
 import Activity from '../../partials/activity';
 import InviteUsers from '../invite-users'
 

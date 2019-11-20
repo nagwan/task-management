@@ -10,7 +10,7 @@ const TaskIncomplete = (({ activity }) => {
 
     return (
         <React.Fragment>
-            <UserName name={activity.user.name}/> <span>{t('phrases:task_incomplete')}</span> <span className='font-bold italic'>{activity.subject.body}</span> 🤔 <ActivityTime val={activity.created_at}/>
+            <UserName name={activity.user.name}/> <span>{t('phrases:task_incomplete')}</span> <span className='font-bold italic'>{activity.changes.before.body}</span> 🤔 <ActivityTime val={activity.created_at}/>
         </React.Fragment>
     )
 })

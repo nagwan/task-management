@@ -254,7 +254,7 @@ export function* updateTask(action) {
 
 export function* watchTaskUpdate() {
     yield takeLatest(actions.TASK_UPDATE_FLAG, updateTask)
-}
+} 
 
 /**
  * delete task
