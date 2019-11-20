@@ -17,17 +17,16 @@ const View = (({ user, project, deleteProject, removeMember }) => {
             <div className='w-full flex justify-between items-center p-24 '>
 
                 {
-                    user.id == project.owner_id && project.members.length ?
+                    project.members.length ?
 
-                        project.members.length ?
-                            <div className='flex'>
-                                {
-                                    project.members.map(member =>
-                                        <img onClick={()=> removeMember({id:member.id})} title={member.name} alt={member.name} key={member.id} src={member.profile.avatar} className='cursor-pointer rounded-full border-primary-900 border-rounded border-4 mr-4' width='50px' height='50px' />
-                                    )
-                                }
-                            </div>
-                            : ''
+                        <div className='flex'>
+                            {
+                                project.members.map(member =>
+                                    <img onClick={user.id == project.owner_id ? () => removeMember({ id: member.id }) : () => false} title={member.name} alt={member.name} key={member.id} src={member.profile.avatar} className={'rounded-full border-primary-900 border-rounded border-4 mr-4 ' + (user.id == project.owner_id ? 'cursor-pointer' : '')} width='50px' height='50px' />
+                                )
+                            }
+                            <img title={project.owner.name} alt={project.owner.name} src={project.owner.profile.avatar} className='rounded-full border-primary-900 border-rounded border-4' width='50px' height='50px' />
+                        </div>
                         : <img title={project.owner.name} alt={project.owner.name} src={project.owner.profile.avatar} className='rounded-full border-primary-900 border-rounded border-4' width='50px' height='50px' />
 
                 }

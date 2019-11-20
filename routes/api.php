@@ -50,7 +50,7 @@ Route::group(['middleware' => 'auth:api'], function () {
 
     Route::get('/home', 'HomeController@index')->name('home');
 
-    Route::post('/logout', 'AuthenticationController@logOut'); 
+    Route::post('/logout', 'AuthenticationController@logOut');
 
 });
 
