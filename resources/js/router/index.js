@@ -3,7 +3,7 @@ import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
 import Routes from './routes';
 import { connect } from 'react-redux';
 import NotFound from '../components/pages/404';
-import Navbar from '../components/partials/nav'
+import Navbar from '../components/partials/site-nav'
 
 
 const PrivateRoutes = connect(({ Authentication}) => ({ Authentication }))((route) => {
