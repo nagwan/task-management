@@ -11,7 +11,6 @@ class ProjectsController extends Controller
     public function index()
     {
         
-
         $projects = Project::where('owner_id', auth()->user()->id)
             ->orWhereHas('members', function($query){
                 $query->where('user_id', auth()->user()->id);

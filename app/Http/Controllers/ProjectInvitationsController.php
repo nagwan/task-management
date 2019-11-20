@@ -54,7 +54,7 @@ class ProjectInvitationsController extends Controller
         $access = Gate::inspect('manage', $project);
 
         if ($access->allowed()) {
-            $project->members()->delete($user);
+            $project->members()->detach();
 
             $data = Project::where('id', $project->id)->with('tasks', 'owner', 'owner.profile', 'activity', 'activity.subject', 'activity.user', 'members', 'members.profile')->first();
 
