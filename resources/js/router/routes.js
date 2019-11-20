@@ -1,4 +1,4 @@
-import Register from "../components/auth/register";
+import Register from "../components/auth/register/index";
 import Index from "../components/projects/index/index";
 import Show from "../components/projects/show/index";
 import Store from "../components/projects/store/index";
