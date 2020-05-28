@@ -14,6 +14,8 @@ export function* index(action) {
 
             const projects = yield call(api, `/api/projects`, null, 'get', user.api_token)
 
+            console.log(projects, 'fetch all projects response')
+
             yield put(actions.projectsIndex(projects.data.data))
         } else {
             yield action.history.push('/login')
@@ -21,7 +23,7 @@ export function* index(action) {
 
     } catch (error) {
 
-        console.log(error)
+        console.log(error, 'fetch all projects err')
     }
 }
 
